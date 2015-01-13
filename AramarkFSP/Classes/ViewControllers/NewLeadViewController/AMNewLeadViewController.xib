@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AMNewLeadViewController">
+            <connections>
+                <outlet property="btnAddNew" destination="H07-Us-psu" id="90H-H0-r1z"/>
+                <outlet property="btnCancel" destination="a4n-p4-bua" id="Afw-9c-OKW"/>
+                <outlet property="btnHistory" destination="vWf-zr-ngi" id="Fih-ht-POY"/>
+                <outlet property="imageDivCancel" destination="64h-xN-wBp" id="xcH-I8-nla"/>
+                <outlet property="scrollViewMain" destination="Atf-oU-t0q" id="phA-d3-b2P"/>
+                <outlet property="view" destination="lJV-zb-G5s" id="zk4-ri-fa0"/>
+                <outlet property="viewAddNewPanel" destination="xHT-xU-Nqj" id="kRl-3B-qwy"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="lJV-zb-G5s">
+            <rect key="frame" x="0.0" y="0.0" width="930" height="716"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s41-db-G8C">
+                    <rect key="frame" x="0.0" y="0.0" width="94" height="716"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="div-line.png" translatesAutoresizingMaskIntoConstraints="NO" id="AUK-2o-YUv">
+                            <rect key="frame" x="0.0" y="160" width="94" height="2"/>
+                        </imageView>
+                        <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vWf-zr-ngi">
+                            <rect key="frame" x="0.0" y="162" width="94" height="52"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" image="lead-history.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickHistoryBtn:" destination="-1" eventType="touchUpInside" id="udi-1N-i1e"/>
+                            </connections>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="div-line.png" translatesAutoresizingMaskIntoConstraints="NO" id="VTj-Yz-DiW">
+                            <rect key="frame" x="0.0" y="214" width="94" height="2"/>
+                        </imageView>
+                        <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H07-Us-psu">
+                            <rect key="frame" x="0.0" y="216" width="94" height="52"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" image="new-lead_sub-nav.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickAddBtn:" destination="-1" eventType="touchUpInside" id="UsB-Ym-tAk"/>
+                            </connections>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="div-line.png" translatesAutoresizingMaskIntoConstraints="NO" id="abo-df-PqT">
+                            <rect key="frame" x="0.0" y="268" width="94" height="2"/>
+                        </imageView>
+                        <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a4n-p4-bua">
+                            <rect key="frame" x="0.0" y="268" width="94" height="52"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" image="cancel.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickCancelBtn:" destination="-1" eventType="touchUpInside" id="SAa-1G-r6L"/>
+                            </connections>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="div-line.png" translatesAutoresizingMaskIntoConstraints="NO" id="64h-xN-wBp">
+                            <rect key="frame" x="0.0" y="320" width="94" height="2"/>
+                            <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pdy-De-Pz3">
+                    <rect key="frame" x="94" y="0.0" width="836" height="716"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xHT-xU-Nqj">
+                            <rect key="frame" x="0.0" y="0.0" width="836" height="716"/>
+                            <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Atf-oU-t0q">
+                            <rect key="frame" x="0.0" y="0.0" width="836" height="716"/>
+                        </scrollView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="cancel.png" width="35" height="38"/>
+        <image name="div-line.png" width="94" height="2"/>
+        <image name="lead-history.png" width="67" height="39"/>
+        <image name="new-lead_sub-nav.png" width="50" height="37"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>

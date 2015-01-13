@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AMSummaryViewController">
+            <connections>
+                <outlet property="btn_left" destination="sFf-m3-U56" id="FS3-vo-bhc"/>
+                <outlet property="btn_right" destination="qGf-UH-r1I" id="ISD-uE-ShW"/>
+                <outlet property="scrollViewMain" destination="TM0-Uc-WDA" id="lcy-AJ-nF7"/>
+                <outlet property="view" destination="Duk-cR-Fcf" id="qnt-Cs-BHG"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Duk-cR-Fcf">
+            <rect key="frame" x="0.0" y="0.0" width="930" height="716"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TM0-Uc-WDA">
+                    <rect key="frame" x="50" y="0.0" width="880" height="716"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="4DV-gB-FQe"/>
+                    </connections>
+                </scrollView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sFf-m3-U56">
+                    <rect key="frame" x="0.0" y="0.0" width="50" height="716"/>
+                    <state key="normal" image="arrow-side-left.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="clickLeftBtn:" destination="-1" eventType="touchUpInside" id="a9w-1D-pdj"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGf-UH-r1I">
+                    <rect key="frame" x="880" y="0.0" width="50" height="716"/>
+                    <color key="backgroundColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" image="arrow-side.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="clickRightBtn:" destination="-1" eventType="touchUpInside" id="tW4-oE-8BJ"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="TM0-Uc-WDA" firstAttribute="leading" secondItem="sFf-m3-U56" secondAttribute="trailing" id="0y2-C8-Ndy"/>
+                <constraint firstItem="qGf-UH-r1I" firstAttribute="width" secondItem="sFf-m3-U56" secondAttribute="width" id="6Kd-Dq-g5t"/>
+                <constraint firstAttribute="trailing" secondItem="qGf-UH-r1I" secondAttribute="trailing" id="9O9-eL-5T9"/>
+                <constraint firstItem="qGf-UH-r1I" firstAttribute="top" secondItem="Duk-cR-Fcf" secondAttribute="top" id="Cno-sO-lQd"/>
+                <constraint firstItem="TM0-Uc-WDA" firstAttribute="top" secondItem="Duk-cR-Fcf" secondAttribute="top" id="Ee6-rl-C51"/>
+                <constraint firstItem="sFf-m3-U56" firstAttribute="leading" secondItem="Duk-cR-Fcf" secondAttribute="leading" id="G9d-nT-Sva"/>
+                <constraint firstAttribute="bottom" secondItem="TM0-Uc-WDA" secondAttribute="bottom" id="Iro-rm-IBu"/>
+                <constraint firstAttribute="bottom" secondItem="sFf-m3-U56" secondAttribute="bottom" id="Ml4-c3-VDr"/>
+                <constraint firstItem="TM0-Uc-WDA" firstAttribute="leading" secondItem="Duk-cR-Fcf" secondAttribute="leading" constant="50" id="dL0-3U-YkA"/>
+                <constraint firstItem="sFf-m3-U56" firstAttribute="top" secondItem="Duk-cR-Fcf" secondAttribute="top" id="gQE-ah-aGZ"/>
+                <constraint firstAttribute="trailing" secondItem="TM0-Uc-WDA" secondAttribute="trailing" id="ilh-6N-7uv"/>
+                <constraint firstAttribute="bottom" secondItem="qGf-UH-r1I" secondAttribute="bottom" id="uGB-nN-DZY"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="arrow-side-left.png" width="14" height="53"/>
+        <image name="arrow-side.png" width="14" height="53"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>

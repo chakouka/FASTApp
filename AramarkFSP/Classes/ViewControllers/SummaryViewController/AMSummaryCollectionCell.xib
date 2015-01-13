@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AMSummaryCollectionCell" id="BGg-KK-N5B" customClass="AMSummaryCollectionCell">
+            <rect key="frame" x="0.0" y="0.0" width="193" height="68"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="193" height="68"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y7P-ga-iUX" customClass="AMSummaryLabel">
+                        <rect key="frame" x="0.0" y="0.0" width="134" height="68"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label 2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndF-sq-o6W" customClass="AMSummaryLabel">
+                        <rect key="frame" x="142" y="25" width="51" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="ndF-sq-o6W" firstAttribute="leading" secondItem="y7P-ga-iUX" secondAttribute="trailing" constant="8" symbolic="YES" id="4h9-YL-z2j"/>
+                <constraint firstItem="ndF-sq-o6W" firstAttribute="centerY" secondItem="y7P-ga-iUX" secondAttribute="centerY" id="Ee6-GD-XOP"/>
+                <constraint firstItem="y7P-ga-iUX" firstAttribute="top" secondItem="BGg-KK-N5B" secondAttribute="top" id="Nvf-fG-5y2"/>
+                <constraint firstItem="y7P-ga-iUX" firstAttribute="leading" secondItem="BGg-KK-N5B" secondAttribute="leading" id="Qtg-MN-Syg"/>
+                <constraint firstAttribute="trailing" secondItem="ndF-sq-o6W" secondAttribute="trailing" id="gzH-z4-s8D"/>
+                <constraint firstAttribute="bottom" secondItem="y7P-ga-iUX" secondAttribute="bottom" id="yma-K0-EVd"/>
+            </constraints>
+            <size key="customSize" width="193" height="68"/>
+            <connections>
+                <outlet property="lbl_left" destination="y7P-ga-iUX" id="ioW-gb-IUC"/>
+                <outlet property="lbl_right" destination="ndF-sq-o6W" id="yXe-LI-9OC"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>

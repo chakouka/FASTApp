@@ -1,0 +1,1114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Welcome</key>
+	<string>Bienvenue</string>
+	<key>SEARCH SPECIFIC ACCOUNT</key>
+	<string>Rechercher un Compte Spécifique</string>
+	<key>Move</key>
+	<string>Déplacer</string>
+	<key>SORT BY</key>
+	<string>Trier Par</string>
+	<key>Contact</key>
+	<string>Contact</string>
+	<key>Open Since</key>
+	<string>Ouvert Depuis</string>
+	<key>OPEN</key>
+	<string>OUVERT</string>
+	<key>Current Product</key>
+	<string>Produit Actuel</string>
+	<key>Satisfication Level with Current Provider</key>
+	<string>Niveau de Satisfaction avec le Fournisseur Actuel</string>
+	<key>Estimated Start Time</key>
+	<string>Heure d&apos;Arrivée Estimée</string>
+	<key>Estimated End Time</key>
+	<string>Heure de Départ Estimée</string>
+	<key>Work Now</key>
+	<string>Travailler Maintenant</string>
+	<key>Current Distance</key>
+	<string>Distance Actuelle</string>
+	<key>Mile</key>
+	<string>Mile</string>
+	<key>SAVE</key>
+	<string>Sauvegarder</string>
+	<key>WORKORDER TYPE</key>
+	<string>Type de Bon de Travail</string>
+	<key>START TIME</key>
+	<string>Heure de Commencement</string>
+	<key>SORT BY START TIME</key>
+	<string>Trier par Heure de Commencement</string>
+	<key>SORT BY PRIORITY</key>
+	<string>Trier par Priorité</string>
+	<key>SORT BY DISTANCE</key>
+	<string>Trier par Distance</string>
+	<key>PRIORITY</key>
+	<string>Priorité</string>
+	<key>DISTANCE</key>
+	<string>Distance</string>
+	<key>Check in</key>
+	<string>Enregistrer Arrivée</string>
+	<key>Work Order</key>
+	<string>Bon de Travail</string>
+	<key>WO #</key>
+	<string>BT #</string>
+	<key>Point of Service</key>
+	<string>Point de Service</string>
+	<key>Current Location</key>
+	<string>Emplacement Actuel</string>
+	<key>Asset</key>
+	<string>Immobilisation</string>
+	<key>Machine Type</key>
+	<string>Type de Machine</string>
+	<key>MACHINE TYPE</key>
+	<string>Type de Machine</string>
+	<key>Compliant Code</key>
+	<string>Code de Plainte</string>
+	<key>Under Warranty</key>
+	<string>Sous Garantie</string>
+	<key>Call Ahead</key>
+	<string>Appeler a l&apos;avance</string>
+	<key>Preferred Scheduled Time</key>
+	<string>Heure de Préférence</string>
+	<key>Vend Key</key>
+	<string>Clé de Distributrice</string>
+	<key>Status</key>
+	<string>État</string>
+	<key>STATUS</key>
+	<string>État</string>
+	<key>Subject</key>
+	<string>Objet</string>
+	<key>Work Order description</key>
+	<string>Description du Bon de Travail</string>
+	<key>Parking Detail</key>
+	<string>Détail de Stationnement </string>
+	<key>Created Date</key>
+	<string>Date Créé</string>
+	<key>Age[hours]</key>
+	<string>Âge (Heures)</string>
+	<key>Age(hours)</key>
+	<string>Âge (Heures)</string>
+	<key>Created By</key>
+	<string>Créé Par</string>
+	<key>Created</key>
+	<string>Créé</string>
+	<key>Attachments</key>
+	<string>Pièces Jointes</string>
+	<key>Cancel</key>
+	<string>Annuler</string>
+	<key>Add</key>
+	<string>Ajouter</string>
+	<key>ADD</key>
+	<string>Ajouter</string>
+	<key>Camera</key>
+	<string>Caméra</string>
+	<key>Choose From Album</key>
+	<string>Choisir de l&apos;Album</string>
+	<key>Save work order</key>
+	<string>Sauvegarder Bon de Travail</string>
+	<key>SAVE WORK ORDER</key>
+	<string>Sauvegarder Bon de Travail</string>
+	<key>Account Info</key>
+	<string>Information du Compte</string>
+	<key>Account Name</key>
+	<string>Nom du Compte</string>
+	<key>Parent Account</key>
+	<string>Compte Parent</string>
+	<key>National Account</key>
+	<string>Compte National</string>
+	<key>Key Account</key>
+	<string>Compte Clé</string>
+	<key>National Account Name</key>
+	<string>Nom du Compte National</string>
+	<key>Account At Risk</key>
+	<string>Compte à Risque</string>
+	<key>At Risk Reason</key>
+	<string>Raison du À Risque</string>
+	<key>Sales Consultant</key>
+	<string>Consultant en Ventes</string>
+	<key>Pending WO</key>
+	<string>BT en Attente</string>
+	<key>WO</key>
+	<string>BT</string>
+	<key>Wo Type</key>
+	<string>Type de BT</string>
+	<key>Complaint Code</key>
+	<string>Code de Plainte</string>
+	<key>COMPLAINT CODE</key>
+	<string>Code de Plainte</string>
+	<key>Description</key>
+	<string>Description</string>
+	<key>Date</key>
+	<string>Date</string>
+	<key>Assign to Myself</key>
+	<string>Assigner à Moi-Même</string>
+	<key>Point of Service Info</key>
+	<string>Information du Point de Service</string>
+	<key>Point of Service Name</key>
+	<string>Nom du Point de Service</string>
+	<key>Segment</key>
+	<string>Segment</string>
+	<key>NAM</key>
+	<string>DCN</string>
+	<key>KAM</key>
+	<string>DCC</string>
+	<key>BDM</key>
+	<string>DDA</string>
+	<key>Route</key>
+	<string>Route</string>
+	<key>Driver Name</key>
+	<string>Nom du Conducteur</string>
+	<key>New Case</key>
+	<string>Nouvelle Requête</string>
+	<key>NEW CASE</key>
+	<string>Nouvelle Requête</string>
+	<key>Location</key>
+	<string>Emplacement</string>
+	<key>Location Name</key>
+	<string>Nom de l&apos;Emplacement</string>
+	<key>Update Site Survey</key>
+	<string>Mettre à Jour Étude de Site</string>
+	<key>Additional Notes</key>
+	<string>Notes Supplémentaires</string>
+	<key>Badge Needed for Access?</key>
+	<string>Carte d&apos;Accès Requise?</string>
+	<key>Cabinet Height[Inches]?</key>
+	<string>Hauteur des Armoires (Pouces)?</string>
+	<key>Cabinet Height(Inches)?</key>
+	<string>Hauteur des Armoires (Pouces)?</string>
+	<key>Dock Available?</key>
+	<string>Baie de Livraison Disponible?</string>
+	<key>Doors to be Removed</key>
+	<string>Portes à enlever?</string>
+	<key>Doorway Width [inches]</key>
+	<string>Largeur de la porte (Pouces)</string>
+	<key>Electric Outlet Type</key>
+	<string>Type de Prise Électrique</string>
+	<key>Electricity Within 3ft</key>
+	<string>Alimentation Électrique dans les 3 pieds?</string>
+	<key>Eletricity Within 3ft?</key>
+	<string>Alimentation Électrique dans les 3 pieds?</string>
+	<key>Elevator or Stairs?</key>
+	<string>Escaliers ou Ascenceur?</string>
+	<key>Elevator</key>
+	<string>Ascenceurs</string>
+	<key>Stairs</key>
+	<string>Escaliers</string>
+	<key>Both</key>
+	<string>Tous Les Deux</string>
+	<key>Elevator Size[feet]</key>
+	<string>Taille de l&apos;Ascenceur (pieds)</string>
+	<key>Elevator Size [feet]</key>
+	<string>Taille de l&apos;Ascenceur (pieds)</string>
+	<key>Freight Elevator Available?</key>
+	<string>Ascenceur de service disponible?</string>
+	<key>Personal Protection Equipment Required?</key>
+	<string>Équipement de Protection Personnelle Requis?</string>
+	<key>Required Electrical in Place?</key>
+	<string>Alimentation Électrique Requise en place?</string>
+	<key>Requireds Visit by Service Department</key>
+	<string>Visites Requises par le Département de Service?</string>
+	<key>Site Level and Lighted?</key>
+	<string>Site au Niveau et Éclairé?</string>
+	<key>Site Survey Date</key>
+	<string>Date de l&apos;Étude du Site</string>
+	<key>Room Measurement for Equipment</key>
+	<string>Mesures de la Pièce pour Équipement</string>
+	<key>Specific Safety Training Required?</key>
+	<string>Entrainement de Sécurité Spécifique Requis?</string>
+	<key>Type of Flooring</key>
+	<string>Type de Plancher</string>
+	<key>Water Source within 10ft?</key>
+	<string>Source d&apos;Eau dans les 10 pieds?</string>
+	<key>Special Instruction/Notes</key>
+	<string>Notes/Instructions Spéciales</string>
+	<key>Submit</key>
+	<string>Soumettre</string>
+	<key>Contact Role</key>
+	<string>Rôle du Contact</string>
+	<key>Contact Phone</key>
+	<string>Téléphone du Contact</string>
+	<key>Contact Email</key>
+	<string>Courriel du Contact</string>
+	<key>Asset Info</key>
+	<string>Information de l&apos;Immobilisation</string>
+	<key>Asset Name</key>
+	<string>Nom de l&apos;Immobilisation</string>
+	<key>Serial Number</key>
+	<string>Numéro de Série</string>
+	<key>Install Date</key>
+	<string>Date d&apos;Installation</string>
+	<key>Asset Number</key>
+	<string>Numéro d&apos;Immobilisation</string>
+	<key>Manufacturer Website</key>
+	<string>Site Web du Fabricant</string>
+	<key>Next PM Date</key>
+	<string>Prochaine Date EP</string>
+	<key>Last Verified Date</key>
+	<string>Date de Dernière Vérification</string>
+	<key>Repair Wo History</key>
+	<string>Historique de BT Réparation</string>
+	<key>WO Type</key>
+	<string>Type de BT</string>
+	<key>WO TYPE</key>
+	<string>Type de BT</string>
+	<key>Assigned To</key>
+	<string>Assigné À</string>
+	<key>ASSIGNED TO</key>
+	<string>Assigné À</string>
+	<key>Priority</key>
+	<string>Priorité</string>
+	<key>Repair Code</key>
+	<string>Code de Réparation</string>
+	<key>REPAIR CODE</key>
+	<string>Code de Réparation</string>
+	<key>WO Date</key>
+	<string>Date du BT</string>
+	<key>WO DATE</key>
+	<string>Date du BT</string>
+	<key>Work Order Notes</key>
+	<string>Notes au Bon de Travail</string>
+	<key>Save</key>
+	<string>Sauvegarder</string>
+	<key>Case Info</key>
+	<string>Information sur la Requête</string>
+	<key>Case Owner</key>
+	<string>Propriétaire de la Requête</string>
+	<key>Case Number</key>
+	<string>Numéro de Requête</string>
+	<key>Case #</key>
+	<string>Numéro de Requête</string>
+	<key>Related WO</key>
+	<string>BT Relié</string>
+	<key>You are about to leave this application.Are you sure to navigate to maps?</key>
+	<string>Vous êtes sur le point de quitter cette application. Êtes-vous sûr de vouloir naviguer vers les cartes?  (OUI/NON)</string>
+	<key>Check in Time</key>
+	<string>Heure d&apos;Arrivée</string>
+	<key>Check out Time</key>
+	<string>Heure de Départ</string>
+	<key>Check Out Time</key>
+	<string>Heure de Départ</string>
+	<key>Case No</key>
+	<string>Numéro de Requête</string>
+	<key>WO Created Date</key>
+	<string>Date de Création du BT</string>
+	<key>Respond and Recover</key>
+	<string>Réponse et Récupération</string>
+	<key>No Work Orders</key>
+	<string>Aucun Bon de Travail</string>
+	<key>Select Work Order Type</key>
+	<string>Sélectionnez le Type de Bon de Travail</string>
+	<key>WO Completed&amp;AVG Time TODAY</key>
+	<string>BT Complété &amp; Durée APPROX AUJOURD&apos;HUI</string>
+	<key>R&amp;R this week</key>
+	<string>R&amp;R cette semaine</string>
+	<key>MC Completed WO this week</key>
+	<string>BT Complété mar le CM cette semaine</string>
+	<key>Work Order By Type for Today</key>
+	<string>Bon de Travail par Type pour Aujourd&apos;hui</string>
+	<key>Market Center WO VS My Completed WO</key>
+	<string>BT Centre de Marché vs. MES BT Complétés</string>
+	<key>AVG Completion</key>
+	<string>Exécution APPROX</string>
+	<key>Hour</key>
+	<string>Heure</string>
+	<key>hour</key>
+	<string>heure</string>
+	<key>Completed WO</key>
+	<string>BT Complété</string>
+	<key>Completed By</key>
+	<string>Complété Par</string>
+	<key>No Work Orders this week</key>
+	<string>Aucun Bon de Travail cette semaine</string>
+	<key>AVG Time(Hour)</key>
+	<string>Temps APPROX (Heure)</string>
+	<key>30-100</key>
+	<string>30-100</string>
+	<key>Account</key>
+	<string>Compte</string>
+	<key>Address</key>
+	<string>Adresse  </string>
+	<key>Address Info</key>
+	<string>Information Adresse</string>
+	<key>Address Line 2</key>
+	<string>Adresse Ligne 2</string>
+	<key>Are you sure to submit ?</key>
+	<string>Êtes-vous sûr de vouloir soumettre ?</string>
+	<key>Are you sure you want to Check In ?</key>
+	<string>Êtes-vous sûr de vouloir Enregistrer l&apos;Arrivée</string>
+	<key>Are you sure you want to check out?</key>
+	<string>Êtes-vous sûr de vouloir Enregistrer le Départ?</string>
+	<key>Are you sure you want to log out?</key>
+	<string>Êtes-vous sûr de vouloir fermer votre session?</string>
+	<key>Asset List Empty</key>
+	<string>Liste d&apos;Immobilisation Vide</string>
+	<key>Break room was left in an orderly manner ?</key>
+	<string>Salle de Pause laissée en ordre?</string>
+	<key>Cancel check in</key>
+	<string>Annuler l&apos;Enregistrement de l&apos;Arrivée</string>
+	<key>Case</key>
+	<string>Requête</string>
+	<key>Case Description</key>
+	<string>Description de la Requête</string>
+	<key>Case Record Type</key>
+	<string>Type de Dossier Requête</string>
+	<key>Check out </key>
+	<string>Départ</string>
+	<key>Check Points</key>
+	<string>3 Contrôles</string>
+	<key>3 CHECK POINTS</key>
+	<string>3 Contrôles</string>
+	<key>Choose Asset</key>
+	<string>Choisir Immobilisation</string>
+	<key>Choose Contact</key>
+	<string>Choisir Contact</string>
+	<key>City</key>
+	<string>Ville</string>
+	<key>Client Signature</key>
+	<string>Signature Client</string>
+	<key>Clone</key>
+	<string>Cloner</string>
+	<key>Closed Date</key>
+	<string>Date fermée</string>
+	<key>CLOSED</key>
+	<string>FERMÉ</string>
+	<key>Coffee</key>
+	<string>Café</string>
+	<key>Comments</key>
+	<string>Commentaires</string>
+	<key>Company Name</key>
+	<string>Nom de la Compagnie</string>
+	<key>Company Size</key>
+	<string>Taille de la Compagnie</string>
+	<key>Confirm&amp;Reset&amp;Cancel</key>
+	<string>Confirmer&amp;Réinitialiser&amp;Annuler</string>
+	<key>Contact Info</key>
+	<string>Contact</string>
+	<key>Contact List Empty</key>
+	<string>Liste de Contact Vide</string>
+	<key>Country</key>
+	<string>Pays</string>
+	<key>Create New work order</key>
+	<string>Créer Nouveau Bon de Travail</string>
+	<key>CREATE NEW WORK ORDER</key>
+	<string>Créer Nouveau Bon de Travail</string>
+	<key>Current Produce</key>
+	<string>Produit Actuel</string>
+	<key>Current Provider</key>
+	<string>Fournisseur Actuel</string>
+	<key>Dr.</key>
+	<string>Dr</string>
+	<key>Email</key>
+	<string>Courriel</string>
+	<key>E-mail</key>
+	<string>Courriel</string>
+	<key>Email address</key>
+	<string>Adresse Courriel</string>
+	<key>Estimated Date</key>
+	<string>Date Estimée</string>
+	<key>Estimated Price</key>
+	<string>Prix Estimé</string>
+	<key>Filters</key>
+	<string>Filtres</string>
+	<key>FILTERS</key>
+	<string>Filtres</string>
+	<key>Filter</key>
+	<string>Filtre </string>
+	<key>First Name</key>
+	<string>Prénom</string>
+	<key>Found</key>
+	<string>Trouvée</string>
+	<key>Greater than 100</key>
+	<string>Plus de 100</string>
+	<key>Hello</key>
+	<string>Bonjour</string>
+	<key>High</key>
+	<string>Haute</string>
+	<key>Hours Rate</key>
+	<string>Tarif Horaire</string>
+	<key>Hours worked</key>
+	<string>Heures Travaillées</string>
+	<key>hours</key>
+	<string>heures</string>
+	<key>Ice</key>
+	<string>Glace</string>
+	<key>Inspected tubing for any potential leaks ?</key>
+	<string>Tuyaux inspectés pour fuites potentielles ?</string>
+	<key>Invoice</key>
+	<string>Facture</string>
+	<key>invoice Code</key>
+	<string>Code de Facture</string>
+	<key>INVOICE CODE</key>
+	<string>Code de Facture</string>
+	<key>Invoice Code</key>
+	<string>Code de Facture</string>
+	<key>Labor Charge</key>
+	<string>Frais de Main d&apos;Oeuvre</string>
+	<key>Last Name</key>
+	<string>Nom de Famille</string>
+	<key>Location Accuracy</key>
+	<string>Exactitude de l&apos;Emplacement</string>
+	<key>Log Out</key>
+	<string>Fermer Session</string>
+	<key>Workorder Number</key>
+	<string>Numéro de Bon de Travail</string>
+	<key>Estimated Work Date</key>
+	<string>Date de Travail Estimée</string>
+	<key>Filter Type</key>
+	<string>Type de Filtre</string>
+	<key>Filter Number</key>
+	<string>Numéro de Filtre</string>
+	<key>Clear Cache</key>
+	<string>Vider la Cache</string>
+	<key>WO COMPLETED &amp; AVG TIME TODAY</key>
+	<string>BT Complété &amp; temps moy aujourd&apos;hui</string>
+	<key>R &amp; R THIS WEEK</key>
+	<string>R&amp;R Cette Semaine</string>
+	<key>MC COMPLETED WO THIS WEEK</key>
+	<string>BT Complétés par CM cette semaine</string>
+	<key>MARKET CENTER WO VS. MY COMPLETED WO</key>
+	<string>Centre de Marché BT vs. MES BT Complété</string>
+	<key>WORK ORDER BY TYPE FOR TODAY</key>
+	<string>Bon de Travail par Type pour aujourd&apos;hui</string>
+	<key>SORT BY WORKORDER TYPE</key>
+	<string>Trier par type de Bon de Travail</string>
+	<key>CONFIRM</key>
+	<string>Confirmer</string>
+	<key>RESET</key>
+	<string>Réinitialiser</string>
+	<key>CANCEL</key>
+	<string>Annuler</string>
+	<key>Position/ Title</key>
+	<string>Position/ Titre</string>
+	<key>Email Address</key>
+	<string>Adresse Courriel</string>
+	<key>OR</key>
+	<string>OU</string>
+	<key>Asset #</key>
+	<string>Immobilisation</string>
+	<key>Serial #</key>
+	<string>Numéro de Série</string>
+	<key>1 ft</key>
+	<string>1 pd</string>
+	<key>1 min</key>
+	<string>1 min</string>
+	<key>WORK NOW</key>
+	<string>Travailler Maintenant</string>
+	<key>Net Error, Failed to get Google map route</key>
+	<string>Erreur Sys, Ne peut pas obtenir route de Google Map</string>
+	<key>Failed to get Google map route</key>
+	<string>Ne peut pas obtenir route de Google Map</string>
+	<key>Work Order Description</key>
+	<string>Description du Bon de Travail</string>
+	<key>PENDING WO</key>
+	<string>BT en Attente</string>
+	<key>REPAIR WO HISTORY</key>
+	<string>Historique de Réparation</string>
+	<key>RELATED WO</key>
+	<string>BT Relié</string>
+	<key>NO</key>
+	<string>NON</string>
+	<key>No</key>
+	<string>NON</string>
+	<key>YES</key>
+	<string>OUI</string>
+	<key>Yes</key>
+	<string>OUI</string>
+	<key>UPDATE DATE</key>
+	<string>Date de Mise à Jour</string>
+	<key>Need to Verify</key>
+	<string>Besoin de Vérifier</string>
+	<key>Missing</key>
+	<string>Manquant</string>
+	<key>Wrong Machine Type</key>
+	<string>Mauvais Type de Machine</string>
+	<key>Wrong Asset Number</key>
+	<string>Mauvais Numéro d&apos;Immobilisation</string>
+	<key>Wrong Serial Number</key>
+	<string>Mauvais Numéro de Série</string>
+	<key>Assign To Myself</key>
+	<string>Assigner à moi-même</string>
+	<key>Save Success</key>
+	<string>Succès de la Sauvegarde</string>
+	<key>Success</key>
+	<string>Succès</string>
+	<key>Delete Succeed</key>
+	<string>Supprimer réussir</string>
+	<key>Delete Failed</key>
+	<string>Echec de la suppression</string>
+	<key>Maintenance Type</key>
+	<string>Type d&apos;Entretien</string>
+	<key>SUBMIT</key>
+	<string>Soumettre</string>
+	<key>ESTIMATED PRICE</key>
+	<string>Prix Estimé</string>
+	<key>Administrative Work Done</key>
+	<string>Travail Administratif Accompli</string>
+	<key>Called Machine Manufacturer</key>
+	<string>Fabricant de la Machine Appelé</string>
+	<key>Exchanged Equipment</key>
+	<string>Équipement Échangé</string>
+	<key>Installed Equipment</key>
+	<string>Équipement Installé</string>
+	<key>Kiosk On-Line</key>
+	<string>Kiosque En-Ligne</string>
+	<key>Moved Equipment</key>
+	<string>Équipement Déménagé</string>
+	<key>Equipment</key>
+	<string>Équipement</string>
+	<key>Needs Part</key>
+	<string>Besoin de Pièce</string>
+	<key>No Problem</key>
+	<string>Aucun Problème</string>
+	<key>Preventative Maintenance</key>
+	<string>Entretien Préventif</string>
+	<key>Refused Filter Change</key>
+	<string>Remplacement de Filtre Refusé</string>
+	<key>Removed Equipment</key>
+	<string>Équipement Retiré</string>
+	<key>Repaired Brewer</key>
+	<string>Machine à Café Réparée</string>
+	<key>Repaired Leak</key>
+	<string>Fuite Réparée</string>
+	<key>Repaired Money/Product Jam</key>
+	<string>Argent/Produit Coincé Réparé</string>
+	<key>Replaced Filter</key>
+	<string>Filtre Remplacé</string>
+	<key>Shop Work Completed</key>
+	<string>Travail en Atelier Complété</string>
+	<key>Site Survey Complete</key>
+	<string>Étude de Site Complète</string>
+	<key>Unresolved</key>
+	<string>Non Résolu</string>
+	<key>Please Input Repair Code</key>
+	<string>Veuillez entrer le code de réparation</string>
+	<key>Please Add Asset</key>
+	<string>Se il vous plaît Ajouter Asset</string>
+	<key>You are about to leave this application. Are you sure to navigate to maps ?</key>
+	<string>Vous êtes sur le point de quitter cette application. Êtes-vous sûr de vouloir naviguer vers les cartes?</string>
+	<key>No Work Order</key>
+	<string>Aucun Bon de Travail</string>
+	<key>Are you sure you want to clear application data? If Yes, it will refresh data from server.</key>
+	<string>Êtes-vous sûr de vouloir effacer les données de l&apos;application? Si oui, cela actualisera les données du serveur.</string>
+	<key>TODAY</key>
+	<string>AUJOURD&apos;HUI</string>
+	<key>THIS WEEK</key>
+	<string>CETTE SEMAINE</string>
+	<key>VS.</key>
+	<string>VS.</string>
+	<key>BY TYPE</key>
+	<string>PAR TYPE</string>
+	<key>AVG COMPLETION</key>
+	<string>ACHÈVEMENT MOYEN</string>
+	<key>SELECT WORK ORDER TYPE</key>
+	<string>CHOISIR TYPE DE BON DE TRAVAIL</string>
+	<key>8 HRS</key>
+	<string>8 HRS</string>
+	<key>24 HRS</key>
+	<string>24 HRS</string>
+	<key>GREATER 24 HRS</key>
+	<string>PLUS DE 24 HRS</string>
+	<key>No work orders this week</key>
+	<string>Aucun Bon de Travail cette semaine</string>
+	<key>Verified</key>
+	<string>Vérifié</string>
+	<key>Low</key>
+	<string>Basse</string>
+	<key>Medium</key>
+	<string>Moyenne</string>
+	<key>MEI Customer #</key>
+	<string># Client MEI</string>
+	<key>Monday Tuesday</key>
+	<string>Lundi Mardi Mercredi Jeudi Vendredi</string>
+	<key>Mr.</key>
+	<string>M.</string>
+	<key>Mrs.</key>
+	<string>Mme</string>
+	<key>Ms.</key>
+	<string>Mlle</string>
+	<key>New</key>
+	<string>Nouvelle</string>
+	<key>New Case is created successfully but not synced.</key>
+	<string>Nouvelle Requête Créée avec succès mais non synchronisée.</string>
+	<key>New Lead is created successfully but not synced</key>
+	<string>Nouvelle Piste Créée avec succès mais non synchronisée</string>
+	<key>New Leads</key>
+	<string>Nouvelles Pistes</string>
+	<key>New Location</key>
+	<string>Nouvel Emplacement</string>
+	<key>+ New Location</key>
+	<string>+ Nouvel Emplacement</string>
+	<key>Next</key>
+	<string>Prochain</string>
+	<key>NEXT</key>
+	<string>Prochain</string>
+	<key>No Cases</key>
+	<string>Aucune Requête</string>
+	<key>No Leads</key>
+	<string>Aucune Piste</string>
+	<key>None</key>
+	<string>Aucun</string>
+	<key>Not Satisfied</key>
+	<string>Non Satisfait</string>
+	<key>OK</key>
+	<string>OK</string>
+	<key>Ok</key>
+	<string>OK</string>
+	<key>Open Close</key>
+	<string>Ouvert Clos</string>
+	<key>Parts</key>
+	<string>Pièces</string>
+	<key>PARTS</key>
+	<string>Pièces</string>
+	<key>Phone</key>
+	<string>Téléphone</string>
+	<key>Phone Number</key>
+	<string>Numéro de Téléphone</string>
+	<key>Please Choose Case Record Type First</key>
+	<string>Veuillez Choisir le Type de Dossier Requête En Premier</string>
+	<key>Please enter a valid email address</key>
+	<string>Veuillez Entrer une Adresse Courriel Valide</string>
+	<key>Please Input Address</key>
+	<string>Veuillez Entrer Adresse</string>
+	<key>Please input Asset Number!</key>
+	<string>Veuillez Entrer Numéro d&apos;Immobilisation!</string>
+	<key>Please Input Case Account</key>
+	<string>Veuillez Entrer de Compte de la Requête</string>
+	<key>Please Input Case Description</key>
+	<string>Veuillez Entrer la Description de la Requête</string>
+	<key>Please Input Case MEI Customer Number</key>
+	<string>Veuillez Entrer le Numéro de Client MEI de la Requête</string>
+	<key>Please Input Case Point of Service</key>
+	<string>Veuillez Entrer le Point de Service de la Requête</string>
+	<key>Please Input Case Record Type</key>
+	<string>Veuillez Entrer de Type de Dossier Requête</string>
+	<key>Please Input City</key>
+	<string>Veuillez Entrer Ville</string>
+	<key>Please Input Company Name</key>
+	<string>Veuillez Entrer Nom de la Compagnie</string>
+	<key>Please Input Email</key>
+	<string>Veuillez Entrer le Courriel</string>
+	<key>Please Input First Name</key>
+	<string>Veuillez Entrer Prénom</string>
+	<key>Please Input Last Name</key>
+	<string>Veuillez Entrer Nom de Famille</string>
+	<key>Please Input Lead Position/ Title</key>
+	<string>Veuillez Entrer Position/Titre de la Piste</string>
+	<key>Please input Location!</key>
+	<string>Veuillez Entrer Emplacement!</string>
+	<key>Please Input Phone Number</key>
+	<string>Veuillez Entrer Numéro de Téléphone</string>
+	<key>Please Input Referring Employee</key>
+	<string>Veuillez Entrer Employé Référant</string>
+	<key>Please input Serial Number!</key>
+	<string>Veuillez Entrer Numéro de Série!</string>
+	<key>Please Input State</key>
+	<string>Veuillez Entrer Province</string>
+	<key>Please Input Valid Email Address</key>
+	<string>Veuillez Entrer une Adresse Courriel Valide</string>
+	<key>Please Input Valid zip code</key>
+	<string>Veuillez Entrer Code Postal Valide</string>
+	<key>Please input Verification Note!</key>
+	<string>Veuillez Entrer Note de Vérification!</string>
+	<key>PoS</key>
+	<string>PdS</string>
+	<key>POS</key>
+	<string>PDS</string>
+	<key>Position/Title</key>
+	<string>Position/Titre</string>
+	<key>Preferred Time Start</key>
+	<string>Heure d&apos;Arrivée Préférée</string>
+	<key>Price</key>
+	<string>Prix</string>
+	<key>PRICE</key>
+	<string>Prix</string>
+	<key>Private Label</key>
+	<string>Collection Privée</string>
+	<key>Prof.</key>
+	<string>Prof.</string>
+	<key>Quantity</key>
+	<string>Quantité</string>
+	<key>Refering Employee</key>
+	<string>Employé Référant</string>
+	<key>Requested By</key>
+	<string>Demandée Par</string>
+	<key>Satisfiction Level with Current Provider</key>
+	<string>Niveau de Satisfaction avec le Fournissuer Actuel</string>
+	<key>Satisfied</key>
+	<string>Satisfait</string>
+	<key>Serial</key>
+	<string>Numéro de Série</string>
+	<key>Single Cup</key>
+	<string>Tasse Individuelle</string>
+	<key>Somewhat Satisfied</key>
+	<string>Partiellement Satisfait</string>
+	<key>State</key>
+	<string>État</string>
+	<key>Tested all equipment ?</key>
+	<string>Tout l&apos;équipement testé ?</string>
+	<key>The Internet Connection</key>
+	<string>La Connexion à l&apos;Internet</string>
+	<key>Title</key>
+	<string>Titre</string>
+	<key>Total # OF WO</key>
+	<string>Nombre de BT Total</string>
+	<key>TOTAL # OF WO</key>
+	<string>Nombre de BT Total</string>
+	<key>Total Price</key>
+	<string>Prix Total</string>
+	<key>TOTAL PRICE</key>
+	<string>Prix Total</string>
+	<key>Turning on WLAN will improve location accuracy</key>
+	<string>Mettre en marche WLAN va améliorer l&apos;exactitude de l&apos;emplacement (paramètres/OK)</string>
+	<key>Type</key>
+	<string>Type</string>
+	<key>Under 30</key>
+	<string>Moins de 30</string>
+	<key>Updated Asset</key>
+	<string>Immobilisation Mise à Jour</string>
+	<key>Updated Asset #</key>
+	<string>Immobilisation Mise à Jour</string>
+	<key>Updated Serial</key>
+	<string>Numéro de Série Mis à Jour</string>
+	<key>Updated Serial #</key>
+	<string>Numéro de Série Mis à Jour</string>
+	<key>Verification</key>
+	<string>Vérification</string>
+	<key>Verification Notes</key>
+	<string>Notes de Vérification</string>
+	<key>Verification Status</key>
+	<string>État de Vérification</string>
+	<key>Verified Date</key>
+	<string>Date Vérifiée</string>
+	<key>Very Satisfied</key>
+	<string>Très Satisfait</string>
+	<key>Water</key>
+	<string>Eau</string>
+	<key>Work order Description</key>
+	<string>Description du Bon de Travail</string>
+	<key>Write Comments</key>
+	<string>Écrire Commentaires</string>
+	<key>Write Note</key>
+	<string>Écrire Note</string>
+	<key>Write note</key>
+	<string>Écrire Note</string>
+	<key>Write notes</key>
+	<string>Écrire Notes</string>
+	<key>Zip Code</key>
+	<string>Code Postal</string>
+	<key>Number of Work Orders in the Past 28 Days</key>
+	<string>Nombre de Bons de Travail dans les 28 derniers jours</string>
+	<key>MEI Number</key>
+	<string>Nombre de MEI</string>
+	<key>Assign to My Self</key>
+	<string>Assigner à moi-même</string>
+	<key>Please check network connection.</key>
+	<string>Veuillez vérifier la connexion du réseau</string>
+	<key>days</key>
+	<string>jours</string>
+	<key>day</key>
+	<string>jour</string>
+	<key>ago</key>
+	<string>passé</string>
+	<key>Today</key>
+	<string>AUJOURD&apos;HUI</string>
+	<key>later</key>
+	<string>plustard</string>
+	<key>AVG TIME (HR)</key>
+	<string>MOY TEMPS (HR)</string>
+	<key>Clear Data</key>
+	<string>Purger Données</string>
+	<key>Language Changed</key>
+	<string>Langue Changée</string>
+	<key>Would you like to re-login to change application language?</key>
+	<string>Voullez vous ouvrir la session à nouveau pour changer la langue de l&apos;application?</string>
+	<key>Already in syncing process</key>
+	<string>Déjà en processus de synchronisation</string>
+	<key>Please select an asset before checking out. Are you sure you want to continue?</key>
+	<string>Veuillez sélectionner une immobilisation avant de régler. Êtes-vous sûr de vouloir continuer?</string>
+	<key>Continue</key>
+	<string>continuer</string>
+	<key>Doors to be Removed for Vending Equip?</key>
+	<string>Portes à retirer pour Distributrices?</string>
+	<key>Requires Visit by Service Department?</key>
+	<string>Requière une visite du Départmenet du Service?</string>
+	<key>Add Location</key>
+	<string>Ajouter Emplacement</string>
+	<key>Accessories Required</key>
+	<string>Accessoires Requis</string>
+	<key>Total Number of Filters</key>
+	<string>Nombre total de filtres</string>
+	<key>Jan</key>
+	<string>Jan</string>
+	<key>Feb</key>
+	<string>Fév</string>
+	<key>Mar</key>
+	<string>Mar</string>
+	<key>Apr</key>
+	<string>Avr</string>
+	<key>May</key>
+	<string>Mai</string>
+	<key>Jun</key>
+	<string>Jun</string>
+	<key>Jul</key>
+	<string>Jul</string>
+	<key>Aug</key>
+	<string>Aou</string>
+	<key>Sep</key>
+	<string>Sep</string>
+	<key>Oct</key>
+	<string>Oct</string>
+	<key>Nov</key>
+	<string>Nov</string>
+	<key>Dec</key>
+	<string>Déc</string>
+	<key>Sun</key>
+	<string>Dim</string>
+	<key>Sat</key>
+	<string>Sam</string>
+	<key>Fri</key>
+	<string>Ven</string>
+	<key>Thu</key>
+	<string>Jeu</string>
+	<key>Wed</key>
+	<string>Mer</string>
+	<key>Tue</key>
+	<string>Mar</string>
+	<key>Mon</key>
+	<string>Lun</string>
+	<key>REPAIR</key>
+	<string>Réparer</string>
+	<key>Repair</key>
+	<string>Réparer</string>
+	<key>INSTALL</key>
+	<string>Installer</string>
+	<key>MOVE</key>
+	<string>Bouger</string>
+	<key>REMOVAL</key>
+	<string>Retirer</string>
+	<key>SWAP</key>
+	<string>Échanger</string>
+	<key>Swap</key>
+	<string>Échanger</string>
+	<key>ADMINISTRATIVE</key>
+	<string>Administratif</string>
+	<key>FILTER EXCHANGE</key>
+	<string>Changement de Filtre</string>
+	<key>PREVENTATIVE MAINTENANCE</key>
+	<string>Entretien Préventif</string>
+	<key>ASSET VERIFICATION</key>
+	<string>Vérification d&apos;Immobilisation</string>
+	<key>Are you sure you want to assign this work order to your today&apos;s WO list?</key>
+	<string>Etes-vous sûr que vous voulez attribuer ce bon de travail à votre liste WO aujourd&apos;hui ?</string>
+	<key>Need Parts</key>
+	<string>Besoin de Pièces</string>
+	<key>Critical</key>
+	<string>Critique</string>
+	<key>Please try re-login to get this work order related information.</key>
+	<string>Veuillez essayer d&apos;ouvrir la session à nouveau pour obtenir l&apos;information reliée a ce bon de travail</string>
+	<key>Done</key>
+	<string>Accompli</string>
+	<key>You are not the primary person of this work order</key>
+	<string>Vous n&apos;êtes pas la première personne de ce bon de travail</string>
+	<key>Filter Name</key>
+	<string>Nom de filtre</string>
+	<key>Filter Price</key>
+	<string>Prix de filtre</string>
+	<key>Filter Quantity</key>
+	<string>Quantité de filtre</string>
+	<key>Vending Fixes</key>
+	<string>Distributrices Fixer</string>
+	<key>Filter Exchange</key>
+	<string>Êchange de Filtre</string>
+	<key>Filter List Empty</key>
+	<string>Filtre Liste vide</string>
+	<key>Part List Empty</key>
+	<string>Partie Liste vide</string>
+	<key>Work Order Description is required.</key>
+	<string>Ordre Description du travail est nécessaire .</string>
+	<key>Modified</key>
+	<string>modifié</string>
+	<key>Deleted</key>
+	<string>supprimé</string>
+	<key>Fail</key>
+	<string>échouer</string>
+	<key>Form Salesforce</key>
+	<string>former Salesforce</string>
+	<key>Invoice Code List Empty</key>
+	<string>Facture Liste des codes de vide</string>
+	<key>Please Input Signature</key>
+	<string>Veuillez Entrer Signature</string>
+	<key>Please sign your name!</key>
+	<string>S&apos;il vous plaît signer votre nom !</string>
+	<key>Please update the filter information</key>
+	<string>S&apos;il vous plaît mettre à jour les informations de filtre</string>
+	<key>Please Input Case Subject</key>
+	<string>Veuillez Entrer l’Objet de la Requête</string>
+	<key>Please Input Refering Employee</key>
+	<string>Veuillez Entrer employé référant</string>
+	<key>Please complete check out.</key>
+	<string>S&apos;il vous plaît remplir le check out.</string>
+	<key>There is more than one open Work Order associated to this Case</key>
+	<string>Il ya plus d&apos; un ordre de travail ouvert associé à la présente affaire</string>
+	<key>Move to Warehouse</key>
+	<string>Modifier Entrepôt</string>
+	<key>General Complaints</key>
+	<string>plaintes générales</string>
+	<key>Delete Image</key>
+	<string>supprimer l&apos;image</string>
+	<key>Are you sure you want to delete this attached image?</key>
+	<string>Êtes-vous sûr de vouloir supprimer cette image en pièce jointe ?</string>
+	<key>No Work Order are assigned at this time. Please try later.</key>
+	<string>Aucun ordre de travail sont affectées à cette époque . S&apos;il vous plaît réessayer plus tard.</string>
+	<key>Would you like to retrieve work order related information from Server?</key>
+	<string>Voulez-vous récupérer afin de travail des informations relatives à partir du serveur ?</string>
+	<key>Failed</key>
+	<string>Manqué</string>
+	<key>Failed to get user profile, please try login again.</key>
+	<string>Impossible d&apos;obtenir le profil de l&apos;utilisateur, s&apos;il vous plaît essayer de nouveau la connexion.</string>
+	<key>Vending</key>
+	<string>Distributeur</string>
+	<key>Delivered Product</key>
+	<string>Produit Délivré</string>
+	<key>Using MC Contact Email</key>
+	<string>Utilisation MC Contact Courriel</string>
+	<key>Filter quantity should be 0</key>
+	<string>Filtre quantité devrait être 0</string>
+	<key>Filter quantity cannot be 0</key>
+	<string>Quantité de filtre ne peut pas être 0</string>
+	<key>You are trying to submit a work order with “0.00 Invoice” Do you want to proceed?</key>
+	<string>Vous essayez de donner un ordre de travail avec &quot;0.00 facture &quot; Voulez-vous procéder ?</string>
+	<key>All</key>
+	<string>Tous</string>
+	<key>Asset Verification</key>
+	<string>Vérification d’Immobilisation</string>
+	<key>Install</key>
+	<string>Installation</string>
+	<key>Removal</key>
+	<string>Retrait</string>
+	<key>Administrative</key>
+	<string>Administratif</string>
+	<key>Ontario</key>
+	<string>Ontario</string>
+	<key>Quebec</key>
+	<string>Québec</string>
+	<key>British Columbia</key>
+	<string>Colombie Britannique</string>
+	<key>Alberta</key>
+	<string>Alberta</string>
+	<key>Manitoba</key>
+	<string>Manitoba</string>
+	<key>Saskatchewan</key>
+	<string>Saskatchewan</string>
+	<key>Nova Scotia</key>
+	<string>Nouvelle Écosse</string>
+	<key>New Brunswick</key>
+	<string>Nouveau Brunswick</string>
+	<key>Newfoundland and Labrador</key>
+	<string>Terre-Neuve et Labrador</string>
+	<key>Prince Edward Island</key>
+	<string>Ile du Prince-Édouard</string>
+	<key>Northwest Territories</key>
+	<string>Territoires du Nord Ouest</string>
+	<key>Yukon</key>
+	<string>Yukon</string>
+	<key>Preparing to log in...</key>
+	<string>Préparation pour la connexion...</string>
+	<key>Nunavut</key>
+	<string>Nunavut</string>
+	<key>Selected &apos;Wrong Serial Number&apos; should input Updated Serial Number</key>
+	<string>Mauvais Numéro de Série sélectionné  devrait entrer Numéro de Série Mis à Jour</string>
+	<key>Selected &apos;Wrong Asset Number&apos; should input Updated Asset Number</key>
+	<string>Sélectionné &quot; Mauvais Nombre d&apos;actifs &quot; devraient entrée Mise à jour Nombre d&apos;actifs</string>
+	<key>Selected &apos;Missing&apos; Should input Verification Note</key>
+	<string>Selected &apos; manquant &apos; Si l&apos;entrée de vérification note</string>
+	<key>Selected &apos;Wrong Machine Type&apos; Should input Verification Note</key>
+	<string>Sélectionné &quot; Mauvais type de machine &quot; Si la vérification d&apos;entrée de note</string>
+	<key>Don&apos;t have associated location</key>
+	<string>n’a pas de location associée</string>
+	<key>Province</key>
+	<string>Province</string>
+	<key>db save context fault</key>
+	<string>db sauver contexte faute</string>
+	<key>no invoice, so no case updated</key>
+	<string>pas de facture , donc pas de cas mis à jour</string>
+	<key>invoice to be deleted not found or more than one</key>
+	<string>facture à supprimer introuvable ou plus d&apos;un</string>
+	<key>Server logic error</key>
+	<string>Erreur logique de serveur</string>
+	<key>GetSelfUserInfo : server logic error</key>
+	<string>GetSelfUserInfo : erreur de logique du serveur</string>
+	<key>You are not the owner of this work order.</key>
+	<string>Vous n&apos;êtes pas le propriétaire de cet ordre de travail .</string>
+	<key>work order not in progress, cancel operation not proceed</key>
+	<string>travailler afin de ne pas en cours , d&apos;annuler l&apos;opération pas procéder</string>
+	<key>Sync in process. Please try later.</key>
+	<string>Synchronisez en cours. S&apos;il vous plaît réessayer plus tard.</string>
+	<key>can not delete attachment not created by self</key>
+	<string>ne peut pas supprimer l&apos;attachement n&apos;est pas créée par l&apos;auto</string>
+	<key>Work order status is not \&quot;Scheduled\&quot; or you are not the work order owner.</key>
+	<string>Statut de la commande de travail n&apos;est pas \ &quot; planifiée \ &quot; ou que vous n&apos;êtes pas le propriétaire de l&apos; ordre de travail .</string>
+	<key>Please try again after sync is done</key>
+	<string>S&apos;il vous plaît essayer de nouveau après que la synchronisation se faite</string>
+	<key>Assign to myself failed.</key>
+	<string>Attribuer à me échoué.</string>
+	<key>Sync with no timestamp. Please logout and re-login.</key>
+	<string>Synchronisez sans horodatage . S&apos;il vous plaît vous déconnecter et re-connexion .</string>
+	<key>Create Order Assembly Failed.</key>
+	<string>Créer Assemblée Ordre a échoué.</string>
+	<key>delete attachment empty</key>
+	<string>supprimer attachement vide</string>
+	<key>Failed to get work order related information</key>
+	<string>Impossible d&apos;obtenir des informations afin de travail liée</string>
+	<key>Syncing : server logic error</key>
+	<string>Synchronisation : serveur erreur de logique</string>
+	<key>Sorry! Can Not Get Your Current Position. Please Try Later</key>
+	<string>Désolé ! Ne pouvez pas obtenir votre position actuelle . Se il vous plaît essayer plus tard</string>
+	<key>Queued</key>
+	<string>En File</string>
+	<key>Scheduled</key>
+	<string>Prévu</string>
+	<key>In Progress</key>
+	<string>En Cours</string>
+	<key>Closed</key>
+	<string>Fermé</string>
+	<key>Bad Taste</key>
+	<string>Mauvais Goût</string>
+	<key>Brewing Problem</key>
+	<string>Brewing Problème</string>
+	<key>Desiginated Shop Time</key>
+	<string>Desiginated boutique Temps</string>
+	<key>Dripping</key>
+	<string>Égouttement</string>
+	<key>Equipment Exchange</key>
+	<string>Equipment Exchange</string>
+	<key>Install Equipment</key>
+	<string>installer le matériel</string>
+	<key>Machine Leaking</key>
+	<string>Machine de fuites</string>
+	<key>Micro Market Kiosk</key>
+	<string>Micro Marché Kiosque</string>
+	<key>Move Equipment</key>
+	<string>Déplacer Équipement</string>
+	<key>No Hot Water</key>
+	<string>Pas d&apos;eau chaude</string>
+	<key>No Ice Coming Out</key>
+	<string>En venant pas de glace Out</string>
+	<key>Pick-up Equipment</key>
+	<string>Équipement de rendez-vous</string>
+	<key>Site Survey</key>
+	<string>Site Survey</string>
+	<key>Vending Machine Problem</key>
+	<string>Vending Machine Problem</string>
+	<key>Waster Dispenser Slow</key>
+	<string>Waster Distributeur lente</string>
+	<key>Hot Shot</key>
+	<string>Hot Shot</string>
+	<key>Last Service Date</key>
+	<string>Last Service Date</string>
+	<key>One or more Field Technicians is assigned to a work order, please consider appropriately</key>
+	<string>Un Technicien ou plus on été assignés à un Bon de Travail, veuillez considérer convenablement.</string>
+	<key>Reorder</key>
+	<string>Changer l&apos;ordre</string>
+</dict>
+</plist>

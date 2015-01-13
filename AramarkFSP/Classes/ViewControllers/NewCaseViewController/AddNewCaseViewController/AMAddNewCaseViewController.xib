@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AMAddNewCaseViewController">
+            <connections>
+                <outlet property="btnSave" destination="Yon-KX-i6M" id="QmL-wX-mat"/>
+                <outlet property="tableViewMain" destination="DIb-5O-5zo" id="goO-AM-mkb"/>
+                <outlet property="view" destination="Qp5-aQ-2Wo" id="Kk8-fk-1o2"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Qp5-aQ-2Wo">
+            <rect key="frame" x="0.0" y="0.0" width="768" height="716"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="DIb-5O-5zo">
+                    <rect key="frame" x="0.0" y="0.0" width="768" height="716"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <view key="tableHeaderView" contentMode="scaleToFill" id="Z8I-1Z-gFl">
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <view key="tableFooterView" contentMode="scaleToFill" id="so8-ij-c4X">
+                        <rect key="frame" x="0.0" y="652" width="768" height="64"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yon-KX-i6M">
+                                <rect key="frame" x="5" y="7" width="758" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.65098039220000004" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="IMv-0g-bTZ"/>
+                                </constraints>
+                                <state key="normal" title="SAVE">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickSaveBtn:" destination="-1" eventType="touchUpInside" id="tAM-d0-GRZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Yon-KX-i6M" firstAttribute="leading" secondItem="so8-ij-c4X" secondAttribute="leading" constant="5" id="UJl-mh-02e"/>
+                            <constraint firstAttribute="trailing" secondItem="Yon-KX-i6M" secondAttribute="trailing" constant="5" id="afd-jb-78o"/>
+                            <constraint firstItem="Yon-KX-i6M" firstAttribute="top" secondItem="so8-ij-c4X" secondAttribute="top" constant="7" id="kMe-le-x6X"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Jj8-fB-Qlc"/>
+                        <outlet property="delegate" destination="-1" id="cfu-xY-Tf6"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="DIb-5O-5zo" firstAttribute="top" secondItem="Qp5-aQ-2Wo" secondAttribute="top" id="Gi9-tw-YpD"/>
+                <constraint firstAttribute="bottom" secondItem="DIb-5O-5zo" secondAttribute="bottom" id="T2P-vl-iwD"/>
+                <constraint firstItem="DIb-5O-5zo" firstAttribute="leading" secondItem="Qp5-aQ-2Wo" secondAttribute="leading" id="ToM-Ic-iqZ"/>
+                <constraint firstAttribute="trailing" secondItem="DIb-5O-5zo" secondAttribute="trailing" id="pHl-xz-b4U"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>

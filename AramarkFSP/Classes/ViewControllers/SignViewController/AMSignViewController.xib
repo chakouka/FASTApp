@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AMSignViewController">
+            <connections>
+                <outlet property="btnCancel" destination="dNC-EM-qFJ" id="8xZ-ap-y4I"/>
+                <outlet property="btnConfirm" destination="gAq-gF-4ug" id="vCD-GS-zcy"/>
+                <outlet property="btnReset" destination="VIX-QU-a4c" id="go0-3Z-tHC"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewSign" destination="8sk-dp-gD0" id="gjO-uS-pbH"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8sk-dp-gD0">
+                    <rect key="frame" x="0.0" y="0.0" width="1024" height="714"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAq-gF-4ug">
+                    <rect key="frame" x="322" y="726" width="100" height="30"/>
+                    <color key="backgroundColor" red="0.094117656349999995" green="0.65098041299999998" blue="0.31764706970000001" alpha="1" colorSpace="deviceRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="8a0-Ax-Pqi"/>
+                        <constraint firstAttribute="width" constant="100" id="aHD-IT-PKm"/>
+                    </constraints>
+                    <state key="normal" title="CONFIRM">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="clickConfirmBtn:" destination="-1" eventType="touchUpInside" id="h2F-a5-8Cm"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dNC-EM-qFJ">
+                    <rect key="frame" x="602" y="726" width="100" height="30"/>
+                    <color key="backgroundColor" red="0.094117656349999995" green="0.65098041299999998" blue="0.31764706970000001" alpha="1" colorSpace="deviceRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="JD4-eJ-aez"/>
+                        <constraint firstAttribute="width" constant="100" id="ads-4n-W6i"/>
+                    </constraints>
+                    <state key="normal" title="CANCEL">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="clickCancelBtn:" destination="-1" eventType="touchUpInside" id="KdZ-Dn-xyO"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VIX-QU-a4c">
+                    <rect key="frame" x="462" y="726" width="100" height="30"/>
+                    <color key="backgroundColor" red="0.094117656349999995" green="0.65098041299999998" blue="0.31764706970000001" alpha="1" colorSpace="deviceRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="In6-I0-CEz"/>
+                        <constraint firstAttribute="width" constant="100" id="MAC-tJ-pr2"/>
+                    </constraints>
+                    <state key="normal" title="RESET">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="clickResetBtn:" destination="-1" eventType="touchUpInside" id="Y19-k6-hLc"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.9215686917" green="0.91764712329999998" blue="0.90588241820000004" alpha="1" colorSpace="deviceRGB"/>
+            <constraints>
+                <constraint firstItem="VIX-QU-a4c" firstAttribute="top" secondItem="8sk-dp-gD0" secondAttribute="bottom" constant="12" id="1et-Fv-azG"/>
+                <constraint firstItem="8sk-dp-gD0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Ccx-9c-ueq"/>
+                <constraint firstAttribute="bottom" secondItem="VIX-QU-a4c" secondAttribute="bottom" constant="12" id="KvY-X8-xEK"/>
+                <constraint firstAttribute="trailing" secondItem="8sk-dp-gD0" secondAttribute="trailing" id="OVU-oI-0EI"/>
+                <constraint firstItem="VIX-QU-a4c" firstAttribute="leading" secondItem="gAq-gF-4ug" secondAttribute="trailing" constant="40" id="Vll-rJ-Ymn"/>
+                <constraint firstItem="8sk-dp-gD0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="WFQ-EE-Qjf"/>
+                <constraint firstItem="dNC-EM-qFJ" firstAttribute="leading" secondItem="VIX-QU-a4c" secondAttribute="trailing" constant="40" id="bjh-B4-zBX"/>
+                <constraint firstAttribute="centerX" secondItem="VIX-QU-a4c" secondAttribute="centerX" id="c2c-8f-k55"/>
+                <constraint firstAttribute="bottom" secondItem="dNC-EM-qFJ" secondAttribute="bottom" constant="12" id="jYI-4R-gzm"/>
+                <constraint firstAttribute="bottom" secondItem="gAq-gF-4ug" secondAttribute="bottom" constant="12" id="q36-oy-mGX"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>

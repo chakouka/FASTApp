@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6221" systemVersion="14A389" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6213"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AMDetailTabViewController">
+            <connections>
+                <outlet property="accountButton" destination="R1Q-S1-v2G" id="S9z-tm-r5c"/>
+                <outlet property="assetsButton" destination="13c-QK-1J2" id="lft-nr-7eo"/>
+                <outlet property="casesButton" destination="54P-97-3Lr" id="Uaj-CP-TmC"/>
+                <outlet property="contactButton" destination="xHH-n3-ysc" id="cYH-9F-0kF"/>
+                <outlet property="locationButton" destination="pQT-jT-zzH" id="1sg-O7-d7F"/>
+                <outlet property="posButton" destination="LWg-Eb-xuY" id="5UD-cY-E0x"/>
+                <outlet property="view" destination="4uF-4i-C53" id="eEq-Ys-kkO"/>
+                <outlet property="workOrderDetailBtn" destination="MuK-rt-Hgb" id="KuN-oH-kPW"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="4uF-4i-C53">
+            <rect key="frame" x="0.0" y="0.0" width="560" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="separateLine.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ure-N7-Hc5">
+                    <rect key="frame" x="0.0" y="0.0" width="2" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="2" id="JjZ-VN-YGR"/>
+                        <constraint firstAttribute="height" constant="80" id="Lhi-kC-DET"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" tag="1" contentMode="top" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MuK-rt-Hgb">
+                    <rect key="frame" x="1" y="0.0" width="78" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="qg6-qK-cZw"/>
+                    </constraints>
+                    <state key="normal" image="workOrder.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="workOrder_selected.png" backgroundImage="selected_background.png"/>
+                    <connections>
+                        <action selector="tappedOnDetailTabs:" destination="-1" eventType="touchUpInside" id="x74-fL-TwJ"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="separateLine.png" translatesAutoresizingMaskIntoConstraints="NO" id="q6y-yx-GRF">
+                    <rect key="frame" x="78" y="0.0" width="2" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="2" id="AeU-3T-DPv"/>
+                        <constraint firstAttribute="height" constant="80" id="XEZ-Pw-Ymt"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" tag="2" contentMode="top" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R1Q-S1-v2G">
+                    <rect key="frame" x="80" y="0.0" width="79" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="dys-V4-QSp"/>
+                    </constraints>
+                    <state key="normal" image="account_1.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="account.png" backgroundImage="selected_background.png"/>
+                    <connections>
+                        <action selector="tappedOnDetailTabs:" destination="-1" eventType="touchUpInside" id="lF4-8s-Rvg"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="separateLine.png" translatesAutoresizingMaskIntoConstraints="NO" id="gQ5-MU-3hQ">
+                    <rect key="frame" x="158" y="0.0" width="2" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="2" id="rtQ-z8-Lwo"/>
+                        <constraint firstAttribute="height" constant="80" id="zbC-U6-fdb"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" tag="3" contentMode="top" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LWg-Eb-xuY">
+                    <rect key="frame" x="160" y="0.0" width="78" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="xlL-px-Ba6"/>
+                    </constraints>
+                    <state key="normal" image="pos_icon_1.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="pos_icon.png" backgroundImage="selected_background.png"/>
+                    <connections>
+                        <action selector="tappedOnDetailTabs:" destination="-1" eventType="touchUpInside" id="lRb-IM-L5p"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="separateLine.png" translatesAutoresizingMaskIntoConstraints="NO" id="MEO-tY-Atr">
+                    <rect key="frame" x="238" y="0.0" width="2" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="2" id="njj-JM-4C9"/>
+                        <constraint firstAttribute="height" constant="80" id="rhL-tH-oV4"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" tag="4" contentMode="top" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pQT-jT-zzH">
+                    <rect key="frame" x="240" y="0.0" width="78.5" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="SmF-ag-kCx"/>
+                    </constraints>
+                    <state key="normal" image="location_icon_1.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="location_icon.png" backgroundImage="selected_background.png"/>
+                    <connections>
+                        <action selector="tappedOnDetailTabs:" destination="-1" eventType="touchUpInside" id="AfJ-RT-HC8"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="separateLine.png" translatesAutoresizingMaskIntoConstraints="NO" id="jd9-fZ-WSu">
+                    <rect key="frame" x="319" y="0.0" width="2" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="2" id="5vT-gk-SOD"/>
+                        <constraint firstAttribute="height" constant="80" id="n7A-4p-JOk"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" tag="5" contentMode="top" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xHH-n3-ysc">
+                    <rect key="frame" x="321.5" y="0.0" width="78" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="bbK-TT-dX1"/>
+                    </constraints>
+                    <state key="normal" image="contacts_icon.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="contacts_icon_1.png" backgroundImage="selected_background.png"/>
+                    <connections>
+                        <action selector="tappedOnDetailTabs:" destination="-1" eventType="touchUpInside" id="Dlb-7h-qlk"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="separateLine.png" translatesAutoresizingMaskIntoConstraints="NO" id="fqN-Nu-uqU">
+                    <rect key="frame" x="399" y="0.0" width="2" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="2lo-zd-jab"/>
+                        <constraint firstAttribute="width" constant="2" id="jMv-ov-EjI"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" tag="6" contentMode="top" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="13c-QK-1J2">
+                    <rect key="frame" x="401" y="0.0" width="78.5" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="9fs-AL-gpC"/>
+                    </constraints>
+                    <state key="normal" image="assets_icon.png">
+                        <color key="titleColor" red="0.8980392814" green="0.90196084980000002" blue="0.88235300780000003" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="assets_icon_1.png" backgroundImage="selected_background.png"/>
+                    <connections>
+                        <action selector="tappedOnDetailTabs:" destination="-1" eventType="touchUpInside" id="B14-4u-hbI"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="separateLine.png" translatesAutoresizingMaskIntoConstraints="NO" id="NdU-aE-KXS">
+                    <rect key="frame" x="480" y="0.0" width="2" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="2" id="66s-17-rxx"/>
+                        <constraint firstAttribute="height" constant="80" id="xj8-nM-Ymt"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" tag="7" contentMode="top" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="54P-97-3Lr">
+                    <rect key="frame" x="482" y="0.0" width="78" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="NIg-D4-Vdx"/>
+                    </constraints>
+                    <state key="normal" image="cases_icon.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="cases_icon_1.png" backgroundImage="selected_background.png"/>
+                    <connections>
+                        <action selector="tappedOnDetailTabs:" destination="-1" eventType="touchUpInside" id="E6p-S0-2ba"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="separateLine.png" translatesAutoresizingMaskIntoConstraints="NO" id="moa-V0-h8V">
+                    <rect key="frame" x="558" y="0.0" width="2" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="2" id="EgD-Ez-LwB"/>
+                        <constraint firstAttribute="height" constant="80" id="QFP-yb-ZOj"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="q6y-yx-GRF" firstAttribute="leading" secondItem="MuK-rt-Hgb" secondAttribute="trailing" constant="-1" id="0sK-sB-0kC"/>
+                <constraint firstItem="jd9-fZ-WSu" firstAttribute="top" secondItem="4uF-4i-C53" secondAttribute="top" id="113-bx-nVk"/>
+                <constraint firstItem="13c-QK-1J2" firstAttribute="width" secondItem="R1Q-S1-v2G" secondAttribute="width" id="23p-2L-7lv"/>
+                <constraint firstItem="13c-QK-1J2" firstAttribute="width" secondItem="MuK-rt-Hgb" secondAttribute="width" id="3ww-s2-ibs"/>
+                <constraint firstItem="R1Q-S1-v2G" firstAttribute="top" secondItem="4uF-4i-C53" secondAttribute="top" id="4IN-xr-ADw"/>
+                <constraint firstItem="54P-97-3Lr" firstAttribute="leading" secondItem="NdU-aE-KXS" secondAttribute="trailing" id="8QB-9T-16M"/>
+                <constraint firstItem="jd9-fZ-WSu" firstAttribute="leading" secondItem="pQT-jT-zzH" secondAttribute="trailing" id="8UB-Gx-lNr"/>
+                <constraint firstItem="NdU-aE-KXS" firstAttribute="leading" secondItem="13c-QK-1J2" secondAttribute="trailing" id="9GR-iw-nZb"/>
+                <constraint firstItem="MEO-tY-Atr" firstAttribute="leading" secondItem="LWg-Eb-xuY" secondAttribute="trailing" id="BVi-o1-cpR"/>
+                <constraint firstItem="13c-QK-1J2" firstAttribute="width" secondItem="LWg-Eb-xuY" secondAttribute="width" id="CF0-a5-BGm"/>
+                <constraint firstItem="13c-QK-1J2" firstAttribute="width" secondItem="54P-97-3Lr" secondAttribute="width" id="EXt-Dr-uUf"/>
+                <constraint firstItem="NdU-aE-KXS" firstAttribute="top" secondItem="4uF-4i-C53" secondAttribute="top" id="FM0-k2-ncS"/>
+                <constraint firstItem="MuK-rt-Hgb" firstAttribute="leading" secondItem="Ure-N7-Hc5" secondAttribute="trailing" constant="-1" id="GTa-l4-OOh"/>
+                <constraint firstItem="LWg-Eb-xuY" firstAttribute="top" secondItem="4uF-4i-C53" secondAttribute="top" id="H77-dX-zAQ"/>
+                <constraint firstItem="R1Q-S1-v2G" firstAttribute="leading" secondItem="q6y-yx-GRF" secondAttribute="trailing" id="KnV-aO-Yls"/>
+                <constraint firstItem="xHH-n3-ysc" firstAttribute="top" secondItem="4uF-4i-C53" secondAttribute="top" id="Kvi-Gc-KVE"/>
+                <constraint firstItem="pQT-jT-zzH" firstAttribute="top" secondItem="4uF-4i-C53" secondAttribute="top" id="LeE-fo-Why"/>
+                <constraint firstItem="Ure-N7-Hc5" firstAttribute="top" secondItem="4uF-4i-C53" secondAttribute="top" id="LiT-wM-apD"/>
+                <constraint firstItem="54P-97-3Lr" firstAttribute="top" secondItem="4uF-4i-C53" secondAttribute="top" id="O47-9d-jvr"/>
+                <constraint firstItem="q6y-yx-GRF" firstAttribute="top" secondItem="4uF-4i-C53" secondAttribute="top" id="Osm-wB-Gmg"/>
+                <constraint firstItem="13c-QK-1J2" firstAttribute="leading" secondItem="fqN-Nu-uqU" secondAttribute="trailing" id="U06-Uk-vB0"/>
+                <constraint firstItem="gQ5-MU-3hQ" firstAttribute="top" secondItem="4uF-4i-C53" secondAttribute="top" id="UJT-XL-o2g"/>
+                <constraint firstItem="moa-V0-h8V" firstAttribute="leading" secondItem="54P-97-3Lr" secondAttribute="trailing" constant="-2" id="URM-MR-CVM"/>
+                <constraint firstAttribute="trailing" secondItem="moa-V0-h8V" secondAttribute="trailing" id="Z6l-T3-sCt"/>
+                <constraint firstItem="13c-QK-1J2" firstAttribute="top" secondItem="4uF-4i-C53" secondAttribute="top" id="ZK3-FK-8IK"/>
+                <constraint firstItem="MEO-tY-Atr" firstAttribute="top" secondItem="4uF-4i-C53" secondAttribute="top" id="ZOg-o8-pfQ"/>
+                <constraint firstItem="13c-QK-1J2" firstAttribute="width" secondItem="pQT-jT-zzH" secondAttribute="width" id="c3w-zz-CSa"/>
+                <constraint firstItem="13c-QK-1J2" firstAttribute="width" secondItem="xHH-n3-ysc" secondAttribute="width" id="dv8-QL-aOt"/>
+                <constraint firstItem="xHH-n3-ysc" firstAttribute="leading" secondItem="jd9-fZ-WSu" secondAttribute="trailing" id="fSr-ZL-Cnc"/>
+                <constraint firstItem="pQT-jT-zzH" firstAttribute="leading" secondItem="MEO-tY-Atr" secondAttribute="trailing" id="fTk-pI-WeO"/>
+                <constraint firstItem="moa-V0-h8V" firstAttribute="top" secondItem="4uF-4i-C53" secondAttribute="top" id="ia2-no-Ylj"/>
+                <constraint firstItem="gQ5-MU-3hQ" firstAttribute="leading" secondItem="R1Q-S1-v2G" secondAttribute="trailing" id="kja-Zc-3Dh"/>
+                <constraint firstItem="LWg-Eb-xuY" firstAttribute="leading" secondItem="gQ5-MU-3hQ" secondAttribute="trailing" id="lII-Tk-XDe"/>
+                <constraint firstItem="fqN-Nu-uqU" firstAttribute="top" secondItem="4uF-4i-C53" secondAttribute="top" id="n2m-zO-zv0"/>
+                <constraint firstItem="Ure-N7-Hc5" firstAttribute="leading" secondItem="4uF-4i-C53" secondAttribute="leading" id="tAU-h7-x3H"/>
+                <constraint firstItem="fqN-Nu-uqU" firstAttribute="leading" secondItem="xHH-n3-ysc" secondAttribute="trailing" id="zXh-Mc-mZe"/>
+                <constraint firstItem="MuK-rt-Hgb" firstAttribute="top" secondItem="4uF-4i-C53" secondAttribute="top" id="zqc-WT-pbX"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="account.png" width="49" height="40"/>
+        <image name="account_1.png" width="49" height="40"/>
+        <image name="assets_icon.png" width="38" height="40"/>
+        <image name="assets_icon_1.png" width="38" height="40"/>
+        <image name="cases_icon.png" width="31" height="42"/>
+        <image name="cases_icon_1.png" width="31" height="42"/>
+        <image name="contacts_icon.png" width="53" height="41"/>
+        <image name="contacts_icon_1.png" width="53" height="41"/>
+        <image name="location_icon.png" width="49" height="45"/>
+        <image name="location_icon_1.png" width="49" height="45"/>
+        <image name="pos_icon.png" width="20" height="41"/>
+        <image name="pos_icon_1.png" width="20" height="41"/>
+        <image name="selected_background.png" width="84" height="49"/>
+        <image name="separateLine.png" width="2" height="65"/>
+        <image name="workOrder.png" width="74" height="44"/>
+        <image name="workOrder_selected.png" width="74" height="44"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>

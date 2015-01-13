@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view alpha="0.90000000000000002" contentMode="scaleToFill" id="iN0-l3-epB" customClass="AMNormalTitleSection">
+            <rect key="frame" x="0.0" y="0.0" width="836" height="50"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IqB-hl-4YL">
+                    <rect key="frame" x="0.0" y="5" width="836" height="44"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qaj-VB-Q1c">
+                            <rect key="frame" x="5" y="0.0" width="300" height="39"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="300" id="03r-qr-qbU"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LiP-F0-0tX">
+                            <rect key="frame" x="636" y="0.0" width="200" height="44"/>
+                            <subviews>
+                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cancelAdd.png" translatesAutoresizingMaskIntoConstraints="NO" id="dgb-T0-zuG">
+                                    <rect key="frame" x="23" y="6" width="33" height="33"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="33" id="2yh-zN-ppK"/>
+                                        <constraint firstAttribute="width" constant="33" id="hRo-E6-0dG"/>
+                                    </constraints>
+                                </imageView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DDf-SS-8oJ">
+                                    <rect key="frame" x="86" y="3" width="114" height="38"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="114" id="WKC-tI-zr9"/>
+                                        <constraint firstAttribute="height" constant="38" id="tqy-Hw-qVB"/>
+                                    </constraints>
+                                    <state key="normal" title="  Cancel" image="cancelAdd.png">
+                                        <color key="titleColor" red="0.15294118230000001" green="0.1764705926" blue="0.1764705926" alpha="1" colorSpace="deviceRGB"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="centerX" secondItem="dgb-T0-zuG" secondAttribute="centerX" constant="60" id="8Rg-Gr-y7k"/>
+                                <constraint firstAttribute="width" constant="200" id="8ps-Yp-tJB"/>
+                                <constraint firstAttribute="centerY" secondItem="DDf-SS-8oJ" secondAttribute="centerY" id="MQh-P0-TXs"/>
+                                <constraint firstAttribute="centerY" secondItem="dgb-T0-zuG" secondAttribute="centerY" id="Plw-9d-0eh"/>
+                                <constraint firstItem="DDf-SS-8oJ" firstAttribute="leading" secondItem="dgb-T0-zuG" secondAttribute="trailing" constant="30" id="sXK-RF-IeG"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.92156869173049927" green="0.91764712333679199" blue="0.90196084976196289" alpha="1" colorSpace="deviceRGB"/>
+                    <constraints>
+                        <constraint firstItem="LiP-F0-0tX" firstAttribute="top" secondItem="IqB-hl-4YL" secondAttribute="top" id="0ih-Zu-0L7"/>
+                        <constraint firstAttribute="trailing" secondItem="LiP-F0-0tX" secondAttribute="trailing" id="Iv7-Bc-dGd"/>
+                        <constraint firstItem="qaj-VB-Q1c" firstAttribute="leading" secondItem="IqB-hl-4YL" secondAttribute="leading" constant="5" id="PK1-6M-KOF"/>
+                        <constraint firstItem="qaj-VB-Q1c" firstAttribute="top" secondItem="IqB-hl-4YL" secondAttribute="top" id="UjP-gK-at4"/>
+                        <constraint firstAttribute="height" constant="44" id="h2V-Bt-JZh"/>
+                        <constraint firstAttribute="bottom" secondItem="LiP-F0-0tX" secondAttribute="bottom" id="k0J-JA-0JW"/>
+                        <constraint firstAttribute="bottom" secondItem="qaj-VB-Q1c" secondAttribute="bottom" constant="5" id="tqE-Rh-wOb"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="IqB-hl-4YL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="7RG-P5-bfa"/>
+                <constraint firstItem="IqB-hl-4YL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="EVo-JQ-ibG"/>
+                <constraint firstAttribute="trailing" secondItem="IqB-hl-4YL" secondAttribute="trailing" id="Hvh-rV-0Bd"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="btnCancel" destination="DDf-SS-8oJ" id="QFW-3C-YqR"/>
+                <outlet property="labelTitle" destination="qaj-VB-Q1c" id="Dqo-6q-nDV"/>
+                <outlet property="viewCancel" destination="LiP-F0-0tX" id="k9k-Xj-VVf"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="cancelAdd.png" width="33" height="33"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>

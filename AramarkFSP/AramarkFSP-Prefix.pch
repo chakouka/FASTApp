@@ -1,0 +1,42 @@
+//
+// Prefix header for all source files of the 'AramarkFSP' target in the 'AramarkFSP' project
+//
+
+#import <Availability.h>
+#include <assert.h>
+
+#ifndef __IPHONE_4_0
+#warning "This project uses features only available in iOS SDK 4.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+
+    #import <MapKit/MapKit.h>
+//    #import "MapConstants.h"
+    #import "AMCategoryHeader.h"
+    #import "AMNotificationSet.h"
+    #import "AMConstants.h"
+    #import "AMInfoManage.h"
+    #import "AMUtilities.h"
+    #import "SVProgressHUD.h"
+    #import "AMLogicCore.h"
+    #import "AMCheckoutViewHeader.h"
+    #import "AMProtocolParser.h"
+    #import "NSManagedObject+Addition.h"
+    #import "NSDictionary+Addition.h"
+    #import "NSArray+Addition.h"
+    #import "LanguageConfig.h"
+    #import "AMFileManage.h"
+#endif
+
+#ifdef DEBUG
+    #import "TestManage.h"  //Remove this import when release.
+#endif
+
+//#define TEST_FOR_SVPROGRESSHUD  1   //Use for test SVPROGRESSHUD
+
+//#define TEST_FOR_GOOGLE_MAP  1   //Use for test Google map
+
+//#define TEST_FOR_FREE_GOOGLE_KEY  1   //Use for free test Google map key
