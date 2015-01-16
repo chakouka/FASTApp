@@ -17,13 +17,13 @@
             <rect key="frame" x="0.0" y="0.0" width="930" height="716"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" id="GCb-b9-hEH">
-                    <rect key="frame" x="-300" y="0.0" width="300" height="716"/>
+                <view contentMode="scaleToFill" id="vOi-up-jgs">
+                    <rect key="frame" x="0.0" y="0.0" width="930" height="716"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
-                <view contentMode="scaleToFill" id="vOi-up-jgs">
-                    <rect key="frame" x="-22" y="8" width="930" height="716"/>
+                <view contentMode="scaleToFill" id="GCb-b9-hEH">
+                    <rect key="frame" x="-300" y="0.0" width="300" height="716"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
