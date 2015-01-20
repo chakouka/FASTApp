@@ -39,9 +39,9 @@
 			<string>login.salesforce.com</string>
 			<key>Titles</key>
 			<array>
+				<string>CUSTOM_LOGIN_HOST_TITLE</string>
 				<string>PRODUCTION_LOGIN_HOST_TITLE</string>
 				<string>SANDBOX_LOGIN_HOST_TITLE</string>
-				<string>CUSTOM_LOGIN_HOST_TITLE</string>
 			</array>
 			<key>Values</key>
 			<array>
