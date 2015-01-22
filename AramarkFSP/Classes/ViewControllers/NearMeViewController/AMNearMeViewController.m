@@ -253,6 +253,7 @@ RouteMapViewDelegate
             workorder.status = @"Queued";
             AnnotationInfo *info = [[AMInfoManage sharedInstance] covertAnnotationInfoFromLocalWorkOrderInfo:workorder withIndex:(i + 1)];
             if (info) {
+                info.accountName = workorder.accountName;
                 [annotations addObject:info];
             }
 		}
@@ -298,7 +299,7 @@ RouteMapViewDelegate
                         [annotations addObject:info];
                     }
                 }
-                
+                NSLog(@"response data = %@", responseData);
                 [self.nearOrderListVC refreshOrderList:responseData];
                 [self.routeView refreshNearAnnotations:annotations];
                 [self requestNearRoutesTimeDistanceWithList:self.nearOrderListVC.localWorkOrders];
