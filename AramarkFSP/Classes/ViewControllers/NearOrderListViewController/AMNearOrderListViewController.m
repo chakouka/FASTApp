@@ -622,6 +622,7 @@ AMPopoverSelectTableViewControllerDelegate
 	[[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMNEARMEORDERLISTVIEWCONTROLLER object:dicInfo];
     
 	[self clickSortBtn:nil];
+    [self reloadData];
 }
 
 - (IBAction)clickSortByDistanceBtn:(UIButton *)sender {
