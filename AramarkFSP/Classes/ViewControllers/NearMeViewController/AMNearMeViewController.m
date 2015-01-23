@@ -112,6 +112,7 @@ RouteMapViewDelegate
         return;
     }
     
+    NSLog(@"localWorkOrders for NOListVC = %@", self.nearOrderListVC.localWorkOrders);
     [self requestForCenter:self.routeView.currentLocation andRadius:currentRadius];
 }
 
@@ -293,12 +294,19 @@ RouteMapViewDelegate
             }
             else
             {
-                for (NSInteger i = 0; i < [responseData count]; i++) {
-                    AnnotationInfo *info = [[AMInfoManage sharedInstance] covertAnnotationInfoFromNearWorkOrderInfo:[responseData objectAtIndex:i] withIndex:(i + 1)];
+                //bkk 1/23/2015 - sort responseData because the initial order we want to see is
+                //that of the workorder sort
+                NSArray *sortedArray = [responseData sortedArrayUsingComparator: ^NSComparisonResult (AMWorkOrder *workOrder1, AMWorkOrder *workOrder2) {
+                    return -[workOrder1.woType compare:workOrder2.woType];
+                }];
+                
+                for (NSInteger i = 0; i < [sortedArray count]; i++) {
+                    AnnotationInfo *info = [[AMInfoManage sharedInstance] covertAnnotationInfoFromNearWorkOrderInfo:[sortedArray objectAtIndex:i] withIndex:(i + 1)];
                     if (info) {
                         [annotations addObject:info];
                     }
                 }
+                
                 NSLog(@"response data = %@", responseData);
                 [self.nearOrderListVC refreshOrderList:responseData];
                 [self.routeView refreshNearAnnotations:annotations];
