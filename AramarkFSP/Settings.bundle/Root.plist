@@ -45,9 +45,9 @@
 			</array>
 			<key>Values</key>
 			<array>
+				<string>aramark.my.salesforce.com</string>
 				<string>login.salesforce.com</string>
 				<string>test.salesforce.com</string>
-				<string>CUSTOM</string>
 			</array>
 		</dict>
 		<dict>
