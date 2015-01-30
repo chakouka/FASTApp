@@ -11,13 +11,17 @@
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>98353b60-8d57-8f43-aca9-0b8ea4d5cac6++3320</key>
-		<string>http://nam%5cahu039@172.27.69.200:81/SVN/SFDC/Trunk/025%2520Aramark%2520FSP/000%2520Source%2520Code/AramarkFSP</string>
+		<string>http://nam%5cahu039@172.27.69.200:81/SVN/SFDC/Trunk/025%25252520Aramark%25252520FSP/000%25252520Source%25252520Code/AramarkFSP</string>
+		<key>D39EEB87C6DDBB1FF9C29D19FF753A354A15F961</key>
+		<string>https://tfs.aramark.net/tfs/FieldSystems/_git/FAST</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>AramarkFSP.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>98353b60-8d57-8f43-aca9-0b8ea4d5cac6++3320</key>
+		<string>../../../AramarkFSP_0822</string>
+		<key>D39EEB87C6DDBB1FF9C29D19FF753A354A15F961</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectRepositoryRootDictionary</key>
@@ -26,11 +30,11 @@
 		<string>http://nam%5cahu039@172.27.69.200:81/SVN/SFDC</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>http://nam%5cahu039@172.27.69.200:81/SVN/SFDC/Trunk/025%2520Aramark%2520FSP/000%2520Source%2520Code/AramarkFSP/AramarkFSP.xcodeproj</string>
+	<string>https://tfs.aramark.net/tfs/FieldSystems/_git/FAST</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>98353b60-8d57-8f43-aca9-0b8ea4d5cac6++3320</string>
+	<string>D39EEB87C6DDBB1FF9C29D19FF753A354A15F961</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -40,6 +44,14 @@
 			<string>98353b60-8d57-8f43-aca9-0b8ea4d5cac6++3320</string>
 			<key>IDESourceControlWCCName</key>
 			<string>AramarkFSP_0822</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D39EEB87C6DDBB1FF9C29D19FF753A354A15F961</string>
+			<key>IDESourceControlWCCName</key>
+			<string>FAST</string>
 		</dict>
 	</array>
 </dict>

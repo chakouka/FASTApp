@@ -1105,7 +1105,7 @@
 	<key>Hot Shot</key>
 	<string>Hot Shot</string>
 	<key>Last Service Date</key>
-	<string>Last Service Date</string>
+	<string>Date du Dernier Entretien</string>
 	<key>One or more Field Technicians is assigned to a work order, please consider appropriately</key>
 	<string>Un Technicien ou plus on été assignés à un Bon de Travail, veuillez considérer convenablement.</string>
 	<key>Reorder</key>

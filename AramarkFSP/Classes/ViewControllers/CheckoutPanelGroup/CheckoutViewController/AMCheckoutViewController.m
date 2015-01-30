@@ -42,6 +42,7 @@
 
 #define TEXT_OF_FILTER_EXCHANGE         @"Filter Exchange"  //TODO::Enhancement140929
 #define TEXT_OF_REFUSED_FILTER_EXCHANGE @"Refused Filter Change"//TODO::Enhancement140929
+#define TEXT_OF_REPLACED_FILTER @"Replaced Filter"//bkk 1/30/2015
 
 #define TEXT_OF_INSTALL @"Install"
 
@@ -209,6 +210,14 @@ AMWorkOrderViewControllerDelegate
         [AMUtilities showAlertWithInfo:MyLocal(@"Please Input Repair Code")];
         return;
     }
+    
+    //bkk 1/29/2015 - TODO: add code here
+//    if (![self.workOrder.woType isEqualToString:TEXT_OF_FILTER_EXCHANGE] && [[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:TEXT_OF_REPLACED_FILTER])
+//    {
+//       //will do this logic INSTEAD of the existing stuff.
+//        int n=5;
+//        n = n+1;
+//    }
     
     //Change: ITEM000121
     if ([self.workOrder.woType isEqualToString:TEXT_OF_INSTALL]) {
