@@ -92,7 +92,6 @@ AMWorkOrderViewControllerDelegate
 @property (nonatomic, strong) NSMutableArray *arrPartItems;
 @property (nonatomic, strong) NSMutableArray *arrWorkItems;
 @property (nonatomic, strong) NSMutableArray *arrCodePriceList;
-
 @end
 
 @implementation AMCheckoutViewController
@@ -109,7 +108,6 @@ AMWorkOrderViewControllerDelegate
 @synthesize strNotes;
 @synthesize strRepairCode;
 @synthesize arrResultAssetRequest;
-
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -212,12 +210,63 @@ AMWorkOrderViewControllerDelegate
     }
     
     //bkk 1/29/2015 - TODO: add code here
-//    if (![self.workOrder.woType isEqualToString:TEXT_OF_FILTER_EXCHANGE] && [[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:TEXT_OF_REPLACED_FILTER])
-//    {
-//       //will do this logic INSTEAD of the existing stuff.
-//        int n=5;
-//        n = n+1;
-//    }
+    if (![self.workOrder.woType isEqualToString:TEXT_OF_FILTER_EXCHANGE] && [[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:TEXT_OF_REPLACED_FILTER])
+    {
+        [[AMLogicCore sharedInstance] createNewCaseInDBWithSetupBlock:^(AMDBNewCase *newCase) {
+
+            //TODO: Where are we getting this data to populate the line items for a newCase Object?
+            //eg. the right side of the assignment has to be changed and commented code must be
+            //uncommented too...
+//            newCase.accountID = strAccountId;
+//            newCase.assetID = selectAsset.assetID;
+//            
+//            newCase.caseDescription = [dicCaseInfo objectForKey:KEY_OF_CASE_DESCRIPTION];
+//            newCase.contactEmail = [dicCaseInfo objectForKey:KEY_OF_CASE_EMAIL];
+//            newCase.contactID = selectContact.contactID;
+//            
+//            newCase.firstName = [dicCaseInfo objectForKey:KEY_OF_CASE_FIRST_NAME];
+//            newCase.lastName = [dicCaseInfo objectForKey:KEY_OF_CASE_LAST_NAME];
+//            newCase.mEI_Customer = [dicCaseInfo objectForKey:KEY_OF_CASE_MEI_CUSTOMER_NO];
+//            newCase.point_of_Service = strPoSId;
+//            newCase.priority = [dicCaseInfo objectForKey:KEY_OF_CASE_PRIORITY];
+//            newCase.recordTypeID = [[AMLogicCore sharedInstance] getRecordTypeIdByName:[dicCaseInfo objectForKey:KEY_OF_CASE_RECORD_TYPE] forObject:RECORD_TYPE_OF_CASE];
+//            newCase.recordTypeName = [dicCaseInfo objectForKey:KEY_OF_CASE_RECORD_TYPE];
+//            newCase.serialNumber = [dicCaseInfo objectForKey:KEY_OF_CASE_SERIAL_NO];
+//            newCase.subject = [dicCaseInfo objectForKey:KEY_OF_CASE_SUBJECT];
+//            newCase.type = [dicCaseInfo objectForKey:KEY_OF_CASE_TYPE];
+//            newCase.accountName = [dicCaseInfo objectForKey:KEY_OF_CASE_ACCOUNT];
+//            newCase.posID = strPoSId;
+//            newCase.posName = [dicCaseInfo objectForKey:KEY_OF_CASE_POINT_OF_SERVICE];
+//            newCase.assetNumber = [dicCaseInfo objectForKey:KEY_OF_CASE_ASSET_NO];
+        } completion:^(NSInteger type, NSError *error) {
+            MAIN(^{
+                if (error) {
+                    [AMUtilities showAlertWithInfo:[error localizedDescription]];
+                    return ;
+                }
+                else{
+                    
+                    [UIAlertView showWithTitle:@""
+                                       message:MyLocal(@"New Case is created successfully but not synced.")
+                             cancelButtonTitle:MyLocal(@"OK")
+                             otherButtonTitles:nil
+                                      tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                          if (buttonIndex == [alertView cancelButtonIndex]) {
+//                                              if (isPop) {
+//                                                  [self dismissViewControllerAnimated:YES completion:nil];
+//                                              }
+
+                                              if (self.delegate && [self.delegate respondsToSelector:@selector(didClickSaveNewCase:)]) {
+                                                  //
+//                                                  [self.delegate didClickSaveNewCase:YES];
+                                              }
+                                          }
+                                      }];
+                }
+                
+            });
+        }];
+    }
     
     //Change: ITEM000121
     if ([self.workOrder.woType isEqualToString:TEXT_OF_INSTALL]) {
