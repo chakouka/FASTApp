@@ -172,7 +172,8 @@ AMWorkOrderViewControllerDelegate
   @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Installed Equipment"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Installed Equipment"},
   @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Kiosk On-Line"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Kiosk On-Line"},
   @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Moved Equipment"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Moved Equipment"},
-  @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Needs Part"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Needs Part"},
+  //bkk 1/30/2015 - removed below line per 
+  //@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Needs Part"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Needs Part"},
   @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"No Problem"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"No Problem"},
   @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Preventative Maintenance"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Preventative Maintenance"},
   @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Removed Equipment"),kAMPOPOVER_DICTIONARY_KEY_VALUE :@"Removed Equipment"},
