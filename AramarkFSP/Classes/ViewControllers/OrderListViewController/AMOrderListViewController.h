@@ -11,7 +11,8 @@
 @interface AMOrderListViewController : UIViewController
 	<
 	    UITableViewDelegate,
-	    UITableViewDataSource
+	    UITableViewDataSource,
+        UIGestureRecognizerDelegate//bkk 2/2/15 - item 000124
 	>
 {
 	BOOL show;

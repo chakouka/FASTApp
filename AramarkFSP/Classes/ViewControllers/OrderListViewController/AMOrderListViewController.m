@@ -131,6 +131,13 @@ UISearchBarDelegate
     [self.btnSortByPriority setTitle:MyLocal(@"SORT BY PRIORITY") forState:UIControlStateHighlighted];
     [self.btnSortByDistance setTitle:MyLocal(@"SORT BY DISTANCE") forState:UIControlStateNormal];
     [self.btnSortByDistance setTitle:MyLocal(@"SORT BY DISTANCE") forState:UIControlStateHighlighted];
+    
+    //bkk 2/2/15 - item 000124
+    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
+                                          initWithTarget:self action:@selector(handleLongPress:)];
+    lpgr.minimumPressDuration = 2.0; //seconds
+    lpgr.delegate = self;
+    [self.tableViewList addGestureRecognizer:lpgr];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -954,6 +961,52 @@ UISearchBarDelegate
     }
     
     return arrResult;
+}
+
+#pragma mark - Gesture delegate //bkk 2/2/15 - item 000124
+-(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+    CGPoint p = [gestureRecognizer locationInView:self.tableViewList];
+    
+    NSIndexPath *indexPath = [self.tableViewList indexPathForRowAtPoint:p];
+    if (indexPath == nil) {
+        NSLog(@"long press on table view but not on a row");
+    } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        [self showCheckInAlert:self.localWorkOrders[indexPath.row]];
+        NSLog(@"long press on table view at row %d", indexPath.row);
+    } else {
+        NSLog(@"gestureRecognizer.state = %d", gestureRecognizer.state);
+        [self.tableViewList selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    }
+}
+#pragma mark - CheckIn //bkk 2/2/15 - item 000124
+- (void)showCheckInAlert:(AMWorkOrder *)workorder {
+    [UIAlertView showWithTitle:@""
+                       message:MyLocal(@"Are you sure you want to Check In ?")
+             cancelButtonTitle:MyLocal(@"NO")
+             otherButtonTitles:@[MyLocal(@"YES")]
+                      tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
+                          if (buttonIndex == [alertView cancelButtonIndex]) {
+                              return;
+                          }
+                          else
+                          {
+                              [[AMLogicCore sharedInstance] checkInWorkOrder:workorder completionBlock:^(NSInteger type, NSError *error) {
+                                  if (error) {
+                                      [AMUtilities showAlertWithInfo:[error localizedDescription]];
+                                      return ;
+                                  }
+                                  NSDictionary *dicInfo = @{
+                                                            KEY_OF_TYPE:TYPE_OF_WORK_ORDER_LIST_CHANGE,
+                                                            KEY_OF_INFO:self.localWorkOrders,
+                                                            KEY_OF_FLAG:[NSNumber numberWithBool:NO]
+                                                            };
+                                  [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMORDERLISTVIEWCONTROLLER object:dicInfo];
+
+                              }];
+                              
+                          }
+                      }];
 }
 
 @end
