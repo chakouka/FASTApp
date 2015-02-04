@@ -972,11 +972,16 @@ UISearchBarDelegate
     if (indexPath == nil) {
         NSLog(@"long press on table view but not on a row");
     } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        [self showCheckInAlert:self.localWorkOrders[indexPath.row]];
+        NSArray *todayCheckInWOList = [[AMDBManager sharedInstance] getSelfOwnedTodayCheckInWorkOrders];
+        if (todayCheckInWOList.count == 0)
+        {
+            [self.tableViewList selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+            [self tableView:self.tableViewList didSelectRowAtIndexPath:indexPath];
+            [self showCheckInAlert:self.localWorkOrders[indexPath.row]];
+        }
         NSLog(@"long press on table view at row %d", indexPath.row);
     } else {
         NSLog(@"gestureRecognizer.state = %d", gestureRecognizer.state);
-        [self.tableViewList selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
     }
 }
 #pragma mark - CheckIn //bkk 2/2/15 - item 000124
