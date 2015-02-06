@@ -20,7 +20,8 @@
 @interface AMCheckoutViewController : UIViewController
 <
 UITableViewDataSource,
-UITableViewDelegate
+UITableViewDelegate,
+UIPopoverControllerDelegate
 >
 {
         NSMutableArray *arrInvoiceItems;

@@ -33,6 +33,8 @@
 
 #import "AMParts.h"
 
+#import "KLCPopup.h"
+
 #define MAX_FILTER_COUNT    5
 #define MAX_PART_COUNT      5
 
@@ -64,6 +66,19 @@ typedef NS_ENUM (NSInteger, PopViewType) {
     PopViewType_Select_InvoiceCode,
 	PopViewType_Select_FilterName,
 	PopViewType_Select_PartName,
+    PopViewType_Select_FilterType,//bkk 2/5/15
+};
+
+//bkk 2/5/2015
+typedef NS_ENUM(NSInteger, FieldTag) {
+    FieldTagHorizontalLayout = 1001,
+    FieldTagVerticalLayout,
+    FieldTagMaskType,
+    FieldTagShowType,
+    FieldTagDismissType,
+    FieldTagBackgroundDismiss,
+    FieldTagContentDismiss,
+    FieldTagTimedDismiss,
 };
 
 @interface AMCheckoutViewController ()
@@ -83,6 +98,33 @@ AMWorkOrderViewControllerDelegate
     NSMutableArray *arrWorkItems;
     
     NSMutableArray *arrCodePriceList;
+    
+    //bkk - 2/5/2015
+    
+    NSArray* _fields;
+    NSDictionary* _namesForFields;
+    
+    NSArray* _horizontalLayouts;
+    NSArray* _verticalLayouts;
+    NSArray* _maskTypes;
+    NSArray* _showTypes;
+    NSArray* _dismissTypes;
+    
+    NSDictionary* _namesForHorizontalLayouts;
+    NSDictionary* _namesForVerticalLayouts;
+    NSDictionary* _namesForMaskTypes;
+    NSDictionary* _namesForShowTypes;
+    NSDictionary* _namesForDismissTypes;
+    
+    NSInteger _selectedRowInHorizontalField;
+    NSInteger _selectedRowInVerticalField;
+    NSInteger _selectedRowInMaskField;
+    NSInteger _selectedRowInShowField;
+    NSInteger _selectedRowInDismissField;
+    
+    BOOL _shouldDismissOnBackgroundTouch;
+    BOOL _shouldDismissOnContentTouch;
+    BOOL _shouldDismissAfterDelay;
 }
 
 @property (nonatomic, strong) UIPopoverController *aPopoverVC;
@@ -92,6 +134,12 @@ AMWorkOrderViewControllerDelegate
 @property (nonatomic, strong) NSMutableArray *arrPartItems;
 @property (nonatomic, strong) NSMutableArray *arrWorkItems;
 @property (nonatomic, strong) NSMutableArray *arrCodePriceList;
+@property (nonatomic, strong) UILabel *lblQty;//bkk 2/5/15
+@property (nonatomic, strong) UIButton *selectFilterButton;//bkk 2/5/15
+
+//bkk 2/5/15
+- (NSInteger)valueForRow:(NSInteger)row inFieldWithTag:(NSInteger)tag;
+- (void)saveButtonPressed:(id)sender;
 @end
 
 @implementation AMCheckoutViewController
@@ -108,11 +156,130 @@ AMWorkOrderViewControllerDelegate
 @synthesize strNotes;
 @synthesize strRepairCode;
 @synthesize arrResultAssetRequest;
+@synthesize lblQty;//bkk 2/5/15
+@synthesize selectFilterButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 	if (self) {
 		// Custom initialization
+        // MAIN LIST
+        _fields = @[@(FieldTagHorizontalLayout),
+                    @(FieldTagVerticalLayout),
+                    @(FieldTagMaskType),
+                    @(FieldTagShowType),
+                    @(FieldTagDismissType),
+                    @(FieldTagBackgroundDismiss),
+                    @(FieldTagContentDismiss),
+                    @(FieldTagTimedDismiss)];
+        
+        _namesForFields = @{@(FieldTagHorizontalLayout) : @"Horizontal layout",
+                            @(FieldTagVerticalLayout) : @"Vertical layout",
+                            @(FieldTagMaskType) : @"Background mask",
+                            @(FieldTagShowType) : @"Show type",
+                            @(FieldTagDismissType) : @"Dismiss type",
+                            @(FieldTagBackgroundDismiss) : @"Dismiss on background touch",
+                            @(FieldTagContentDismiss) : @"Dismiss on content touch",
+                            @(FieldTagTimedDismiss) : @"Dismiss after delay"};
+        
+        // FIELD SUB-LISTS
+        _horizontalLayouts = @[@(KLCPopupHorizontalLayoutLeft),
+                               @(KLCPopupHorizontalLayoutLeftOfCenter),
+                               @(KLCPopupHorizontalLayoutCenter),
+                               @(KLCPopupHorizontalLayoutRightOfCenter),
+                               @(KLCPopupHorizontalLayoutRight)];
+        
+        _namesForHorizontalLayouts = @{@(KLCPopupHorizontalLayoutLeft) : @"Left",
+                                       @(KLCPopupHorizontalLayoutLeftOfCenter) : @"Left of Center",
+                                       @(KLCPopupHorizontalLayoutCenter) : @"Center",
+                                       @(KLCPopupHorizontalLayoutRightOfCenter) : @"Right of Center",
+                                       @(KLCPopupHorizontalLayoutRight) : @"Right"};
+        
+        _verticalLayouts = @[@(KLCPopupVerticalLayoutTop),
+                             @(KLCPopupVerticalLayoutAboveCenter),
+                             @(KLCPopupVerticalLayoutCenter),
+                             @(KLCPopupVerticalLayoutBelowCenter),
+                             @(KLCPopupVerticalLayoutBottom)];
+        
+        _namesForVerticalLayouts = @{@(KLCPopupVerticalLayoutTop) : @"Top",
+                                     @(KLCPopupVerticalLayoutAboveCenter) : @"Above Center",
+                                     @(KLCPopupVerticalLayoutCenter) : @"Center",
+                                     @(KLCPopupVerticalLayoutBelowCenter) : @"Below Center",
+                                     @(KLCPopupVerticalLayoutBottom) : @"Bottom"};
+        
+        _maskTypes = @[@(KLCPopupMaskTypeNone),
+                       @(KLCPopupMaskTypeClear),
+                       @(KLCPopupMaskTypeDimmed)];
+        
+        _namesForMaskTypes = @{@(KLCPopupMaskTypeNone) : @"None",
+                               @(KLCPopupMaskTypeClear) : @"Clear",
+                               @(KLCPopupMaskTypeDimmed) : @"Dimmed"};
+        
+        _showTypes = @[@(KLCPopupShowTypeNone),
+                       @(KLCPopupShowTypeFadeIn),
+                       @(KLCPopupShowTypeGrowIn),
+                       @(KLCPopupShowTypeShrinkIn),
+                       @(KLCPopupShowTypeSlideInFromTop),
+                       @(KLCPopupShowTypeSlideInFromBottom),
+                       @(KLCPopupShowTypeSlideInFromLeft),
+                       @(KLCPopupShowTypeSlideInFromRight),
+                       @(KLCPopupShowTypeBounceIn),
+                       @(KLCPopupShowTypeBounceInFromTop),
+                       @(KLCPopupShowTypeBounceInFromBottom),
+                       @(KLCPopupShowTypeBounceInFromLeft),
+                       @(KLCPopupShowTypeBounceInFromRight)];
+        
+        _namesForShowTypes = @{@(KLCPopupShowTypeNone) : @"None",
+                               @(KLCPopupShowTypeFadeIn) : @"Fade in",
+                               @(KLCPopupShowTypeGrowIn) : @"Grow in",
+                               @(KLCPopupShowTypeShrinkIn) : @"Shrink in",
+                               @(KLCPopupShowTypeSlideInFromTop) : @"Slide from Top",
+                               @(KLCPopupShowTypeSlideInFromBottom) : @"Slide from Bottom",
+                               @(KLCPopupShowTypeSlideInFromLeft) : @"Slide from Left",
+                               @(KLCPopupShowTypeSlideInFromRight) : @"Slide from Right",
+                               @(KLCPopupShowTypeBounceIn) : @"Bounce in",
+                               @(KLCPopupShowTypeBounceInFromTop) : @"Bounce from Top",
+                               @(KLCPopupShowTypeBounceInFromBottom) : @"Bounce from Bottom",
+                               @(KLCPopupShowTypeBounceInFromLeft) : @"Bounce from Left",
+                               @(KLCPopupShowTypeBounceInFromRight) : @"Bounce from Right"};
+        
+        _dismissTypes = @[@(KLCPopupDismissTypeNone),
+                          @(KLCPopupDismissTypeFadeOut),
+                          @(KLCPopupDismissTypeGrowOut),
+                          @(KLCPopupDismissTypeShrinkOut),
+                          @(KLCPopupDismissTypeSlideOutToTop),
+                          @(KLCPopupDismissTypeSlideOutToBottom),
+                          @(KLCPopupDismissTypeSlideOutToLeft),
+                          @(KLCPopupDismissTypeSlideOutToRight),
+                          @(KLCPopupDismissTypeBounceOut),
+                          @(KLCPopupDismissTypeBounceOutToTop),
+                          @(KLCPopupDismissTypeBounceOutToBottom),
+                          @(KLCPopupDismissTypeBounceOutToLeft),
+                          @(KLCPopupDismissTypeBounceOutToRight)];
+        
+        _namesForDismissTypes = @{@(KLCPopupDismissTypeNone) : @"None",
+                                  @(KLCPopupDismissTypeFadeOut) : @"Fade out",
+                                  @(KLCPopupDismissTypeGrowOut) : @"Grow out",
+                                  @(KLCPopupDismissTypeShrinkOut) : @"Shrink out",
+                                  @(KLCPopupDismissTypeSlideOutToTop) : @"Slide to Top",
+                                  @(KLCPopupDismissTypeSlideOutToBottom) : @"Slide to Bottom",
+                                  @(KLCPopupDismissTypeSlideOutToLeft) : @"Slide to Left",
+                                  @(KLCPopupDismissTypeSlideOutToRight) : @"Slide to Right",
+                                  @(KLCPopupDismissTypeBounceOut) : @"Bounce out",
+                                  @(KLCPopupDismissTypeBounceOutToTop) : @"Bounce to Top",
+                                  @(KLCPopupDismissTypeBounceOutToBottom) : @"Bounce to Bottom",
+                                  @(KLCPopupDismissTypeBounceOutToLeft) : @"Bounce to Left",
+                                  @(KLCPopupDismissTypeBounceOutToRight) : @"Bounce to Right"};
+        
+        // DEFAULTS
+        _selectedRowInHorizontalField = [_horizontalLayouts indexOfObject:@(KLCPopupHorizontalLayoutCenter)];
+        _selectedRowInVerticalField = [_verticalLayouts indexOfObject:@(KLCPopupVerticalLayoutCenter)];
+        _selectedRowInMaskField = [_maskTypes indexOfObject:@(KLCPopupMaskTypeDimmed)];
+        _selectedRowInShowField = [_showTypes indexOfObject:@(KLCPopupShowTypeBounceInFromTop)];
+        _selectedRowInDismissField = [_dismissTypes indexOfObject:@(KLCPopupDismissTypeBounceOutToBottom)];
+        _shouldDismissOnBackgroundTouch = YES;
+        _shouldDismissOnContentTouch = NO;
+        _shouldDismissAfterDelay = NO;
 	}
 	return self;
 }
@@ -159,6 +326,16 @@ AMWorkOrderViewControllerDelegate
 	self.view.frame = self.view.superview.bounds;
 }
 
+//bkk 2/5/15
+-(NSMutableArray *)filterNames {
+    return       [NSMutableArray arrayWithObjects:
+                  @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Filter 1"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Filter 1"},
+                  @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Filter 2"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Filter 2"},
+                  @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Filter 3"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Filter 3"},
+                  @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Filter 4"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Filter 4"},
+                  @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Filter 5"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Filter 5"},
+                  nil];
+}
 -(NSMutableArray *)repairCodes
 {
     return       [NSMutableArray arrayWithObjects:
@@ -184,7 +361,82 @@ AMWorkOrderViewControllerDelegate
   @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Vending"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Vending"},
                   nil];
 }
-
+-(void)showPopup {
+    // Generate content view to present
+    UIView* contentView = [[UIView alloc] init];
+    contentView.translatesAutoresizingMaskIntoConstraints = NO;
+    contentView.backgroundColor = [UIColor darkGrayColor];
+    contentView.layer.cornerRadius = 12.0;
+    
+    self.selectFilterButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    selectFilterButton.translatesAutoresizingMaskIntoConstraints = NO;
+    selectFilterButton.backgroundColor = [UIColor blackColor];
+    selectFilterButton.titleLabel.font = [UIFont boldSystemFontOfSize:24.0f];
+    [selectFilterButton setTitle:@"Select Filter" forState:UIControlStateNormal];
+    [selectFilterButton addTarget:self action:@selector(showFiltersList:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.lblQty = [[UILabel alloc] init];
+    lblQty.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    lblQty.backgroundColor = [UIColor clearColor];
+    lblQty.textColor = [UIColor whiteColor];
+    lblQty.font = [UIFont systemFontOfSize:16.0];
+    lblQty.text = @"0";
+    
+    UIStepper *stepper = [[UIStepper alloc] init];
+    stepper.translatesAutoresizingMaskIntoConstraints = NO;
+    stepper.minimumValue = 0;
+    stepper.maximumValue = 99;
+    [stepper addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    UIButton* dismissButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    dismissButton.translatesAutoresizingMaskIntoConstraints = NO;
+    dismissButton.contentEdgeInsets = UIEdgeInsetsMake(10, 20, 10, 20);
+    dismissButton.backgroundColor = [UIColor blackColor];
+    [dismissButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [dismissButton setTitleColor:[[dismissButton titleColorForState:UIControlStateNormal] colorWithAlphaComponent:0.5] forState:UIControlStateHighlighted];
+    dismissButton.titleLabel.font = [UIFont boldSystemFontOfSize:16.0];
+    [dismissButton setTitle:@"Save" forState:UIControlStateNormal];
+    dismissButton.layer.cornerRadius = 6.0;
+    [dismissButton addTarget:self action:@selector(saveButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [contentView addSubview:selectFilterButton];
+    [contentView addSubview:lblQty];
+    [contentView addSubview:stepper];
+    [contentView addSubview:dismissButton];
+    
+    NSDictionary* views = NSDictionaryOfVariableBindings(contentView, dismissButton, lblQty, stepper, selectFilterButton);
+    
+    [contentView addConstraints:
+     [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(16)-[selectFilterButton]-(20)-[lblQty]-(20)-[stepper]-(10)-[dismissButton]-(24)-|"
+                                             options:NSLayoutFormatAlignAllCenterX
+                                             metrics:nil
+                                               views:views]];
+    
+    [contentView addConstraints:
+     [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(36)-[selectFilterButton]-(36)-|"
+                                             options:0
+                                             metrics:nil
+                                               views:views]];
+    
+    // Show in popup
+    KLCPopupLayout layout = KLCPopupLayoutMake((KLCPopupHorizontalLayout)[self valueForRow:_selectedRowInHorizontalField inFieldWithTag:FieldTagHorizontalLayout],
+                                               (KLCPopupVerticalLayout)[self valueForRow:_selectedRowInVerticalField inFieldWithTag:FieldTagVerticalLayout]);
+    
+    KLCPopup* popup = [KLCPopup popupWithContentView:contentView
+                                            showType:(KLCPopupShowType)[self valueForRow:_selectedRowInShowField inFieldWithTag:FieldTagShowType]
+                                         dismissType:(KLCPopupDismissType)[self valueForRow:_selectedRowInDismissField inFieldWithTag:FieldTagDismissType]
+                                            maskType:(KLCPopupMaskType)[self valueForRow:_selectedRowInMaskField inFieldWithTag:FieldTagMaskType]
+                            dismissOnBackgroundTouch:_shouldDismissOnBackgroundTouch
+                               dismissOnContentTouch:_shouldDismissOnContentTouch];
+    
+    if (_shouldDismissAfterDelay) {
+        [popup showWithLayout:layout duration:2.0];
+    } else {
+        [popup showWithLayout:layout];
+    }
+}
 #pragma mark -
 
 - (void)refreshToInitialization {
@@ -209,149 +461,156 @@ AMWorkOrderViewControllerDelegate
         return;
     }
     
+    
+    
+    
     //bkk 1/29/2015 - TODO: add code here
     if (![self.workOrder.woType isEqualToString:TEXT_OF_FILTER_EXCHANGE] && [[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:TEXT_OF_REPLACED_FILTER])
     {
-        [[AMLogicCore sharedInstance] createNewCaseInDBWithSetupBlock:^(AMDBNewCase *newCase) {
-
-            //TODO: Where are we getting this data to populate the line items for a newCase Object?
-            //eg. the right side of the assignment has to be changed and commented code must be
-            //uncommented too...
-//            newCase.accountID = strAccountId;
-//            newCase.assetID = selectAsset.assetID;
-//            
-//            newCase.caseDescription = [dicCaseInfo objectForKey:KEY_OF_CASE_DESCRIPTION];
-//            newCase.contactEmail = [dicCaseInfo objectForKey:KEY_OF_CASE_EMAIL];
-//            newCase.contactID = selectContact.contactID;
-//            
-//            newCase.firstName = [dicCaseInfo objectForKey:KEY_OF_CASE_FIRST_NAME];
-//            newCase.lastName = [dicCaseInfo objectForKey:KEY_OF_CASE_LAST_NAME];
-//            newCase.mEI_Customer = [dicCaseInfo objectForKey:KEY_OF_CASE_MEI_CUSTOMER_NO];
-//            newCase.point_of_Service = strPoSId;
-//            newCase.priority = [dicCaseInfo objectForKey:KEY_OF_CASE_PRIORITY];
-//            newCase.recordTypeID = [[AMLogicCore sharedInstance] getRecordTypeIdByName:[dicCaseInfo objectForKey:KEY_OF_CASE_RECORD_TYPE] forObject:RECORD_TYPE_OF_CASE];
-//            newCase.recordTypeName = [dicCaseInfo objectForKey:KEY_OF_CASE_RECORD_TYPE];
-//            newCase.serialNumber = [dicCaseInfo objectForKey:KEY_OF_CASE_SERIAL_NO];
-//            newCase.subject = [dicCaseInfo objectForKey:KEY_OF_CASE_SUBJECT];
-//            newCase.type = [dicCaseInfo objectForKey:KEY_OF_CASE_TYPE];
-//            newCase.accountName = [dicCaseInfo objectForKey:KEY_OF_CASE_ACCOUNT];
-//            newCase.posID = strPoSId;
-//            newCase.posName = [dicCaseInfo objectForKey:KEY_OF_CASE_POINT_OF_SERVICE];
-//            newCase.assetNumber = [dicCaseInfo objectForKey:KEY_OF_CASE_ASSET_NO];
-        } completion:^(NSInteger type, NSError *error) {
-            MAIN(^{
-                if (error) {
-                    [AMUtilities showAlertWithInfo:[error localizedDescription]];
-                    return ;
-                }
-                else{
-                    
-                    [UIAlertView showWithTitle:@""
-                                       message:MyLocal(@"New Case is created successfully but not synced.")
-                             cancelButtonTitle:MyLocal(@"OK")
-                             otherButtonTitles:nil
-                                      tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
-                                          if (buttonIndex == [alertView cancelButtonIndex]) {
-//                                              if (isPop) {
-//                                                  [self dismissViewControllerAnimated:YES completion:nil];
-//                                              }
-
-                                              if (self.delegate && [self.delegate respondsToSelector:@selector(didClickSaveNewCase:)]) {
-                                                  //
-//                                                  [self.delegate didClickSaveNewCase:YES];
-                                              }
-                                          }
-                                      }];
-                }
-                
-            });
-        }];
-    }
-    
-    //Change: ITEM000121
-    if ([self.workOrder.woType isEqualToString:TEXT_OF_INSTALL]) {
-        if([self.arrResultAssetRequest count] == 0) {
-            [AMUtilities showAlertWithInfo:MyLocal(@"Please Add Asset")];
-            return;
-        }
-    }
-    
-    if ([self.workOrder.woType isEqualToString:TEXT_OF_FILTER_EXCHANGE]) {
+        //*******************
         
-        if (![[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:TEXT_OF_REFUSED_FILTER_EXCHANGE]) {
-            if ([arrFilterItems count] == 0) {
-                [AMUtilities showAlertWithInfo:MyLocal(@"Please update the filter information")];
+        
+        [self showPopup];
+        
+        //*******************
+
+//        [[AMLogicCore sharedInstance] createNewCaseInDBWithSetupBlock:^(AMDBNewCase *newCase) {
+//            
+//            newCase.accountID = self.workOrder.accountID;
+//            newCase.assetID = self.workOrder.assetID;
+//            
+//            newCase.caseDescription = self.workOrder.caseDescription;
+//            newCase.contactEmail = @"";//[dicCaseInfo objectForKey:KEY_OF_CASE_EMAIL];
+//            newCase.contactID = self.workOrder.contactID;// selectContact.contactID;
+//            
+//            newCase.firstName = @"";// [dicCaseInfo objectForKey:KEY_OF_CASE_FIRST_NAME];
+//            newCase.lastName = @"";// [dicCaseInfo objectForKey:KEY_OF_CASE_LAST_NAME];
+//            newCase.mEI_Customer = self.workOrder.woPoS.meiNumber;
+//            newCase.point_of_Service = self.workOrder.woPoS.posID;
+//            newCase.priority = self.workOrder.woCase.priority;
+//            newCase.recordTypeID = self.workOrder.recordTypeID;
+//            newCase.recordTypeName = self.workOrder.recordTypeName;
+//            newCase.serialNumber = @"";//[dicCaseInfo objectForKey:KEY_OF_CASE_SERIAL_NO];
+//            newCase.subject = self.workOrder.subject;
+//            newCase.type = self.workOrder.woType;
+//            newCase.accountName = self.workOrder.accountName;//[dicCaseInfo objectForKey:KEY_OF_CASE_ACCOUNT];
+//            newCase.posID = self.workOrder.posID;
+//            newCase.posName = self.workOrder.woPoS.name;
+//            newCase.assetNumber = self.workOrder.woAsset.assetID;
+//        } completion:^(NSInteger type, NSError *error) {
+//            MAIN(^{
+//                if (error) {
+//                    [AMUtilities showAlertWithInfo:[error localizedDescription]];
+//                    return ;
+//                }
+//                else{
+//                    
+//                    [UIAlertView showWithTitle:@""
+//                                       message:MyLocal(@"New Case is created successfully but not synced.")
+//                             cancelButtonTitle:MyLocal(@"OK")
+//                             otherButtonTitles:nil
+//                                      tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
+//                                          if (buttonIndex == [alertView cancelButtonIndex]) {
+////                                              if (isPop) {
+////                                                  [self dismissViewControllerAnimated:YES completion:nil];
+////                                              }
+//
+//                                              if (self.delegate && [self.delegate respondsToSelector:@selector(didClickSaveNewCase:)]) {
+//                                                  //
+////                                                  [self.delegate didClickSaveNewCase:YES];
+//                                              }
+//                                          }
+//                                      }];
+//                }
+//                
+//            });
+//        }];
+    } else {
+        //Change: ITEM000121
+        if ([self.workOrder.woType isEqualToString:TEXT_OF_INSTALL]) {
+            if([self.arrResultAssetRequest count] == 0) {
+                [AMUtilities showAlertWithInfo:MyLocal(@"Please Add Asset")];
                 return;
+            }
+        }
+        
+        if ([self.workOrder.woType isEqualToString:TEXT_OF_FILTER_EXCHANGE]) {
+            
+            if (![[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:TEXT_OF_REFUSED_FILTER_EXCHANGE]) {
+                if ([arrFilterItems count] == 0) {
+                    [AMUtilities showAlertWithInfo:MyLocal(@"Please update the filter information")];
+                    return;
+                }
+                else
+                {
+                    BOOL exist = NO;
+                    BOOL existPrice = NO;
+                    
+                    for (AMInvoice *invoce in arrFilterItems) {
+                        if([invoce.quantity intValue] != 0)
+                        {
+                            exist = YES;
+                        }
+                        
+                        if([invoce.unitPrice intValue] == 0)
+                        {
+                            existPrice = YES;
+                        }
+                    }
+                    
+                    if(!exist)
+                    {
+                        [AMUtilities showAlertWithInfo:MyLocal(@"Filter quantity cannot be 0")];
+                        return;
+                    }
+                    
+                    if (existPrice) {
+                        [UIAlertView showWithTitle:@""
+                                           message:MyLocal(@"You are trying to submit a work order with “0.00 Invoice” Do you want to proceed?")
+                                 cancelButtonTitle:MyLocal(@"No")
+                                 otherButtonTitles:@[MyLocal(@"Yes")]
+                                          tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                              if (buttonIndex == [alertView cancelButtonIndex]) {
+                                                  return ;
+                                              }
+                                              else
+                                              {
+                                                  [self showFilterExchangeSubmit];
+                                              }
+                                          }];
+                    }
+                    else
+                    {
+                        [self showFilterExchangeSubmit];
+                    }
+                }
             }
             else
             {
                 BOOL exist = NO;
-                BOOL existPrice = NO;
                 
                 for (AMInvoice *invoce in arrFilterItems) {
                     if([invoce.quantity intValue] != 0)
                     {
                         exist = YES;
-                    }
-                    
-                    if([invoce.unitPrice intValue] == 0)
-                    {
-                        existPrice = YES;
+                        break;
                     }
                 }
                 
-                if(!exist)
+                if(exist)
                 {
-                    [AMUtilities showAlertWithInfo:MyLocal(@"Filter quantity cannot be 0")];
+                    [AMUtilities showAlertWithInfo:MyLocal(@"Filter quantity should be 0")];
                     return;
                 }
                 
-                if (existPrice) {
-                    [UIAlertView showWithTitle:@""
-                                       message:MyLocal(@"You are trying to submit a work order with “0.00 Invoice” Do you want to proceed?")
-                             cancelButtonTitle:MyLocal(@"No")
-                             otherButtonTitles:@[MyLocal(@"Yes")]
-                                      tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
-                                          if (buttonIndex == [alertView cancelButtonIndex]) {
-                                              return ;
-                                          }
-                                          else
-                                          {
-                                              [self showFilterExchangeSubmit];
-                                          }
-                                      }];
-                }
-                else
-                {
-                    [self showFilterExchangeSubmit];
-                }
+                [self showFilterExchangeSubmit];
+                
             }
         }
         else
         {
-            BOOL exist = NO;
-            
-            for (AMInvoice *invoce in arrFilterItems) {
-                if([invoce.quantity intValue] != 0)
-                {
-                    exist = YES;
-                    break;
-                }
-            }
-            
-            if(exist)
-            {
-                [AMUtilities showAlertWithInfo:MyLocal(@"Filter quantity should be 0")];
-                return;
-            }
-            
-            [self showFilterExchangeSubmit];
-            
+            [self showSubmit];
         }
-    }
-    else
-    {
-        [self showSubmit];
     }
 }
 
@@ -711,6 +970,20 @@ AMWorkOrderViewControllerDelegate
 	[aPopoverVC setPopoverContentSize:CGSizeMake(CGRectGetWidth(popView.view.frame) + 100, CGRectGetHeight(popView.view.frame))];
 	aPopoverVC.delegate = self;
 	[aPopoverVC presentPopoverFromRect:sender.frame inView:sender.superview.superview permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+}
+
+//bkk 2/15/2015
+- (void)showFiltersList: (UIButton *)sender {
+    AMPopoverSelectTableViewController *popView = [[AMPopoverSelectTableViewController alloc] initWithNibName:@"AMPopoverSelectTableViewController" bundle:nil];
+    popView.delegate = self;
+    popView.tag = PopViewType_Select_FilterType;
+    
+    popView.arrInfos = [self filterNames];
+    
+    aPopoverVC = [[UIPopoverController alloc] initWithContentViewController:popView];
+    [aPopoverVC setPopoverContentSize:CGSizeMake(CGRectGetWidth(popView.view.frame) + 100, CGRectGetHeight(popView.view.frame))];
+    aPopoverVC.delegate = self;
+    [aPopoverVC presentPopoverFromRect:sender.frame inView:sender.superview.superview permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
 }
 
 #pragma mark -
@@ -1496,6 +1769,13 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
         
         [self refreshTotalPrice];
 	}
+    else if (aVerificationStatusTableViewController.tag == PopViewType_Select_FilterType) {
+        //bkk 2/5/15
+        [aPopoverVC dismissPopoverAnimated:YES];
+        [self.selectFilterButton setTitle:[aInfo objectForKey:@"VALUE"] forState:UIControlStateNormal];
+
+        NSLog(@"%@", aInfo);
+    }
 }
 
 - (void)refreshTotalPrice {
@@ -1604,4 +1884,109 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
     }
 }
 
+#pragma mark - Private
+- (NSInteger)valueForRow:(NSInteger)row inFieldWithTag:(NSInteger)tag {
+    
+    NSArray* listForField = nil;
+    if (tag == FieldTagHorizontalLayout) {
+        listForField = _horizontalLayouts;
+        
+    } else if (tag == FieldTagVerticalLayout) {
+        listForField = _verticalLayouts;
+        
+    } else if (tag == FieldTagMaskType) {
+        listForField = _maskTypes;
+        
+    } else if (tag == FieldTagShowType) {
+        listForField = _showTypes;
+        
+    } else if (tag == FieldTagDismissType) {
+        listForField = _dismissTypes;
+    }
+    
+    // If row is out of bounds, try using first row.
+    if (row >= listForField.count) {
+        row = 0;
+    }
+    
+    if (row < listForField.count) {
+        id obj = [listForField objectAtIndex:row];
+        if ([obj isKindOfClass:[NSNumber class]]) {
+            return [(NSNumber*)obj integerValue];
+        }
+    }
+    
+    return 0;
+}
+
+- (void)saveButtonPressed:(id)sender {
+    if ([sender isKindOfClass:[UIView class]]) {
+        int qty = [lblQty.text intValue];
+        if (qty > 0 && ![selectFilterButton.titleLabel.text isEqualToString:@"Select Filter"]) {
+            [(UIView*)sender dismissPresentingPopup];
+            [[AMLogicCore sharedInstance] createNewCaseInDBWithSetupBlock:^(AMDBNewCase *newCase) {
+                
+                newCase.accountID = self.workOrder.accountID;
+                newCase.assetID = self.workOrder.assetID;
+                
+                newCase.caseDescription = self.workOrder.caseDescription;
+                newCase.contactEmail = @"";//[dicCaseInfo objectForKey:KEY_OF_CASE_EMAIL];
+                newCase.contactID = self.workOrder.contactID;// selectContact.contactID;
+                
+                newCase.firstName = @"";// [dicCaseInfo objectForKey:KEY_OF_CASE_FIRST_NAME];
+                newCase.lastName = @"";// [dicCaseInfo objectForKey:KEY_OF_CASE_LAST_NAME];
+                newCase.mEI_Customer = self.workOrder.woPoS.meiNumber;
+                newCase.point_of_Service = self.workOrder.woPoS.posID;
+                newCase.priority = self.workOrder.woCase.priority;
+                newCase.recordTypeID = self.workOrder.recordTypeID;
+                newCase.recordTypeName = self.workOrder.recordTypeName;
+                newCase.serialNumber = @"";//[dicCaseInfo objectForKey:KEY_OF_CASE_SERIAL_NO];
+                newCase.subject = self.workOrder.subject;
+                newCase.type = self.workOrder.woType;
+                newCase.accountName = self.workOrder.accountName;//[dicCaseInfo objectForKey:KEY_OF_CASE_ACCOUNT];
+                newCase.posID = self.workOrder.posID;
+                newCase.posName = self.workOrder.woPoS.name;
+                newCase.assetNumber = self.workOrder.woAsset.assetID;
+            } completion:^(NSInteger type, NSError *error) {
+                MAIN(^{
+                    if (error) {
+                        [AMUtilities showAlertWithInfo:[error localizedDescription]];
+                        return ;
+                    }
+                    else{
+                        
+                        [UIAlertView showWithTitle:@""
+                                           message:MyLocal(@"New Case is created successfully but not synced.")
+                                 cancelButtonTitle:MyLocal(@"OK")
+                                 otherButtonTitles:nil
+                                          tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                              if (buttonIndex == [alertView cancelButtonIndex]) {
+                                                  //                                              if (isPop) {
+                                                  //                                                  [self dismissViewControllerAnimated:YES completion:nil];
+                                                  //                                              }
+                                                  
+                                                  if (self.delegate && [self.delegate respondsToSelector:@selector(didClickSaveNewCase:)]) {
+                                                      //
+                                                      //                                                  [self.delegate didClickSaveNewCase:YES];
+                                                  }
+                                              }
+                                          }];
+                    }
+                    
+                });
+            }];
+            
+        }else{
+            [UIAlertView showWithTitle:@"Error" message:@"Filter and Qty Required" cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                
+            }];
+        }
+    }
+}
+
+- (IBAction)valueChanged:(UIStepper *)sender {
+    double value = ((UIStepper *)sender).value;
+    
+    [lblQty setText:[NSString stringWithFormat:@"%d", (int)value]];
+}
 @end

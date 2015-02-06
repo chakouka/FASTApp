@@ -161,6 +161,7 @@
 		62AD8AC319617FB500E5FBAB /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62AD8AC219617FB500E5FBAB /* CoreText.framework */; };
 		62EC4C56197F9FBE0025343E /* AMSummaryFutureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62EC4C54197F9FBE0025343E /* AMSummaryFutureCell.m */; };
 		62EC4C57197F9FBE0025343E /* AMSummaryFutureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62EC4C55197F9FBE0025343E /* AMSummaryFutureCell.xib */; };
+		7C55F26D1A83CAC60081A4B0 /* KLCPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C55F26C1A83CAC60081A4B0 /* KLCPopup.m */; };
 		824A9DD91724E16400C9BD79 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 824A9DD81724E16400C9BD79 /* UIKit.framework */; };
 		824A9DDB1724E16400C9BD79 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 824A9DDA1724E16400C9BD79 /* Foundation.framework */; };
 		824A9DDD1724E16400C9BD79 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 824A9DDC1724E16400C9BD79 /* CoreGraphics.framework */; };
@@ -956,6 +957,8 @@
 		62EC4C53197F9FBE0025343E /* AMSummaryFutureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMSummaryFutureCell.h; path = SummaryViewController/AMSummaryFutureCell.h; sourceTree = "<group>"; };
 		62EC4C54197F9FBE0025343E /* AMSummaryFutureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMSummaryFutureCell.m; path = SummaryViewController/AMSummaryFutureCell.m; sourceTree = "<group>"; };
 		62EC4C55197F9FBE0025343E /* AMSummaryFutureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AMSummaryFutureCell.xib; path = SummaryViewController/AMSummaryFutureCell.xib; sourceTree = "<group>"; };
+		7C55F26B1A83CAC60081A4B0 /* KLCPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLCPopup.h; sourceTree = "<group>"; };
+		7C55F26C1A83CAC60081A4B0 /* KLCPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLCPopup.m; sourceTree = "<group>"; };
 		824A9DD51724E16400C9BD79 /* AramarkFSP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AramarkFSP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		824A9DD81724E16400C9BD79 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		824A9DDA1724E16400C9BD79 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -2040,6 +2043,15 @@
 			name = AMPieChart;
 			sourceTree = "<group>";
 		};
+		7C55F26A1A83CAC60081A4B0 /* KLCPopup */ = {
+			isa = PBXGroup;
+			children = (
+				7C55F26B1A83CAC60081A4B0 /* KLCPopup.h */,
+				7C55F26C1A83CAC60081A4B0 /* KLCPopup.m */,
+			);
+			path = KLCPopup;
+			sourceTree = "<group>";
+		};
 		824A9DCC1724E16400C9BD79 = {
 			isa = PBXGroup;
 			children = (
@@ -2094,6 +2106,7 @@
 		824A9DDE1724E16400C9BD79 /* AramarkFSP */ = {
 			isa = PBXGroup;
 			children = (
+				7C55F26A1A83CAC60081A4B0 /* KLCPopup */,
 				1B7586481A3B7775001B7F35 /* beep.wav */,
 				824A9E3C1724E9F400C9BD79 /* readme.txt */,
 				824A9E301724E2A900C9BD79 /* Classes */,
@@ -4697,6 +4710,7 @@
 				D0FF803919138DB2001123CE /* NSString+Extend.m in Sources */,
 				D01269B41909050500070DA9 /* AMTitleItemViewController.m in Sources */,
 				D0FF803B19138DB2001123CE /* UIImage+Scale.m in Sources */,
+				7C55F26D1A83CAC60081A4B0 /* KLCPopup.m in Sources */,
 				02B5A73019208EE2008D06A6 /* AMUtilities.m in Sources */,
 				A6963FFE19172F5C00A20CC7 /* AMLogicCore.m in Sources */,
 				D06806E4192B0A4400EA3440 /* AMWorkPerformedTableViewCell.m in Sources */,
