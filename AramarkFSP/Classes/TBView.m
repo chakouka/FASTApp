@@ -56,8 +56,7 @@ typedef NS_ENUM (NSInteger, PopViewType) {
     loadView()
     self.otherFiltersText.delegate = self;
     
-    self.numFilters = [NSMutableArray arrayWithArray:@[@{ @"NAME" : @"Filter2", @"QTY" : @1  }, @{ @"NAME" : @"Filter5", @"QTY" : @3 }, @{@"NAME" : @"Filter1", @"QTY" : @4 }, @{@"NAME" : @"Filter4", @"QTY" : @2 }, @{@"NAME" : @"Filter9", @"QTY" : @3 }]];
-    
+    self.numFilters = [NSMutableArray new];
     
 return self;
 }
