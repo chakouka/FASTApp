@@ -374,71 +374,6 @@ AMWorkOrderViewControllerDelegate
     // Generate content view to present
     TBView *contentView = [[TBView alloc] initWithFrame:CGRectMake(0, 0, 300, 500)];
     contentView.parentVC = self;
-//    UIView* contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 500)];
-   // contentView.translatesAutoresizingMaskIntoConstraints = NO;
-//    contentView.backgroundColor = [UIColor lightGrayColor];
-//    contentView.layer.cornerRadius = 12.0;
-//    
-//    self.selectFilterButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    selectFilterButton.translatesAutoresizingMaskIntoConstraints = NO;
-//    selectFilterButton.backgroundColor = [UIColor darkGrayColor];
-//    selectFilterButton.titleLabel.font = [UIFont boldSystemFontOfSize:24.0f];
-//    [selectFilterButton setTitle:@"Select a Filter" forState:UIControlStateNormal];
-//    [selectFilterButton addTarget:self action:@selector(showFiltersList:) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    self.lblQty = [[UILabel alloc] init];
-//    lblQty.translatesAutoresizingMaskIntoConstraints = NO;
-//    
-//    lblQty.backgroundColor = [UIColor clearColor];
-//    lblQty.textColor = [UIColor whiteColor];
-//    lblQty.font = [UIFont systemFontOfSize:24.0f];
-//    lblQty.text = @"0";
-//    
-//    UIStepper *stepper = [[UIStepper alloc] init];
-//    [[UIStepper appearance] setBackgroundColor:[UIColor lightGrayColor]];
-//    [[UIStepper appearance] setTintColor:[UIColor darkGrayColor]];
-//    [[UIStepper appearance] setIncrementImage:[UIImage imageNamed:@"up"] forState:UIControlStateNormal];
-//    [[UIStepper appearance] setDecrementImage:[UIImage imageNamed:@"down"] forState:UIControlStateNormal];
-//    stepper.translatesAutoresizingMaskIntoConstraints = NO;
-//    stepper.minimumValue = 0;
-//    stepper.maximumValue = 99;
-//    [stepper addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
-//    
-//    UITextView *textArea = [[UITextView alloc] init];
-//    textArea.translatesAutoresizingMaskIntoConstraints = NO;
-//    textArea.textColor = [UIColor whiteColor];
-//    textArea.text = @"test";
-//    
-//    UIButton* dismissButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    dismissButton.translatesAutoresizingMaskIntoConstraints = NO;
-//    dismissButton.contentEdgeInsets = UIEdgeInsetsMake(10, 20, 10, 20);
-//    dismissButton.backgroundColor = [UIColor darkGrayColor];
-//    [dismissButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//    [dismissButton setTitleColor:[[dismissButton titleColorForState:UIControlStateNormal] colorWithAlphaComponent:0.5] forState:UIControlStateHighlighted];
-//    dismissButton.titleLabel.font = [UIFont boldSystemFontOfSize:14.0];
-//    [dismissButton setTitle:@"Confirm and Create Case" forState:UIControlStateNormal];
-//    dismissButton.layer.cornerRadius = 1.0;
-//    [dismissButton addTarget:self action:@selector(saveButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    [contentView addSubview:selectFilterButton];
-//    [contentView addSubview:lblQty];
-//    [contentView addSubview:stepper];
-//    [contentView addSubview:textArea];
-//    [contentView addSubview:dismissButton];
-    
-//    NSDictionary* views = NSDictionaryOfVariableBindings(contentView, dismissButton, lblQty, stepper, textArea, selectFilterButton);
-//
-//    [contentView addConstraints:
-//     [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[selectFilterButton]-(10)-[lblQty]-(10)-[stepper]-(10)-[textArea]-(300)-[dismissButton]|"
-//                                             options:NSLayoutFormatAlignAllCenterX
-//                                             metrics:nil
-//                                               views:views]];
-//    
-//    [contentView addConstraints:
-//     [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(36)-[selectFilterButton]-(36)-|"
-//                                             options:0
-//                                             metrics:nil
-//                                               views:views]];
     
     // Show in popup
     KLCPopupLayout layout = KLCPopupLayoutMake((KLCPopupHorizontalLayout)[self valueForRow:_selectedRowInHorizontalField inFieldWithTag:FieldTagHorizontalLayout],
@@ -450,7 +385,6 @@ AMWorkOrderViewControllerDelegate
                                             maskType:(KLCPopupMaskType)[self valueForRow:_selectedRowInMaskField inFieldWithTag:FieldTagMaskType]
                             dismissOnBackgroundTouch:_shouldDismissOnBackgroundTouch
                                dismissOnContentTouch:_shouldDismissOnContentTouch];
-    
     if (_shouldDismissAfterDelay) {
         [popup showWithLayout:layout duration:2.0];
     } else {
@@ -481,70 +415,11 @@ AMWorkOrderViewControllerDelegate
         return;
     }
     
-    
-    
-    
-    //bkk 1/29/2015 - TODO: add code here
+    //bkk 1/29/2015
     if (![self.workOrder.woType isEqualToString:TEXT_OF_FILTER_EXCHANGE] && [[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:TEXT_OF_REPLACED_FILTER])
     {
-        //*******************
-        
-        
+        //bkk - popup shows
         [self showPopup];
-        
-        //*******************
-
-//        [[AMLogicCore sharedInstance] createNewCaseInDBWithSetupBlock:^(AMDBNewCase *newCase) {
-//            
-//            newCase.accountID = self.workOrder.accountID;
-//            newCase.assetID = self.workOrder.assetID;
-//            
-//            newCase.caseDescription = self.workOrder.caseDescription;
-//            newCase.contactEmail = @"";//[dicCaseInfo objectForKey:KEY_OF_CASE_EMAIL];
-//            newCase.contactID = self.workOrder.contactID;// selectContact.contactID;
-//            
-//            newCase.firstName = @"";// [dicCaseInfo objectForKey:KEY_OF_CASE_FIRST_NAME];
-//            newCase.lastName = @"";// [dicCaseInfo objectForKey:KEY_OF_CASE_LAST_NAME];
-//            newCase.mEI_Customer = self.workOrder.woPoS.meiNumber;
-//            newCase.point_of_Service = self.workOrder.woPoS.posID;
-//            newCase.priority = self.workOrder.woCase.priority;
-//            newCase.recordTypeID = self.workOrder.recordTypeID;
-//            newCase.recordTypeName = self.workOrder.recordTypeName;
-//            newCase.serialNumber = @"";//[dicCaseInfo objectForKey:KEY_OF_CASE_SERIAL_NO];
-//            newCase.subject = self.workOrder.subject;
-//            newCase.type = self.workOrder.woType;
-//            newCase.accountName = self.workOrder.accountName;//[dicCaseInfo objectForKey:KEY_OF_CASE_ACCOUNT];
-//            newCase.posID = self.workOrder.posID;
-//            newCase.posName = self.workOrder.woPoS.name;
-//            newCase.assetNumber = self.workOrder.woAsset.assetID;
-//        } completion:^(NSInteger type, NSError *error) {
-//            MAIN(^{
-//                if (error) {
-//                    [AMUtilities showAlertWithInfo:[error localizedDescription]];
-//                    return ;
-//                }
-//                else{
-//                    
-//                    [UIAlertView showWithTitle:@""
-//                                       message:MyLocal(@"New Case is created successfully but not synced.")
-//                             cancelButtonTitle:MyLocal(@"OK")
-//                             otherButtonTitles:nil
-//                                      tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
-//                                          if (buttonIndex == [alertView cancelButtonIndex]) {
-////                                              if (isPop) {
-////                                                  [self dismissViewControllerAnimated:YES completion:nil];
-////                                              }
-//
-//                                              if (self.delegate && [self.delegate respondsToSelector:@selector(didClickSaveNewCase:)]) {
-//                                                  //
-////                                                  [self.delegate didClickSaveNewCase:YES];
-//                                              }
-//                                          }
-//                                      }];
-//                }
-//                
-//            });
-//        }];
     } else {
         //Change: ITEM000121
         if ([self.workOrder.woType isEqualToString:TEXT_OF_INSTALL]) {
@@ -1941,8 +1816,9 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
 }
 
 - (void)saveButtonPressed:(NSNotification *) notification {
-    [self showSubmit];
     
+    
+    [KLCPopup dismissAllPopups];
     [[AMLogicCore sharedInstance] createNewCaseInDBWithSetupBlock:^(AMDBNewCase *newCase) {
         
         AMPoS *pos = [[AMLogicCore sharedInstance] getPoSInfoByID:self.workOrder.posID];
@@ -1964,15 +1840,15 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
         
         //All filters this trip
         NSMutableArray *myArray = [NSMutableArray arrayWithArray:[notification.userInfo objectForKey:@"POST_FILTERS_AND_QUANTITIES"]];
-        NSMutableString *tempString = [NSMutableString string];// @"Filter: %@ Qty: %@\n";
+        NSMutableString *tempString = [NSMutableString string];
         for (int i = 0; i < myArray.count; i++) {
             NSString *str = [NSString stringWithFormat:@"Filter: %@ Qty: %@\n", [myArray[i] objectForKey:@"NAME"], [myArray[i] objectForKey:@"QTY"]];
             [tempString appendString: str];
         }
 
-        newCase.caseDescription = [NSString stringWithFormat:@"%@\n\n Please perform the following action on the off schedule filter exchange:\n\n1 - Manually bill this customer (look for account X if needed) for:\n%@\n2 - Update the Service Schedule fields:\nPrevious Scheduled Date - <WO Completion Date>\nNext Scheduled Date - <WO Completion Date + Schedule>", self.workOrder.woNumber, tempString];//self.workOrder.caseDescription;
-        newCase.contactEmail = [arrContact count] > 0 ? ((AMContact *)arrContact[0]).email : @"";//[dicCaseInfo objectForKey:KEY_OF_CASE_EMAIL];
-        newCase.contactID = @"";// self.workOrder.contactID;// selectContact.contactID;
+        newCase.caseDescription = [NSString stringWithFormat:@"%@\n\n Please perform the following action on the off schedule filter exchange:\n\n1 - Manually bill this customer (look for account X if needed) for:\n%@\n2 - Update the Service Schedule fields:\nPrevious Scheduled Date - <WO Completion Date>\nNext Scheduled Date - <WO Completion Date + Schedule>", self.workOrder.woNumber, tempString];
+        newCase.contactEmail = [arrContact count] > 0 ? ((AMContact *)arrContact[0]).email : @"";
+        newCase.contactID = @"";
         
         newCase.firstName = [arrContact count] > 0 ? ((AMContact *)arrContact[0]).firstName : @"Change";
         newCase.lastName = [arrContact count] > 0 ? ((AMContact *)arrContact[0]).lastName : @"Me";
@@ -1981,13 +1857,13 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
         newCase.priority = @"Medium";
         newCase.recordTypeID = [[AMLogicCore sharedInstance] getRecordTypeIdByName:@"AR and Invoice" forObject:RECORD_TYPE_OF_CASE];
         newCase.recordTypeName = MyLocal(@"AR and Invoice");
-        newCase.serialNumber = @"";//[dicCaseInfo objectForKey:KEY_OF_CASE_SERIAL_NO];
+        newCase.serialNumber = @"";
         newCase.subject = @"Need to Invoice and Update Service Schedule";
-        newCase.type = MyLocal(@"Swap");//self.workOrder.woType;
-        newCase.accountName = self.workOrder.accountName;//[dicCaseInfo objectForKey:KEY_OF_CASE_ACCOUNT];
+        newCase.type = MyLocal(@"Swap");
+        newCase.accountName = self.workOrder.accountName;
         newCase.posID = self.workOrder.posID;
-        newCase.posName = [pos.name length] == 0 ? @"" : pos.name;// self.workOrder.woPoS.name;
-        newCase.assetNumber = @"";//self.workOrder.woAsset.assetID;
+        newCase.posName = [pos.name length] == 0 ? @"" : pos.name;
+        newCase.assetNumber = @"";
         newCase.id = @"";
     } completion:^(NSInteger type, NSError *error) {
         MAIN(^{
@@ -1998,23 +1874,14 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
             else{
                 
                 [UIAlertView showWithTitle:@""
-                                   message:MyLocal(@"New Case is created successfully but not synced.")
+                         message:MyLocal(@"New Case is created successfully but not synced.")
                          cancelButtonTitle:MyLocal(@"OK")
                          otherButtonTitles:nil
-                                  tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
-                                      if (buttonIndex == [alertView cancelButtonIndex]) {
-                                          //                                              if (isPop) {
-                                          //                                                  [self dismissViewControllerAnimated:YES completion:nil];
-                                          //                                              }
-//                                                  [self showSubmit];
-
-                                          if (self.delegate && [self.delegate respondsToSelector:@selector(didClickSaveNewCase:)]) {
-                                              //
-                                              //                                                  [self.delegate didClickSaveNewCase:YES];
-//                                                      [self showSubmit];
-                                          }
-                                      }
-                                  }];
+                         tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
+                              if (buttonIndex == [alertView cancelButtonIndex]) {
+                                  [self showSubmit];
+                              }
+                         }];
             }
             
         });
