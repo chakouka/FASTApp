@@ -162,6 +162,14 @@
 		62EC4C56197F9FBE0025343E /* AMSummaryFutureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62EC4C54197F9FBE0025343E /* AMSummaryFutureCell.m */; };
 		62EC4C57197F9FBE0025343E /* AMSummaryFutureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62EC4C55197F9FBE0025343E /* AMSummaryFutureCell.xib */; };
 		7C55F26D1A83CAC60081A4B0 /* KLCPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C55F26C1A83CAC60081A4B0 /* KLCPopup.m */; };
+		7C55F2861A8954DA0081A4B0 /* down.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C55F2821A8954DA0081A4B0 /* down.png */; };
+		7C55F2871A8954DA0081A4B0 /* up.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C55F2831A8954DA0081A4B0 /* up.png */; };
+		7C55F2881A8954DA0081A4B0 /* down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C55F2841A8954DA0081A4B0 /* down@2x.png */; };
+		7C55F2891A8954DA0081A4B0 /* up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C55F2851A8954DA0081A4B0 /* up@2x.png */; };
+		7C55F2FA1A8A582F0081A4B0 /* TBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C55F2F81A8A582F0081A4B0 /* TBView.m */; };
+		7C55F2FB1A8A582F0081A4B0 /* TBView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C55F2F91A8A582F0081A4B0 /* TBView.xib */; };
+		7C55F2FF1A8A80EC0081A4B0 /* AMFilterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C55F2FD1A8A80EC0081A4B0 /* AMFilterTableViewCell.m */; };
+		7C55F3001A8A80EC0081A4B0 /* AMFilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C55F2FE1A8A80EC0081A4B0 /* AMFilterTableViewCell.xib */; };
 		824A9DD91724E16400C9BD79 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 824A9DD81724E16400C9BD79 /* UIKit.framework */; };
 		824A9DDB1724E16400C9BD79 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 824A9DDA1724E16400C9BD79 /* Foundation.framework */; };
 		824A9DDD1724E16400C9BD79 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 824A9DDC1724E16400C9BD79 /* CoreGraphics.framework */; };
@@ -959,6 +967,16 @@
 		62EC4C55197F9FBE0025343E /* AMSummaryFutureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AMSummaryFutureCell.xib; path = SummaryViewController/AMSummaryFutureCell.xib; sourceTree = "<group>"; };
 		7C55F26B1A83CAC60081A4B0 /* KLCPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLCPopup.h; sourceTree = "<group>"; };
 		7C55F26C1A83CAC60081A4B0 /* KLCPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLCPopup.m; sourceTree = "<group>"; };
+		7C55F2821A8954DA0081A4B0 /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down.png; sourceTree = "<group>"; };
+		7C55F2831A8954DA0081A4B0 /* up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = up.png; sourceTree = "<group>"; };
+		7C55F2841A8954DA0081A4B0 /* down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "down@2x.png"; sourceTree = "<group>"; };
+		7C55F2851A8954DA0081A4B0 /* up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "up@2x.png"; sourceTree = "<group>"; };
+		7C55F2F71A8A582F0081A4B0 /* TBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBView.h; sourceTree = "<group>"; };
+		7C55F2F81A8A582F0081A4B0 /* TBView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBView.m; sourceTree = "<group>"; };
+		7C55F2F91A8A582F0081A4B0 /* TBView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TBView.xib; sourceTree = "<group>"; };
+		7C55F2FC1A8A80EC0081A4B0 /* AMFilterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMFilterTableViewCell.h; sourceTree = "<group>"; };
+		7C55F2FD1A8A80EC0081A4B0 /* AMFilterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMFilterTableViewCell.m; sourceTree = "<group>"; };
+		7C55F2FE1A8A80EC0081A4B0 /* AMFilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMFilterTableViewCell.xib; sourceTree = "<group>"; };
 		824A9DD51724E16400C9BD79 /* AramarkFSP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AramarkFSP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		824A9DD81724E16400C9BD79 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		824A9DDA1724E16400C9BD79 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -2142,6 +2160,12 @@
 				A6626B9D1904C82600DFA6E4 /* ViewControllers */,
 				824A9E311724E2A900C9BD79 /* AppDelegate.h */,
 				824A9E321724E2A900C9BD79 /* AppDelegate.m */,
+				7C55F2F71A8A582F0081A4B0 /* TBView.h */,
+				7C55F2F81A8A582F0081A4B0 /* TBView.m */,
+				7C55F2F91A8A582F0081A4B0 /* TBView.xib */,
+				7C55F2FC1A8A80EC0081A4B0 /* AMFilterTableViewCell.h */,
+				7C55F2FD1A8A80EC0081A4B0 /* AMFilterTableViewCell.m */,
+				7C55F2FE1A8A80EC0081A4B0 /* AMFilterTableViewCell.xib */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -3483,6 +3507,10 @@
 		D07827A51918BDDE0065A28F /* images */ = {
 			isa = PBXGroup;
 			children = (
+				7C55F2821A8954DA0081A4B0 /* down.png */,
+				7C55F2831A8954DA0081A4B0 /* up.png */,
+				7C55F2841A8954DA0081A4B0 /* down@2x.png */,
+				7C55F2851A8954DA0081A4B0 /* up@2x.png */,
 				1BEC0C8A1A38F66A009BA6B2 /* out.png */,
 				1BEC0C8B1A38F66A009BA6B2 /* in.png */,
 				D0912DCF19D54F0E00E5F6FA /* French Icons 2x */,
@@ -4088,6 +4116,7 @@
 				824A9DD11724E16400C9BD79 /* Sources */,
 				824A9DD21724E16400C9BD79 /* Frameworks */,
 				824A9DD31724E16400C9BD79 /* Resources */,
+				7C55F27C1A85685E0081A4B0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -4199,6 +4228,8 @@
 				D0912E2E19D54F0E00E5F6FA /* 1--check-out_OFF-fr@2x.png in Resources */,
 				D0912E6419D54F0E00E5F6FA /* cancel-fr.png in Resources */,
 				D0A5A67019386FAA000DBD76 /* AMVerificationAddTableViewCell.xib in Resources */,
+				7C55F2861A8954DA0081A4B0 /* down.png in Resources */,
+				7C55F2891A8954DA0081A4B0 /* up@2x.png in Resources */,
 				D0912E5519D54F0E00E5F6FA /* summary-fr@2x.png in Resources */,
 				D013D890196535F1008A7C55 /* invoice_on@2x.png in Resources */,
 				D007B3811925BE6D00DD09DE /* AMInvoiceViewController.xib in Resources */,
@@ -4216,6 +4247,7 @@
 				D0912E5219D54F0E00E5F6FA /* Reports_gray-fr@2x.png in Resources */,
 				D0134D5E1959778E009BA205 /* report-info-graphic-red.png in Resources */,
 				D0912E7019D54F0E00E5F6FA /* invoice-fr.png in Resources */,
+				7C55F2871A8954DA0081A4B0 /* up.png in Resources */,
 				D0B79E8F191A228D00FD1152 /* reports.png in Resources */,
 				D0912E3619D54F0E00E5F6FA /* cancel-fr@2x.png in Resources */,
 				D02F3346191CC5F100CF9006 /* Arrow-up@2x.png in Resources */,
@@ -4348,6 +4380,7 @@
 				D0912E7119D54F0E00E5F6FA /* invoice_on-fr.png in Resources */,
 				D0B79E6E191A228D00FD1152 /* arrow-down.png in Resources */,
 				D0912E6019D54F0E00E5F6FA /* account_1-fr.png in Resources */,
+				7C55F2FB1A8A582F0081A4B0 /* TBView.xib in Resources */,
 				D0B79E83191A228D00FD1152 /* home-icon.png in Resources */,
 				D04FB693195AAE6500AB08F9 /* lead-history@2x.png in Resources */,
 				D0912E3019D54F0E00E5F6FA /* 10-point_ON-fr@2x.png in Resources */,
@@ -4444,6 +4477,7 @@
 				62A642A7197695B20063D0DA /* arrow-down_white.png in Resources */,
 				D013D891196535F1008A7C55 /* invoice@2x.png in Resources */,
 				D02F335B191CC5F100CF9006 /* hamburger_red@2x.png in Resources */,
+				7C55F2881A8954DA0081A4B0 /* down@2x.png in Resources */,
 				824A9E701724F03D00C9BD79 /* Default@2x.png in Resources */,
 				D044951D19D2A0E2001B35B6 /* SVProgressHUD.bundle in Resources */,
 				D0B79E91191A228D00FD1152 /* small-screen-button.png in Resources */,
@@ -4475,6 +4509,7 @@
 				D0912E8019D54F0E00E5F6FA /* Reports_gray-fr.png in Resources */,
 				D02F3343191CC5F100CF9006 /* arrow-down@2x.png in Resources */,
 				D0912E3519D54F0E00E5F6FA /* Assing-to-myself-fr@2x.jpg in Resources */,
+				7C55F3001A8A80EC0081A4B0 /* AMFilterTableViewCell.xib in Resources */,
 				D0912E4519D54F0E00E5F6FA /* Lead-History_Red-fr@2x.png in Resources */,
 				824A9FDF1725079100C9BD79 /* openssl_license.txt in Resources */,
 				1B7586491A3B7775001B7F35 /* beep.wav in Resources */,
@@ -4546,6 +4581,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7C55F27C1A85685E0081A4B0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# xcode-version-bump.sh\n# @desc Auto-increment the version number (only) when a project is archived for export.\n# @usage\n# 1. Select: your Target in Xcode\n# 2. Select: Build Phases Tab\n# 3. Select: Add Build Phase -> Add Run Script\n# 4. Paste code below in to new \"Run Script\" section\n# 5. Check the checkbox \"Run script only when installing\"\n# 6. Drag the \"Run Script\" below \"Link Binaries With Libraries\"\n# 7. Insure your starting version number is in SemVer format (e.g. 1.0.0)\n\n# This splits a two-decimal version string, such as \"0.45.123\", allowing us to increment the third position.\nVERSIONNUM=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nNEWSUBVERSION=`echo $VERSIONNUM | awk -F \".\" '{print $3}'`\nNEWSUBVERSION=$(($NEWSUBVERSION + 1))\nNEWVERSIONSTRING=`echo $VERSIONNUM | awk -F \".\" '{print $1 \".\" $2 \".'$NEWSUBVERSION'\" }'`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $NEWVERSIONSTRING\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $NEWVERSIONSTRING\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		16C289E3195A7192004FF31F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -4572,6 +4623,7 @@
 				D044951E19D2A0E2001B35B6 /* SVProgressHUD.m in Sources */,
 				D0139C23199E06D4000F04EE /* AMInvoiceWorkorderTitleView.m in Sources */,
 				16E0ABA2198BBFBA000DE914 /* AMDBInvoice.m in Sources */,
+				7C55F2FF1A8A80EC0081A4B0 /* AMFilterTableViewCell.m in Sources */,
 				D0DE02231907C786005BFB5F /* AMDetailPanelViewController.m in Sources */,
 				16AE965B193DC71000904E7A /* AMSummaryCollectionCell.m in Sources */,
 				D0A9A81219AC84D400733F5A /* MapView.m in Sources */,
@@ -4727,6 +4779,7 @@
 				62A5FAA3196FAAD700779DE3 /* AMReportCompletedWODM.m in Sources */,
 				D06D82A41935EDF700407855 /* ColumnViewController.m in Sources */,
 				D06D82A31935EDF700407855 /* ColumnInfo.m in Sources */,
+				7C55F2FA1A8A582F0081A4B0 /* TBView.m in Sources */,
 				D02F32F4191C9B9D00CF9006 /* UIAlertView+Blocks.m in Sources */,
 				D007B38D1925EB7D00DD09DE /* AMCheckoutPanelViewController.m in Sources */,
 				02E3E7B61929FB0900064919 /* AMCustomCellView.m in Sources */,
@@ -4983,6 +5036,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1.0.8;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AramarkFSP/AramarkFSP-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -5015,6 +5069,7 @@
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALID_ARCHS = "armv7 armv7s";
+				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -5024,6 +5079,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1.0.8;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AramarkFSP/AramarkFSP-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "ADHOC=1";
@@ -5057,6 +5113,7 @@
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALID_ARCHS = "armv7 armv7s";
+				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -46,6 +46,8 @@ UIPopoverControllerDelegate
 - (void)setupDataSourceByWorkOrder:(AMWorkOrder *)aWorkOrder;
 - (void)refreshToInitialization;
 - (IBAction)clickCreatNewBtn:(UIButton *)sender;
+
+- (void)showFiltersList: (UIButton *)sender; //bkk
 @end
 
 @protocol AMCheckoutViewControllerDelegate <NSObject>
