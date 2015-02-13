@@ -1845,13 +1845,20 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
             NSString *str = [NSString stringWithFormat:@"Filter: %@ Qty: %@\n", [myArray[i] objectForKey:@"NAME"], [myArray[i] objectForKey:@"QTY"]];
             [tempString appendString: str];
         }
-
-        newCase.caseDescription = [NSString stringWithFormat:@"%@\n\n Please perform the following action on the off schedule filter exchange:\n\n1 - Manually bill this customer (look for account X if needed) for:\n%@\n2 - Update the Service Schedule fields:\nPrevious Scheduled Date - <WO Completion Date>\nNext Scheduled Date - <WO Completion Date + Schedule>", self.workOrder.woNumber, tempString];
+        
+        //date time
+        NSDate *now = [[NSDate alloc] init];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"dd-MM-YYYY HH:mm:ss"];
+        NSString *todaysDate = [dateFormatter stringFromDate:now];
+        
+        newCase.caseDescription = [NSString stringWithFormat:@"%@\n\n Please perform the following action on the off schedule filter exchange:\n\n1 - Manually bill this customer (look for account X if needed) for:\n%@\n2 - Update the Service Schedule fields:\nPrevious Scheduled Date - <%@>\nNext Scheduled Date - <%@ + Schedule>", self.workOrder.woNumber, tempString, todaysDate, todaysDate];
         newCase.contactEmail = [arrContact count] > 0 ? ((AMContact *)arrContact[0]).email : @"";
         newCase.contactID = @"";
+        NSArray *strFirstAndLastNames = [self.workOrder.ownerName componentsSeparatedByString:@" "];
         
-        newCase.firstName = [arrContact count] > 0 ? ((AMContact *)arrContact[0]).firstName : @"Change";
-        newCase.lastName = [arrContact count] > 0 ? ((AMContact *)arrContact[0]).lastName : @"Me";
+        newCase.firstName = [arrContact count] > 0 ? ((AMContact *)arrContact[0]).firstName : strFirstAndLastNames[0] != nil ? strFirstAndLastNames[0] : @"Change";
+        newCase.lastName = [arrContact count] > 0 ? ((AMContact *)arrContact[0]).lastName : strFirstAndLastNames[1] != nil ? strFirstAndLastNames[1] : @"Me";
         newCase.mEI_Customer = [pos.meiNumber length] == 0 ? 0 : pos.meiNumber;
         newCase.point_of_Service = self.workOrder.posID;
         newCase.priority = @"Medium";
