@@ -1849,7 +1849,7 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
         //date time
         NSDate *now = [[NSDate alloc] init];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"dd-MM-YYYY HH:mm:ss"];
+        [dateFormatter setDateFormat:@"MM-dd-YYYY HH:mm:ss"];
         NSString *todaysDate = [dateFormatter stringFromDate:now];
         
         newCase.caseDescription = [NSString stringWithFormat:@"%@\n\n Please perform the following action on the off schedule filter exchange:\n\n1 - Manually bill this customer (look for account X if needed) for:\n%@\n2 - Update the Service Schedule fields:\nPrevious Scheduled Date - <%@>\nNext Scheduled Date - <%@ + Schedule>", self.workOrder.woNumber, tempString, todaysDate, todaysDate];
@@ -1866,7 +1866,7 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
         newCase.recordTypeName = MyLocal(@"AR and Invoice");
         newCase.serialNumber = @"";
         newCase.subject = @"Need to Invoice and Update Service Schedule";
-        newCase.type = MyLocal(@"Swap");
+        newCase.type = MyLocal(@"InvoiceFilter");
         newCase.accountName = self.workOrder.accountName;
         newCase.posID = self.workOrder.posID;
         newCase.posName = [pos.name length] == 0 ? @"" : pos.name;
