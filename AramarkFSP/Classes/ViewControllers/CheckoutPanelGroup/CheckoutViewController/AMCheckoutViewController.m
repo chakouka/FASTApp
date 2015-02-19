@@ -376,20 +376,13 @@ AMWorkOrderViewControllerDelegate
     contentView.parentVC = self;
     
     // Show in popup
-    KLCPopupLayout layout = KLCPopupLayoutMake((KLCPopupHorizontalLayout)[self valueForRow:_selectedRowInHorizontalField inFieldWithTag:FieldTagHorizontalLayout],
-                                               (KLCPopupVerticalLayout)[self valueForRow:_selectedRowInVerticalField inFieldWithTag:FieldTagVerticalLayout]);
-    
     KLCPopup* popup = [KLCPopup popupWithContentView:contentView
                                             showType:KLCPopupShowTypeSlideInFromTop
                                          dismissType:KLCPopupDismissTypeSlideOutToTop
                                             maskType:(KLCPopupMaskType)[self valueForRow:_selectedRowInMaskField inFieldWithTag:FieldTagMaskType]
                             dismissOnBackgroundTouch:_shouldDismissOnBackgroundTouch
                                dismissOnContentTouch:_shouldDismissOnContentTouch];
-    if (_shouldDismissAfterDelay) {
-        [popup showWithLayout:layout duration:2.0];
-    } else {
-        [popup showWithLayout:layout];
-    }
+    [popup show];
 }
 #pragma mark -
 

@@ -42,6 +42,8 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 @synthesize qtyLabel;
 @synthesize parentVC;
 @synthesize numFilters = _numFilters;
+@synthesize pickerViewTextField;
+@synthesize filterNames;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -54,10 +56,18 @@ typedef NS_ENUM (NSInteger, PopViewType) {
                                                  name:@"Filter_Item_Changed"
                                                object:nil];
     loadView()
+    
+    filterNames = @[@"Select a Filter", @"Filter1", @"Filter2", @"Filter3", @"Filter4", @"Filter5"];
+    pickerViewTextField = [[UITextField alloc] initWithFrame:CGRectZero];
+    [self addSubview:self.pickerViewTextField];
     self.otherFiltersText.delegate = self;
     
     self.numFilters = [NSMutableArray new];
-    
+    picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
+    picker.showsSelectionIndicator = YES;
+    picker.delegate = self;
+    picker.dataSource = self;
+    self.pickerViewTextField.inputView = picker;
 return self;
 }
 
@@ -78,7 +88,10 @@ return self;
 return self;
 }
 - (IBAction)selectFilter:(id)sender {
-    [self.parentVC showFiltersList:sender];
+    [picker reloadAllComponents];
+    [picker selectRow:0 inComponent:0 animated:YES];
+     [self.pickerViewTextField becomeFirstResponder];
+//    [self.parentVC showFiltersList:sender];
     self.otherFiltersText.text = @"";
 }
 - (IBAction)stepperChanged:(id)sender {
@@ -133,6 +146,7 @@ return self;
 
 -(IBAction)textViewDidChange:(UITextView *)textView {
     [self.filterSelectButton setTitle:@"Select a Filter" forState:UIControlStateNormal];
+    self.filterSelectButton.titleLabel.text = @"Select a Filter";
     [self.qtyLabel setText:@"0"];
     self.qtyStepper.value = 0;
 }
@@ -170,5 +184,31 @@ return self;
     [self.numFilters removeObjectAtIndex:indexPath.row];
     
     [tableView reloadData];
+}
+
+#pragma mark - Picker delegate and datasource
+// Number of components.
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+
+// Total rows in our component.
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    
+    return 5;
+}
+
+// Display each row's data.
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    return filterNames[row];
+}
+
+// Do something with the selected row.
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+//    NSLog(@"You selected this [%2d, %2d]: %@", row, component, [dateForChoose objectAtIndex: row]);
+//    NSLog(@"count - %d", [dateForChoose count]);
+//    datePickerActiveIdx = row;
+    self.filterSelectButton.titleLabel.text = filterNames[row];
+    [pickerViewTextField resignFirstResponder];
 }
 @end

@@ -34,7 +34,11 @@ NSBundle *mainBundle = [NSBundle mainBundle]; \
 NSArray *views = [mainBundle loadNibNamed:NSStringFromClass([self class]) owner:self options:nil]; \
 [self addSubview:views[0]];
 NSMutableArray *numFilters;
-@interface TBView : UIView <UITextViewDelegate, UITableViewDataSource, UITableViewDelegate>
+UIPickerView *picker;
+UITextField *pickerViewTextField;
+NSArray *filterNames;
+
+@interface TBView : UIView <UITextViewDelegate, UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 @property(nonatomic, weak) IBOutlet UILabel *qtyLabel;
 @property (strong, nonatomic) IBOutlet UIButton *filterSelectButton;
 @property (nonatomic, strong) AMCheckoutViewController *parentVC;
@@ -42,4 +46,7 @@ NSMutableArray *numFilters;
 @property (strong, nonatomic) NSMutableArray *numFilters;
 @property (weak, nonatomic) IBOutlet UITableView *myTableview;
 @property(nonatomic, weak) IBOutlet UIStepper *qtyStepper;
+@property (nonatomic, strong) UITextField *pickerViewTextField;
+@property (nonatomic, strong) NSArray *filterNames;
+
 @end
