@@ -57,7 +57,7 @@ typedef NS_ENUM (NSInteger, PopViewType) {
                                                object:nil];
     loadView()
     
-    filterNames = @[@"Select a Filter", @"Filter1", @"Filter2", @"Filter3", @"Filter4", @"Filter5"];
+    filterNames = @[@"Select a Filter", @"AquaMark Brew Maker Filter 9633-56", @"AquaMark Filter 1", @"AquaMark Filter 3", @"AquaMark Filter 2", @"Innowave UV Lamp Assy 8W 10-2350", @"Everpure 4C Filter EV-9601", @"Innowave UV Lamp Assy 4W 12-2350", @"Omnipure Inline Filter SCL6", @"Everpure OCS2 Filter C2BGW", @"Everpure OCS Filter QL2"];
     pickerViewTextField = [[UITextField alloc] initWithFrame:CGRectZero];
     [self addSubview:self.pickerViewTextField];
     self.otherFiltersText.delegate = self;
@@ -195,7 +195,7 @@ return self;
 // Total rows in our component.
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     
-    return 5;
+    return [self.filterNames count];
 }
 
 // Display each row's data.
