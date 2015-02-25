@@ -2,15 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>StringsTable</key>
-	<string>Root</string>
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
 			<key>Title</key>
 			<string>GROUP_TITLE_ACCOUNT</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
@@ -23,26 +21,26 @@
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
 		<dict>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
 			<key>Title</key>
 			<string>GROUP_TITLE_CONNECTION</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
 		</dict>
 		<dict>
-			<key>Key</key>
-			<string>primary_login_host_pref</string>
-			<key>Type</key>
-			<string>PSMultiValueSpecifier</string>
-			<key>Title</key>
-			<string>LOGIN_HOST_TITLE</string>
 			<key>DefaultValue</key>
 			<string>login.salesforce.com</string>
+			<key>Key</key>
+			<string>primary_login_host_pref</string>
+			<key>Title</key>
+			<string>LOGIN_HOST_TITLE</string>
 			<key>Titles</key>
 			<array>
 				<string>CUSTOM_LOGIN_HOST_TITLE</string>
 				<string>PRODUCTION_LOGIN_HOST_TITLE</string>
 				<string>SANDBOX_LOGIN_HOST_TITLE</string>
 			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
 			<key>Values</key>
 			<array>
 				<string>aramark.my.salesforce.com</string>
@@ -51,22 +49,22 @@
 			</array>
 		</dict>
 		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>CUSTOM_LOGIN_HOST_TITLE</string>
+			<key>DefaultValue</key>
+			<string>aramark.my.salesforce.com</string>
 			<key>Key</key>
 			<string>custom_login_host_pref</string>
 			<key>KeyboardType</key>
 			<string>URL</string>
-			<key>DefaultValue</key>
-			<string>aramark.my.salesforce.com</string>
+			<key>Title</key>
+			<string>CUSTOM_LOGIN_HOST_TITLE</string>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
 		</dict>
 		<dict>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
 			<key>Title</key>
 			<string>GROUP_TITLE_APPLICATION_INFO</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
@@ -77,7 +75,7 @@
 			<string>VERSION_TITLE</string>
 			<key>Titles</key>
 			<array>
-				<string>1.0.0</string>
+				<string>1.0.9</string>
 			</array>
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
@@ -87,5 +85,7 @@
 			</array>
 		</dict>
 	</array>
+	<key>StringsTable</key>
+	<string>Root</string>
 </dict>
 </plist>
