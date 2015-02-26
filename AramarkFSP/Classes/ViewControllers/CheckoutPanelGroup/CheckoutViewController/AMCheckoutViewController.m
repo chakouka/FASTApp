@@ -161,6 +161,7 @@ AMWorkOrderViewControllerDelegate
 @synthesize arrResultAssetRequest;
 @synthesize lblQty;//bkk 2/5/15
 @synthesize selectFilterButton;
+@synthesize strSelectedFilters;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -312,6 +313,7 @@ AMWorkOrderViewControllerDelegate
                                              selector:@selector(saveButtonPressed:)
                                                  name:@"POST_FILTERS_AND_QUANTITIES"
                                                object:nil];
+    self.strSelectedFilters = [NSMutableString string];
 }
 -(void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -1839,6 +1841,7 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
             NSString *str = [NSString stringWithFormat:@"Filter: %@ Qty: %@\n", [myArray[i] objectForKey:@"NAME"], [myArray[i] objectForKey:@"QTY"]];
             [tempString appendString: str];
         }
+        self.strSelectedFilters = [NSString stringWithString:tempString];
         
         //date time
         NSDate *now = [[NSDate alloc] init];

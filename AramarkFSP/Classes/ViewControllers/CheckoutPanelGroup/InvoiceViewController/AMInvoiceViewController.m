@@ -84,6 +84,7 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 @synthesize arrInvoiceInfoGroups;
 @synthesize invoiceCaseSectionView;
 @synthesize tempInvoiceList;
+@synthesize txtSelectedFilters;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

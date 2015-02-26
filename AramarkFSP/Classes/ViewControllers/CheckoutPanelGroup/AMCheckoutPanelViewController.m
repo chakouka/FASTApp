@@ -275,6 +275,7 @@ AMInvoiceViewControllerDelegate
                 invoiceVC = [[AMInvoiceViewController alloc] initWithNibName:NSStringFromClass([AMInvoiceViewController class]) bundle:nil];
                 invoiceVC.delegate = self;
                 [self.viewMain addSubview:invoiceVC.view];
+                invoiceVC.txtSelectedFilters.text = [NSString stringWithFormat:@"Filter Exchanges\n\n%@\n\n Priced per contract.  An invoice will be generated and mailed by our local office.\n", checkoutVC.strSelectedFilters];
             }
             [self.viewMain bringSubviewToFront:invoiceVC.view];
             

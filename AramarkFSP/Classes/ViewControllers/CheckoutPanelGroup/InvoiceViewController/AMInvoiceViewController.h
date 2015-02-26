@@ -43,6 +43,8 @@ UITableViewDataSource
 @property (weak, nonatomic) IBOutlet UILabel *labelTMCEmail;
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageSelected;
+@property (strong, nonatomic) IBOutlet UITextView *txtSelectedFilters;
+
 
 - (IBAction)clickSubmitBtn:(UIButton *)sender;
 - (IBAction)clickSignatureBtn:(id)sender;
