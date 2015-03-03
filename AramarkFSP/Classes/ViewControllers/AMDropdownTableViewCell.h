@@ -22,6 +22,7 @@
 @property (strong, nonatomic) NSMutableArray *popoverContentArr;
 @property (strong, nonatomic) NSString *accountId;
 @property (strong, nonatomic) NSString *posId;
+@property (strong, nonatomic) NSString *woID;
 
 @property (weak, nonatomic) id<AMDropdownTableViewCellDelegate> delegate;
 

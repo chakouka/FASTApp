@@ -17,6 +17,7 @@
 #import "AMConfiguredCell.h"
 #import "AMSectionHeaderAttachmentView.h"
 #import "AMAttachmentTableViewCell.h"
+#import "AMDBCustomerPrice+AddOn.h"
 
 #define kAMDEFAULT_PREFERRED_TIME_START @"09:00"
 #define kAMDEFAULT_PRIORITY MyLocal(@"Medium")
@@ -379,7 +380,10 @@ static NSString *AttachmentCellIdentifier = @"AttachmentTableViewCell";
                 [_dataArr addObject:[[AMConfiguredCell alloc] initWithCellType:AMCellTypeEdit title:@"Age(hours)" value:[workOrderObj.age stringValue] isEditable:NO]];
             }
             [_dataArr addObject:[[AMConfiguredCell alloc] initWithCellType:AMCellTypeEdit title:@"Created By" value:workOrderObj.createdByName isEditable:NO]];
-            [_dataArr addObject:[[AMConfiguredCell alloc] initWithCellType:AMCellTypeEdit title:@"Filter Type" propertyDic:[self assembDictionaryValue1:@"filterType" value2:workOrderObj.filterTypeName]  isEditable:NO]];
+//            [_dataArr addObject:[[AMConfiguredCell alloc] initWithCellType:AMCellTypeDropDown title:@"Filter Type" propertyDic:[self assembDictionaryValue1:@"filterType" value2:workOrderObj.filterTypeName]  isEditable:NO]];
+//            NSArray *filtersArray = [NSArray arrayWithArray: [[AMDBManager sharedInstance] getFilterListByWOID:workOrderObj.woID]];
+            [_dataArr addObject:[[AMConfiguredCell alloc] initWithCellType:AMCellTypeDropDown title:@"Filter Type" propertyDic:[self assembDictionaryValue1:@"filterType" value2:workOrderObj.filterTypeName] isEditable:YES]];
+ 
             [_dataArr addObject:[[AMConfiguredCell alloc] initWithCellType:AMCellTypeEdit title:@"Total Number of Filters" propertyDic:[self assembDictionaryValue1:@"filterCount" value2:[workOrderObj.filterCount stringValue]]  isEditable:YES]];
         }
             break;
@@ -532,6 +536,8 @@ static NSString *AttachmentCellIdentifier = @"AttachmentTableViewCell";
                     cell.configuredCell = configuredCell;
                     cell.accountId = isCreatingWOMode ? newWO.accountID : self.assignedWorkOrder.accountID;
                     cell.posId = isCreatingWOMode ? newWO.posID : self.assignedWorkOrder.posID;
+                    cell.woID = self.assignedWorkOrder.woID;
+                    
                     return cell;
                 }
                     break;

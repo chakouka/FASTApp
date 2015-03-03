@@ -131,10 +131,10 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Al5-4H-w7H">
                         <rect key="frame" x="12" y="8" width="400" height="70"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL PRICE:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="40o-Gn-lng">
-                                <rect key="frame" x="20" y="15" width="182" height="40"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL PRICE:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="40o-Gn-lng">
+                                <rect key="frame" x="8" y="15" width="133" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="182" id="SUf-Dq-Y3O"/>
+                                    <constraint firstAttribute="width" constant="133" id="SUf-Dq-Y3O"/>
                                     <constraint firstAttribute="height" constant="40" id="mzG-xa-EJO"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -142,23 +142,23 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD$ X" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Olr-hq-i3g">
-                                <rect key="frame" x="216" y="7" width="183" height="50"/>
+                                <rect key="frame" x="150" y="10" width="250" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="1Hu-TP-0KB"/>
-                                    <constraint firstAttribute="width" constant="183" id="A2d-S6-TA6"/>
+                                    <constraint firstAttribute="width" constant="250" id="A2d-S6-TA6"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.65098039220000004" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Olr-hq-i3g" firstAttribute="top" secondItem="Al5-4H-w7H" secondAttribute="top" constant="7" id="4c6-mP-Ino"/>
+                            <constraint firstItem="Olr-hq-i3g" firstAttribute="top" secondItem="Al5-4H-w7H" secondAttribute="top" constant="10" id="4c6-mP-Ino"/>
                             <constraint firstAttribute="height" constant="70" id="Sx8-RG-UTq"/>
-                            <constraint firstAttribute="centerX" secondItem="Olr-hq-i3g" secondAttribute="centerX" constant="-107.5" id="Y72-Pm-ONQ"/>
+                            <constraint firstAttribute="centerX" secondItem="Olr-hq-i3g" secondAttribute="centerX" constant="-75" id="Y72-Pm-ONQ"/>
                             <constraint firstItem="40o-Gn-lng" firstAttribute="top" secondItem="Al5-4H-w7H" secondAttribute="top" constant="15" id="dWL-Cv-hUN"/>
-                            <constraint firstAttribute="centerX" secondItem="40o-Gn-lng" secondAttribute="centerX" constant="89" id="jsS-Bd-rKX"/>
+                            <constraint firstAttribute="centerX" secondItem="40o-Gn-lng" secondAttribute="centerX" constant="125.5" id="jsS-Bd-rKX"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VGe-Nj-z0P">

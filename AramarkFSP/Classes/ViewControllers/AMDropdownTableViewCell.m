@@ -8,6 +8,7 @@
 
 #import "AMDropdownTableViewCell.h"
 #import "AMDBPicklist.h"
+#import "AMDBCustomerPrice.h"
 
 @interface AMDropdownTableViewCell(){
     UIPopoverController *aPopoverVC;
@@ -96,6 +97,15 @@
         [aPopoverVC setPopoverContentSize:CGSizeMake(CGRectGetWidth(popView.view.frame) + 50.0, 200.0)];
         //	aPopoverVC.delegate = self;
         [aPopoverVC presentPopoverFromRect:button.frame inView:button.superview.superview permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
+    } else if ([@"filterType" isEqualToString:_configuredCell.propertyName]) {
+        AMPopoverSelectTableViewController *popView = [[AMPopoverSelectTableViewController alloc] initWithNibName:@"AMPopoverSelectTableViewController" bundle:nil];
+        popView.delegate = self;
+        popView.arrInfos = self.popoverContentArrForFiltersList;
+        aPopoverVC = nil;
+        aPopoverVC = [[UIPopoverController alloc] initWithContentViewController:popView];
+        [aPopoverVC setPopoverContentSize:CGSizeMake(CGRectGetWidth(popView.view.frame) + 50.0, 200.0)];
+        //	aPopoverVC.delegate = self;
+        [aPopoverVC presentPopoverFromRect:button.frame inView:button.superview.superview permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
     } else if ([@"priority" isEqualToString:_configuredCell.propertyName]) {
         AMPopoverSelectTableViewController *popView = [[AMPopoverSelectTableViewController alloc] initWithNibName:@"AMPopoverSelectTableViewController" bundle:nil];
         popView.delegate = self;
@@ -133,6 +143,16 @@
     NSArray *contentArr = [[AMLogicCore sharedInstance] getAssetListByPoSID:self.posId AccountID:self.accountId];
     for (AMAsset *asset in contentArr) {
         [popoverArr_AssetList addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : [NSString stringWithFormat:@"%@%@%@", asset.machineNumber ? asset.machineNumber : @"", asset.machineNumber && asset.productName ? @"-" : @"", asset.productName ? asset.productName : @""], kAMPOPOVER_DICTIONARY_KEY_DATA : asset }];
+    }
+    return popoverArr_AssetList;
+}
+
+- (NSMutableArray *)popoverContentArrForFiltersList {
+    
+    popoverArr_AssetList = [[NSMutableArray alloc] init];
+    NSArray *contentArr = [[AMLogicCore sharedInstance] getFilterListByWOID:self.woID];
+    for (AMDBCustomerPrice *cp in contentArr) {
+        [popoverArr_AssetList addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : cp.productName, kAMPOPOVER_DICTIONARY_KEY_DATA : cp }];
     }
     return popoverArr_AssetList;
 }
