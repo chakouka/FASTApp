@@ -531,7 +531,7 @@ AMWorkOrderViewControllerDelegate
 - (void)showSubmit
 {
     [UIAlertView showWithTitle:@""
-                       message:MyLocal(@"Are you sure to submit ?")
+                       message:MyLocal(@"Are you sure you want to submit?")
              cancelButtonTitle:MyLocal(@"Cancel")
              otherButtonTitles:@[MyLocal(@"OK")]
                       tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
