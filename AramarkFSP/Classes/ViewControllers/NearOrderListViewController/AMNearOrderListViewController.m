@@ -18,8 +18,8 @@
 #define HEIGH_OF_TABLEVIEW_ORIGINAL     88.0
 #define HEIGH_OF_TABLEVIEW_CHANGED      (218.0 - 40)
 
-#define HEIGH_OF_TABLEVIEW_CELL_PM         142.0
-#define HEIGH_OF_TABLEVIEW_CELL_FE         163.0
+#define HEIGH_OF_TABLEVIEW_CELL_PM         222.0
+#define HEIGH_OF_TABLEVIEW_CELL_FE         230.0
 
 #define kAMPRIORITY_STRING_CRITICAL @"Critical"
 #define kAMPRIORITY_STRING_HIGH @"High"
@@ -271,7 +271,8 @@ AMPopoverSelectTableViewControllerDelegate
         cell.label_Distance.text = workOrder.nextDistance;
         cell.label_Time.text = workOrder.nextTime;
         cell.labelWONumber.text = workOrder.woNumber;
-        
+        cell.label_ContactName.text = workOrder.contact;
+        cell.label_Address.text = workOrder.workLocation;   
         NSTimeZone *aZone = [[AMProtocolParser sharedInstance] timeZoneOnSalesforce];
         cell.labelEstimatedWorkDate.text = [workOrder.estimatedDate formattedDateWithFormat:@"yyyy.MM.dd" timeZone:aZone];
         
@@ -344,6 +345,8 @@ AMPopoverSelectTableViewControllerDelegate
         cell.label_Distance.text = workOrder.nextDistance;
         cell.label_Time.text = workOrder.nextTime;
         cell.labelWONumber.text = workOrder.woNumber;
+        cell.labelContactName.text = workOrder.contact == nil ? @"NONE" : workOrder.contact;
+        cell.labelLocation.text = workOrder.workLocation;
         
         NSTimeZone *aZone = [[AMProtocolParser sharedInstance] timeZoneOnSalesforce];
         cell.labelEstimatedWorkDate.text = [workOrder.estimatedDate formattedDateWithFormat:@"yyyy.MM.dd" timeZone:aZone];

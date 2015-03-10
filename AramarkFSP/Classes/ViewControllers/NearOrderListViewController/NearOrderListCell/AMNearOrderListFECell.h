@@ -35,6 +35,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelTEstimatedWorkDate;
 @property (weak, nonatomic) IBOutlet UILabel *labelTFilterType;
 @property (weak, nonatomic) IBOutlet UILabel *labelTFilterNumber;
+@property (weak, nonatomic) IBOutlet UILabel *labelContactName;
+@property (weak, nonatomic) IBOutlet UILabel *labelLocation;
 
 - (void)showShadeStatus:(BOOL)isShow;
 @end

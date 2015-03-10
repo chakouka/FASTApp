@@ -11,6 +11,9 @@
 @interface AMNearOrderListPMCell : UITableViewCell
 
 @property (strong, nonatomic) NSString *strPriority;
+@property (weak, nonatomic) IBOutlet UILabel *label_Address;
+@property (weak, nonatomic) IBOutlet UILabel *label_ContactName;
+
 @property (weak, nonatomic) IBOutlet UILabel *label_Index;
 @property (weak, nonatomic) IBOutlet UILabel *label_Title;
 @property (weak, nonatomic) IBOutlet UILabel *label_Type;
