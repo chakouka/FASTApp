@@ -1504,6 +1504,12 @@
     [[AMDBManager sharedInstance] createNewCaseInDBWithSetupBlock:setupBlock completion:completionBlock];
 }
 
+-(void)createNewContactInDBWithSetupBlock:(void(^)(AMDBNewContact *newContact))setupBlock
+                               completion:(AMDBOperationCompletionBlock)completionBlock
+{
+    [[AMDBManager sharedInstance] createNewContactInDBWithSetupBlock:setupBlock completion:completionBlock];
+}
+
 -(void)saveManagedObject:(NSManagedObject *)object completion:(AMDBOperationCompletionBlock)completionBlock
 {
     [[AMDBManager sharedInstance] saveManagedObject:object completion:completionBlock];

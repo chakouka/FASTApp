@@ -21,5 +21,4 @@
 @dynamic posID;
 @dynamic role;
 @dynamic title;
-
 @end

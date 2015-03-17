@@ -19,6 +19,7 @@
 #import "AMParts.h"
 #import "AMCase.h"
 #import "AMFilter.h"
+#import "AMContact.h"
 
 @interface AMProtocolParser : NSObject
 
@@ -108,6 +109,11 @@
  *
  */
 - (AMCase *)parseCaseInfo:(NSDictionary *)dict;
+/**
+ * AMContact List parser
+ *
+ */
+- (AMContact *)parseContactInfo:(NSDictionary *)dict;
 
 - (NSDictionary *)parseCaseList:(NSDictionary *)dict;
 

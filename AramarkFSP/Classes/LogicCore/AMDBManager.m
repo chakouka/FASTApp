@@ -24,6 +24,7 @@
 #import "AMBestDBManager.h"
 #import "AMAssetRequestDBManager.h"
 #import <CoreData/CoreData.h>
+#import "AMDBNewContact+AddOn.h"
 #import "AMDBNewCase+AddOn.h"
 #import "AMDBCustomerPrice+AddOn.h"
 #import "AMDBInvoice.h"
@@ -869,6 +870,16 @@
     return array;
     
 }
+- (NSArray *)getCreatedContacts
+{
+    NSArray *array;
+    //NSPredicate * filter = [NSPredicate predicateWithFormat:@"dataStatus = %@", @(EntityStatusCreated)];
+    array = [[AMDBManager sharedInstance] fetchDataArrayForEntity:@"AMDBNewContact"
+                                                     byPredicates:nil
+                                                  sortDescriptors:nil
+                                           inManagedObjectContext:__mainManagedObjectContext];
+    return array;
+}
 
 - (NSArray *)getCreatedCases
 {
@@ -1313,6 +1324,24 @@
     AMDBNewCase *entity = [AMDBNewCase newEntityInManagedObjectContext:__mainManagedObjectContext];
     
     return entity;
+}
+
+-(void)createNewContactInDBWithSetupBlock:(void (^)(AMDBNewContact *))setupBlock completion:(AMDBOperationCompletionBlock)completionBlock
+{
+    [__privateManagedObjectContext performBlock:^{
+        AMDBNewContact *entity = [AMDBNewContact newEntityInManagedObjectContext:__privateManagedObjectContext];
+        
+        if (setupBlock) {
+            setupBlock(entity);
+        }
+        
+        entity.dataStatus = @(EntityStatusCreated);
+        
+        NSError *error;
+        [__privateManagedObjectContext save:&error];
+        completionBlock(AM_DBOPR_SAVE, error);
+        
+    }];
 }
 
 -(void)createNewCaseInDBWithSetupBlock:(void(^)(AMDBNewCase *newCase))setupBlock

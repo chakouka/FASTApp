@@ -81,6 +81,25 @@ static NSString *TableIdentifier_Cell = @"ContactTableCell";
     AMContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TableIdentifier_Cell forIndexPath:indexPath];
     cell.assignedContact = [self.contactArr objectAtIndex:indexPath.section];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [[AMLogicCore sharedInstance] createNewContactInDBWithSetupBlock:^(AMDBNewContact *newContact) {
+        newContact.createdDate = [NSDate date];
+        //newContact.dataStatus = [NSNumber numberWithInt:EntityStatusNew];
+        newContact.fakeID = [NSString stringWithFormat:@"Fake_%f", [NSDate timeIntervalSinceReferenceDate]];;
+        newContact.accountID = @"xxxxxx";
+        newContact.contactID = @"xxxx";
+        newContact.posID = @"";
+        newContact.phone = @"2222222222";
+        newContact.name = @"brian kendall";
+        newContact.lastName = @"kendall";
+        newContact.firstName = @"brian";
+        newContact.email = @"kendall-brian@aramark.com";
+        newContact.role = @"Decision Maker;Order Contact";
+        newContact.title = @"Purchasing Agent";
+        
+    } completion:^(NSInteger type, NSError *error) {
+        //todo Error stuff
+        
+    }];
     return cell;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section

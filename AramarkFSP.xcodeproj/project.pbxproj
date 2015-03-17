@@ -170,6 +170,9 @@
 		7C55F2FB1A8A582F0081A4B0 /* TBView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C55F2F91A8A582F0081A4B0 /* TBView.xib */; };
 		7C55F2FF1A8A80EC0081A4B0 /* AMFilterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C55F2FD1A8A80EC0081A4B0 /* AMFilterTableViewCell.m */; };
 		7C55F3001A8A80EC0081A4B0 /* AMFilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C55F2FE1A8A80EC0081A4B0 /* AMFilterTableViewCell.xib */; };
+		7CCD7E6E1AB749FF006FED08 /* AMDBNewContact.h in Resources */ = {isa = PBXBuildFile; fileRef = 7CCD7E6D1AB749FF006FED08 /* AMDBNewContact.h */; };
+		7CCD7E701AB74A30006FED08 /* AMDBNewContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD7E6F1AB74A30006FED08 /* AMDBNewContact.m */; };
+		7CCD7E7F1AB76764006FED08 /* AMDBNewContact+AddOn.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD7E7E1AB76764006FED08 /* AMDBNewContact+AddOn.m */; };
 		824A9DD91724E16400C9BD79 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 824A9DD81724E16400C9BD79 /* UIKit.framework */; };
 		824A9DDB1724E16400C9BD79 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 824A9DDA1724E16400C9BD79 /* Foundation.framework */; };
 		824A9DDD1724E16400C9BD79 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 824A9DDC1724E16400C9BD79 /* CoreGraphics.framework */; };
@@ -977,6 +980,10 @@
 		7C55F2FC1A8A80EC0081A4B0 /* AMFilterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMFilterTableViewCell.h; sourceTree = "<group>"; };
 		7C55F2FD1A8A80EC0081A4B0 /* AMFilterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMFilterTableViewCell.m; sourceTree = "<group>"; };
 		7C55F2FE1A8A80EC0081A4B0 /* AMFilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMFilterTableViewCell.xib; sourceTree = "<group>"; };
+		7CCD7E6D1AB749FF006FED08 /* AMDBNewContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMDBNewContact.h; sourceTree = "<group>"; };
+		7CCD7E6F1AB74A30006FED08 /* AMDBNewContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMDBNewContact.m; sourceTree = "<group>"; };
+		7CCD7E7D1AB76764006FED08 /* AMDBNewContact+AddOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AMDBNewContact+AddOn.h"; sourceTree = "<group>"; };
+		7CCD7E7E1AB76764006FED08 /* AMDBNewContact+AddOn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AMDBNewContact+AddOn.m"; sourceTree = "<group>"; };
 		824A9DD51724E16400C9BD79 /* AramarkFSP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AramarkFSP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		824A9DD81724E16400C9BD79 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		824A9DDA1724E16400C9BD79 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1930,6 +1937,8 @@
 				1661AD041974DED000C03D0A /* NSManagedObject+Addition.m */,
 				16C289DA19591B93004FF31F /* AMDBNewCase+AddOn.h */,
 				16C289DB19591B93004FF31F /* AMDBNewCase+AddOn.m */,
+				7CCD7E7D1AB76764006FED08 /* AMDBNewContact+AddOn.h */,
+				7CCD7E7E1AB76764006FED08 /* AMDBNewContact+AddOn.m */,
 				16C28A02195AAEB4004FF31F /* AMDBNewWorkOrder+AddOn.h */,
 				16C28A03195AAEB4004FF31F /* AMDBNewWorkOrder+AddOn.m */,
 				16888EEC196BDA4700FBA677 /* AMDBReport+AddOn.h */,
@@ -2585,6 +2594,8 @@
 				167E03031990D6C900FBFA6F /* AMDBPicklist.m */,
 				167E02FF198F97C700FBFA6F /* AMDBContact.h */,
 				167E0300198F97C700FBFA6F /* AMDBContact.m */,
+				7CCD7E6D1AB749FF006FED08 /* AMDBNewContact.h */,
+				7CCD7E6F1AB74A30006FED08 /* AMDBNewContact.m */,
 				1622D073198BC58C0002D66E /* AMDBNewCase.h */,
 				1622D074198BC58C0002D66E /* AMDBNewCase.m */,
 				16E0ABA0198BBFBA000DE914 /* AMDBInvoice.h */,
@@ -4326,6 +4337,7 @@
 				D02F3349191CC5F100CF9006 /* background@2x.png in Resources */,
 				02D0AF0C195D854500CA6196 /* workOrder@2x.png in Resources */,
 				D02F3351191CC5F100CF9006 /* clicked-sate-button@2x.png in Resources */,
+				7CCD7E6E1AB749FF006FED08 /* AMDBNewContact.h in Resources */,
 				D0B79E74191A228D00FD1152 /* background.png in Resources */,
 				02E3E7AE1929B3BC00064919 /* AMAssetsViewController.xib in Resources */,
 				D0912E4A19D54F0E00E5F6FA /* new-case_red-fr@2x.png in Resources */,
@@ -4757,6 +4769,8 @@
 				16CB3B5F1994B79A004A6E6E /* AMDBParts.m in Sources */,
 				02B5A7391920947D008D06A6 /* AMEditTableViewCell.m in Sources */,
 				62EC4C56197F9FBE0025343E /* AMSummaryFutureCell.m in Sources */,
+				7CCD7E7F1AB76764006FED08 /* AMDBNewContact+AddOn.m in Sources */,
+				7CCD7E701AB74A30006FED08 /* AMDBNewContact.m in Sources */,
 				A6B8F2F6192670210072BD5F /* AMAccountDBManager.m in Sources */,
 				16AE964C193DBA5300904E7A /* AMSummaryTableViewHeader.m in Sources */,
 				D0FF803919138DB2001123CE /* NSString+Extend.m in Sources */,

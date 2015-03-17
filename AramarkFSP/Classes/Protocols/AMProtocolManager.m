@@ -1147,7 +1147,7 @@
     }];
 }
 
-#pragma mark - Create Case, Work Order, Lead
+#pragma mark - Create Contact, Case, Work Order, Lead
 - (void)createObjectsWithManagedObjects:(NSArray *)managedObjects operationType:(NSInteger)oprType completion:(AMSFRestCompletionBlock)completionBlock
 {
     if (![managedObjects count]) {
@@ -1163,6 +1163,9 @@
     } else if ([object isKindOfClass:[AMDBNewWorkOrder class]]) {
         path = @"/WorkOrder";
         topLevelKey = @"lstMapCreateWorkOrderKeyValue";
+    } else if ([object isKindOfClass:[AMDBNewContact class]]) {
+        path = @"/Contact";
+        topLevelKey = @"lstMapCreateContactKeyValue";
     }
     if (!path || !topLevelKey) {
         return;
@@ -1286,7 +1289,71 @@
      }];
 }
 
--(void)uploadCreatedWorkOrdersWithCompletion:(AMSFRestCompletionBlock)completionBlock;
+-(void)uploadCreatedContactsWithCompletion:(AMSFRestCompletionBlock)completionBlock {
+    DLog(@"start upload created contacts");
+    
+    NSArray *createdContacts = [[AMDBManager sharedInstance] getCreatedContacts];
+    if (!createdContacts.count) {
+        completionBlock(AM_REQUEST_ADDCONTACTS, nil, nil,nil);
+        return;
+    }
+    
+    [[AMProtocolManager sharedInstance]
+     createObjectsWithManagedObjects:createdContacts
+     operationType:AM_REQUEST_ADDCONTACTS
+     completion:^(NSInteger type, NSError *error, id userData, id responseData) {
+         DLog(@"finish upload created contacts orders");
+         
+         BOOL isSuccess = ((NSNumber *)[responseData valueForKeyWithNullToNil:@"isSuccess"]).boolValue;
+         if (error || !isSuccess) {
+             // handle error
+             for (AMDBNewContact *newContact in createdContacts)
+             {
+                 newContact.dataStatus = @(EntityStatusSyncFail);
+                 newContact.errorMessage = responseData[@"errorMessage"];
+             }
+             
+             
+         } else {
+             NSArray *newContacts = [responseData valueForKeyPathWithNullToNil:@"dataListMap.Add.Work_Order__c"];
+             NSMutableArray *newContactModels = [NSMutableArray array];
+             for (NSDictionary *contactDict in newContacts) {
+                 AMContact *contact = [[AMProtocolParser sharedInstance] parseContactInfo:contactDict];
+                 if (contact) {
+                     [newContactModels addObject:contact];
+                 }
+             }
+             
+             [[AMDBManager sharedInstance] saveAsyncContactList:newContactModels checkExist:YES completion:^(NSInteger type, NSError *error) {
+                 if (!error) {
+                     DLog(@"save new contacts finished");
+                 }
+             }];
+             
+             NSDictionary *mapDict = [responseData valueForKeyPathWithNullToNil:@"idMap.Work_Order__c"];
+             
+             if ([mapDict isKindOfClass:[NSDictionary class]]) {
+                 for (AMDBNewContact *newContact in createdContacts) {
+                     if ([[mapDict allKeys] containsObject:newContact.fakeID]) {
+                         newContact.contactID = mapDict[newContact.fakeID];
+                         newContact.dataStatus = @(EntityStatusSyncSuccess);
+                     } else {
+                         newContact.dataStatus = @(EntityStatusSyncFail);
+                     }
+                 }
+             }
+         }
+         [[AMLogicCore sharedInstance] saveManagedObject:createdContacts.firstObject completion:^(NSInteger type, NSError *error) {
+             if (error) {
+                 DLog(@"save new contact error: %@", error.localizedDescription);
+             }
+         }];
+         completionBlock(type, error, userData,responseData);
+     }];
+    
+}
+
+-(void)uploadCreatedWorkOrdersWithCompletion:(AMSFRestCompletionBlock)completionBlock
 {
     DLog(@"start upload created work orders");
 

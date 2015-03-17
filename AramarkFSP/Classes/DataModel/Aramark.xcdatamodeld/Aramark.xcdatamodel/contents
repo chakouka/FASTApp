@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6244" systemVersion="14A389" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14C1510" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="AMDBAccount" representedClassName="AMDBAccount" syncable="YES">
         <attribute name="accountID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="atRisk" optional="YES" attributeType="Date" syncable="YES"/>
@@ -105,7 +105,9 @@
     <entity name="AMDBContact" representedClassName="AMDBContact" syncable="YES">
         <attribute name="accountID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="contactID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dataStatus" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="errorMessage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -237,6 +239,22 @@
         <attribute name="serialNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="subject" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="AMDBNewContact" representedClassName="AMDBNewContact" syncable="YES">
+        <attribute name="accountID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contactID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="dataStatus" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="errorMessage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fakeID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="posID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="role" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="AMDBNewLead" representedClassName="AMDBNewLead" syncable="YES">
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
@@ -428,13 +446,13 @@
         <attribute name="woType" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AMDBAccount" positionX="-209" positionY="362" width="128" height="240"/>
+        <element name="AMDBAccount" positionX="-209" positionY="362" width="128" height="238"/>
         <element name="AMDBAsset" positionX="-126" positionY="9" width="128" height="375"/>
         <element name="AMDBAssetRequest" positionX="-378" positionY="126" width="128" height="285"/>
         <element name="AMDBAttachment" positionX="-569" positionY="54" width="128" height="210"/>
         <element name="AMDBBest" positionX="-360" positionY="144" width="128" height="103"/>
         <element name="AMDBCase" positionX="-423" positionY="-9" width="128" height="403"/>
-        <element name="AMDBContact" positionX="178" positionY="266" width="128" height="195"/>
+        <element name="AMDBContact" positionX="178" positionY="266" width="128" height="223"/>
         <element name="AMDBCustomerPrice" positionX="-342" positionY="162" width="128" height="133"/>
         <element name="AMDBEvent" positionX="-378" positionY="126" width="128" height="150"/>
         <element name="AMDBFilter" positionX="169" positionY="198" width="128" height="105"/>
@@ -452,5 +470,6 @@
         <element name="AMDBReport" positionX="-369" positionY="135" width="128" height="135"/>
         <element name="AMDBUser" positionX="-405" positionY="347" width="128" height="225"/>
         <element name="AMDBWorkOrder" positionX="-585" positionY="360" width="128" height="958"/>
+        <element name="AMDBNewContact" positionX="-378" positionY="144" width="128" height="253"/>
     </elements>
 </model>

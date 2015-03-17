@@ -589,6 +589,43 @@
     
     return parsedPart;
 }
+- (AMContact *)parseContactInfo:(NSDictionary *)dict
+{
+    AMContact * parsedContact = [[AMContact alloc] init];
+    
+    /*
+     NSString * firstName;
+     NSString * lastName;
+     NSString * errorMessage;
+     NSString * caseEmail;
+     NSString * dataStatus
+     NSString * contactID;
+     NSString * accountID;
+     NSString * name;
+     NSString * phone;
+     NSString * posID;
+     NSString * role;
+     NSString * title;
+     */
+    NSArray * allKeys = [dict allKeys];
+    
+    parsedContact.contactID = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Id"];
+    parsedContact.accountID = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"AccountID"];
+    parsedContact.firstName = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"firstName"];
+    parsedContact.lastName = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"lastName"];
+    parsedContact.title = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"title"];
+    parsedContact.role = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"role"];
+    parsedContact.posID = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"posID"];
+    
+    
+    //TODO: need add more fields
+    
+//    parsedContact.email = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"accountID"];
+//    parsedContact.email = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"MEI_Customer__c"];
+//    parsedContact.email = [dict valueForKeyPathWithNullToNil:@"Contact.Id"];
+//    parsedContact.email = [dict valueForKeyPathWithNullToNil:@"Contact.Name"];
+    return parsedContact;
+}
 
 - (AMCase *)parseCaseInfo:(NSDictionary *)dict
 {

@@ -26,6 +26,7 @@
 #import "AMConstants.h"
 #import "AMDBCustomerPrice.h"
 #import "AMDBManager.h"
+#import "AMDBNewContact.h"
 
 @interface AMLogicCore : NSObject
 
@@ -556,6 +557,8 @@
                         additionalSetupBlock:(void(^)(AMDBNewWorkOrder *newAttachment))setupBlock
                                   completion:(AMDBOperationCompletionBlock)completionBlock;
 
+-(void)createNewContactInDBWithSetupBlock:(void(^)(AMDBNewContact *newContact))setupBlock
+                            completion:(AMDBOperationCompletionBlock)completionBlock;
 
 -(void)uploadCreatedCasesWithCompletion:(AMSFRestCompletionBlock)completionBlock;
 -(void)uploadCreatedWorkOrdersWithCompletion:(AMSFRestCompletionBlock)completionBlock;

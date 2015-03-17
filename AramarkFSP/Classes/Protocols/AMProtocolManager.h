@@ -62,6 +62,7 @@
 
 
 -(void)uploadCreatedCasesWithCompletion:(AMSFRestCompletionBlock)completionBlock;
+-(void)uploadCreatedContactsWithCompletion:(AMSFRestCompletionBlock)completionBlock;
 -(void)uploadCreatedWorkOrdersWithCompletion:(AMSFRestCompletionBlock)completionBlock;
 
 - (void)getReportDataWithCompletion:(AMSFRestCompletionBlock)completionBlock;

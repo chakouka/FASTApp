@@ -13,6 +13,7 @@
 #import "AMAccount.h"
 #import "AMPoS.h"
 #import "AMCase.h"
+#import "AMDBNewContact.h"
 #import "AMAsset.h"
 #import "AMContact.h"
 #import "AMLocation.h"
@@ -30,6 +31,7 @@
 #import "AMDBAttachment+AddOn.h"
 #import "AMDBNewLead+Addition.h"
 #import "AMDBPicklist+Addition.h"
+#import "AMDBNewContact+AddOn.h"
 
 @interface AMDBManager : NSObject
 
@@ -115,6 +117,7 @@
 - (NSArray *)getCreatedCases;
 - (NSArray *)getCreatedCasesHistoryInRecentDays:(int)numberOfDays;
 - (NSArray *)getCreatedWorkOrderHistory;
+- (NSArray *)getCreatedContacts;
 
 
 - (NSArray *)getNewAddedAsset;
@@ -156,6 +159,8 @@
                         additionalSetupBlock:(void(^)(AMDBNewWorkOrder *newWorkOrder))setupBlock
                                   completion:(AMDBOperationCompletionBlock)completionBlock;
 
+-(void)createNewContactInDBWithSetupBlock:(void(^)(AMDBNewContact *newContact))setupBlock
+                            completion:(AMDBOperationCompletionBlock)completionBlock;
 
 -(void)saveAsyncCustomerPriceArray:(NSArray *)array completion:(AMDBOperationCompletionBlock)completionBlock;
 
