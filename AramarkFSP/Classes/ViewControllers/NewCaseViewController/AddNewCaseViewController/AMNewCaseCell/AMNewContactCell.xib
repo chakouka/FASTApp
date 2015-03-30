@@ -64,17 +64,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="13" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="_ _ _ _ _ _" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mg8-4J-v6N">
-                                <rect key="frame" x="538" y="106" width="220" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                            </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMs-Pd-whX">
-                                <rect key="frame" x="423" y="105" width="100" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" red="0.63137254899999995" green="0.63137254899999995" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" clipsSubviews="YES" tag="13" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="_ _ _ _ _ _" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gqk-Wl-BJA">
                                 <rect key="frame" x="538" y="56" width="220" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -113,6 +102,28 @@
                                 <rect key="frame" x="0.0" y="96" width="4" height="42"/>
                                 <color key="backgroundColor" red="0.81176477670000002" green="0.24313727020000001" blue="0.27843138579999999" alpha="1" colorSpace="deviceRGB"/>
                             </view>
+                            <textField opaque="NO" clipsSubviews="YES" tag="13" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="_ _ _ _ _ _" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HRl-Kv-AHn">
+                                <rect key="frame" x="123" y="138" width="220" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phone:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CKw-2N-X4x">
+                                <rect key="frame" x="8" y="137" width="100" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.63137254899999995" green="0.63137254899999995" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" tag="13" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="_ _ _ _ _ _" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mg8-4J-v6N">
+                                <rect key="frame" x="538" y="106" width="220" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMs-Pd-whX">
+                                <rect key="frame" x="423" y="105" width="100" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.63137254899999995" green="0.63137254899999995" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
@@ -126,10 +137,12 @@
                 <outlet property="labelTEmail" destination="UsW-Fr-CDT" id="jnA-IY-UYg"/>
                 <outlet property="labelTFirstName" destination="nOR-JX-YCA" id="D0p-gr-eki"/>
                 <outlet property="labelTLastName" destination="RBp-Zq-yde" id="C0Q-qQ-4as"/>
+                <outlet property="labelTPhone" destination="CKw-2N-X4x" id="aVN-Q2-Ujq"/>
                 <outlet property="labelTTitle" destination="jMs-Pd-whX" id="FyA-bJ-1Rr"/>
                 <outlet property="textFieldEmail" destination="mYi-4P-Y50" id="fsI-hA-99c"/>
                 <outlet property="textFieldFirstName" destination="pfu-5M-AYT" id="A2M-E3-0F8"/>
                 <outlet property="textFieldLastName" destination="Gqk-Wl-BJA" id="K3g-WU-qVN"/>
+                <outlet property="textFieldPhone" destination="HRl-Kv-AHn" id="g0b-J3-qJ6"/>
                 <outlet property="textFieldTitle" destination="mg8-4J-v6N" id="YaZ-GO-Bec"/>
             </connections>
             <point key="canvasLocation" x="361" y="135"/>

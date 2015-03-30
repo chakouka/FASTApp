@@ -18,7 +18,7 @@
     self.labelTLastName.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Last Name")];
     self.labelTEmail.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Email")];
     self.labelTTitle.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Title")];
-    
+    self.labelTPhone.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Phone")];
     [AMUtilities refreshFontInView:self.contentView];
 }
 

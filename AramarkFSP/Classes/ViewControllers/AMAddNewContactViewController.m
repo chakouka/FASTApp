@@ -17,6 +17,7 @@ typedef NS_ENUM (NSInteger, AddNewContactTextInputType) {
     AddNewContactTextInputType_LastName,
     AddNewContactTextInputType_Title,
     AddNewContactTextInputType_Role,
+    AddNewContactTextInputType_Phone,
 };
 
 typedef NS_ENUM (NSInteger, PopViewType) {
@@ -104,6 +105,7 @@ typedef NS_ENUM (NSInteger, PopViewType) {
     [self.dicContactInfo setObject:@"" forKey:KEY_OF_CONTACT_LAST_NAME];
     [self.dicContactInfo setObject:@"" forKey:KEY_OF_CONTACT_TITLE];
     [self.dicContactInfo setObject:@"" forKey:KEY_OF_CONTACT_ROLE];
+    [self.dicContactInfo setObject:@"" forKey:KEY_OF_CONTACT_PHONE];
     
     //TODO bkk 3/25/2015 add all of the other items to be show on the cell.
     [self.tableViewMain reloadData];
@@ -168,8 +170,7 @@ typedef NS_ENUM (NSInteger, PopViewType) {
         newContact.fakeID = [NSString stringWithFormat:@"Fake_%f", [NSDate timeIntervalSinceReferenceDate]];;
         newContact.accountID = self.selectedWorkOrder.accountID;// @"xxxxxx";
         //newContact.contactID = @"xxxx";
-        newContact.posID = @"";
-        
+        newContact.posID = self.selectedWorkOrder.posID;
         newContact.phone = [dicContactInfo objectForKey:KEY_OF_CONTACT_PHONE] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_PHONE];
         newContact.name = [NSString stringWithFormat:@"%@ %@", [dicContactInfo objectForKey:KEY_OF_CONTACT_FIRST_NAME] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_FIRST_NAME], [dicContactInfo objectForKey:KEY_OF_CONTACT_LAST_NAME] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_LAST_NAME]];
         newContact.LastName = [dicContactInfo objectForKey:KEY_OF_CONTACT_LAST_NAME] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_LAST_NAME];
@@ -177,7 +178,7 @@ typedef NS_ENUM (NSInteger, PopViewType) {
         newContact.email = [dicContactInfo objectForKey:KEY_OF_CONTACT_EMAIL] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_EMAIL];
         newContact.role = [dicContactInfo objectForKey:KEY_OF_CONTACT_ROLE] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_ROLE];
         newContact.title = [dicContactInfo objectForKey:KEY_OF_CONTACT_TITLE] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_TITLE];
-        newContact.posID = self.selectedWorkOrder.posID;
+
         
         [self dismissViewControllerAnimated:YES completion:nil];
     } completion:^(NSInteger type, NSError *error) {
@@ -218,6 +219,10 @@ typedef NS_ENUM (NSInteger, PopViewType) {
     
     cell.labelTChooseRoles.tag = (indexPath.section * 1000 + AddNewContactTextInputType_Role);
     cell.labelTChooseRoles.text = [[self.dicContactInfo objectForKey:KEY_OF_CONTACT_ROLE] length] == 0 ? TEXT_OF_NULL : [self.dicContactInfo objectForKey:KEY_OF_CONTACT_ROLE];
+        
+    cell.textFieldPhone.delegate = self;
+    cell.textFieldPhone.tag = (indexPath.section * 1000 + AddNewContactTextInputType_Phone);
+    cell.textFieldPhone.text = [[self.dicContactInfo objectForKey:KEY_OF_CONTACT_PHONE] length] == 0 ? TEXT_OF_NULL : [self.dicContactInfo objectForKey:KEY_OF_CONTACT_PHONE];
     return cell;
 }
 
@@ -295,6 +300,12 @@ typedef NS_ENUM (NSInteger, PopViewType) {
             [self.dicContactInfo setObject:[self strChange:textField.text] forKey:KEY_OF_CONTACT_ROLE];
         }
             break;
+            
+        case AddNewContactTextInputType_Phone:
+        {
+            [self.dicContactInfo setObject:[self strChange:textField.text] forKey:KEY_OF_CONTACT_PHONE];
+        }
+            break;
     }
     
     if ([textField.text length] == 0) {
@@ -324,12 +335,7 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 if (aVerificationStatusTableViewController.tag == PopViewType_NewCase_Contact) {
         NSString *strInfo = [aInfo objectForKey:kAMPOPOVER_DICTIONARY_KEY_INFO];
         selectContact = [aInfo objectForKey:kAMPOPOVER_DICTIONARY_KEY_DATA];
-        [self.dicContactInfo setObject:strInfo forKey:KEY_OF_CONTACT_CHOOSE_CONTACT];
-        
-        [self.dicContactInfo setObject:[selectContact.firstName length] == 0 ? @"" : selectContact.firstName forKey:KEY_OF_CONTACT_FIRST_NAME];
-        [self.dicContactInfo setObject:[selectContact.lastName length] == 0 ? @"" : selectContact.lastName forKey:KEY_OF_CONTACT_LAST_NAME];
-        [self.dicContactInfo setObject:[selectContact.email length] == 0 ? @"" : selectContact.email forKey:KEY_OF_CONTACT_EMAIL];
-        [self.dicContactInfo setObject:[selectContact.title length] == 0 ? @"" : selectContact.title forKey:KEY_OF_CONTACT_TITLE];
+    
         [self.dicContactInfo setObject:strInfo forKey:KEY_OF_CONTACT_ROLE];
     
         NSLog(@"didSelected : %@", aInfo);
@@ -378,7 +384,4 @@ if (aVerificationStatusTableViewController.tag == PopViewType_NewCase_Contact) {
     self.tableViewMain.frame = btnFrame;
     [UIView commitAnimations];
 }
-
-
-
 @end

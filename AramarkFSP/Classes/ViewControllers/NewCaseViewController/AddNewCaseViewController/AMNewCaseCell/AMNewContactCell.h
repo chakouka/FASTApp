@@ -21,12 +21,13 @@
 @property (weak, nonatomic) IBOutlet UITextField *textFieldEmail;
 @property (weak, nonatomic) IBOutlet UITextField *textFieldLastName;
 @property (weak, nonatomic) IBOutlet UITextField *textFieldTitle;
+@property (weak, nonatomic) IBOutlet UITextField *textFieldPhone;
 
 @property (weak, nonatomic) IBOutlet UILabel *labelTChooseRoles;
 @property (weak, nonatomic) IBOutlet UILabel *labelTFirstName;
 @property (weak, nonatomic) IBOutlet UILabel *labelTLastName;
 @property (weak, nonatomic) IBOutlet UILabel *labelTEmail;
 @property (weak, nonatomic) IBOutlet UILabel *labelTTitle;
-
+@property (weak, nonatomic) IBOutlet UILabel *labelTPhone;
 
 @end

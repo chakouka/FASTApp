@@ -75,7 +75,7 @@
 			<string>VERSION_TITLE</string>
 			<key>Titles</key>
 			<array>
-				<string>1.0.168</string>
+				<string>1.0.11</string>
 			</array>
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>

@@ -39,7 +39,11 @@ static NSString *TableIdentifier_Cell = @"ContactTableCell";
     }
     return self;
 }
-
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self adjustHeightOfTableview];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -82,6 +86,30 @@ static NSString *TableIdentifier_Cell = @"ContactTableCell";
     } else {
         return 12.0;
     }
+}
+
+- (void)adjustHeightOfTableview
+{
+    CGFloat height = self.tableView.contentSize.height;
+    CGFloat maxHeight = self.tableView.superview.frame.size.height - self.tableView.frame.origin.y;
+    
+    // if the height of the content is greater than the maxHeight of
+    // total space on the screen, limit the height to the size of the
+    // superview.
+    
+    if (height > maxHeight)
+        height = maxHeight;
+    
+    // now set the frame accordingly
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        CGRect frame = self.tableView.frame;
+        frame.size.height = height;
+        self.tableView.frame = frame;
+        
+        // if you have other controls that should be resized/moved to accommodate
+        // the resized tableview, do that here, too
+    }];
 }
 
 #pragma mark - Table view data source
