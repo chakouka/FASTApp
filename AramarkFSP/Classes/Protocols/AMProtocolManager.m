@@ -1315,7 +1315,7 @@
              
              
          } else {
-             NSArray *newContacts = [responseData valueForKeyPathWithNullToNil:@"dataListMap.Add.Work_Order__c"];
+             NSArray *newContacts = [responseData valueForKeyPathWithNullToNil:@"dataListMap.Add.Contact"];
              NSMutableArray *newContactModels = [NSMutableArray array];
              for (NSDictionary *contactDict in newContacts) {
                  AMContact *contact = [[AMProtocolParser sharedInstance] parseContactInfo:contactDict];
@@ -1327,6 +1327,7 @@
              [[AMDBManager sharedInstance] saveAsyncContactList:newContactModels checkExist:YES completion:^(NSInteger type, NSError *error) {
                  if (!error) {
                      DLog(@"save new contacts finished");
+                     
                  }
              }];
              
@@ -1342,7 +1343,11 @@
                      }
                  }
              }
+             [[AMDBManager sharedInstance] updateLocalModifiedObjectsToDone:@{ @"AMNewContact" : newContacts } completion:^(NSInteger type, NSError *error) {
+                 
+             }];
          }
+
          [[AMLogicCore sharedInstance] saveManagedObject:createdContacts.firstObject completion:^(NSInteger type, NSError *error) {
              if (error) {
                  DLog(@"save new contact error: %@", error.localizedDescription);

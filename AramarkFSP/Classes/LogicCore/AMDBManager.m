@@ -873,9 +873,9 @@
 - (NSArray *)getCreatedContacts
 {
     NSArray *array;
-    //NSPredicate * filter = [NSPredicate predicateWithFormat:@"dataStatus = %@", @(EntityStatusCreated)];
+    NSPredicate * filter = [NSPredicate predicateWithFormat:@"dataStatus = %@", @(EntityStatusCreated)];
     array = [[AMDBManager sharedInstance] fetchDataArrayForEntity:@"AMDBNewContact"
-                                                     byPredicates:nil
+                                                     byPredicates:filter
                                                   sortDescriptors:nil
                                            inManagedObjectContext:__mainManagedObjectContext];
     return array;
@@ -1925,7 +1925,9 @@
             NSArray * locationList = [modifiedObjects objectForKey:@"AMLocation"];
             NSArray * invoiceList = [modifiedObjects objectForKey:@"AMInvoice"];
             NSArray * posList = [modifiedObjects objectForKey:@"AMPoS"];
+            NSArray * newContactsList = [modifiedObjects objectForKey:@"AMNewContact"];
             //            NSManagedObjectContext *tmpContext = [self managedObjectContext];
+            
             NSManagedObjectContext *tmpContext = __privateManagedObjectContext;
             if (woList) {
                 NSMutableArray * woIDs = [NSMutableArray array];
@@ -1966,6 +1968,20 @@
                 }
                 NSPredicate * filter = [NSPredicate predicateWithFormat:@"posID IN %@",posIDs];
                 [[AMPoSDBManager sharedInstance] memReplaceFields:@"lastModifiedBy" ByFilter:filter withValue:nil fromDB:tmpContext];
+            }
+            if (newContactsList) {
+                NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+                NSEntityDescription *entity = [NSEntityDescription entityForName:@"AMDBNewContact" inManagedObjectContext:tmpContext];
+                
+                // Optionally add an NSPredicate if you only want to delete some of the objects.
+                
+                [fetchRequest setEntity:entity];
+                
+                NSArray *myObjectsToDelete = [tmpContext executeFetchRequest:fetchRequest error:nil];
+                
+                for (AMDBNewContact *objectToDelete in myObjectsToDelete) {
+                    [tmpContext deleteObject:objectToDelete];
+                }
             }
             
             [tmpContext save:&error];

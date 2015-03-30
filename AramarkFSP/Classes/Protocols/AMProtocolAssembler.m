@@ -862,6 +862,10 @@
     objectList = [[AMDBManager sharedInstance] getAllContactList];
     idList = [objectList valueForKeyExcludingNull:@"contactID"];
     [idDict setValue:(idList ? idList : @[]) forKey:@"Service_Point_Contacts__c"];
+
+    objectList = [[AMDBManager sharedInstance] getCreatedContacts];
+    idList = [objectList valueForKeyExcludingNull:@"contactID"];
+    [idDict setValue:(idList ? idList : @[]) forKey:@"Service_Point_Contacts__c"];
     
     objectList = [[AMDBManager sharedInstance] getAllCustomerPriceList];
     idList = [objectList valueForKeyExcludingNull:@"customerPriceID"];

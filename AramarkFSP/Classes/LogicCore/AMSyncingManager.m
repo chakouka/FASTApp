@@ -420,7 +420,15 @@ typedef enum AM_Update_Step_t {
             {
                 
 //                [[AMDBManager sharedInstance] updateCaseTotalInvoicePriceWithCompletion:^(NSInteger type, NSError *error) {
+                //bkk sync the created contacts!
+                [[AMProtocolManager sharedInstance] uploadCreatedContactsWithCompletion:^(NSInteger type, NSError *error, id userData, id responseData) {
+                    
+                    //if !error, blow away all of the added contacts
+                    if (!error) {
+                        
+                    }
                     [self startCheckingFromSFDC];
+                }];
 
 //                }];
 

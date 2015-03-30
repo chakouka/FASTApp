@@ -9,5 +9,6 @@
 #import "AMDBNewContact.h"
 
 @interface AMDBNewContact (AddOn)
++(AMDBNewContact *)newEntityInManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end

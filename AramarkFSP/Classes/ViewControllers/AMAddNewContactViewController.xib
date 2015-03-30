@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AMAddNewContactViewController">
+            <connections>
+                <outlet property="btnSave" destination="KqQ-M2-TBu" id="29v-Ya-oCS"/>
+                <outlet property="tableViewMain" destination="7rH-Zb-tfo" id="beP-bd-LpD"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="qug-8w-cv9"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7rH-Zb-tfo">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="768" id="ONe-7Y-rZc"/>
+                    </constraints>
+                    <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KqQ-M2-TBu">
+                        <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.65098039220000004" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <state key="normal" title="SAVE">
+                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="clickSaveBtn:" destination="-1" eventType="touchUpInside" id="Uma-rM-lMr"/>
+                        </connections>
+                    </button>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="ONe-7Y-rZc"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="hhg-Q4-tTY"/>
+                        <outlet property="delegate" destination="-1" id="6by-pk-yvt"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="7rH-Zb-tfo" secondAttribute="trailing" id="2y8-1d-s2H"/>
+                <constraint firstItem="7rH-Zb-tfo" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Bg9-vE-lBo"/>
+                <constraint firstAttribute="bottom" secondItem="7rH-Zb-tfo" secondAttribute="bottom" id="GX5-cF-v2k"/>
+                <constraint firstItem="7rH-Zb-tfo" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Mws-w7-b2B"/>
+                <constraint firstItem="7rH-Zb-tfo" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Ynh-Nn-vI0"/>
+                <constraint firstAttribute="bottom" secondItem="7rH-Zb-tfo" secondAttribute="bottom" id="ZpL-d2-uZO"/>
+                <constraint firstAttribute="centerX" secondItem="7rH-Zb-tfo" secondAttribute="centerX" id="bMg-E8-wCl"/>
+                <constraint firstItem="7rH-Zb-tfo" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hd5-Sv-9fF"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="GX5-cF-v2k"/>
+                    <exclude reference="Mws-w7-b2B"/>
+                    <exclude reference="bMg-E8-wCl"/>
+                    <exclude reference="hd5-Sv-9fF"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="361" y="252"/>
+        </view>
+    </objects>
+</document>

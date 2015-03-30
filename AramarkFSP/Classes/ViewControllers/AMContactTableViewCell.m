@@ -48,7 +48,7 @@
         return;
     }
     _assignedContact = assignedContact;
-//    self.nameTextField.text = assignedContact.name;
+    self.nameTextField.text = assignedContact.name;
     self.roleTextField.text = assignedContact.role;
     self.phoneTextField.text = assignedContact.phone;
     self.emailTextField.text = assignedContact.email;

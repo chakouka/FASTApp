@@ -173,6 +173,12 @@
 		7CCD7E6E1AB749FF006FED08 /* AMDBNewContact.h in Resources */ = {isa = PBXBuildFile; fileRef = 7CCD7E6D1AB749FF006FED08 /* AMDBNewContact.h */; };
 		7CCD7E701AB74A30006FED08 /* AMDBNewContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD7E6F1AB74A30006FED08 /* AMDBNewContact.m */; };
 		7CCD7E7F1AB76764006FED08 /* AMDBNewContact+AddOn.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD7E7E1AB76764006FED08 /* AMDBNewContact+AddOn.m */; };
+		7CDAE9631AC300A8009066E4 /* AMAddContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CDAE9611AC300A8009066E4 /* AMAddContactTableViewCell.m */; };
+		7CDAE9641AC300A8009066E4 /* AMAddContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CDAE9621AC300A8009066E4 /* AMAddContactTableViewCell.xib */; };
+		7CDAE96B1AC33185009066E4 /* AMNewContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CDAE9691AC33185009066E4 /* AMNewContactCell.m */; };
+		7CDAE96C1AC33185009066E4 /* AMNewContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CDAE96A1AC33185009066E4 /* AMNewContactCell.xib */; };
+		7CDAE9701AC338B4009066E4 /* AMAddNewContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CDAE96E1AC338B4009066E4 /* AMAddNewContactViewController.m */; };
+		7CDAE9711AC338B4009066E4 /* AMAddNewContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CDAE96F1AC338B4009066E4 /* AMAddNewContactViewController.xib */; };
 		824A9DD91724E16400C9BD79 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 824A9DD81724E16400C9BD79 /* UIKit.framework */; };
 		824A9DDB1724E16400C9BD79 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 824A9DDA1724E16400C9BD79 /* Foundation.framework */; };
 		824A9DDD1724E16400C9BD79 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 824A9DDC1724E16400C9BD79 /* CoreGraphics.framework */; };
@@ -984,6 +990,15 @@
 		7CCD7E6F1AB74A30006FED08 /* AMDBNewContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMDBNewContact.m; sourceTree = "<group>"; };
 		7CCD7E7D1AB76764006FED08 /* AMDBNewContact+AddOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AMDBNewContact+AddOn.h"; sourceTree = "<group>"; };
 		7CCD7E7E1AB76764006FED08 /* AMDBNewContact+AddOn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AMDBNewContact+AddOn.m"; sourceTree = "<group>"; };
+		7CDAE9601AC300A8009066E4 /* AMAddContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMAddContactTableViewCell.h; sourceTree = "<group>"; };
+		7CDAE9611AC300A8009066E4 /* AMAddContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMAddContactTableViewCell.m; sourceTree = "<group>"; };
+		7CDAE9621AC300A8009066E4 /* AMAddContactTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMAddContactTableViewCell.xib; sourceTree = "<group>"; };
+		7CDAE9681AC33185009066E4 /* AMNewContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMNewContactCell.h; path = NewCaseViewController/AddNewCaseViewController/AMNewCaseCell/AMNewContactCell.h; sourceTree = "<group>"; };
+		7CDAE9691AC33185009066E4 /* AMNewContactCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMNewContactCell.m; path = NewCaseViewController/AddNewCaseViewController/AMNewCaseCell/AMNewContactCell.m; sourceTree = "<group>"; };
+		7CDAE96A1AC33185009066E4 /* AMNewContactCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AMNewContactCell.xib; path = NewCaseViewController/AddNewCaseViewController/AMNewCaseCell/AMNewContactCell.xib; sourceTree = "<group>"; };
+		7CDAE96D1AC338B4009066E4 /* AMAddNewContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMAddNewContactViewController.h; sourceTree = "<group>"; };
+		7CDAE96E1AC338B4009066E4 /* AMAddNewContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMAddNewContactViewController.m; sourceTree = "<group>"; };
+		7CDAE96F1AC338B4009066E4 /* AMAddNewContactViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMAddNewContactViewController.xib; sourceTree = "<group>"; };
 		824A9DD51724E16400C9BD79 /* AramarkFSP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AramarkFSP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		824A9DD81724E16400C9BD79 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		824A9DDA1724E16400C9BD79 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -2079,6 +2094,35 @@
 			path = KLCPopup;
 			sourceTree = "<group>";
 		};
+		7CDAE9651AC3308C009066E4 /* NewContactViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7CDAE9661AC330D1009066E4 /* AddNewContactViewController */,
+			);
+			name = NewContactViewController;
+			sourceTree = "<group>";
+		};
+		7CDAE9661AC330D1009066E4 /* AddNewContactViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7CDAE9671AC3310D009066E4 /* AMNewContactCell */,
+				7CDAE96D1AC338B4009066E4 /* AMAddNewContactViewController.h */,
+				7CDAE96E1AC338B4009066E4 /* AMAddNewContactViewController.m */,
+				7CDAE96F1AC338B4009066E4 /* AMAddNewContactViewController.xib */,
+			);
+			name = AddNewContactViewController;
+			sourceTree = "<group>";
+		};
+		7CDAE9671AC3310D009066E4 /* AMNewContactCell */ = {
+			isa = PBXGroup;
+			children = (
+				7CDAE9681AC33185009066E4 /* AMNewContactCell.h */,
+				7CDAE9691AC33185009066E4 /* AMNewContactCell.m */,
+				7CDAE96A1AC33185009066E4 /* AMNewContactCell.xib */,
+			);
+			name = AMNewContactCell;
+			sourceTree = "<group>";
+		};
 		824A9DCC1724E16400C9BD79 = {
 			isa = PBXGroup;
 			children = (
@@ -2530,6 +2574,7 @@
 		A6626B9D1904C82600DFA6E4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				7CDAE9651AC3308C009066E4 /* NewContactViewController */,
 				D07F5DD119B4425400D28F94 /* NearMeViewController */,
 				D01AB6B819A3368300FA034F /* NearOrderListViewController */,
 				D02D421E194E9D1000372334 /* NewLeadViewController */,
@@ -2976,6 +3021,9 @@
 				02F5F6A619383F87006DB190 /* AMContactTableViewCell.xib */,
 				02B6EF9919516BD000816281 /* AMContactHeaderView.h */,
 				02B6EF9A19516BD000816281 /* AMContactHeaderView.m */,
+				7CDAE9601AC300A8009066E4 /* AMAddContactTableViewCell.h */,
+				7CDAE9611AC300A8009066E4 /* AMAddContactTableViewCell.m */,
+				7CDAE9621AC300A8009066E4 /* AMAddContactTableViewCell.xib */,
 			);
 			name = ContactsViewController;
 			sourceTree = "<group>";
@@ -4257,6 +4305,7 @@
 				D02F334F191CC5F100CF9006 /* checkmark@2x.png in Resources */,
 				D0912E5219D54F0E00E5F6FA /* Reports_gray-fr@2x.png in Resources */,
 				D0134D5E1959778E009BA205 /* report-info-graphic-red.png in Resources */,
+				7CDAE9641AC300A8009066E4 /* AMAddContactTableViewCell.xib in Resources */,
 				D0912E7019D54F0E00E5F6FA /* invoice-fr.png in Resources */,
 				7C55F2871A8954DA0081A4B0 /* up.png in Resources */,
 				D0B79E8F191A228D00FD1152 /* reports.png in Resources */,
@@ -4324,6 +4373,7 @@
 				D06D82A51935EDF700407855 /* ColumnViewController.xib in Resources */,
 				D0B79E67191A228D00FD1152 /* 10-point.png in Resources */,
 				D0B79E85191A228D00FD1152 /* invoice_on.jpg in Resources */,
+				7CDAE9711AC338B4009066E4 /* AMAddNewContactViewController.xib in Resources */,
 				0206C9551975302F008423CB /* AMAttachmentCollViewLocalCell.xib in Resources */,
 				D02F333F191CC5F100CF9006 /* ADD@2x.png in Resources */,
 				020236931924BDC4006B0943 /* AMWOPopoverViewController.xib in Resources */,
@@ -4485,6 +4535,7 @@
 				D00B5D7E19E5434700FC3103 /* Cases_Red-fr.png in Resources */,
 				D0912E4B19D54F0E00E5F6FA /* new-case_sub-nav-fr@2x.png in Resources */,
 				02AC9EF619AD913700527141 /* Aramark Horizontal Logo_TM.png in Resources */,
+				7CDAE96C1AC33185009066E4 /* AMNewContactCell.xib in Resources */,
 				D007B36E1925BDE500DD09DE /* AMCheckoutViewController.xib in Resources */,
 				62A642A7197695B20063D0DA /* arrow-down_white.png in Resources */,
 				D013D891196535F1008A7C55 /* invoice@2x.png in Resources */,
@@ -4703,6 +4754,7 @@
 				D0414490195003CC0058E648 /* AMNewLeadFirtNameCell.m in Sources */,
 				02B5A74D19220940008D06A6 /* AMTextAreaTableViewCell.m in Sources */,
 				16F93F661949528D004D8706 /* AMReportTitleLabel.m in Sources */,
+				7CDAE96B1AC33185009066E4 /* AMNewContactCell.m in Sources */,
 				D0572802195D6D5400721641 /* AMVerificationTableViewCell2.m in Sources */,
 				D0344565192C452D00C3E18C /* AMFilterNameTableViewCell.m in Sources */,
 				02B5A7471921E958008D06A6 /* AMConfiguredCell.m in Sources */,
@@ -4710,6 +4762,7 @@
 				022C69131962A8B700301361 /* AMAttachmentCollViewAddCell.m in Sources */,
 				D02D4227194E9D4900372334 /* AMNewLeadViewController.m in Sources */,
 				1661AD1A197620F400C03D0A /* AMDBNewLead.m in Sources */,
+				7CDAE9631AC300A8009066E4 /* AMAddContactTableViewCell.m in Sources */,
 				A63C4DB31916349000082673 /* AMLocation.m in Sources */,
 				02B5A76719246AB3008D06A6 /* AMPendingWOHeaderView.m in Sources */,
 				02E3E7B21929B3CA00064919 /* AMCasesViewController.m in Sources */,
@@ -4782,6 +4835,7 @@
 				D06806E4192B0A4400EA3440 /* AMWorkPerformedTableViewCell.m in Sources */,
 				D034459A192DEA6600C3E18C /* AMInvoiceRepairTableViewCell.m in Sources */,
 				D02D4239194EB81700372334 /* AMNewLeadHistoryViewController.m in Sources */,
+				7CDAE9701AC338B4009066E4 /* AMAddNewContactViewController.m in Sources */,
 				02B5A73C1920BFF6008D06A6 /* AMSectionHeaderView.m in Sources */,
 				D02D4222194E9D3700372334 /* AMNewCaseViewController.m in Sources */,
 				D007B37A1925BE4100DD09DE /* AMPointsViewController.m in Sources */,

@@ -10,6 +10,9 @@
 #import "AMContactTableViewCell.h"
 #import "AMContactHeaderView.h"
 
+#import "AMAddContactTableViewCell.h"
+#import "AMAddNewContactViewController.h"
+
 static NSString *TableIdentifier_Cell = @"ContactTableCell";
 
 @interface AMContactTableViewController ()
@@ -17,12 +20,22 @@ static NSString *TableIdentifier_Cell = @"ContactTableCell";
 @end
 
 @implementation AMContactTableViewController
+- (id)initWithWorkOrder:(AMWorkOrder *)wo
+{
+    self = [self initWithNibName:NSStringFromClass([AMContactTableViewController class]) bundle:nil];
+    if (self) {
+        self.contactArr = wo.woPoS.contactList;
+        self.selectedWorkOrder = wo;
+    }
+    return self;
+}
 
 - (id)initWithContactArray:(NSArray *)cArr
 {
     self = [self initWithNibName:NSStringFromClass([AMContactTableViewController class]) bundle:nil];
     if (self) {
         self.contactArr = cArr;
+
     }
     return self;
 }
@@ -31,6 +44,7 @@ static NSString *TableIdentifier_Cell = @"ContactTableCell";
 {
     [super viewDidLoad];
     [self.tableView registerNib:[UINib nibWithNibName:@"AMContactTableViewCell" bundle:nil] forCellReuseIdentifier:TableIdentifier_Cell];
+    [self.tableView registerNib:[UINib nibWithNibName:@"AMAddContactTableViewCell" bundle:nil] forCellReuseIdentifier:@"AddContactTableViewCell"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 //    [self.tableView registerClass:[AMContactSectionHeaderView class] forHeaderFooterViewReuseIdentifier:TableIdentifier_Cell];
     // Uncomment the following line to preserve selection between presentations.
@@ -54,12 +68,20 @@ static NSString *TableIdentifier_Cell = @"ContactTableCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 110.0;
+    if (!(indexPath.section >= [self.contactArr count])) {
+        return 110.0;
+    } else {
+        return 40.0;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 36.0;
+    if (!(section >= [self.contactArr count])) {
+        return 36.0;
+    } else {
+        return 12.0;
+    }
 }
 
 #pragma mark - Table view data source
@@ -67,7 +89,7 @@ static NSString *TableIdentifier_Cell = @"ContactTableCell";
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return [self.contactArr count];
+    return [self.contactArr count] + 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -78,39 +100,76 @@ static NSString *TableIdentifier_Cell = @"ContactTableCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    AMContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TableIdentifier_Cell forIndexPath:indexPath];
-    cell.assignedContact = [self.contactArr objectAtIndex:indexPath.section];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    [[AMLogicCore sharedInstance] createNewContactInDBWithSetupBlock:^(AMDBNewContact *newContact) {
-        newContact.createdDate = [NSDate date];
-        //newContact.dataStatus = [NSNumber numberWithInt:EntityStatusNew];
-        newContact.fakeID = [NSString stringWithFormat:@"Fake_%f", [NSDate timeIntervalSinceReferenceDate]];;
-        newContact.accountID = @"xxxxxx";
-        newContact.contactID = @"xxxx";
-        newContact.posID = @"";
-        newContact.phone = @"2222222222";
-        newContact.name = @"brian kendall";
-        newContact.lastName = @"kendall";
-        newContact.firstName = @"brian";
-        newContact.email = @"kendall-brian@aramark.com";
-        newContact.role = @"Decision Maker;Order Contact";
-        newContact.title = @"Purchasing Agent";
+    NSLog(@"Section = %d", indexPath.section);
+    NSLog(@"self.contactArr.count = %d", self.contactArr.count);
+    if (!(indexPath.section >= [self.contactArr count])) {
+        AMContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TableIdentifier_Cell forIndexPath:indexPath];
+        cell.assignedContact = [self.contactArr objectAtIndex:indexPath.section];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+        return cell;
         
-    } completion:^(NSInteger type, NSError *error) {
-        //todo Error stuff
+    } else {
+        UITapGestureRecognizer * recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+        recognizer.delegate = self;
         
-    }];
-    return cell;
+        AMAddContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddContactTableViewCell" forIndexPath:indexPath];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+        [cell addGestureRecognizer:recognizer];
+        return cell;
+    }
+
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    AMContactHeaderView *headerView = [AMUtilities loadViewByClassName:NSStringFromClass([AMContactHeaderView class]) fromXib:nil];
-    AMContact *contact = [self.contactArr objectAtIndex:section];
-    headerView.contactNameLabel.text = contact.name;
+    if (self.contactArr && (section < [self.contactArr count])) {
+        AMContactHeaderView *headerView = [AMUtilities loadViewByClassName:NSStringFromClass([AMContactHeaderView class]) fromXib:nil];
+        AMContact *contact = [self.contactArr objectAtIndex:section];
+        headerView.contactNameLabel.text = contact.name;
 
-    return headerView;
+        return headerView;
+    }
+    return nil;
 }
+-(void)handleTap:(UIGestureRecognizer *) recognizer {
+    CGPoint tapLocation = [recognizer locationInView:self.tableView];
+    NSIndexPath *tappedIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
+    //AMAddContactTableViewCell *tappedCell = (AMAddContactTableViewCell *)[self.tableView cellForRowAtIndexPath:tappedIndexPath];
 
+    if ((tappedIndexPath.section >= [self.contactArr count])) {
+
+        
+        //Show Create Contact ViewController
+        //TODO bkk 3/25/2015
+        
+        AMAddNewContactViewController *ancVC = [[AMAddNewContactViewController alloc] initWithNibName:@"AMAddNewContactViewController" bundle:nil];
+        ancVC.isPop = YES;
+        ancVC.modalPresentationStyle = UIModalPresentationPageSheet;
+        ancVC.selectedWorkOrder = self.selectedWorkOrder;
+        
+        [self presentViewController:ancVC animated:YES completion:nil];
+//        [[AMLogicCore sharedInstance] createNewContactInDBWithSetupBlock:^(AMDBNewContact *newContact) {
+//            newContact.createdDate = [NSDate date];
+//            newContact.dataStatus = [NSNumber numberWithInt:EntityStatusNew];
+//            newContact.fakeID = [NSString stringWithFormat:@"Fake_%f", [NSDate timeIntervalSinceReferenceDate]];;
+//            newContact.accountID = self.selectedWorkOrder.accountID;// @"xxxxxx";
+//            //newContact.contactID = @"xxxx";
+//            newContact.posID = @"";
+//            newContact.phone = @"2222222222";
+//            newContact.name = @"Brian Kendall";
+//            newContact.LastName = @"Kendall";
+//            newContact.FirstName = @"Brian";
+//            newContact.email = @"kendall-brian@aramark.com";
+//            newContact.role = @"Decision Maker;Order Contact";
+//            newContact.title = @"Purchasing Agent";
+//            
+//        } completion:^(NSInteger type, NSError *error) {
+//            //todo Error stuff
+//            
+//        }];
+    }
+}
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];

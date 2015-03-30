@@ -14,6 +14,9 @@
 {
     AMDBNewContact *entity = nil;
     entity = [NSEntityDescription insertNewObjectForEntityForName:@"AMDBNewContact" inManagedObjectContext:context];
+    entity.createdDate = [NSDate date];
+    entity.dataStatus = [NSNumber numberWithInt:EntityStatusNew];
+    entity.fakeID = [NSString stringWithFormat:@"Fake_%f", [NSDate timeIntervalSinceReferenceDate]];;
 
     
     return entity;
@@ -23,15 +26,15 @@
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
-    [dict setValue:self.fakeID forKeyPath:@"fakeId"];
-    [dict setValue:self.name forKeyPath:@"Point_of_Service__c"];
-    [dict setValue:self.phone forKeyPath:@"MEI_Customer__c"];
-    [dict setValue:self.role forKeyPath:@"Priority"];
-    [dict setValue:self.title forKeyPath:@"Subject"];
-    [dict setValue:self.contactID forKeyPath:@"Contact"];
-    [dict setValue:self.email forKeyPath:@"ContactEmail"];
+    [dict setValue:self.fakeID forKeyPath:@"FakeId"];
+    [dict setValue:self.name forKeyPath:@"Name"];
+    [dict setValue:self.phone forKeyPath:@"Phone"];
+    [dict setValue:self.role forKeyPath:@"Role"];
+    [dict setValue:self.title forKeyPath:@"Title"];
+    [dict setValue:self.email forKeyPath:@"Email"];
     [dict setValue:self.firstName forKeyPath:@"FirstName"];
     [dict setValue:self.lastName forKeyPath:@"LastName"];
+    [dict setValue:self.posID forKeyPath:@"PosID"];
     
     return dict;
 }

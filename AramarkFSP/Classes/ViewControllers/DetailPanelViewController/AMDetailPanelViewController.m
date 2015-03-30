@@ -298,8 +298,8 @@
         case AMTabTypeContacts:
         {
             if (!_contactsVC) {
-                _contactsVC = [[AMContactTableViewController alloc] initWithContactArray:self.selectedWorkOrder.woPoS.contactList];
-                [self.viewMain addSubview:_contactsVC.view];
+//                _contactsVC = [[AMContactTableViewController alloc] initWithContactArray:self.selectedWorkOrder.woPoS.contactList];//bkkchanged to pass workorder so we have access to more stuff
+                _contactsVC = [[AMContactTableViewController alloc] initWithWorkOrder:self.selectedWorkOrder];                [self.viewMain addSubview:_contactsVC.view];
                 
             }
 //            if (CGRectGetHeight(self.viewMain.frame) < CGRectGetHeight(_contactsVC.view.frame)) {

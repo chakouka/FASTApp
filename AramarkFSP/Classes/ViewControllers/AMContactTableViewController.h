@@ -8,12 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "AMWOTabBaseViewController.h"
+#import "AMWorkOrder.h"
 
-@interface AMContactTableViewController : AMWOTabBaseViewController<UITableViewDataSource, UITableViewDelegate>
+@interface AMContactTableViewController : AMWOTabBaseViewController<UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) NSArray *contactArr;
+@property (strong, nonatomic) AMWorkOrder *selectedWorkOrder;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 - (id)initWithContactArray:(NSArray *)cArr;
+- (id)initWithWorkOrder:(AMWorkOrder *)wo;
 
 @end
