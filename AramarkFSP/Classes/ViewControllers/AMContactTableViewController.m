@@ -91,7 +91,7 @@ static NSString *TableIdentifier_Cell = @"ContactTableCell";
 - (void)adjustHeightOfTableview
 {
     CGFloat height = self.tableView.contentSize.height;
-    CGFloat maxHeight = self.tableView.superview.frame.size.height - self.tableView.frame.origin.y;
+    CGFloat maxHeight = self.tableView.superview.frame.size.height - self.tableView.frame.origin.y + 40;
     
     // if the height of the content is greater than the maxHeight of
     // total space on the screen, limit the height to the size of the
@@ -131,10 +131,13 @@ static NSString *TableIdentifier_Cell = @"ContactTableCell";
     NSLog(@"Section = %d", indexPath.section);
     NSLog(@"self.contactArr.count = %d", self.contactArr.count);
     if (!(indexPath.section >= [self.contactArr count])) {
+        UILongPressGestureRecognizer * recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+        recognizer.delegate = self;
         AMContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TableIdentifier_Cell forIndexPath:indexPath];
         cell.assignedContact = [self.contactArr objectAtIndex:indexPath.section];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+        [cell addGestureRecognizer:recognizer];
+        
         return cell;
         
     } else {
@@ -145,6 +148,7 @@ static NSString *TableIdentifier_Cell = @"ContactTableCell";
         
         cell.selectionStyle = UITableViewCellSelectionStyleDefault;
         [cell addGestureRecognizer:recognizer];
+        
         return cell;
     }
 
@@ -163,13 +167,8 @@ static NSString *TableIdentifier_Cell = @"ContactTableCell";
 -(void)handleTap:(UIGestureRecognizer *) recognizer {
     CGPoint tapLocation = [recognizer locationInView:self.tableView];
     NSIndexPath *tappedIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
-    //AMAddContactTableViewCell *tappedCell = (AMAddContactTableViewCell *)[self.tableView cellForRowAtIndexPath:tappedIndexPath];
 
     if ((tappedIndexPath.section >= [self.contactArr count])) {
-
-        
-        //Show Create Contact ViewController
-        //TODO bkk 3/25/2015
         
         AMAddNewContactViewController *ancVC = [[AMAddNewContactViewController alloc] initWithNibName:@"AMAddNewContactViewController" bundle:nil];
         ancVC.isPop = YES;
@@ -177,25 +176,45 @@ static NSString *TableIdentifier_Cell = @"ContactTableCell";
         ancVC.selectedWorkOrder = self.selectedWorkOrder;
         
         [self presentViewController:ancVC animated:YES completion:nil];
-//        [[AMLogicCore sharedInstance] createNewContactInDBWithSetupBlock:^(AMDBNewContact *newContact) {
-//            newContact.createdDate = [NSDate date];
-//            newContact.dataStatus = [NSNumber numberWithInt:EntityStatusNew];
-//            newContact.fakeID = [NSString stringWithFormat:@"Fake_%f", [NSDate timeIntervalSinceReferenceDate]];;
-//            newContact.accountID = self.selectedWorkOrder.accountID;// @"xxxxxx";
-//            //newContact.contactID = @"xxxx";
-//            newContact.posID = @"";
-//            newContact.phone = @"2222222222";
-//            newContact.name = @"Brian Kendall";
-//            newContact.LastName = @"Kendall";
-//            newContact.FirstName = @"Brian";
-//            newContact.email = @"kendall-brian@aramark.com";
-//            newContact.role = @"Decision Maker;Order Contact";
-//            newContact.title = @"Purchasing Agent";
-//            
-//        } completion:^(NSInteger type, NSError *error) {
-//            //todo Error stuff
-//            
-//        }];
+    }
+}
+-(void)handleLongPress:(UIGestureRecognizer *) recognizer {
+    
+    if (recognizer.state == UIGestureRecognizerStateEnded) {
+        
+        CGPoint tapLocation = [recognizer locationInView:self.tableView];
+        NSIndexPath *tappedIndexPath1 = [self.tableView indexPathForSelectedRow];
+        __block int row1 = tappedIndexPath1.row;
+        NSIndexPath *tappedIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
+        __block int row = tappedIndexPath.row;
+        if ((tappedIndexPath.section < [self.contactArr count])) {
+            
+            [UIAlertView showWithTitle:@"Modify/Delete" message:@"Modify or Delete Contact?" style: UIAlertViewStyleDefault cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"Modify", @"Delete"] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                
+                AMAddNewContactViewController *ancVC = [[AMAddNewContactViewController alloc] initWithNibName:@"AMAddNewContactViewController" bundle:nil];
+                
+                switch (buttonIndex) {
+                    case 0:
+                        //cancel
+                        break;
+                    case 1:
+                        //modify
+
+                        ancVC.isPop = YES;
+                        ancVC.selectedWorkOrder = self.selectedWorkOrder;
+                        ancVC.selectedContact = self.contactArr[row];
+                        ancVC.modalPresentationStyle = UIModalPresentationPageSheet;
+                        [self presentViewController:ancVC animated:YES completion:nil];
+                        break;
+                    case 2:
+                        //delete
+                        break;
+                        
+                    default:
+                        break;
+                }
+            }];
+        }
     }
 }
 - (void)viewWillLayoutSubviews

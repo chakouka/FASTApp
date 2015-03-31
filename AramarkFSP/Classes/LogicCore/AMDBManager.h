@@ -128,6 +128,7 @@
 - (NSArray *)getModifiedAsset;
 - (NSArray *)getModifiedInvoice;
 - (NSArray *)getModifiedCase;
+- (NSArray *)getModifiedContacts;
 - (NSArray *)getModifiedLocation;
 - (NSArray *)getModifiedPoS;
 - (void)updateLocalModifiedObjectsToDone:(NSDictionary *)modifiedObjects completion:(AMDBOperationCompletionBlock)completionBlock;

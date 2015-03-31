@@ -37,6 +37,8 @@
     dbContact.firstName = contact.firstName;
     dbContact.lastName = contact.lastName;
     dbContact.title = contact.title;
+    dbContact.lastModifiedBy = contact.lastModifiedBy;
+    dbContact.lastModifiedDate = contact.lastModifiedDate;
 }
 
 - (id)transferDBObjectToObject:(id)dbObject
@@ -54,6 +56,8 @@
     contact.firstName = dbContact.firstName;
     contact.lastName = dbContact.lastName;
     contact.title = dbContact.title;
+    contact.lastModifiedBy = dbContact.lastModifiedBy;
+    contact.lastModifiedDate = dbContact.lastModifiedDate;
     
     return contact;
 }

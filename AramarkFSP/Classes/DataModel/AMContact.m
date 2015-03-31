@@ -18,5 +18,6 @@
 @synthesize posID;
 @synthesize accountID;
 @synthesize contactID;
-
+@synthesize lastModifiedBy;
+@synthesize lastModifiedDate;
 @end

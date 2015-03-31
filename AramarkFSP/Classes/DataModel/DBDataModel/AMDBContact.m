@@ -21,4 +21,6 @@
 @dynamic posID;
 @dynamic role;
 @dynamic title;
+@dynamic lastModifiedBy;
+@dynamic lastModifiedDate;
 @end

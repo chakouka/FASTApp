@@ -37,14 +37,16 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 @property (nonatomic, strong) UIPopoverController *aPopoverVC;
 @property (nonatomic,strong) NSMutableDictionary *dicContactInfo;
 @property (nonatomic, strong) NSMutableArray *arrContacts;
-@property (nonatomic, strong) AMContact *selectContact;
+//@property (nonatomic, strong) AMContact *selectContact;
 @end
 @implementation AMAddNewContactViewController
 @synthesize isPop;
 @synthesize arrContacts;
 @synthesize aPopoverVC;
 @synthesize dicContactInfo;
-@synthesize selectContact;
+//@synthesize selectContact;
+@synthesize selectedContact;
+
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
@@ -99,13 +101,22 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 - (void)refreshWithInfo
 {
 
-    //Clear out the contact stuff
-    [self.dicContactInfo setObject:@"" forKey:KEY_OF_CONTACT_EMAIL];
-    [self.dicContactInfo setObject:@"" forKey:KEY_OF_CONTACT_FIRST_NAME];
-    [self.dicContactInfo setObject:@"" forKey:KEY_OF_CONTACT_LAST_NAME];
-    [self.dicContactInfo setObject:@"" forKey:KEY_OF_CONTACT_TITLE];
-    [self.dicContactInfo setObject:@"" forKey:KEY_OF_CONTACT_ROLE];
-    [self.dicContactInfo setObject:@"" forKey:KEY_OF_CONTACT_PHONE];
+    if (self.selectedContact == nil) {
+        //Clear out the contact stuff
+        [self.dicContactInfo setObject:@"" forKey:KEY_OF_CONTACT_EMAIL];
+        [self.dicContactInfo setObject:@"" forKey:KEY_OF_CONTACT_FIRST_NAME];
+        [self.dicContactInfo setObject:@"" forKey:KEY_OF_CONTACT_LAST_NAME];
+        [self.dicContactInfo setObject:@"" forKey:KEY_OF_CONTACT_TITLE];
+        [self.dicContactInfo setObject:@"" forKey:KEY_OF_CONTACT_ROLE];
+        [self.dicContactInfo setObject:@"" forKey:KEY_OF_CONTACT_PHONE];
+    } else {
+        [self.dicContactInfo setObject:self.selectedContact.email != nil ? self.selectedContact.email : @"" forKey:KEY_OF_CONTACT_EMAIL];
+        [self.dicContactInfo setObject:self.selectedContact.firstName != nil ? self.selectedContact.firstName : @"" forKey:KEY_OF_CONTACT_FIRST_NAME];
+        [self.dicContactInfo setObject:self.selectedContact.lastName != nil ? self.selectedContact.lastName : @""  forKey:KEY_OF_CONTACT_LAST_NAME];
+        [self.dicContactInfo setObject:self.selectedContact.title != nil ? self.selectedContact.title : @"" forKey:KEY_OF_CONTACT_TITLE];
+        [self.dicContactInfo setObject:self.selectedContact.role != nil ? self.selectedContact.role :@"" forKey:KEY_OF_CONTACT_ROLE];
+        [self.dicContactInfo setObject:self.selectedContact.phone != nil ? self.selectedContact.phone : @"" forKey:KEY_OF_CONTACT_PHONE];
+    }
     
     //TODO bkk 3/25/2015 add all of the other items to be show on the cell.
     [self.tableViewMain reloadData];
@@ -164,27 +175,44 @@ typedef NS_ENUM (NSInteger, PopViewType) {
         return;
     }
     
-    [[AMLogicCore sharedInstance] createNewContactInDBWithSetupBlock:^(AMDBNewContact *newContact) {
-        newContact.createdDate = [NSDate date];
-        newContact.dataStatus = [NSNumber numberWithInt:EntityStatusNew];
-        newContact.fakeID = [NSString stringWithFormat:@"Fake_%f", [NSDate timeIntervalSinceReferenceDate]];;
-        newContact.accountID = self.selectedWorkOrder.accountID;// @"xxxxxx";
-        //newContact.contactID = @"xxxx";
-        newContact.posID = self.selectedWorkOrder.posID;
-        newContact.phone = [dicContactInfo objectForKey:KEY_OF_CONTACT_PHONE] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_PHONE];
-        newContact.name = [NSString stringWithFormat:@"%@ %@", [dicContactInfo objectForKey:KEY_OF_CONTACT_FIRST_NAME] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_FIRST_NAME], [dicContactInfo objectForKey:KEY_OF_CONTACT_LAST_NAME] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_LAST_NAME]];
-        newContact.LastName = [dicContactInfo objectForKey:KEY_OF_CONTACT_LAST_NAME] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_LAST_NAME];
-        newContact.FirstName =[dicContactInfo objectForKey:KEY_OF_CONTACT_FIRST_NAME] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_FIRST_NAME];
-        newContact.email = [dicContactInfo objectForKey:KEY_OF_CONTACT_EMAIL] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_EMAIL];
-        newContact.role = [dicContactInfo objectForKey:KEY_OF_CONTACT_ROLE] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_ROLE];
-        newContact.title = [dicContactInfo objectForKey:KEY_OF_CONTACT_TITLE] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_TITLE];
+    if (self.selectedContact != nil) {
+        //edit mode
+        self.selectedContact.firstName = [self.dicContactInfo objectForKey:KEY_OF_CONTACT_FIRST_NAME];
+        self.selectedContact.lastName = [self.dicContactInfo objectForKey:KEY_OF_CONTACT_LAST_NAME];
+        self.selectedContact.email = [self.dicContactInfo objectForKey:KEY_OF_CONTACT_EMAIL];
+        self.selectedContact.role = [self.dicContactInfo objectForKey:KEY_OF_CONTACT_ROLE];
+        self.selectedContact.title = [self.dicContactInfo objectForKey:KEY_OF_CONTACT_TITLE];
+        self.selectedContact.phone = [self.dicContactInfo objectForKey:KEY_OF_CONTACT_PHONE];
+        self.selectedContact.lastModifiedDate = [NSDate date];
+        [[AMLogicCore sharedInstance] updateContact:self.selectedContact completionBlock:^(NSInteger type, NSError *error) {
+            if (!error) {
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }
+        }];
+    } else {
+        //save new mode
+        [[AMLogicCore sharedInstance] createNewContactInDBWithSetupBlock:^(AMDBNewContact *newContact) {
+            newContact.createdDate = [NSDate date];
+            newContact.dataStatus = [NSNumber numberWithInt:EntityStatusNew];
+            newContact.fakeID = [NSString stringWithFormat:@"Fake_%f", [NSDate timeIntervalSinceReferenceDate]];;
+            newContact.accountID = self.selectedWorkOrder.accountID;// @"xxxxxx";
+            //newContact.contactID = @"xxxx";
+            newContact.posID = self.selectedWorkOrder.posID;
+            newContact.phone = [dicContactInfo objectForKey:KEY_OF_CONTACT_PHONE] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_PHONE];
+            newContact.name = [NSString stringWithFormat:@"%@ %@", [dicContactInfo objectForKey:KEY_OF_CONTACT_FIRST_NAME] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_FIRST_NAME], [dicContactInfo objectForKey:KEY_OF_CONTACT_LAST_NAME] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_LAST_NAME]];
+            newContact.LastName = [dicContactInfo objectForKey:KEY_OF_CONTACT_LAST_NAME] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_LAST_NAME];
+            newContact.FirstName =[dicContactInfo objectForKey:KEY_OF_CONTACT_FIRST_NAME] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_FIRST_NAME];
+            newContact.email = [dicContactInfo objectForKey:KEY_OF_CONTACT_EMAIL] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_EMAIL];
+            newContact.role = [dicContactInfo objectForKey:KEY_OF_CONTACT_ROLE] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_ROLE];
+            newContact.title = [dicContactInfo objectForKey:KEY_OF_CONTACT_TITLE] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_TITLE];
 
-        
-        [self dismissViewControllerAnimated:YES completion:nil];
-    } completion:^(NSInteger type, NSError *error) {
-        //todo Error stuff
-        
-    }];
+            
+            [self dismissViewControllerAnimated:YES completion:nil];
+        } completion:^(NSInteger type, NSError *error) {
+            //todo Error stuff
+            
+        }];
+    }
 }
 
 #pragma mark -
@@ -241,7 +269,11 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AMNormalTitleSection" owner:[AMNormalTitleSection class] options:nil];
     AMNormalTitleSection *aView = (AMNormalTitleSection *)[nib objectAtIndex:0];
-    aView.labelTitle.text = MyLocal(@"New Contact");
+    if (self.selectedContact) {
+        aView.labelTitle.text = MyLocal(@"Update Contact");
+    } else {
+        aView.labelTitle.text = MyLocal(@"New Contact");
+    }
     
     [aView.btnCancel addTarget:self action:@selector(clickCancelBtn) forControlEvents:UIControlEventTouchUpInside];
     
@@ -334,7 +366,7 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 - (void)verificationStatusTableViewController:(AMPopoverSelectTableViewController *)aVerificationStatusTableViewController didSelected:(NSMutableDictionary *)aInfo {
 if (aVerificationStatusTableViewController.tag == PopViewType_NewCase_Contact) {
         NSString *strInfo = [aInfo objectForKey:kAMPOPOVER_DICTIONARY_KEY_INFO];
-        selectContact = [aInfo objectForKey:kAMPOPOVER_DICTIONARY_KEY_DATA];
+        //selectContact = [aInfo objectForKey:kAMPOPOVER_DICTIONARY_KEY_DATA];
     
         [self.dicContactInfo setObject:strInfo forKey:KEY_OF_CONTACT_ROLE];
     

@@ -109,6 +109,8 @@
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="errorMessage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastModifiedBy" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastModifiedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
@@ -452,7 +454,7 @@
         <element name="AMDBAttachment" positionX="-569" positionY="54" width="128" height="210"/>
         <element name="AMDBBest" positionX="-360" positionY="144" width="128" height="103"/>
         <element name="AMDBCase" positionX="-423" positionY="-9" width="128" height="403"/>
-        <element name="AMDBContact" positionX="178" positionY="266" width="128" height="223"/>
+        <element name="AMDBContact" positionX="178" positionY="266" width="128" height="255"/>
         <element name="AMDBCustomerPrice" positionX="-342" positionY="162" width="128" height="133"/>
         <element name="AMDBEvent" positionX="-378" positionY="126" width="128" height="150"/>
         <element name="AMDBFilter" positionX="169" positionY="198" width="128" height="105"/>
@@ -460,6 +462,7 @@
         <element name="AMDBInvoice" positionX="169" positionY="9" width="128" height="435"/>
         <element name="AMDBLocation" positionX="-9" positionY="324" width="128" height="583"/>
         <element name="AMDBNewCase" positionX="-378" positionY="531" width="128" height="420"/>
+        <element name="AMDBNewContact" positionX="-378" positionY="144" width="128" height="253"/>
         <element name="AMDBNewLead" positionX="-378" positionY="144" width="128" height="463"/>
         <element name="AMDBNewWorkOrder" positionX="-360" positionY="144" width="128" height="525"/>
         <element name="AMDBParts" positionX="36" positionY="-0" width="128" height="105"/>
@@ -470,6 +473,5 @@
         <element name="AMDBReport" positionX="-369" positionY="135" width="128" height="135"/>
         <element name="AMDBUser" positionX="-405" positionY="347" width="128" height="225"/>
         <element name="AMDBWorkOrder" positionX="-585" positionY="360" width="128" height="958"/>
-        <element name="AMDBNewContact" positionX="-378" positionY="144" width="128" height="253"/>
     </elements>
 </model>

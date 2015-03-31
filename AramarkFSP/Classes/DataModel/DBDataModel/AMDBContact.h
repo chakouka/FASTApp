@@ -22,5 +22,6 @@
 @property (nonatomic, retain) NSString * posID;
 @property (nonatomic, retain) NSString * role;
 @property (nonatomic, retain) NSString * title;
-
+@property (nonatomic, retain) NSString * lastModifiedBy;
+@property (nonatomic, retain) NSDate * lastModifiedDate;
 @end

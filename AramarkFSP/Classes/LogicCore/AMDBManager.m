@@ -945,6 +945,11 @@
     return [[AMInvoiceDBManager sharedInstance] getDataListByFilter:filter fromDB:__mainManagedObjectContext];
 }
 
+- (NSArray *)getModifiedContacts
+{
+    NSPredicate * filter = [NSPredicate predicateWithFormat:@"lastModifiedBy = %@",_selfId];
+    return [[AMContactDBManager sharedInstance] getDataListByFilter:filter fromDB:__mainManagedObjectContext];
+}
 - (NSArray *)getModifiedCase
 {
     NSPredicate * filter = [NSPredicate predicateWithFormat:@"lastModifiedBy = %@",_selfId];

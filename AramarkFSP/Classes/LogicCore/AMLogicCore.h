@@ -432,6 +432,15 @@
 //TODO: work order check out related interface
 
 /**
+ * update AMContact
+ *
+ * @param contact            Contact object need to update
+ *
+ * @return                   void
+ */
+- (void)updateContact:(AMContact *)contact completionBlock:(AMDBOperationCompletionBlock)completionBlock;
+
+/**
  * update AMInvoice
  *
  * @param invoice            Invoice object need to update

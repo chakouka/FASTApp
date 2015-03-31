@@ -379,6 +379,8 @@
     NSArray * posArray = [updateObj objectForKey:@"AMPoS"];
     NSArray * caseArray = [updateObj objectForKey:@"AMCase"];
     NSArray * userArray = [updateObj objectForKey:@"AMUser"];
+    NSArray * contactArray = [updateObj objectForKey:@"AMContact"];
+    
     NSMutableDictionary * dataDict = [NSMutableDictionary dictionary];
     NSMutableDictionary * objectListDict = [NSMutableDictionary dictionary];
     
@@ -722,6 +724,40 @@
             [posDictArray addObject:posDict];
         }
         [objectListDict setObject:posDictArray forKey:@"ServicePoint__c"];
+    }
+    
+    if (contactArray) {
+        NSMutableArray *contactDictArray = [NSMutableArray array];
+        for (AMContact *contact in contactArray) {
+            NSMutableDictionary *contactDict = [NSMutableDictionary dictionary];
+            
+            if (contact.contactID) {
+                [contactDict setObject:contact.contactID forKey:@"Id"];
+            }
+            
+            if (contact.phone) {
+                [contactDict setObject:contact.phone forKey:@"phone"];
+            }
+            
+            if (contact.firstName) {
+                [contactDict setObject:contact.name forKey:@"firstName"];
+            }
+
+            if (contact.lastName) {
+                [contactDict setObject:contact.name forKey:@"lastName"];
+            }
+
+            if (contact.email) {
+                [contactDict setObject:contact.email forKey:@"email"];
+            }
+
+            if (contact.title) {
+                [contactDict setObject:contact.title forKey:@"title"];
+            }
+            
+            [contactDictArray addObject:contactDict];
+        }
+        [objectListDict setObject:contactDictArray forKey:@"Contact"];//bkk 3/31/2015 TODO: fix me to the correct key
     }
 
     [dataDict setObject:objectListDict forKey:@"objectListMap"];

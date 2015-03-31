@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableViewMain;
 @property (weak, nonatomic) IBOutlet UIButton *btnSave;
 @property (strong, nonatomic) AMWorkOrder *selectedWorkOrder;
+@property (strong, nonatomic) AMContact *selectedContact;
 @property (assign, nonatomic) BOOL isPop;
 
 - (void)refreshWithInfo;

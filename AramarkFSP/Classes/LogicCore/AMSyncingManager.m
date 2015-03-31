@@ -170,6 +170,7 @@ typedef enum AM_Update_Step_t {
     NSArray * woList = [[AMDBManager sharedInstance] getModifiedWorkOrder];
     NSArray * assetList = [[AMDBManager sharedInstance] getModifiedAsset];
     NSArray * locationList = [[AMDBManager sharedInstance] getModifiedLocation];
+    NSArray * contactList = [[AMDBManager sharedInstance] getModifiedContacts];
     if ([locationList count]) {
         DLog(@"modified location: %@", locationList);
     }
@@ -205,6 +206,10 @@ typedef enum AM_Update_Step_t {
 //    }
     if (caseList && caseList.count) {
         [dict setObject:caseList forKey:@"AMCase"];
+    }
+    
+    if (contactList && contactList.count) {
+        [dict setObject:contactList forKey:@"AMContact"];
     }
     
     if ([[dict allKeys] count]) {

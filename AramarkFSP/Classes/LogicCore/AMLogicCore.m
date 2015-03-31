@@ -1144,6 +1144,23 @@
     return;
 }
 
+- (void)updateContact:(AMContact *)contact completionBlock:(AMDBOperationCompletionBlock)completionBlock {
+    NSMutableArray * contactList = [NSMutableArray array];
+    
+    if (contact) {
+        contact.lastModifiedBy = _selfUId;
+        [contactList addObject:contact];
+
+    }
+    
+    [[AMDBManager sharedInstance] saveAsyncContactList:contactList checkExist:YES completion:^(NSInteger type, NSError *error) {
+        if (completionBlock) {
+            completionBlock(type,error);
+        }
+    }];
+    return;
+}
+
 
 //TODO: work order check out related interface
 
