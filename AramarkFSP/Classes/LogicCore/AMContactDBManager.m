@@ -88,4 +88,12 @@
     
 }
 
+- (void)replaceFields:(NSString *)field withValue:(id)value toDBObject:(id)dbObject
+{
+    AMDBContact * dbContact = (AMDBContact *)dbObject;
+    if ([field isEqualToString:@"lastModifiedDate"]) {
+        dbContact.lastModifiedDate = value;
+    }
+
+}
 @end

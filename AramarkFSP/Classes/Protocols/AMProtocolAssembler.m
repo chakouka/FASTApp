@@ -740,11 +740,11 @@
             }
             
             if (contact.firstName) {
-                [contactDict setObject:contact.name forKey:@"firstName"];
+                [contactDict setObject:contact.firstName forKey:@"firstName"];
             }
 
             if (contact.lastName) {
-                [contactDict setObject:contact.name forKey:@"lastName"];
+                [contactDict setObject:contact.lastName forKey:@"lastName"];
             }
 
             if (contact.email) {

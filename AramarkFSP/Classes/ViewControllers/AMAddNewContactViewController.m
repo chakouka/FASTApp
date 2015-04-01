@@ -179,6 +179,7 @@ typedef NS_ENUM (NSInteger, PopViewType) {
         //edit mode
         self.selectedContact.firstName = [self.dicContactInfo objectForKey:KEY_OF_CONTACT_FIRST_NAME];
         self.selectedContact.lastName = [self.dicContactInfo objectForKey:KEY_OF_CONTACT_LAST_NAME];
+//        self.selectedContact.name = [NSString stringWithFormat:@"%@ %@", self.selectedContact.firstName != nil ? self.selectedContact.firstName : @"", self.selectedContact.lastName != nil ? self.selectedContact.lastName : @""];
         self.selectedContact.email = [self.dicContactInfo objectForKey:KEY_OF_CONTACT_EMAIL];
         self.selectedContact.role = [self.dicContactInfo objectForKey:KEY_OF_CONTACT_ROLE];
         self.selectedContact.title = [self.dicContactInfo objectForKey:KEY_OF_CONTACT_TITLE];

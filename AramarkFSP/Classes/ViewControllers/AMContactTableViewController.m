@@ -16,7 +16,6 @@
 static NSString *TableIdentifier_Cell = @"ContactTableCell";
 
 @interface AMContactTableViewController ()
-
 @end
 
 @implementation AMContactTableViewController
@@ -41,8 +40,6 @@ static NSString *TableIdentifier_Cell = @"ContactTableCell";
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    [self adjustHeightOfTableview];
 }
 - (void)viewDidLoad
 {
@@ -50,6 +47,11 @@ static NSString *TableIdentifier_Cell = @"ContactTableCell";
     [self.tableView registerNib:[UINib nibWithNibName:@"AMContactTableViewCell" bundle:nil] forCellReuseIdentifier:TableIdentifier_Cell];
     [self.tableView registerNib:[UINib nibWithNibName:@"AMAddContactTableViewCell" bundle:nil] forCellReuseIdentifier:@"AddContactTableViewCell"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    UILongPressGestureRecognizer * recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    recognizer.delegate = self;
+    
+    [self.tableView addGestureRecognizer:recognizer];
 //    [self.tableView registerClass:[AMContactSectionHeaderView class] forHeaderFooterViewReuseIdentifier:TableIdentifier_Cell];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -88,30 +90,6 @@ static NSString *TableIdentifier_Cell = @"ContactTableCell";
     }
 }
 
-- (void)adjustHeightOfTableview
-{
-    CGFloat height = self.tableView.contentSize.height;
-    CGFloat maxHeight = self.tableView.superview.frame.size.height - self.tableView.frame.origin.y + 40;
-    
-    // if the height of the content is greater than the maxHeight of
-    // total space on the screen, limit the height to the size of the
-    // superview.
-    
-    if (height > maxHeight)
-        height = maxHeight;
-    
-    // now set the frame accordingly
-    
-    [UIView animateWithDuration:0.25 animations:^{
-        CGRect frame = self.tableView.frame;
-        frame.size.height = height;
-        self.tableView.frame = frame;
-        
-        // if you have other controls that should be resized/moved to accommodate
-        // the resized tableview, do that here, too
-    }];
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -131,12 +109,12 @@ static NSString *TableIdentifier_Cell = @"ContactTableCell";
     NSLog(@"Section = %d", indexPath.section);
     NSLog(@"self.contactArr.count = %d", self.contactArr.count);
     if (!(indexPath.section >= [self.contactArr count])) {
-        UILongPressGestureRecognizer * recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-        recognizer.delegate = self;
+//        UILongPressGestureRecognizer * recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+//        recognizer.delegate = self;
         AMContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TableIdentifier_Cell forIndexPath:indexPath];
         cell.assignedContact = [self.contactArr objectAtIndex:indexPath.section];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [cell addGestureRecognizer:recognizer];
+//        [cell addGestureRecognizer:recognizer];
         
         return cell;
         
@@ -158,7 +136,7 @@ static NSString *TableIdentifier_Cell = @"ContactTableCell";
     if (self.contactArr && (section < [self.contactArr count])) {
         AMContactHeaderView *headerView = [AMUtilities loadViewByClassName:NSStringFromClass([AMContactHeaderView class]) fromXib:nil];
         AMContact *contact = [self.contactArr objectAtIndex:section];
-        headerView.contactNameLabel.text = contact.name;
+        headerView.contactNameLabel.text = [NSString stringWithFormat:@"%@ %@", contact.firstName, contact.lastName];
 
         return headerView;
     }
@@ -183,10 +161,9 @@ static NSString *TableIdentifier_Cell = @"ContactTableCell";
     if (recognizer.state == UIGestureRecognizerStateEnded) {
         
         CGPoint tapLocation = [recognizer locationInView:self.tableView];
-        NSIndexPath *tappedIndexPath1 = [self.tableView indexPathForSelectedRow];
-        __block int row1 = tappedIndexPath1.row;
         NSIndexPath *tappedIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
-        __block int row = tappedIndexPath.row;
+        AMContactTableViewCell *cell = (AMContactTableViewCell *)[self.tableView cellForRowAtIndexPath:tappedIndexPath];
+        
         if ((tappedIndexPath.section < [self.contactArr count])) {
             
             [UIAlertView showWithTitle:@"Modify/Delete" message:@"Modify or Delete Contact?" style: UIAlertViewStyleDefault cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"Modify", @"Delete"] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
@@ -202,7 +179,7 @@ static NSString *TableIdentifier_Cell = @"ContactTableCell";
 
                         ancVC.isPop = YES;
                         ancVC.selectedWorkOrder = self.selectedWorkOrder;
-                        ancVC.selectedContact = self.contactArr[row];
+                        ancVC.selectedContact = cell.assignedContact;
                         ancVC.modalPresentationStyle = UIModalPresentationPageSheet;
                         [self presentViewController:ancVC animated:YES completion:nil];
                         break;
@@ -220,7 +197,10 @@ static NSString *TableIdentifier_Cell = @"ContactTableCell";
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    self.tableView.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.tableView.superview.frame), CGRectGetWidth(self.tableView.superview.frame));
+//    CGFloat width = CGRectGetWidth(self.tableView.superview.frame);
+//    CGFloat height  = CGRectGetHeight(self.tableView.superview.frame);
+//    NSLog(@"width = %f height = %f",width, height );
+    self.tableView.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.tableView.superview.frame), CGRectGetHeight(self.tableView.superview.frame));
 }
 
 

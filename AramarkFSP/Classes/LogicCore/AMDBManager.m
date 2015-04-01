@@ -1930,6 +1930,7 @@
             NSArray * locationList = [modifiedObjects objectForKey:@"AMLocation"];
             NSArray * invoiceList = [modifiedObjects objectForKey:@"AMInvoice"];
             NSArray * posList = [modifiedObjects objectForKey:@"AMPoS"];
+            NSArray * updatedContactsList = [modifiedObjects objectForKey:@"AMContact"];
             NSArray * newContactsList = [modifiedObjects objectForKey:@"AMNewContact"];
             //            NSManagedObjectContext *tmpContext = [self managedObjectContext];
             
@@ -1987,6 +1988,16 @@
                 for (AMDBNewContact *objectToDelete in myObjectsToDelete) {
                     [tmpContext deleteObject:objectToDelete];
                 }
+            }
+            
+            if (updatedContactsList) {
+                NSMutableArray * contactIDs = [NSMutableArray array];
+                for (AMContact * contact in updatedContactsList) {
+                    [contactIDs addObject:contact.contactID];
+                }
+                NSPredicate * filter = [NSPredicate predicateWithFormat:@"contactID IN %@",contactIDs];
+                [[AMContactDBManager sharedInstance] memReplaceFields:@"lastModifiedDate" ByFilter:filter withValue:nil fromDB:tmpContext];
+
             }
             
             [tmpContext save:&error];
