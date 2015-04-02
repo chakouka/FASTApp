@@ -128,6 +128,7 @@
 - (NSArray *)getModifiedAsset;
 - (NSArray *)getModifiedInvoice;
 - (NSArray *)getModifiedCase;
+- (NSArray *)getDeletedContacts;
 - (NSArray *)getModifiedContacts;
 - (NSArray *)getModifiedLocation;
 - (NSArray *)getModifiedPoS;
@@ -202,6 +203,8 @@
                    completion:(AMDBOperationCompletionBlock)completionBlock;
 
 -(void)deleteDBObject:(id)object completion:(AMDBOperationCompletionBlock)completionBlock;
+
+- (void)deleteContactById:(NSString *)contactId completion:(AMDBOperationCompletionBlock)completionBlock;
 
 - (void)deleteInvoiceById:(NSString *)invoiceId completion:(AMDBOperationCompletionBlock)completionBlock;
 

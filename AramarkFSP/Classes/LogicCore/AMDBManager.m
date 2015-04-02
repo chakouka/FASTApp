@@ -945,6 +945,11 @@
     return [[AMInvoiceDBManager sharedInstance] getDataListByFilter:filter fromDB:__mainManagedObjectContext];
 }
 
+- (NSArray *)getDeletedContacts
+{
+    NSPredicate * filter = [NSPredicate predicateWithFormat:@"shouldDelete = %f",1];
+    return [[AMContactDBManager sharedInstance] getDataListByFilter:filter fromDB:__mainManagedObjectContext];
+}
 - (NSArray *)getModifiedContacts
 {
     NSPredicate * filter = [NSPredicate predicateWithFormat:@"lastModifiedBy = %@",_selfId];
@@ -2262,6 +2267,15 @@
 
 }
 
+- (void)deleteContactById:(NSString *)contactId completion:(AMDBOperationCompletionBlock)completionBlock
+{
+    NSArray *array;
+    NSPredicate *filter = [NSPredicate predicateWithFormat:@"contactID = %@ AND deleteStatus = 1", contactId];
+    array = [[AMDBManager sharedInstance] fetchDataArrayForEntity:@"AMDBContact"
+                                                     byPredicates:filter
+                                                  sortDescriptors:nil
+                                           inManagedObjectContext:__mainManagedObjectContext];
+}
 
 - (void)deleteInvoiceById:(NSString *)invoiceId completion:(AMDBOperationCompletionBlock)completionBlock
 {

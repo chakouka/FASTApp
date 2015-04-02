@@ -185,9 +185,16 @@ static NSString *TableIdentifier_Cell = @"ContactTableCell";
                         break;
                     case 2:
                         //delete
-                        break;
-                        
-                    default:
+                        [UIAlertView showWithTitle:@"Confirmation" message:@"Are you sure you want to delete?" cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                            if (buttonIndex > 0)
+                            {
+                                //mark contact as deleted
+                                [[AMLogicCore sharedInstance] updateContact:cell.assignedContact shouldDelete:YES completionBlock:^(NSInteger type, NSError *error) {
+                                   //todo
+                                   
+                                }];
+                            }
+                        }];
                         break;
                 }
             }];

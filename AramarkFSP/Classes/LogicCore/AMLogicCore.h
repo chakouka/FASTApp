@@ -438,7 +438,7 @@
  *
  * @return                   void
  */
-- (void)updateContact:(AMContact *)contact completionBlock:(AMDBOperationCompletionBlock)completionBlock;
+- (void)updateContact:(AMContact *)contact shouldDelete:(BOOL)shouldDelete completionBlock:(AMDBOperationCompletionBlock)completionBlock;
 
 /**
  * update AMInvoice
@@ -599,6 +599,8 @@
 -(void)saveManagedObject:(NSManagedObject *)object completion:(AMDBOperationCompletionBlock)completionBlock;
 
 - (AMContact *)getContactInfoByID:(NSString *)contactID;
+
+- (void)deleteContactById:(NSString *)contactId completion:(AMDBOperationCompletionBlock)completionBlock;
 
 - (void)deleteInvoiceById:(NSString *)invoiceId completion:(AMDBOperationCompletionBlock)completionBlock;
 

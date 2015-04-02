@@ -23,5 +23,5 @@
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, strong) NSString * lastModifiedBy;
 @property (nonatomic, strong) NSDate * lastModifiedDate;
-
+@property (nonatomic, readwrite) BOOL *shouldDelete;
 @end

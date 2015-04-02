@@ -20,4 +20,5 @@
 @synthesize contactID;
 @synthesize lastModifiedBy;
 @synthesize lastModifiedDate;
+@synthesize shouldDelete;
 @end

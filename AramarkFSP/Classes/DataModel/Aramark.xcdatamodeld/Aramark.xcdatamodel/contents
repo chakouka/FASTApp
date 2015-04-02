@@ -116,6 +116,7 @@
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="posID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="role" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shouldDelete" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="AMDBCustomerPrice" representedClassName="AMDBCustomerPrice" syncable="YES">
@@ -454,7 +455,7 @@
         <element name="AMDBAttachment" positionX="-569" positionY="54" width="128" height="210"/>
         <element name="AMDBBest" positionX="-360" positionY="144" width="128" height="103"/>
         <element name="AMDBCase" positionX="-423" positionY="-9" width="128" height="403"/>
-        <element name="AMDBContact" positionX="178" positionY="266" width="128" height="255"/>
+        <element name="AMDBContact" positionX="178" positionY="266" width="128" height="270"/>
         <element name="AMDBCustomerPrice" positionX="-342" positionY="162" width="128" height="133"/>
         <element name="AMDBEvent" positionX="-378" positionY="126" width="128" height="150"/>
         <element name="AMDBFilter" positionX="169" positionY="198" width="128" height="105"/>

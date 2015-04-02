@@ -171,6 +171,8 @@ typedef enum AM_Update_Step_t {
     NSArray * assetList = [[AMDBManager sharedInstance] getModifiedAsset];
     NSArray * locationList = [[AMDBManager sharedInstance] getModifiedLocation];
     NSArray * contactList = [[AMDBManager sharedInstance] getModifiedContacts];
+    NSArray * deletedContactList = [[AMDBManager sharedInstance] getDeletedContacts];
+    
     if ([locationList count]) {
         DLog(@"modified location: %@", locationList);
     }
@@ -211,6 +213,8 @@ typedef enum AM_Update_Step_t {
     if (contactList && contactList.count) {
         [dict setObject:contactList forKey:@"AMContact"];
     }
+    
+    //TODO : something to push the deleted ones over to server too.
     
     if ([[dict allKeys] count]) {
         [[AMProtocolManager sharedInstance] updateObjectWithData:dict completion:^(NSInteger type, NSError * error, id userData, id responseData){

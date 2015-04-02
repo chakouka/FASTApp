@@ -179,17 +179,16 @@ typedef NS_ENUM (NSInteger, PopViewType) {
         //edit mode
         self.selectedContact.firstName = [self.dicContactInfo objectForKey:KEY_OF_CONTACT_FIRST_NAME];
         self.selectedContact.lastName = [self.dicContactInfo objectForKey:KEY_OF_CONTACT_LAST_NAME];
-//        self.selectedContact.name = [NSString stringWithFormat:@"%@ %@", self.selectedContact.firstName != nil ? self.selectedContact.firstName : @"", self.selectedContact.lastName != nil ? self.selectedContact.lastName : @""];
         self.selectedContact.email = [self.dicContactInfo objectForKey:KEY_OF_CONTACT_EMAIL];
         self.selectedContact.role = [self.dicContactInfo objectForKey:KEY_OF_CONTACT_ROLE];
         self.selectedContact.title = [self.dicContactInfo objectForKey:KEY_OF_CONTACT_TITLE];
         self.selectedContact.phone = [self.dicContactInfo objectForKey:KEY_OF_CONTACT_PHONE];
         self.selectedContact.lastModifiedDate = [NSDate date];
-        [[AMLogicCore sharedInstance] updateContact:self.selectedContact completionBlock:^(NSInteger type, NSError *error) {
-            if (!error) {
-                [self dismissViewControllerAnimated:YES completion:nil];
-            }
+        [[AMLogicCore sharedInstance] updateContact:self.selectedContact shouldDelete:YES completionBlock:^(NSInteger type, NSError *error) {
+            //todo: SYNC
+            
         }];
+         
     } else {
         //save new mode
         [[AMLogicCore sharedInstance] createNewContactInDBWithSetupBlock:^(AMDBNewContact *newContact) {

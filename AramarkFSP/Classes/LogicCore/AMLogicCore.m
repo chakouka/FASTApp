@@ -1144,13 +1144,13 @@
     return;
 }
 
-- (void)updateContact:(AMContact *)contact completionBlock:(AMDBOperationCompletionBlock)completionBlock {
+- (void)updateContact:(AMContact *)contact shouldDelete:(BOOL)shouldDelete completionBlock:(AMDBOperationCompletionBlock)completionBlock {
     NSMutableArray * contactList = [NSMutableArray array];
     
     if (contact) {
         contact.lastModifiedBy = _selfUId;
+        contact.shouldDelete = &(shouldDelete);
         [contactList addObject:contact];
-
     }
     
     [[AMDBManager sharedInstance] saveAsyncContactList:contactList checkExist:YES completion:^(NSInteger type, NSError *error) {
@@ -1535,6 +1535,11 @@
 - (AMContact *)getContactInfoByID:(NSString *)contactID
 {
     return [[AMDBManager sharedInstance] getContactInfoByID:contactID];
+}
+
+- (void)deleteContactById:(NSString *)contactId completion:(AMDBOperationCompletionBlock)completionBlock
+{
+    
 }
 
 - (void)deleteInvoiceById:(NSString *)invoiceId completion:(AMDBOperationCompletionBlock)completionBlock
