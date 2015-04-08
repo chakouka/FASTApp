@@ -947,7 +947,7 @@
 
 - (NSArray *)getDeletedContacts
 {
-    NSPredicate * filter = [NSPredicate predicateWithFormat:@"shouldDelete = %f",1];
+    NSPredicate * filter = [NSPredicate predicateWithFormat:@"shouldDelete == 1"];
     return [[AMContactDBManager sharedInstance] getDataListByFilter:filter fromDB:__mainManagedObjectContext];
 }
 - (NSArray *)getModifiedContacts
@@ -1923,7 +1923,40 @@
 }
 
 
+- (void)updateLocalModifiedContactObjectsToDone:(NSDictionary *)modifiedObjects completion:(AMDBOperationCompletionBlock)completionBlock
+{
+    [__privateManagedObjectContext performBlock:^{
+        NSError * error = nil;
+        if (modifiedObjects && [modifiedObjects allKeys].count) {
+            NSArray * deletedContactsList = [modifiedObjects objectForKey:@"AMContact"];
+            
+            NSManagedObjectContext *tmpContext = __privateManagedObjectContext;
 
+            
+            
+            if (deletedContactsList) {
+                NSMutableArray * contactIDs = [NSMutableArray array];
+                for (AMContact * contact in deletedContactsList) {
+                    if (contact.shouldDelete) {
+                        [contactIDs addObject:contact.contactID];
+                    }
+                }
+                NSPredicate * filter = [NSPredicate predicateWithFormat:@"contactID IN %@",contactIDs];
+
+                
+                filter = [NSPredicate predicateWithFormat:@"contactID IN %@ AND shouldDelete ==1", contactIDs];
+                [[AMContactDBManager sharedInstance] memClearDataByFilter:filter fromDB:tmpContext];
+            }
+            
+            [tmpContext save:&error];
+            DLog(@"updateLocalModifiedObjectsToDone error:%@",error);
+            
+            
+        }
+        completionBlock(AM_DBOPR_UPDATEMODIFIEDTODONE,error);
+    }];
+
+}
 - (void)updateLocalModifiedObjectsToDone:(NSDictionary *)modifiedObjects completion:(AMDBOperationCompletionBlock)completionBlock
 {
     //    dispatch_async(_dbQeue, ^{
@@ -1997,12 +2030,19 @@
             
             if (updatedContactsList) {
                 NSMutableArray * contactIDs = [NSMutableArray array];
+                NSMutableArray *deletedContactIDs = [NSMutableArray array];
                 for (AMContact * contact in updatedContactsList) {
                     [contactIDs addObject:contact.contactID];
+                    if (contact.shouldDelete) {
+                        [deletedContactIDs addObject:contact.contactID];
+                    }
                 }
                 NSPredicate * filter = [NSPredicate predicateWithFormat:@"contactID IN %@",contactIDs];
                 [[AMContactDBManager sharedInstance] memReplaceFields:@"lastModifiedDate" ByFilter:filter withValue:nil fromDB:tmpContext];
 
+//                filter = [NSPredicate predicateWithFormat:@"contactID IN %@ AND shouldDelete ==1", deletedContactIDs];
+//                
+//                [[AMContactDBManager sharedInstance] memClearDataByFilter:filter fromDB:tmpContext];
             }
             
             [tmpContext save:&error];

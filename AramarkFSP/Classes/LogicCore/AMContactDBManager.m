@@ -39,6 +39,7 @@
     dbContact.title = contact.title;
     dbContact.lastModifiedBy = contact.lastModifiedBy;
     dbContact.lastModifiedDate = contact.lastModifiedDate;
+    dbContact.shouldDelete = contact.shouldDelete;
 }
 
 - (id)transferDBObjectToObject:(id)dbObject
@@ -58,7 +59,7 @@
     contact.title = dbContact.title;
     contact.lastModifiedBy = dbContact.lastModifiedBy;
     contact.lastModifiedDate = dbContact.lastModifiedDate;
-    
+    contact.shouldDelete = dbContact.shouldDelete;
     return contact;
 }
 

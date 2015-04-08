@@ -10,7 +10,7 @@
 #import "AMVerificationStatusTableViewCell.h"
 
 @interface AMPopoverSelectTableViewController ()
-
+@property (nonatomic, retain)NSMutableArray *cellSelectedArray;
 @end
 
 @implementation AMPopoverSelectTableViewController
@@ -19,6 +19,9 @@
 {
     [super viewDidLoad];
     self.view.frame = CGRectMake(0, 0, 200, [self.arrInfos count] * 44);
+    
+    self.cellSelectedArray = [NSMutableArray array];
+
     [self.mainTableView reloadData];
 }
 
@@ -34,7 +37,13 @@
 {
 //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [self.arrInfos count];
+    if (self.isMultiselect) {
+        return [self.arrInfos count];//need done button...
+    } else if(self.isAddNew) {
+        return [self.arrInfos count];//need add new button
+    }else {
+        return [self.arrInfos count] - 1 ; //don't show done button
+    }
 }
 
 
@@ -48,10 +57,23 @@
         cell = (AMVerificationStatusTableViewCell *)[nib objectAtIndex:0];
     }
     
+    if (self.isMultiselect) {
+        cell.accessoryView.hidden = NO;
+        NSDictionary *dict = [self.arrInfos objectAtIndex:indexPath.row];
+        cell.tintColor = [UIColor blackColor];
+        
+        if ([self.cellSelectedArray containsObject:[dict objectForKey:@"VALUE"]]) {\
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        } else {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+    }
+    
     cell.labelText.text = [dicInfo objectForKey:kAMPOPOVER_DICTIONARY_KEY_INFO];
     
     return cell;
 }
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -96,12 +118,34 @@
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(verificationStatusTableViewController:didSelected:)]) {
-        [self.delegate verificationStatusTableViewController:self didSelected:[self.arrInfos objectAtIndex:indexPath.row]];
-    }
-    
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectedIndex:contentArray:)]) {
-        [self.delegate didSelectedIndex:indexPath.row contentArray:self.arrInfos];
+    if (self.isMultiselect) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(verificationStatusTableViewController:didSelectMulti:)]) {
+            
+            if (indexPath.row < self.arrInfos.count-1) {
+
+                NSDictionary *dict = [self.arrInfos objectAtIndex:indexPath.row];
+                
+                if ([self.cellSelectedArray containsObject:[dict objectForKey:@"VALUE"]]) {
+                    //remove it...
+                    [self.cellSelectedArray removeObject:[dict objectForKey:@"VALUE"]];
+                } else {
+                    //add item to array of selected items
+                    [self.cellSelectedArray addObject:[dict objectForKey:@"VALUE"]];
+                }
+                [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+            } else {
+                [self.delegate verificationStatusTableViewController:self didSelectMulti:[[NSArray arrayWithArray:self.cellSelectedArray] componentsJoinedByString:@","]];
+            }
+        }
+        
+    } else {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(verificationStatusTableViewController:didSelected:)]) {
+            [self.delegate verificationStatusTableViewController:self didSelected:[self.arrInfos objectAtIndex:indexPath.row]];
+        }
+        
+        if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectedIndex:contentArray:)]) {
+            [self.delegate didSelectedIndex:indexPath.row contentArray:self.arrInfos];
+        }
     }
 }
 

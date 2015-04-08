@@ -109,12 +109,9 @@ static NSString *TableIdentifier_Cell = @"ContactTableCell";
     NSLog(@"Section = %d", indexPath.section);
     NSLog(@"self.contactArr.count = %d", self.contactArr.count);
     if (!(indexPath.section >= [self.contactArr count])) {
-//        UILongPressGestureRecognizer * recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-//        recognizer.delegate = self;
         AMContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TableIdentifier_Cell forIndexPath:indexPath];
         cell.assignedContact = [self.contactArr objectAtIndex:indexPath.section];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        [cell addGestureRecognizer:recognizer];
         
         return cell;
         

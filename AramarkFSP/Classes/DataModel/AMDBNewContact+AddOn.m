@@ -35,7 +35,7 @@
     [dict setValue:self.firstName forKeyPath:@"FirstName"];
     [dict setValue:self.lastName forKeyPath:@"LastName"];
     [dict setValue:self.posID forKeyPath:@"PosID"];
-    
+    [dict setValue:self.accountID forKey:@"AccountID"];
     return dict;
 }
 

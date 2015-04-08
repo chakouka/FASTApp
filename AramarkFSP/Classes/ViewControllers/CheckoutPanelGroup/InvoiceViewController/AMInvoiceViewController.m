@@ -17,6 +17,7 @@
 #import "AMInvoiceCaseTableViewSection.h"
 #import "AMInvoiceWorkorderTitleView.h"
 #import "NSDate+DateTools.h"
+#import "AMAddNewContactViewController.h"
 
 #define KEY_OF_TITLE    @"TITLE"
 #define KEY_OF_DATE     @"DATA"
@@ -37,7 +38,8 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 <
     UITextFieldDelegate,
     AMPopoverSelectTableViewControllerDelegate,
-    UIPopoverControllerDelegate
+    UIPopoverControllerDelegate,
+    AMAddNewContactViewControllerDelegate
 >
 {
 	AMWorkOrder *workOrder;
@@ -200,6 +202,11 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 		[dicInfo setObject:aContact forKey:kAMPOPOVER_DICTIONARY_KEY_DATA];
 		[arrContacts addObject:dicInfo];
 	}
+    //bkk - 4/8/2015 - adding ADD NEW to Contact List
+    NSMutableDictionary *dicInfo = [NSMutableDictionary dictionary];
+    [dicInfo setObject:@"ADD NEW" forKey:kAMPOPOVER_DICTIONARY_KEY_INFO];
+    [dicInfo setObject:@"ADD NEW" forKey:kAMPOPOVER_DICTIONARY_KEY_DATA];
+    [arrContacts addObject:dicInfo];
 
 	aCase = [[AMLogicCore sharedInstance] getCaseInfoByID:self.workOrder.caseID];
 
@@ -371,6 +378,7 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 	popView.delegate = self;
     popView.tag = PopViewType_Select_Contact;
 	popView.arrInfos = arrContacts;
+    popView.isAddNew = YES;
 	aPopoverVC = [[UIPopoverController alloc] initWithContentViewController:popView];
 	[aPopoverVC setPopoverContentSize:CGSizeMake(CGRectGetWidth(popView.view.frame), CGRectGetHeight(popView.view.frame))];
 	aPopoverVC.delegate = self;
@@ -889,6 +897,19 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
 	[self.view endEditing:YES];
 	return YES;
 }
+#pragma mark - Delegate for dismissAMAddNewContactViewController
+- (void)dismissAMAddNewContactViewController:(AMAddNewContactViewController *)vc dictContactInfo:(NSMutableDictionary *)dictContactInfo {
+    self.textFieldFirstName.text = [dictContactInfo objectForKey:@"KEY_OF_CONTACT_FIRST_NAME"] != nil ? [dictContactInfo objectForKey:@"KEY_OF_CONTACT_FIRST_NAME"] : @"";
+    self.textFieldLastName.text = [dictContactInfo objectForKey:@"KEY_OF_CONTACT_LAST_NAME"] != nil ? [dictContactInfo objectForKey:@"KEY_OF_CONTACT_LAST_NAME"] : @"";
+    
+    NSString *wholeName = [NSString stringWithFormat:@"%@ %@", self.textFieldFirstName.text, self.textFieldLastName.text];
+    self.labelContact.text = wholeName;
+    
+    self.textFieldEmail.text = [dictContactInfo objectForKey:@"KEY_OF_CONTACT_EMAIL"] != nil ? [dictContactInfo objectForKey:@"KEY_OF_CONTACT_EMAIL"] : @"";
+    self.textFieldContactInfo.text = [dictContactInfo objectForKey:@"KEY_OF_CONTACT_PHONE"] != nil ? [dictContactInfo objectForKey:@"KEY_OF_CONTACT_PHONE"] : @"";
+    self.textFieldTitle.text = [dictContactInfo objectForKey:@"KEY_OF_CONTACT_TITLE"] != nil ? [dictContactInfo objectForKey:@"KEY_OF_CONTACT_TITLE"] : @"";
+
+}
 
 #pragma mark -
 - (void)verificationStatusTableViewController:(AMPopoverSelectTableViewController *)aVerificationStatusTableViewController didSelected:(NSMutableDictionary *)aInfo {
@@ -913,28 +934,42 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
     }
     else if(aVerificationStatusTableViewController.tag == PopViewType_Select_Contact){
         DLog(@" didSelected : %@", aInfo);
-        AMContact *aContact = [aInfo objectForKey:kAMPOPOVER_DICTIONARY_KEY_DATA];
-        aCase.signContactID = aContact.contactID;
-        self.labelContact.text = aContact.name;
-        self.textFieldFirstName.text = aContact.firstName;
-        self.textFieldLastName.text = aContact.lastName;
         
-//        if ([aContact.email length] != 0)
-//        {
-            self.textFieldEmail.text = aContact.email;
-//        }
-//        else if([aContact.phone length] != 0)
-//        {
-             self.textFieldContactInfo.text = aContact.phone;
-//        }
-//        else
-//        {
-//            self.textFieldContactInfo.text = @"";
-//        }
-        
-        self.textFieldTitle.text = aContact.title;
+        if ([[aInfo objectForKey:kAMPOPOVER_DICTIONARY_KEY_INFO] isEqualToString:@"ADD NEW"]) {
+            //user is adding new contact.
+            [aPopoverVC dismissPopoverAnimated:YES];
+            
+            AMAddNewContactViewController *ancVC = [[AMAddNewContactViewController alloc] initWithNibName:@"AMAddNewContactViewController" bundle:nil];
+            ancVC.isPop = YES;
+            ancVC.selectedWorkOrder = self.workOrder;
+            ancVC.delegate = self;
+            ancVC.modalPresentationStyle = UIModalPresentationPageSheet;
+            [self presentViewController:ancVC animated:YES completion:nil];
+            
+        } else {
+            AMContact *aContact = [aInfo objectForKey:kAMPOPOVER_DICTIONARY_KEY_DATA];
+            aCase.signContactID = aContact.contactID;
+            self.labelContact.text = aContact.name;
+            self.textFieldFirstName.text = aContact.firstName;
+            self.textFieldLastName.text = aContact.lastName;
 
-        [aPopoverVC dismissPopoverAnimated:YES];
+    //        if ([aContact.email length] != 0)
+    //        {
+                self.textFieldEmail.text = aContact.email;
+    //        }
+    //        else if([aContact.phone length] != 0)
+    //        {
+                 self.textFieldContactInfo.text = aContact.phone;
+    //        }
+    //        else
+    //        {
+    //            self.textFieldContactInfo.text = @"";
+    //        }
+            
+            self.textFieldTitle.text = aContact.title;
+            [aPopoverVC dismissPopoverAnimated:YES];
+        }
+        
     }
 }
 

@@ -15,6 +15,9 @@
 - (NSDictionary *)createObjectWithData:(NSDictionary *)createObj;
 
 - (NSDictionary *)updateObjectWithData:(NSDictionary *)createObj;
+
+- (NSDictionary *)deleteObjectWithData:(NSDictionary *)deleteObj;
+
 - (NSDictionary *)uploadSignatureWithData:(NSArray *)signatureObj;
 - (NSDictionary *)setPoSAsset:(NSArray *)assetList;
 

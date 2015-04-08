@@ -370,6 +370,56 @@
     return dataDict;
 }
 
+- (NSDictionary *)deleteObjectWithData:(NSDictionary *)deleteObj
+{
+    NSArray * deletedContactArray = [deleteObj objectForKey:@"AMContact"];
+    
+    NSMutableDictionary * dataDict = [NSMutableDictionary dictionary];
+    NSMutableDictionary * objectListDict = [NSMutableDictionary dictionary];
+    
+    if (deletedContactArray) {
+        NSMutableArray *contactDictArray = [NSMutableArray array];
+        for (AMContact *contact in deletedContactArray) {
+            NSMutableDictionary *contactDict = [NSMutableDictionary dictionary];
+            
+            if (contact.contactID) {
+                [contactDict setObject:contact.contactID forKey:@"Id"];
+            }
+            
+            if (contact.phone) {
+                [contactDict setObject:contact.phone forKey:@"phone"];
+            }
+            
+            if (contact.firstName) {
+                [contactDict setObject:contact.firstName forKey:@"firstName"];
+            }
+            
+            if (contact.lastName) {
+                [contactDict setObject:contact.lastName forKey:@"lastName"];
+            }
+            
+            if (contact.email) {
+                [contactDict setObject:contact.email forKey:@"email"];
+            }
+            
+            if (contact.title) {
+                [contactDict setObject:contact.title forKey:@"title"];
+            }
+            
+            if (contact.posID) {
+                [contactDict setObject:contact.posID forKey:@"posId"];
+            }
+            
+            contact.shouldDelete == YES ? [contactDict setObject:@(1) forKey:@"shouldDelete"] : [contactDict setObject:@(0) forKey:@"shouldDelete"];
+            [contactDictArray addObject:contactDict];
+        }
+        [objectListDict setObject:contactDictArray forKey:@"Contact"];
+    }
+    
+    [dataDict setObject:objectListDict forKey:@"objectListMap"];
+    return dataDict;
+}
+
 - (NSDictionary *)updateObjectWithData:(NSDictionary *)updateObj
 {
     NSArray * woArray = [updateObj objectForKey:@"AMWorkOrder"];
@@ -757,7 +807,7 @@
             
             [contactDictArray addObject:contactDict];
         }
-        [objectListDict setObject:contactDictArray forKey:@"Contact"];//bkk 3/31/2015 TODO: fix me to the correct key
+        [objectListDict setObject:contactDictArray forKey:@"Contact"];
     }
 
     [dataDict setObject:objectListDict forKey:@"objectListMap"];

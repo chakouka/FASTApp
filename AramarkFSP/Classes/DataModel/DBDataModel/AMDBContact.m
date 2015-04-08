@@ -23,4 +23,5 @@
 @dynamic title;
 @dynamic lastModifiedBy;
 @dynamic lastModifiedDate;
+@dynamic shouldDelete;
 @end

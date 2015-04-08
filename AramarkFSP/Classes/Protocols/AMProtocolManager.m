@@ -892,6 +892,43 @@
 
 }
 
+- (void)deleteObjectWithData:(NSDictionary *)deleteObj completion:(AMSFRestCompletionBlock)completionBlock
+{
+    AMSFRequest * request = [[AMSFRequest alloc] init];
+    
+    request.endpoint = @"/services/apexrest";
+    request.type = AM_REQUEST_DELETECONTACTS;
+    request.completionBlock = completionBlock;
+    SFRestMethod method = SFRestMethodPATCH;
+    request.method = method;
+    request.path = @"/Contact";
+    request.userData = deleteObj;
+    
+    NSDictionary * bodyDict = [[AMProtocolAssembler sharedInstance] deleteObjectWithData:deleteObj];
+    
+    request.queryParams = bodyDict;
+    
+    [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
+        DLog(@"deleteObjectWithData error info %@",[error localizedDescription]);
+        request.completionBlock(request.type,error,request.userData,nil);
+    } completeBlock:^(id jsonResponse){
+        DLog(@"deleteObjectWithData response");
+        
+        NSDictionary * parsedDict = nil;
+        NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
+        
+        parsedDict = [[AMProtocolParser sharedInstance] parseUpdateObjectList:dict];
+        NSError * retError = nil;
+        if (![[parsedDict objectForKey:NWRESPRESULT] intValue]) {
+            if ([parsedDict objectForKey:NWERRORMSG]) {
+                retError = [[NSError alloc] initWithDomain:@"SFDC error" code:0 userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:@"%@",[parsedDict objectForKey:NWERRORMSG]]}];
+            }
+        }
+        
+        request.completionBlock(request.type,retError, request.userData,parsedDict);
+    }];
+}
+
 - (void)updateObjectWithData:(NSDictionary *)updateObj completion:(AMSFRestCompletionBlock)completionBlock
 {
     AMSFRequest * request = [[AMSFRequest alloc] init];

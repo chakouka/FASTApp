@@ -20,6 +20,8 @@
 @property (strong, nonatomic) NSIndexPath *aIndexPath;
 @property (nonatomic, strong)NSMutableArray *arrInfos;
 @property (assign, nonatomic) NSInteger tag;
+@property (nonatomic, readwrite) BOOL isMultiselect;
+@property (nonatomic, readwrite) BOOL isAddNew;
 @property (weak, nonatomic) id<AMPopoverSelectTableViewControllerDelegate> delegate;
 
 @end
@@ -31,4 +33,5 @@
 - (void)verificationStatusTableViewController:(AMPopoverSelectTableViewController *)aVerificationStatusTableViewController didSelected:(NSMutableDictionary *)aInfo;
 - (void)didSelectedIndex:(NSInteger)aIndex contentArray:(NSArray *)aArray;
 
+- (void)verificationStatusTableViewController:(AMPopoverSelectTableViewController *)aVerificationStatusTableViewController didSelectMulti:(NSString *)selectionString;
 @end

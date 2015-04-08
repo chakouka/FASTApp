@@ -48,6 +48,8 @@
 
 - (void)createObjectsWithData:(NSDictionary *)createObj oprationType:(NSInteger)oprType completion:(AMSFRestCompletionBlock)completionBlock;
 
+- (void)deleteObjectWithData:(NSDictionary *)deleteObj completion:(AMSFRestCompletionBlock)completionBlock;
+
 - (void)updateObjectWithData:(NSDictionary *)createObj completion:(AMSFRestCompletionBlock)completionBlock;
 
 - (void)syncDataWithTimeStamp:(NSDate *)timeStamp completion:(AMSFRestCompletionBlock)completionBlock;

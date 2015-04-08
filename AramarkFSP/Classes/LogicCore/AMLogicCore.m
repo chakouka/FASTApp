@@ -1149,7 +1149,11 @@
     
     if (contact) {
         contact.lastModifiedBy = _selfUId;
-        contact.shouldDelete = &(shouldDelete);
+        
+        if (shouldDelete) {
+            contact.shouldDelete = shouldDelete;
+        }
+        
         [contactList addObject:contact];
     }
     

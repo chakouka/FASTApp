@@ -29,13 +29,11 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 };
 @interface AMAddNewContactViewController ()<UITextFieldDelegate, UITextViewDelegate,AMPopoverSelectTableViewControllerDelegate,UIPopoverControllerDelegate>
 {
-    NSMutableDictionary *dicContactInfo;
     UIPopoverController *aPopoverVC;
     NSMutableArray *arrContacts;
 }
 
 @property (nonatomic, strong) UIPopoverController *aPopoverVC;
-@property (nonatomic,strong) NSMutableDictionary *dicContactInfo;
 @property (nonatomic, strong) NSMutableArray *arrContacts;
 //@property (nonatomic, strong) AMContact *selectContact;
 @end
@@ -128,6 +126,7 @@ typedef NS_ENUM (NSInteger, PopViewType) {
     
     AMPopoverSelectTableViewController *popView = [[AMPopoverSelectTableViewController alloc] initWithNibName:@"AMPopoverSelectTableViewController" bundle:nil];
     popView.delegate = self;
+    popView.isMultiselect = YES;
     popView.tag = PopViewType_NewCase_Contact;
     
     NSMutableArray *arrInfos = [NSMutableArray array];
@@ -138,7 +137,7 @@ typedef NS_ENUM (NSInteger, PopViewType) {
     [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Delivery Contact") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Delivery Contact"}];
     [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Order Contact") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Order Contact"}];
     [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Service Contact") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Service Contact"}];
-    
+    [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Done") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Done"}];
     popView.arrInfos = arrInfos;
     aPopoverVC = [[UIPopoverController alloc] initWithContentViewController:popView];
     [aPopoverVC setPopoverContentSize:CGSizeMake(CGRectGetWidth(popView.view.frame), CGRectGetHeight(popView.view.frame))];
@@ -184,9 +183,9 @@ typedef NS_ENUM (NSInteger, PopViewType) {
         self.selectedContact.title = [self.dicContactInfo objectForKey:KEY_OF_CONTACT_TITLE];
         self.selectedContact.phone = [self.dicContactInfo objectForKey:KEY_OF_CONTACT_PHONE];
         self.selectedContact.lastModifiedDate = [NSDate date];
-        [[AMLogicCore sharedInstance] updateContact:self.selectedContact shouldDelete:YES completionBlock:^(NSInteger type, NSError *error) {
+        [[AMLogicCore sharedInstance] updateContact:self.selectedContact shouldDelete:NO completionBlock:^(NSInteger type, NSError *error) {
             //todo: SYNC
-            
+            [self dismissViewControllerAnimated:YES completion:nil];
         }];
          
     } else {
@@ -206,7 +205,9 @@ typedef NS_ENUM (NSInteger, PopViewType) {
             newContact.role = [dicContactInfo objectForKey:KEY_OF_CONTACT_ROLE] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_ROLE];
             newContact.title = [dicContactInfo objectForKey:KEY_OF_CONTACT_TITLE] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_TITLE];
 
-            
+            if (self.delegate && [self.delegate respondsToSelector:@selector(dismissAMAddNewContactViewController:dictContactInfo:)]) {
+                [self.delegate dismissAMAddNewContactViewController:self dictContactInfo:dicContactInfo];
+            }
             [self dismissViewControllerAnimated:YES completion:nil];
         } completion:^(NSInteger type, NSError *error) {
             //todo Error stuff
@@ -361,10 +362,24 @@ typedef NS_ENUM (NSInteger, PopViewType) {
     }
 }
 
-#pragma mark -
+#pragma mark - POPOver Delegate
 
+- (void)verificationStatusTableViewController:(AMPopoverSelectTableViewController *)aVerificationStatusTableViewController didSelectMulti:(NSString *)selectionString
+{
+    if (aVerificationStatusTableViewController.tag == PopViewType_NewCase_Contact) {
+        NSString *strInfo = selectionString;// [aInfo objectForKey:kAMPOPOVER_DICTIONARY_KEY_INFO];
+        //selectContact = [aInfo objectForKey:kAMPOPOVER_DICTIONARY_KEY_DATA];
+        
+        [self.dicContactInfo setObject:strInfo forKey:KEY_OF_CONTACT_ROLE];
+        
+        NSLog(@"didSelected : %@", selectionString);
+        [aPopoverVC dismissPopoverAnimated:YES];
+        
+        [self.tableViewMain reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+    }
+}
 - (void)verificationStatusTableViewController:(AMPopoverSelectTableViewController *)aVerificationStatusTableViewController didSelected:(NSMutableDictionary *)aInfo {
-if (aVerificationStatusTableViewController.tag == PopViewType_NewCase_Contact) {
+    if (aVerificationStatusTableViewController.tag == PopViewType_NewCase_Contact) {
         NSString *strInfo = [aInfo objectForKey:kAMPOPOVER_DICTIONARY_KEY_INFO];
         //selectContact = [aInfo objectForKey:kAMPOPOVER_DICTIONARY_KEY_DATA];
     

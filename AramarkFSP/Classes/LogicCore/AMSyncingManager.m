@@ -29,6 +29,7 @@
  5. startCheckingFromSFDC (syncDataWithTimeStamp)
  6. actionsAfterUpdateFromeSalesforce (updateLocalModifiedData, uploadAttachments, uploadNewLeads, deleteAttachments)
  7. updateLocalModifiedData (updateObjectWithData)
+ 8. updateDeletedContacts (updateDeletedObjectsWithData)
  8. updateReport
  
  Please Note: Suppose run step 5 at the end of the process if need upload local modified data firstly then merge SF data to local
@@ -171,7 +172,6 @@ typedef enum AM_Update_Step_t {
     NSArray * assetList = [[AMDBManager sharedInstance] getModifiedAsset];
     NSArray * locationList = [[AMDBManager sharedInstance] getModifiedLocation];
     NSArray * contactList = [[AMDBManager sharedInstance] getModifiedContacts];
-    NSArray * deletedContactList = [[AMDBManager sharedInstance] getDeletedContacts];
     
     if ([locationList count]) {
         DLog(@"modified location: %@", locationList);
@@ -222,6 +222,25 @@ typedef enum AM_Update_Step_t {
         }];
     }
     else {
+        [self protocolHandlerWithType:AM_REQUEST_UPDATEOBJECTS retErro:nil userData:nil responseData:[self fakeSuccessRetDict]];
+    }
+}
+
+- (void)updateDeletedObjectsWithData
+{
+    NSMutableDictionary * dict = [NSMutableDictionary dictionary];
+    NSArray * deletedContactList = [[AMDBManager sharedInstance] getDeletedContacts];
+    
+    if (deletedContactList && deletedContactList.count) {
+        [dict setObject:deletedContactList forKey:@"AMContact"];
+    }
+    
+    if ([[dict allKeys] count]) {
+        [[AMProtocolManager sharedInstance] deleteObjectWithData:dict completion:^(NSInteger type, NSError *error, id userData, id responseData) {
+            [self protocolHandlerWithType:type retErro:error userData:userData responseData:responseData];
+        }];
+
+    } else {
         [self protocolHandlerWithType:AM_REQUEST_UPDATEOBJECTS retErro:nil userData:nil responseData:[self fakeSuccessRetDict]];
     }
 }
@@ -450,6 +469,7 @@ typedef enum AM_Update_Step_t {
 -(void)actionsAfterUpdateFromeSalesforce
 {
     [self updateLocalModifiedData];
+    [self updateDeletedObjectsWithData];//bkk TODO to call service to delete stuff from server
     [self uploadAttachments];
     [self uploadNewLeads];
     [self deleteAttachments];
@@ -584,6 +604,14 @@ typedef enum AM_Update_Step_t {
                 
             }
             [self startCheckingFromSFDC];*/
+        }
+            break;
+            
+        case AM_REQUEST_DELETECONTACTS:
+        {
+            [[AMDBManager sharedInstance] updateLocalModifiedContactObjectsToDone:userDict completion:^(NSInteger type, NSError * error){
+                [self handleUpdateDBProcess:AM_Update_Step_UpdateLocal];
+            }];
         }
             break;
         default:

@@ -132,6 +132,8 @@
 - (NSArray *)getModifiedContacts;
 - (NSArray *)getModifiedLocation;
 - (NSArray *)getModifiedPoS;
+- (void)updateLocalModifiedContactObjectsToDone:(NSDictionary *)modifiedObjects completion:(AMDBOperationCompletionBlock)completionBlock;
+
 - (void)updateLocalModifiedObjectsToDone:(NSDictionary *)modifiedObjects completion:(AMDBOperationCompletionBlock)completionBlock;
 
 - (void)deleteLocalObjects:(NSDictionary *)delteIDs completion:(AMDBOperationCompletionBlock)completionBlock;

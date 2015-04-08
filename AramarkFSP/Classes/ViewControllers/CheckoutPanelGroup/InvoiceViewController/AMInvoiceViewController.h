@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @protocol AMInvoiceViewControllerDelegate;
-
+@class AMAddNewContactViewController;
 @interface AMInvoiceViewController : UIViewController
 <
 UITableViewDelegate,
@@ -58,5 +57,11 @@ UITableViewDataSource
 @protocol AMInvoiceViewControllerDelegate <NSObject>
 
 - (void)didClickInvoiceViewControllerNextBtn;
+
+@end
+
+@protocol AMAddNewContactViewControllerDelegate <NSObject>
+
+-(void)dismissAMAddNewContactViewController:(AMAddNewContactViewController *)vc dictContactInfo:(NSMutableDictionary *)dictContactInfo;
 
 @end
