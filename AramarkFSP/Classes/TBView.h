@@ -48,5 +48,9 @@ NSArray *filterNames;
 @property(nonatomic, weak) IBOutlet UIStepper *qtyStepper;
 @property (nonatomic, strong) UITextField *pickerViewTextField;
 @property (nonatomic, strong) NSArray *filterNames;
+@property (nonatomic, strong) IBOutlet UILabel *unlistedFilterLabel;
+@property (nonatomic, strong) IBOutlet UILabel *filterQtyLabel;
+@property (nonatomic, strong) IBOutlet UIButton *addNewButton;
+@property (nonatomic, strong) IBOutlet UIButton *confirmAndCreateButton;
 
 @end

@@ -2,6 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Confirm and create case</key>
+	<string>Confirmer et créer une requête</string>
+	<key>Filter Qty</key>
+	<string>Quantité de filtre</string>
+	<key>Add new</key>
+	<string>Ajouter un nouveau</string>
+	<key>Enter unlisted filter type below</key>
+	<string>Entrez un type de filter non inscrit ci-dessous</string>
+	<key>Select a filter</key>
+	<string>Sélectionnez un filtre</string>
 	<key>Welcome</key>
 	<string>Bienvenue</string>
 	<key>SEARCH SPECIFIC ACCOUNT</key>

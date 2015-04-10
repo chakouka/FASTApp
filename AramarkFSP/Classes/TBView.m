@@ -44,6 +44,10 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 @synthesize numFilters = _numFilters;
 @synthesize pickerViewTextField;
 @synthesize filterNames;
+@synthesize unlistedFilterLabel;
+@synthesize filterQtyLabel;
+@synthesize addNewButton;
+@synthesize confirmAndCreateButton;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -57,7 +61,7 @@ typedef NS_ENUM (NSInteger, PopViewType) {
                                                object:nil];
     loadView()
     
-    filterNames = @[@"Select a Filter", @"AquaMark Brew Maker Filter 9633-56", @"AquaMark Filter 1", @"AquaMark Filter 3", @"AquaMark Filter 2", @"Innowave UV Lamp Assy 8W 10-2350", @"Everpure 4C Filter EV-9601", @"Innowave UV Lamp Assy 4W 12-2350", @"Omnipure Inline Filter SCL6", @"Everpure OCS2 Filter C2BGW", @"Everpure OCS Filter QL2"];
+    filterNames = @[MyLocal(@"Select a filter"), @"AquaMark Brew Maker Filter 9633-56", @"AquaMark Filter 1", @"AquaMark Filter 3", @"AquaMark Filter 2", @"Innowave UV Lamp Assy 8W 10-2350", @"Everpure 4C Filter EV-9601", @"Innowave UV Lamp Assy 4W 12-2350", @"Omnipure Inline Filter SCL6", @"Everpure OCS2 Filter C2BGW", @"Everpure OCS Filter QL2"];
     pickerViewTextField = [[UITextField alloc] initWithFrame:CGRectZero];
     [self addSubview:self.pickerViewTextField];
     self.otherFiltersText.delegate = self;
@@ -68,6 +72,11 @@ typedef NS_ENUM (NSInteger, PopViewType) {
     picker.delegate = self;
     picker.dataSource = self;
     self.pickerViewTextField.inputView = picker;
+    self.unlistedFilterLabel.text = MyLocal(@"Enter unlisted filter type below");
+    self.filterQtyLabel.text = MyLocal(@"Filter Qty");
+    self.addNewButton.titleLabel.text = MyLocal(@"Add new");
+    self.confirmAndCreateButton.titleLabel.text = MyLocal(@"Confirm and create case");
+    
 return self;
 }
 
@@ -122,7 +131,7 @@ return self;
         return;
     }
     
-    if ([self.filterSelectButton.titleLabel.text isEqualToString:@"Select a Filter"] && [self.otherFiltersText.text isEqualToString: @""]) {
+    if ([self.filterSelectButton.titleLabel.text isEqualToString:MyLocal(@"Select a filter")] && [self.otherFiltersText.text isEqualToString: @""]) {
         errorMsg = @"Must select a filter";
         [AMUtilities showAlertWithInfo:errorMsg];
         return;
@@ -145,8 +154,8 @@ return self;
 }
 
 -(IBAction)textViewDidChange:(UITextView *)textView {
-    [self.filterSelectButton setTitle:@"Select a Filter" forState:UIControlStateNormal];
-    self.filterSelectButton.titleLabel.text = @"Select a Filter";
+    [self.filterSelectButton setTitle:MyLocal(@"Select a filter") forState:UIControlStateNormal];
+    self.filterSelectButton.titleLabel.text =MyLocal(@"Select a filter");
     [self.qtyLabel setText:@"0"];
     self.qtyStepper.value = 0;
 }

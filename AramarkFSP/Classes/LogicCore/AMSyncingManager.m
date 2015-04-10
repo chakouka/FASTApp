@@ -610,7 +610,10 @@ typedef enum AM_Update_Step_t {
         case AM_REQUEST_DELETECONTACTS:
         {
             [[AMDBManager sharedInstance] updateLocalModifiedContactObjectsToDone:userDict completion:^(NSInteger type, NSError * error){
-                [self handleUpdateDBProcess:AM_Update_Step_UpdateLocal];
+                if (self.updateComplteHandler) {
+                    [self sendRefreshNotification];
+                }
+//                [self handleUpdateDBProcess:AM_Update_Step_UpdateLocal];
             }];
         }
             break;
