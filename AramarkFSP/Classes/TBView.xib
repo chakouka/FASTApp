@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1792</int>
-		<string key="IBDocument.SystemVersion">14C1510</string>
-		<string key="IBDocument.InterfaceBuilderVersion">6751</string>
-		<string key="IBDocument.AppKitVersion">1344.72</string>
-		<string key="IBDocument.HIToolboxVersion">757.30</string>
+		<string key="IBDocument.SystemVersion">14D131</string>
+		<string key="IBDocument.InterfaceBuilderVersion">7531</string>
+		<string key="IBDocument.AppKitVersion">1347.57</string>
+		<string key="IBDocument.HIToolboxVersion">758.70</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">6736</string>
+			<string key="NS.object.0">7520</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -90,7 +90,7 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 						</object>
-						<string key="IBUINormalTitle">Select a Filter</string>
+						<string key="IBUINormalTitle">Select a filter</string>
 						<object class="NSColor" key="IBUINormalTitleShadowColor" id="878033711">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
@@ -382,6 +382,14 @@
 					<int key="connectionID">32</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">orLabel</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="391047377"/>
+					</object>
+					<int key="connectionID">33</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">selectFilter:</string>
 						<reference key="source" ref="571084016"/>
@@ -545,7 +553,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">32</int>
+			<int key="maxID">33</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

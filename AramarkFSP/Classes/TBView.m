@@ -48,7 +48,8 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 @synthesize filterQtyLabel;
 @synthesize addNewButton;
 @synthesize confirmAndCreateButton;
-
+@synthesize orLabel;
+@synthesize filterSelectButton;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -74,8 +75,10 @@ typedef NS_ENUM (NSInteger, PopViewType) {
     self.pickerViewTextField.inputView = picker;
     self.unlistedFilterLabel.text = MyLocal(@"Enter unlisted filter type below");
     self.filterQtyLabel.text = MyLocal(@"Filter Qty");
-    self.addNewButton.titleLabel.text = MyLocal(@"Add new");
-    self.confirmAndCreateButton.titleLabel.text = MyLocal(@"Confirm and create case");
+    [self.addNewButton setTitle: MyLocal(@"Add new") forState:UIControlStateNormal];
+    [self.confirmAndCreateButton setTitle: MyLocal(@"Confirm and create case") forState:UIControlStateNormal];
+    self.orLabel.text = MyLocal(@"OR");
+    [self.filterSelectButton setTitle: MyLocal(@"Select a filter") forState:UIControlStateNormal];
     
 return self;
 }
@@ -114,7 +117,7 @@ return self;
         NSDictionary *notification = @{ @"POST_FILTERS_AND_QUANTITIES" : self.numFilters, @"POST_FILTERS_AND_QUANTITIES_SENDER" : sender};
         [[NSNotificationCenter defaultCenter] postNotificationName:@"POST_FILTERS_AND_QUANTITIES" object:self userInfo:notification];
     } else {
-        NSString *errorMsg = @"No filters selected.";
+        NSString *errorMsg = MyLocal(@"No filters selected");
         [AMUtilities showAlertWithInfo:errorMsg];
     }
 }
@@ -126,13 +129,13 @@ return self;
 - (IBAction)addNewFilter:(id)sender {
     NSString *errorMsg;
     if ([self.qtyLabel.text isEqualToString:@"0"]) {
-        errorMsg = @"Qty is required";
+        errorMsg = MyLocal(@"Qty is required");
         [AMUtilities showAlertWithInfo:errorMsg];
         return;
     }
     
     if ([self.filterSelectButton.titleLabel.text isEqualToString:MyLocal(@"Select a filter")] && [self.otherFiltersText.text isEqualToString: @""]) {
-        errorMsg = @"Must select a filter";
+        errorMsg = MyLocal(@"Must select a filter");
         [AMUtilities showAlertWithInfo:errorMsg];
         return;
     }
@@ -155,7 +158,7 @@ return self;
 
 -(IBAction)textViewDidChange:(UITextView *)textView {
     [self.filterSelectButton setTitle:MyLocal(@"Select a filter") forState:UIControlStateNormal];
-    self.filterSelectButton.titleLabel.text =MyLocal(@"Select a filter");
+    self.filterSelectButton.titleLabel.text = MyLocal(@"Select a filter");
     [self.qtyLabel setText:@"0"];
     self.qtyStepper.value = 0;
 }

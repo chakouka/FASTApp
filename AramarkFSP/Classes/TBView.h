@@ -52,5 +52,6 @@ NSArray *filterNames;
 @property (nonatomic, strong) IBOutlet UILabel *filterQtyLabel;
 @property (nonatomic, strong) IBOutlet UIButton *addNewButton;
 @property (nonatomic, strong) IBOutlet UIButton *confirmAndCreateButton;
+@property (nonatomic, strong) IBOutlet UILabel *orLabel;
 
 @end
