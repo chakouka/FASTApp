@@ -62,7 +62,7 @@
         NSDictionary *dict = [self.arrInfos objectAtIndex:indexPath.row];
         cell.tintColor = [UIColor blackColor];
         
-        if ([self.cellSelectedArray containsObject:[dict objectForKey:@"VALUE"]]) {\
+        if ([self.cellSelectedArray containsObject:[dict objectForKey:@"VALUE"]]) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         } else {
             cell.accessoryType = UITableViewCellAccessoryNone;

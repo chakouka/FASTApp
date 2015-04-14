@@ -847,6 +847,7 @@ AMVerificationAddSectionViewDelegate
 				[arrLocationInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO: TEXT_OF_ADD_NEW_LOCATION }];
                 
 				popView.arrInfos = arrLocationInfos;
+                popView.isAddNew = YES;
 				aPopoverVC = [[UIPopoverController alloc] initWithContentViewController:popView];
 				[aPopoverVC setPopoverContentSize:CGSizeMake(CGRectGetWidth(popView.view.frame), CGRectGetHeight(popView.view.frame))];
 				aPopoverVC.delegate = self;

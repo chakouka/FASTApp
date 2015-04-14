@@ -60,8 +60,8 @@ UITableViewDataSource
 
 @end
 
-@protocol AMAddNewContactViewControllerDelegate <NSObject>
+//@protocol AMAddNewContactViewControllerDelegate <NSObject>
 
--(void)dismissAMAddNewContactViewController:(AMAddNewContactViewController *)vc dictContactInfo:(NSMutableDictionary *)dictContactInfo;
+//-(void)dismissAMAddNewContactViewController:(AMAddNewContactViewController *)vc dictContactInfo:(NSMutableDictionary *)dictContactInfo;
 
-@end
+//@end

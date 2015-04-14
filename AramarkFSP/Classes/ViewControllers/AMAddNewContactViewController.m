@@ -199,8 +199,8 @@ typedef NS_ENUM (NSInteger, PopViewType) {
             newContact.posID = self.selectedWorkOrder.posID;
             newContact.phone = [dicContactInfo objectForKey:KEY_OF_CONTACT_PHONE] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_PHONE];
             newContact.name = [NSString stringWithFormat:@"%@ %@", [dicContactInfo objectForKey:KEY_OF_CONTACT_FIRST_NAME] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_FIRST_NAME], [dicContactInfo objectForKey:KEY_OF_CONTACT_LAST_NAME] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_LAST_NAME]];
-            newContact.LastName = [dicContactInfo objectForKey:KEY_OF_CONTACT_LAST_NAME] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_LAST_NAME];
-            newContact.FirstName =[dicContactInfo objectForKey:KEY_OF_CONTACT_FIRST_NAME] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_FIRST_NAME];
+            newContact.lastName = [dicContactInfo objectForKey:KEY_OF_CONTACT_LAST_NAME] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_LAST_NAME];
+            newContact.firstName =[dicContactInfo objectForKey:KEY_OF_CONTACT_FIRST_NAME] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_FIRST_NAME];
             newContact.email = [dicContactInfo objectForKey:KEY_OF_CONTACT_EMAIL] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_EMAIL];
             newContact.role = [dicContactInfo objectForKey:KEY_OF_CONTACT_ROLE] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_ROLE];
             newContact.title = [dicContactInfo objectForKey:KEY_OF_CONTACT_TITLE] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_TITLE];
