@@ -46,7 +46,7 @@
 #define TEXT_OF_FILTER_EXCHANGE         @"Filter Exchange"  //TODO::Enhancement140929
 #define TEXT_OF_REFUSED_FILTER_EXCHANGE @"Refused Filter Change"//TODO::Enhancement140929
 #define TEXT_OF_REPLACED_FILTER @"Replaced Filter"//bkk 1/30/2015
-
+#define TEXT_OF_REPAIR @"Repair"
 #define TEXT_OF_INSTALL @"Install"
 
 typedef NS_ENUM (NSInteger, TextInputType) {
@@ -408,6 +408,14 @@ AMWorkOrderViewControllerDelegate
     
     if ([[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] length] == 0) {
         [AMUtilities showAlertWithInfo:MyLocal(@"Please Input Repair Code")];
+        return;
+    }
+    
+    
+    AMWorkOrderNotesTableViewCell *cell = (AMWorkOrderNotesTableViewCell *)[(UITableView *)self.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+    
+    if ([self.workOrder.woType isEqualToString:TEXT_OF_REPAIR] && (cell.textViewWorkOrderNotes.text.length == 0 || [cell.textViewWorkOrderNotes.text isEqualToString:@"Write note"])) {
+        [AMUtilities showAlertWithInfo:MyLocal(@"Please Input Work Order Notes")];
         return;
     }
     
