@@ -124,25 +124,28 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 - (IBAction)clickSelectRoles:(UIButton *)sender {
     [self.tableViewMain endEditing:YES];
     
-    AMPopoverSelectTableViewController *popView = [[AMPopoverSelectTableViewController alloc] initWithNibName:@"AMPopoverSelectTableViewController" bundle:nil];
-    popView.delegate = self;
-    popView.isMultiselect = YES;
-    popView.tag = PopViewType_NewCase_Contact;
-    
-    NSMutableArray *arrInfos = [NSMutableArray array];
-    
-    [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Alternate Contact") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Alternate Contact"}];
-    [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Decision Maker") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Decision Maker"}];
-    [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"AP Contact") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : @"AP Contact"}];
-    [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Delivery Contact") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Delivery Contact"}];
-    [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Order Contact") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Order Contact"}];
-    [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Service Contact") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Service Contact"}];
-    [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Done") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Done"}];
-    popView.arrInfos = arrInfos;
-    aPopoverVC = [[UIPopoverController alloc] initWithContentViewController:popView];
-    [aPopoverVC setPopoverContentSize:CGSizeMake(CGRectGetWidth(popView.view.frame), CGRectGetHeight(popView.view.frame))];
-    aPopoverVC.delegate = self;
-    [aPopoverVC presentPopoverFromRect:sender.frame inView:sender.superview permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    if (!self.selectedContact) {
+        //Role is only selectable for new contacts.
+        AMPopoverSelectTableViewController *popView = [[AMPopoverSelectTableViewController alloc] initWithNibName:@"AMPopoverSelectTableViewController" bundle:nil];
+        popView.delegate = self;
+        popView.isMultiselect = YES;
+        popView.tag = PopViewType_NewCase_Contact;
+        
+        NSMutableArray *arrInfos = [NSMutableArray array];
+        
+        [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Alternate Contact") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Alternate Contact"}];
+        [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Decision Maker") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Decision Maker"}];
+        [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"AP Contact") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : @"AP Contact"}];
+        [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Delivery Contact") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Delivery Contact"}];
+        [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Order Contact") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Order Contact"}];
+        [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Service Contact") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Service Contact"}];
+        [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Done") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Done"}];
+        popView.arrInfos = arrInfos;
+        aPopoverVC = [[UIPopoverController alloc] initWithContentViewController:popView];
+        [aPopoverVC setPopoverContentSize:CGSizeMake(CGRectGetWidth(popView.view.frame), CGRectGetHeight(popView.view.frame))];
+        aPopoverVC.delegate = self;
+        [aPopoverVC presentPopoverFromRect:sender.frame inView:sender.superview permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    }
 }
 
 - (IBAction)clickSaveBtn:(id)sender {
@@ -205,13 +208,13 @@ typedef NS_ENUM (NSInteger, PopViewType) {
             newContact.role = [dicContactInfo objectForKey:KEY_OF_CONTACT_ROLE] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_ROLE];
             newContact.title = [dicContactInfo objectForKey:KEY_OF_CONTACT_TITLE] == nil ? @"" : [dicContactInfo objectForKey:KEY_OF_CONTACT_TITLE];
 
+
+        } completion:^(NSInteger type, NSError *error) {
+            //todo Error stuff
             if (self.delegate && [self.delegate respondsToSelector:@selector(dismissAMAddNewContactViewController:dictContactInfo:)]) {
                 [self.delegate dismissAMAddNewContactViewController:self dictContactInfo:dicContactInfo];
             }
             [self dismissViewControllerAnimated:YES completion:nil];
-        } completion:^(NSInteger type, NSError *error) {
-            //todo Error stuff
-            
         }];
     }
 }
@@ -291,7 +294,48 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 }
 
 #pragma mark -
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSInteger iType = textField.tag % 1000;
 
+    //Always upper case the changed string to ensure it passes server side validation
+    NSString * proposedNewString = [[[textField.text stringByReplacingCharactersInRange:range withString:string] stringByReplacingOccurrencesOfString:TEXT_OF_NULL withString:@""] capitalizedString];
+    
+    switch (iType) {
+        case AddNewContactTextInputType_FirstName:
+        {            
+            [self.dicContactInfo setObject:[self strChange:[proposedNewString capitalizedString]] forKey:KEY_OF_CONTACT_FIRST_NAME];
+        }
+            break;
+        case AddNewContactTextInputType_Email:
+        {
+            [self.dicContactInfo setObject:[self strChange:proposedNewString] forKey:KEY_OF_CONTACT_EMAIL];
+        }
+            break;
+        case AddNewContactTextInputType_LastName:
+        {
+            [self.dicContactInfo setObject:[self strChange:[proposedNewString capitalizedString]] forKey:KEY_OF_CONTACT_LAST_NAME];
+        }
+            break;
+        case AddNewContactTextInputType_Title:
+        {
+            [self.dicContactInfo setObject:[self strChange:[proposedNewString capitalizedString]] forKey:KEY_OF_CONTACT_TITLE];
+        }
+            break;
+        case AddNewContactTextInputType_Role:
+        {
+            [self.dicContactInfo setObject:[self strChange:[proposedNewString capitalizedString]] forKey:KEY_OF_CONTACT_ROLE];
+        }
+            break;
+            
+        case AddNewContactTextInputType_Phone:
+        {
+            [self.dicContactInfo setObject:[self strChange: proposedNewString] forKey:KEY_OF_CONTACT_PHONE];
+        }
+            break;
+    }
+
+    return YES;
+}
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     return YES;
 }

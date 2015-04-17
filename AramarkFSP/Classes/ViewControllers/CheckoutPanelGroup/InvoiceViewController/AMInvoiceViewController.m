@@ -69,6 +69,8 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 @property (nonatomic, strong) NSArray *arrInvoiceInfoGroups;
 @property (nonatomic, strong) AMInvoiceCodeTableViewSection *invoiceSectionView;
 @property (nonatomic, strong) AMInvoiceCaseTableViewSection *invoiceCaseSectionView;
+@property (nonatomic, strong) UIActivityIndicatorView *activityView;
+
 @end
 
 @implementation AMInvoiceViewController
@@ -87,6 +89,8 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 @synthesize invoiceCaseSectionView;
 @synthesize tempInvoiceList;
 @synthesize txtSelectedFilters;
+@synthesize activityView;
+@synthesize btnSubmit;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -136,6 +140,12 @@ typedef NS_ENUM (NSInteger, PopViewType) {
     [AMUtilities refreshFontInView:invoiceCaseSectionView];
     self.labelTTotalPrice.font = [AMUtilities applicationFontWithOption:kFontOptionRegular andSize:25.0];
     self.labelPrice.font = [AMUtilities applicationFontWithOption:kFontOptionRegular andSize:32.0];
+    
+    self.activityView = [[UIActivityIndicatorView alloc]
+                         initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    
+    self.activityView.center=self.view.center;
+    [self.view addSubview:self.activityView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -382,6 +392,7 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 	aPopoverVC = [[UIPopoverController alloc] initWithContentViewController:popView];
 	[aPopoverVC setPopoverContentSize:CGSizeMake(CGRectGetWidth(popView.view.frame), CGRectGetHeight(popView.view.frame))];
 	aPopoverVC.delegate = self;
+    
 	[aPopoverVC presentPopoverFromRect:sender.frame inView:sender.superview.superview permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
 }
 
@@ -899,6 +910,10 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
 }
 #pragma mark - Delegate for dismissAMAddNewContactViewController
 - (void)dismissAMAddNewContactViewController:(AMAddNewContactViewController *)vc dictContactInfo:(NSMutableDictionary *)dictContactInfo {
+    [self.activityView stopAnimating];
+    [self.btnSubmit setEnabled:YES];
+    
+    NSLog(@"dictContactInfo = %@", dictContactInfo);
     self.textFieldFirstName.text = [dictContactInfo objectForKey:@"KEY_OF_CONTACT_FIRST_NAME"] != nil ? [dictContactInfo objectForKey:@"KEY_OF_CONTACT_FIRST_NAME"] : @"";
     self.textFieldLastName.text = [dictContactInfo objectForKey:@"KEY_OF_CONTACT_LAST_NAME"] != nil ? [dictContactInfo objectForKey:@"KEY_OF_CONTACT_LAST_NAME"] : @"";
     
@@ -908,7 +923,6 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
     self.textFieldEmail.text = [dictContactInfo objectForKey:@"KEY_OF_CONTACT_EMAIL"] != nil ? [dictContactInfo objectForKey:@"KEY_OF_CONTACT_EMAIL"] : @"";
     self.textFieldContactInfo.text = [dictContactInfo objectForKey:@"KEY_OF_CONTACT_PHONE"] != nil ? [dictContactInfo objectForKey:@"KEY_OF_CONTACT_PHONE"] : @"";
     self.textFieldTitle.text = [dictContactInfo objectForKey:@"KEY_OF_CONTACT_TITLE"] != nil ? [dictContactInfo objectForKey:@"KEY_OF_CONTACT_TITLE"] : @"";
-
 }
 
 #pragma mark -
@@ -944,9 +958,14 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
             ancVC.selectedWorkOrder = self.workOrder;
             ancVC.delegate = self;
             ancVC.modalPresentationStyle = UIModalPresentationPageSheet;
+
+            [self.activityView startAnimating];
+            [self.btnSubmit setEnabled:NO];
+
             [self presentViewController:ancVC animated:YES completion:nil];
             
         } else {
+            
             AMContact *aContact = [aInfo objectForKey:kAMPOPOVER_DICTIONARY_KEY_DATA];
             aCase.signContactID = aContact.contactID;
             self.labelContact.text = aContact.name;

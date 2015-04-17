@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AMInvoiceViewController">
             <connections>
                 <outlet property="btnNext" destination="ypb-L2-L7y" id="FbT-11-7UQ"/>
+                <outlet property="btnSubmit" destination="ypb-L2-L7y" id="Zli-Ph-lNL"/>
                 <outlet property="imageSelected" destination="44o-zm-ZNC" id="rTc-hI-R5a"/>
                 <outlet property="imageViewSignature" destination="dXe-kA-e0m" id="5xH-fv-kpe"/>
                 <outlet property="labelContact" destination="4Of-7n-wbu" id="3Rq-pf-VbU"/>
