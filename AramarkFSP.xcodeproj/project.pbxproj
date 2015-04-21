@@ -161,6 +161,7 @@
 		62AD8AC319617FB500E5FBAB /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62AD8AC219617FB500E5FBAB /* CoreText.framework */; };
 		62EC4C56197F9FBE0025343E /* AMSummaryFutureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62EC4C54197F9FBE0025343E /* AMSummaryFutureCell.m */; };
 		62EC4C57197F9FBE0025343E /* AMSummaryFutureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62EC4C55197F9FBE0025343E /* AMSummaryFutureCell.xib */; };
+		7C4043D11AE56C390079FC8E /* AMNewContactTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4043D01AE56C390079FC8E /* AMNewContactTest.m */; };
 		7C55F26D1A83CAC60081A4B0 /* KLCPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C55F26C1A83CAC60081A4B0 /* KLCPopup.m */; };
 		7C55F2861A8954DA0081A4B0 /* down.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C55F2821A8954DA0081A4B0 /* down.png */; };
 		7C55F2871A8954DA0081A4B0 /* up.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C55F2831A8954DA0081A4B0 /* up.png */; };
@@ -974,6 +975,7 @@
 		62EC4C53197F9FBE0025343E /* AMSummaryFutureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMSummaryFutureCell.h; path = SummaryViewController/AMSummaryFutureCell.h; sourceTree = "<group>"; };
 		62EC4C54197F9FBE0025343E /* AMSummaryFutureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMSummaryFutureCell.m; path = SummaryViewController/AMSummaryFutureCell.m; sourceTree = "<group>"; };
 		62EC4C55197F9FBE0025343E /* AMSummaryFutureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AMSummaryFutureCell.xib; path = SummaryViewController/AMSummaryFutureCell.xib; sourceTree = "<group>"; };
+		7C4043D01AE56C390079FC8E /* AMNewContactTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMNewContactTest.m; sourceTree = "<group>"; };
 		7C55F26B1A83CAC60081A4B0 /* KLCPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLCPopup.h; sourceTree = "<group>"; };
 		7C55F26C1A83CAC60081A4B0 /* KLCPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLCPopup.m; sourceTree = "<group>"; };
 		7C55F2821A8954DA0081A4B0 /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down.png; sourceTree = "<group>"; };
@@ -1923,6 +1925,7 @@
 		16C289EC195A7193004FF31F /* AramarkFSP Tests */ = {
 			isa = PBXGroup;
 			children = (
+				7C4043D01AE56C390079FC8E /* AMNewContactTest.m */,
 				16C289F2195A7193004FF31F /* AMNewCaseTest.m */,
 				168A2139195C0CA3003E66AF /* AMProtocolManagerTest.m */,
 				1668504F1963A9F200551DC0 /* AMProtocolParserTest.m */,
@@ -4666,6 +4669,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				168A213A195C0CA3003E66AF /* AMProtocolManagerTest.m in Sources */,
+				7C4043D11AE56C390079FC8E /* AMNewContactTest.m in Sources */,
 				166850591963F26200551DC0 /* AMLogicCoreTest.m in Sources */,
 				166850501963A9F200551DC0 /* AMProtocolParserTest.m in Sources */,
 				166850551963BD7400551DC0 /* AMDBManagerTest.m in Sources */,

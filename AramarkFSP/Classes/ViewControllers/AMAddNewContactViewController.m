@@ -193,6 +193,11 @@ typedef NS_ENUM (NSInteger, PopViewType) {
          
     } else {
         //save new mode
+        
+        if (self.delegate && [self.delegate respondsToSelector:@selector(dismissAMAddNewContactViewController:dictContactInfo:)]) {
+            [self.delegate dismissAMAddNewContactViewController:self dictContactInfo:dicContactInfo];
+        }
+        
         [[AMLogicCore sharedInstance] createNewContactInDBWithSetupBlock:^(AMDBNewContact *newContact) {
             newContact.createdDate = [NSDate date];
             newContact.dataStatus = [NSNumber numberWithInt:EntityStatusNew];
@@ -211,9 +216,6 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 
         } completion:^(NSInteger type, NSError *error) {
             //todo Error stuff
-            if (self.delegate && [self.delegate respondsToSelector:@selector(dismissAMAddNewContactViewController:dictContactInfo:)]) {
-                [self.delegate dismissAMAddNewContactViewController:self dictContactInfo:dicContactInfo];
-            }
             [self dismissViewControllerAnimated:YES completion:nil];
         }];
     }
