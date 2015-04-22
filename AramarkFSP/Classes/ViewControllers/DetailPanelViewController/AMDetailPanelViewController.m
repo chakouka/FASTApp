@@ -310,6 +310,7 @@
             [self.viewMain setScrollEnabled:NO];
             [self.viewMain setContentSize:_contactsVC.view.frame.size];
             _contactsVC.contactArr = self.selectedWorkOrder.woPoS.contactList;
+            _contactsVC.selectedWorkOrder = self.selectedWorkOrder;
             [self.viewMain bringSubviewToFront:_contactsVC.view];
         }
             break;
