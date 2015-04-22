@@ -1,4 +1,4 @@
-    //
+//
 //  AMAddNewContactViewController.m
 //  AramarkFSP
 //
@@ -155,6 +155,9 @@ typedef NS_ENUM (NSInteger, PopViewType) {
     if ([[self.dicContactInfo objectForKey:KEY_OF_CONTACT_FIRST_NAME] length] == 0) {
         [AMUtilities showAlertWithInfo:MyLocal(@"Please Input First Name")];
         return;
+    } else if (![[self.dicContactInfo objectForKey:KEY_OF_CONTACT_FIRST_NAME] isEqualToString:[[self.dicContactInfo objectForKey:KEY_OF_CONTACT_FIRST_NAME] capitalizedString]]) {
+        [AMUtilities showAlertWithInfo:MyLocal(@"First Name must be capitalized")];
+        return;
     }
     
     if ([[self.dicContactInfo objectForKey:KEY_OF_CONTACT_EMAIL] length] != 0 && ![AMUtilities isValidEmailValueTyped:[self.dicContactInfo objectForKey:KEY_OF_CONTACT_EMAIL]]) {
@@ -165,6 +168,10 @@ typedef NS_ENUM (NSInteger, PopViewType) {
     if ([[self.dicContactInfo objectForKey:KEY_OF_CONTACT_LAST_NAME] length] == 0) {
         [AMUtilities showAlertWithInfo:MyLocal(@"Please Input Last Name")];
         return;
+    } else if (![[self.dicContactInfo objectForKey:KEY_OF_CONTACT_LAST_NAME] isEqualToString:[[self.dicContactInfo objectForKey:KEY_OF_CONTACT_LAST_NAME] capitalizedString]]) {
+        [AMUtilities showAlertWithInfo:MyLocal(@"Last Name must be capitalized")];
+        return;
+        
     }
     
     if ([[self.dicContactInfo objectForKey:KEY_OF_CONTACT_TITLE] length] == 0) {

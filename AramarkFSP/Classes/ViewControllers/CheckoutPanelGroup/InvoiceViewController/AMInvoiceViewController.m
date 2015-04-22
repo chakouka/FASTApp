@@ -18,6 +18,7 @@
 #import "AMInvoiceWorkorderTitleView.h"
 #import "NSDate+DateTools.h"
 #import "AMAddNewContactViewController.h"
+#import "AMSyncingManager.h"
 
 #define KEY_OF_TITLE    @"TITLE"
 #define KEY_OF_DATE     @"DATA"
@@ -440,6 +441,13 @@ typedef NS_ENUM (NSInteger, PopViewType) {
     
 	DLog(@"%@ | %@ | %@ | %@ | %@", self.labelContact.text, self.textFieldFirstName.text, self.textFieldLastName.text, self.textFieldTitle.text, self.textFieldContactInfo.text);
 
+    //reset the sync timer to now
+    [AMSyncingManager sharedInstance].timeStamp = [NSDate date];
+    
+    [[AMSyncingManager sharedInstance] activeAutoSyncing:^(NSInteger type, NSError *error) {
+        [self syncingCompletion:error];
+    }];
+    
     if (!aCase) {
         aCase = [[AMLogicCore sharedInstance] getCaseInfoByID:self.workOrder.caseID];
     }
@@ -914,15 +922,15 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
     [self.btnSubmit setEnabled:YES];
     
     NSLog(@"dictContactInfo = %@", dictContactInfo);
-    self.textFieldFirstName.text = [dictContactInfo objectForKey:@"KEY_OF_CONTACT_FIRST_NAME"] != nil ? [dictContactInfo objectForKey:@"KEY_OF_CONTACT_FIRST_NAME"] : @"";
-    self.textFieldLastName.text = [dictContactInfo objectForKey:@"KEY_OF_CONTACT_LAST_NAME"] != nil ? [dictContactInfo objectForKey:@"KEY_OF_CONTACT_LAST_NAME"] : @"";
+    self.textFieldFirstName.text = [dictContactInfo objectForKey:@"KEY_OF_CONTACT_FIRST_NAME"] != nil ? [[dictContactInfo objectForKey:@"KEY_OF_CONTACT_FIRST_NAME"] capitalizedString] : @"";
+    self.textFieldLastName.text = [dictContactInfo objectForKey:@"KEY_OF_CONTACT_LAST_NAME"] != nil ? [[dictContactInfo objectForKey:@"KEY_OF_CONTACT_LAST_NAME"] capitalizedString] : @"";
     
     NSString *wholeName = [NSString stringWithFormat:@"%@ %@", self.textFieldFirstName.text, self.textFieldLastName.text];
-    self.labelContact.text = wholeName;
+    self.labelContact.text = [wholeName capitalizedString];
     
     self.textFieldEmail.text = [dictContactInfo objectForKey:@"KEY_OF_CONTACT_EMAIL"] != nil ? [dictContactInfo objectForKey:@"KEY_OF_CONTACT_EMAIL"] : @"";
     self.textFieldContactInfo.text = [dictContactInfo objectForKey:@"KEY_OF_CONTACT_PHONE"] != nil ? [dictContactInfo objectForKey:@"KEY_OF_CONTACT_PHONE"] : @"";
-    self.textFieldTitle.text = [dictContactInfo objectForKey:@"KEY_OF_CONTACT_TITLE"] != nil ? [dictContactInfo objectForKey:@"KEY_OF_CONTACT_TITLE"] : @"";
+    self.textFieldTitle.text = [[dictContactInfo objectForKey:@"KEY_OF_CONTACT_TITLE"] capitalizedString] != nil ? [dictContactInfo objectForKey:@"KEY_OF_CONTACT_TITLE"] : @"";
 }
 
 #pragma mark -
@@ -1044,4 +1052,23 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
     return sortedArray;
 }
 
+#pragma mark -Sync Completion
+- (void)syncingCompletion:(NSError *)error
+{
+    if (error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSMutableDictionary * userInfo = [NSMutableDictionary dictionary];
+            
+            [userInfo setObject:TYPE_OF_SHOW_ALERT forKey:KEY_OF_TYPE];
+            if (error.localizedDescription) {
+                [userInfo setObject:error.localizedDescription forKey:KEY_OF_INFO];
+            }
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_LOGICCORE object:userInfo];
+        });
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SYNCING_DONE object:nil];
+    });
+}
 @end

@@ -37,13 +37,16 @@
 {
 //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    if (self.isMultiselect) {
-        return [self.arrInfos count];//need done button...
-    } else if(self.isAddNew) {
-        return [self.arrInfos count];//need add new button
-    }else {
-        return [self.arrInfos count] - 1 ; //don't show done button
-    }
+//    if (self.isMultiselect) {
+//        return [self.arrInfos count];//need done button...
+//    } else if(self.isAddNew) {
+//        return [self.arrInfos count];//need add new button
+//    } else if([self.arrInfos count] == 1) {
+//        return [self.arrInfos count];//we only have one legit item in the array
+//    } else {
+//        return [self.arrInfos count] - 1 ; //don't show done button
+//    }
+    return [self.arrInfos count];
 }
 
 
