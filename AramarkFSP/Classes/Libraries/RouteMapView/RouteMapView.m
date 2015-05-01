@@ -14,6 +14,7 @@
 #import "RouteMapView.h"
 #import "AppDelegate.h"
 #import <AVFoundation/AVFoundation.h>
+#import "AMSyncingManager.h"
 
 //#define TESTMODEL   1   //Use for test
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
@@ -505,6 +506,9 @@ CLLocationManagerDelegate
                                       [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_MAPVIEW object:@{
                                                                                                                                     KEY_OF_TYPE:TYPE_OF_LIST_REFRESH,
                                                                                                                                     KEY_OF_INFO:@"",}];
+                                      
+                                      //cancel auto sync during checkout process
+                                      [[AMSyncingManager sharedInstance ] cancelAutoSyncing];
                                       
                                       if (delegate && [delegate respondsToSelector:@selector(routeMapView:didTappedPointAnnotationView:)]) {
                                           [delegate routeMapView:self didTappedPointAnnotationView:aPointAnnotationView];

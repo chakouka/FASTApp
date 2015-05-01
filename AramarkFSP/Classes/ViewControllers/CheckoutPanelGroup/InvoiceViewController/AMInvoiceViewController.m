@@ -443,6 +443,7 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 
     //reset the sync timer to now
     [AMSyncingManager sharedInstance].timeStamp = [NSDate date];
+    [AMDBManager sharedInstance].timeStamp = [NSDate date];
     
     [[AMSyncingManager sharedInstance] activeAutoSyncing:^(NSInteger type, NSError *error) {
         [self syncingCompletion:error];
