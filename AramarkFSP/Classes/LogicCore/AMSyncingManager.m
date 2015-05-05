@@ -713,7 +713,9 @@ typedef enum AM_Update_Step_t {
     if (_netStatus) {
         DLog(@"start sync from automatic sync");
         [self startSyncing:self.updateComplteHandler];
-    } 
+    } else {
+        [AMUtilities showAlertWithInfo:MyLocal(@"Please check network connection.")];
+    }
 }
 
 - (void)netWorkReachabilityChanged:(NSNotification *)notif

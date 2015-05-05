@@ -25,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelTCancel;
 @property (weak, nonatomic) IBOutlet UILabel *labelTStatus;
 @property (weak, nonatomic) IBOutlet UILabel *labelTAdd;
-
+@property (nonatomic, copy) NSString *strWOType;
 - (void)setAdd:(BOOL)add;
 - (IBAction)clickAddBtn:(UIButton *)sender;
 - (IBAction)clickCancelBtn:(UIButton *)sender;

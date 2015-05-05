@@ -724,7 +724,7 @@ AMVerificationAddSectionViewDelegate
         AMAssetRequest *Info = [dicAddInfo objectForKey:KEY_OF_ADD_ASSETREQUEST_INFO];
         
 		aVerificationTitle.labelStatus.text = [Info.status length] == 0 ? MyLocal(TEXT_OF_NEED_TO_VERIFY) : MyLocal(Info.status);
-        
+        aVerificationTitle.strWOType = self.workOrder.woType;
 		if (![self.arrSections containsObject:aVerificationTitle]) {
 			[self.arrSections addObject:aVerificationTitle];
 		}
