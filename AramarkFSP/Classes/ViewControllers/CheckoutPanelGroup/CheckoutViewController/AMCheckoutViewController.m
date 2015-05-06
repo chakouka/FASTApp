@@ -437,7 +437,8 @@ AMWorkOrderViewControllerDelegate
             
             if (![[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:TEXT_OF_REFUSED_FILTER_EXCHANGE]) {
                 if ([arrFilterItems count] == 0) {
-                    [AMUtilities showAlertWithInfo:MyLocal(@"Please update the filter information")];
+                    //[AMUtilities showAlertWithInfo:MyLocal(@"Please update the filter information")];
+                    [self showPopup];
                     return;
                 }
                 else
