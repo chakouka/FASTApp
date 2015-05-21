@@ -47,4 +47,5 @@
 @property (nonatomic, retain) NSString * posName;
 @property (nonatomic, retain) NSString * caseId;
 
+- (BOOL)isEqual:(id)object;
 @end

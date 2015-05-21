@@ -39,4 +39,16 @@
     return [NSString stringWithFormat:@"%@ - %@ - %@ - %@ - %@",invoiceID,recordTypeName,price,quantity,woID];
 }
 
+- (BOOL)isEqual:(id)object
+{
+    if (![object isKindOfClass:[self class]]) {
+        return NO;
+    }
+    
+    if ([self.filterID isEqualToString:((AMInvoice *)object).filterID]) {
+        return YES;
+    }
+    
+    return NO;
+}
 @end

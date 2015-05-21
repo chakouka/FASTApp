@@ -632,6 +632,10 @@ AMWorkOrderViewControllerDelegate
                     if (invoice.quantity && [invoice.quantity intValue] != 0) {
                         [arrInvoiceItems addObject:invoice];
                     }
+                } else {
+                    int index = [arrInvoiceItems indexOfObject:invoice];
+                    NSInteger qtySum = [((AMInvoice *)[arrInvoiceItems objectAtIndex:index]).quantity integerValue] + [invoice.quantity integerValue];
+                    [(AMInvoice *)[arrInvoiceItems objectAtIndex:index] setQuantity: [NSNumber numberWithInteger: qtySum]];
                 }
 			}
 		}
