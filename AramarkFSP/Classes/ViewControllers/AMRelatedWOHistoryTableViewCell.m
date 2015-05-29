@@ -115,7 +115,7 @@
         woNotePopover = [[UIPopoverController alloc] initWithContentViewController:woNotePopoverVC];
         [woNotePopover setPopoverContentSize:woNotePopoverVC.view.frame.size];
     }
-    woNotePopoverVC.workOrderNotes = self.workOrder.notes;
+    woNotePopoverVC.workOrder = self.workOrder;
     [woNotePopover presentPopoverFromRect:self.bounds inView:self permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
 }
 

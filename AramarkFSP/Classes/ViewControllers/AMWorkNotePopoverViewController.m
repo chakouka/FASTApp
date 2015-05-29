@@ -30,6 +30,23 @@
     self.nameLabel.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Work Order Notes")];
     [self.nameLabel setFont:[AMUtilities applicationFontWithOption:kFontOptionRegular andSize:15.0]];
     [self.valueTF setFont:[AMUtilities applicationFontWithOption:kFontOptionRegular andSize:18.0]];
+    
+    self.ownerFixedLabel.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Owner")];
+    [self.ownerFixedLabel setFont:[AMUtilities applicationFontWithOption:kFontOptionRegular andSize:15.0]];
+    [self.ownerLabel setFont:[AMUtilities applicationFontWithOption:kFontOptionRegular andSize:18.0]];
+    
+    self.descriptionFixedLabel.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Description")];
+    [self.descriptionFixedLabel setFont:[AMUtilities applicationFontWithOption:kFontOptionRegular andSize:15.0]];
+    [self.descriptionText setFont:[AMUtilities applicationFontWithOption:kFontOptionRegular andSize:18.0]];
+    
+    self.repairCodeFixedLabel.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Repair Code")];
+    [self.repairCodeFixedLabel setFont:[AMUtilities applicationFontWithOption:kFontOptionRegular andSize:15.0]];
+    [self.repairCodeLabel setFont:[AMUtilities applicationFontWithOption:kFontOptionRegular andSize:18.0]];
+    
+    self.completionDateFixedLabel.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Completion Date")];
+    [self.repairCodeFixedLabel setFont:[AMUtilities applicationFontWithOption:kFontOptionRegular andSize:15.0]];
+    [self.repairCodeLabel setFont:[AMUtilities applicationFontWithOption:kFontOptionRegular andSize:18.0]];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,10 +55,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setWorkOrderNotes:(NSString *)workOrderNotes
+- (void)setWorkOrder:(AMWorkOrder *)workOrder
 {
-    _workOrderNotes = workOrderNotes;
-    self.valueTF.text = workOrderNotes;
+    _workOrder = workOrder;
+    self.valueTF.text = workOrder.notes;
+    
+    self.ownerLabel.text = workOrder.ownerName;
+    self.descriptionText.text = workOrder.workOrderDescription;
+    self.repairCodeLabel.text = workOrder.repairCode;
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:AMDATE_FORMATTER_STRING_STANDARD];
+    self.completionDateLabel.text = [df stringFromDate:workOrder.actualTimeEnd];
 }
 
 @end
