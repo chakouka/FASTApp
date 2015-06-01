@@ -442,8 +442,8 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 	DLog(@"%@ | %@ | %@ | %@ | %@", self.labelContact.text, self.textFieldFirstName.text, self.textFieldLastName.text, self.textFieldTitle.text, self.textFieldContactInfo.text);
 
     //reset the sync timer to now
-    [AMSyncingManager sharedInstance].timeStamp = [NSDate date];
-    [AMDBManager sharedInstance].timeStamp = [NSDate date];
+    //[AMSyncingManager sharedInstance].timeStamp = [NSDate date];
+    //[AMDBManager sharedInstance].timeStamp = [NSDate date];
     
     [[AMSyncingManager sharedInstance] activeAutoSyncing:^(NSInteger type, NSError *error) {
         [self syncingCompletion:error];
