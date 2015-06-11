@@ -74,7 +74,7 @@
     self.repairCodeLabel.text = MyLocal(workOrder.repairCode);
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:AMDATE_FORMATTER_STRING_STANDARD];
-    self.woDateLabel.text = [df stringFromDate:workOrder.actualTimeEnd];
+    self.woDateLabel.text = [df stringFromDate:workOrder.estimatedDate];
     self.assignedToLabel.text = workOrder.ownerName;
     self.priorityLabel.text = MyLocal(workOrder.priority);
 }

@@ -12,12 +12,8 @@
 @interface AMWorkNotePopoverViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UITextView *valueTF;
-@property (weak, nonatomic) IBOutlet UILabel *ownerFixedLabel;
-@property (weak, nonatomic) IBOutlet UILabel *ownerLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionFixedLabel;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionText;
-@property (weak, nonatomic) IBOutlet UILabel *completionDateFixedLabel;
-@property (weak, nonatomic) IBOutlet UILabel *completionDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *repairCodeFixedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *repairCodeLabel;
 @property (strong, nonatomic) AMWorkOrder *workOrder;
