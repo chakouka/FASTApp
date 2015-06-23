@@ -842,7 +842,7 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
         NSArray *arrItems = [[self.arrInvoiceInfoGroups objectAtIndex:(section - 1)] objectForKey:KEY_OF_DATE] ;
         CGFloat fTotalPrice = 0.0;
         for (NSMutableDictionary *dic0 in arrItems) {
-            fTotalPrice += ([[dic0 objectForKey:KEY_OF_WORKORDER_TOTAL_PRICE] floatValue] * [[dic0 objectForKey:KEY_OF_FILTER_QUANTITY] floatValue]);
+            fTotalPrice += ([[dic0 objectForKey:KEY_OF_FILTER_PRICE] floatValue] * [[dic0 objectForKey:KEY_OF_FILTER_QUANTITY] floatValue]);
         }
         
         if ([[[arrItems firstObject] objectForKey:KEY_OF_WORKORDER_END_TIME] length] == 0) {
@@ -1006,7 +1006,7 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
     CGFloat fTotalPrice = 0.0;
     
 	for (NSMutableDictionary *dic0 in arrInvoiceInfos) {
-            fTotalPrice += ([[dic0 objectForKey:KEY_OF_WORKORDER_TOTAL_PRICE] floatValue] * [[dic0 objectForKey:KEY_OF_FILTER_QUANTITY] floatValue]);
+            fTotalPrice += ([[dic0 objectForKey:KEY_OF_FILTER_PRICE] floatValue] * [[dic0 objectForKey:KEY_OF_FILTER_QUANTITY] floatValue]);
     }
     
     for (NSMutableDictionary *dicParts in arrCodeItems) {
