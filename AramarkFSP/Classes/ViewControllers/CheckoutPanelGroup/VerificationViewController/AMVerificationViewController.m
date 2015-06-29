@@ -376,6 +376,9 @@ AMVerificationAddSectionViewDelegate
 		[arrLocationInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : [NSString stringWithFormat:@"%@", locationInfo.location], kAMPOPOVER_DICTIONARY_KEY_DATA : locationInfo }];
 	}
     
+    //add add new button
+    [arrLocationInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Add New"), kAMPOPOVER_DICTIONARY_KEY_DATA : @"Add New" }];
+    
 	popView.arrInfos = arrLocationInfos;
 	aPopoverVC = [[UIPopoverController alloc] initWithContentViewController:popView];
 	[aPopoverVC setPopoverContentSize:CGSizeMake(CGRectGetWidth(popView.view.frame), CGRectGetHeight(popView.view.frame))];
@@ -1081,13 +1084,43 @@ AMVerificationAddSectionViewDelegate
 		[self.mainTableView reloadSections:[NSIndexSet indexSetWithIndex:aVerificationStatusTableViewController.aIndexPath.section] withRowAnimation:UITableViewRowAnimationNone];
 	}
 	else if (aVerificationStatusTableViewController.tag == PopViewType_Select_NormalLocation) {
-		NSMutableDictionary *dicInfos = [self.arrVerificationInfos objectAtIndex:aVerificationStatusTableViewController.aIndexPath.section];
-		AMAsset *aAsset = [dicInfos objectForKey:KEY_OF_ASSET_INFO];
-		AMLocation *aLocation = [aInfo objectForKey:kAMPOPOVER_DICTIONARY_KEY_DATA];
-		aAsset.locationID = aLocation.locationID;
-		aAsset.assetLocation = aLocation;
-		[aPopoverVC dismissPopoverAnimated:YES];
-		[self.mainTableView reloadSections:[NSIndexSet indexSetWithIndex:aVerificationStatusTableViewController.aIndexPath.section] withRowAnimation:UITableViewRowAnimationNone];
+        
+        if ([[aInfo objectForKey:@"DATA"] isKindOfClass:[AMLocation class]])
+        {
+            NSMutableDictionary *dicInfos = [self.arrVerificationInfos objectAtIndex:aVerificationStatusTableViewController.aIndexPath.section];
+            AMAsset *aAsset = [dicInfos objectForKey:KEY_OF_ASSET_INFO];
+            AMLocation *aLocation = [aInfo objectForKey:kAMPOPOVER_DICTIONARY_KEY_DATA];
+            aAsset.locationID = aLocation.locationID;
+            aAsset.assetLocation = aLocation;
+            [aPopoverVC dismissPopoverAnimated:YES];
+            [self.mainTableView reloadSections:[NSIndexSet indexSetWithIndex:aVerificationStatusTableViewController.aIndexPath.section] withRowAnimation:UITableViewRowAnimationNone];
+        } else {
+            [aPopoverVC dismissPopoverAnimated:YES];
+            
+           // UIAlertView *alertViewChangeName=[[UIAlertView alloc] sh
+            [UIAlertView showWithTitle:@"Add Location" message:@"Add Location" style:UIAlertViewStylePlainTextInput cancelButtonTitle:MyLocal(@"Cancel") otherButtonTitles:@[MyLocal(@"OK")] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                
+                if (buttonIndex > 0) {
+                    NSString *textVal = [[NSString alloc] initWithString: [alertView textFieldAtIndex:0].text];
+                    AMLocation *newLocation = [AMLocation new];
+                    [newLocation setLocation:textVal];
+                    
+                    newLocation.accountID = self.workOrder.accountID;
+                    
+                    [[AMLogicCore sharedInstance] addLocation:newLocation completionBlock:^(NSInteger type, NSError *error) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            if (error) {
+                                [SVProgressHUD showErrorWithStatus:MyLocal(@"Save Fail")];
+                            } else {
+                                [SVProgressHUD showSuccessWithStatus:MyLocal(@"Save Success")];
+                            }
+                        });
+                    }];
+
+
+                }
+            }];
+        }
 	}
 	else if (aVerificationStatusTableViewController.tag == PopViewType_Select_AddLocation) {
 		AMVerificationAddTableViewCell *cell = (AMVerificationAddTableViewCell *)[self.mainTableView cellForRowAtIndexPath:aVerificationStatusTableViewController.aIndexPath];
