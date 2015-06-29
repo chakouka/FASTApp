@@ -92,6 +92,7 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 @synthesize txtSelectedFilters;
 @synthesize activityView;
 @synthesize btnSubmit;
+@synthesize isMCEmailSelected;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

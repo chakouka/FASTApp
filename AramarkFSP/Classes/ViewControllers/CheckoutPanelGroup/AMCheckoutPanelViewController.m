@@ -290,12 +290,17 @@ AMInvoiceViewControllerDelegate
             }else{
                 invoiceVC.txtSelectedFilters.text = @"";
             }
+            
+            //make sure email field and checkbox are cleared
+            [invoiceVC setupDataSourceByInfo:self.workOrder];
+            invoiceVC.imageSelected.hidden = YES;
+            invoiceVC.textFieldEmail.text = TEXT_OF_NULL;
+            invoiceVC.isMCEmailSelected = NO;
+            
             [self.viewMain bringSubviewToFront:invoiceVC.view];
             
             NSMutableArray *arrList = [NSMutableArray arrayWithArray:self.checkoutVC.arrInvoiceItems];
             self.invoiceVC.tempInvoiceList = [NSMutableArray arrayWithArray:arrList];
-            
-             [invoiceVC setupDataSourceByInfo:self.workOrder];
         }
             break;
             

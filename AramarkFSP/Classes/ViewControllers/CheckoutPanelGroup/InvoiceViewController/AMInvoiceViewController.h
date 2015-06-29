@@ -44,6 +44,7 @@ UITableViewDataSource
 @property (weak, nonatomic) IBOutlet UIImageView *imageSelected;
 @property (strong, nonatomic) IBOutlet UITextView *txtSelectedFilters;
 @property (weak, nonatomic) IBOutlet UIButton *btnSubmit;
+@property (nonatomic, readwrite) BOOL isMCEmailSelected;
 
 - (IBAction)clickSubmitBtn:(UIButton *)sender;
 - (IBAction)clickSignatureBtn:(id)sender;
