@@ -530,8 +530,8 @@
 	<string>OUI</string>
 	<key>Yes</key>
 	<string>OUI</string>
-	<key>UPDATE DATE</key>
-	<string>Date de Mise à Jour</string>
+	<key>VERIFY EQUIPMENT</key>
+	<string>VÉRIFIER ÉQUIPEMENT</string>
 	<key>Need to Verify</key>
 	<string>Besoin de Vérifier</string>
 	<key>Missing</key>

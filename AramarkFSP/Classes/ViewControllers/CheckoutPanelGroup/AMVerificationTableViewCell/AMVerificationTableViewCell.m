@@ -23,8 +23,8 @@
     self.labelTUpdatedSerial.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Updated Serial #")];
     self.labelTVerificationNotes.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Verification Notes")];
     
-    [self.btnUpdateDate setTitle:MyLocal(@"UPDATE DATE") forState:UIControlStateNormal];
-    [self.btnUpdateDate setTitle:MyLocal(@"UPDATE DATE") forState:UIControlStateHighlighted];
+    [self.btnUpdateDate setTitle:MyLocal(@"VERIFY EQUIPMENT") forState:UIControlStateNormal];
+    [self.btnUpdateDate setTitle:MyLocal(@"VERIFY EQUIPMENT") forState:UIControlStateHighlighted];
     
      [AMUtilities refreshFontInView:self.contentView];
 }

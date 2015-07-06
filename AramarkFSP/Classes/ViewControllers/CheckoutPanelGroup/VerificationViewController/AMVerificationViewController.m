@@ -435,6 +435,8 @@ AMVerificationAddSectionViewDelegate
         aAsset.lastVerifiedDate = [dicInfos objectForKey:KEY_OF_INITIAL_DATE];
     }
     
+    aAsset.verificationStatus = TEXT_OF_VERIFED;
+    
     [self.mainTableView reloadSections:[NSIndexSet indexSetWithIndex:sender.tag] withRowAnimation:UITableViewRowAnimationNone];
 }
 
