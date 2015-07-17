@@ -580,21 +580,22 @@
                 for (AMEvent * event in wo.eventList) {
                     if ([event.ownerID isEqualToString:wo.userID]) {
                         [eventDict setObject:event.eventID forKey:@"Id"];
+                        
+                        if (wo.actualTimeStart) {
+                            [eventDict setObject:[dateFormat stringFromDate:wo.actualTimeStart] forKey:@"Actual_Start_Time__c"];
+                        } else {
+                            [eventDict setObject:@"" forKey:@"Actual_Start_Time__c"];
+                        }
+                        if (wo.actualTimeEnd) {
+                            [eventDict setObject:[dateFormat stringFromDate:wo.actualTimeEnd] forKey:@"Actual_End_Time__c"];
+                        }
+                        [eventDict setValue:[dateFormat stringFromDate:wo.estimatedTimeStart] forKey:@"StartDateTime"];
+                        [eventDict setValue:[dateFormat stringFromDate:wo.estimatedTimeEnd] forKey:@"EndDateTime"];
+                        
+                        [eventDictArray addObject:eventDict];
                         break;
                     }
                 }
-                if (wo.actualTimeStart) {
-                    [eventDict setObject:[dateFormat stringFromDate:wo.actualTimeStart] forKey:@"Actual_Start_Time__c"];
-                } else {
-                    [eventDict setObject:@"" forKey:@"Actual_Start_Time__c"];
-                }
-                if (wo.actualTimeEnd) {
-                    [eventDict setObject:[dateFormat stringFromDate:wo.actualTimeEnd] forKey:@"Actual_End_Time__c"];
-                }
-                [eventDict setValue:[dateFormat stringFromDate:wo.estimatedTimeStart] forKey:@"StartDateTime"];
-                [eventDict setValue:[dateFormat stringFromDate:wo.estimatedTimeEnd] forKey:@"EndDateTime"];
-
-                [eventDictArray addObject:eventDict];
             }
             
             [woDictArray addObject:woDict];
