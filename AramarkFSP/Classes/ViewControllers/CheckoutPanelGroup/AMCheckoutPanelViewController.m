@@ -301,6 +301,8 @@ AMInvoiceViewControllerDelegate
             
             NSMutableArray *arrList = [NSMutableArray arrayWithArray:self.checkoutVC.arrInvoiceItems];
             self.invoiceVC.tempInvoiceList = [NSMutableArray arrayWithArray:arrList];
+            
+            [invoiceVC setupDataSourceByInfo:self.workOrder];
         }
             break;
             
