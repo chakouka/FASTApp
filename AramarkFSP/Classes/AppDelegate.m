@@ -269,6 +269,16 @@ static NSString * const OAuthRedirectURI        = @"sfdc://success";
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+-(void)applicationDidEnterBackground:(UIApplication *)application {
+    __block UIBackgroundTaskIdentifier background_task;
+    background_task = [application beginBackgroundTaskWithExpirationHandler:^ {
+        
+        //This code block is execute when the application’s
+        //remaining background time reaches ZERO.
+        [application endBackgroundTask:background_task];
+        background_task = UIBackgroundTaskInvalid;
+    }];
+}
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
