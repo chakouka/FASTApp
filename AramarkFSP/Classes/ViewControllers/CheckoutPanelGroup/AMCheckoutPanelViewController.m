@@ -18,6 +18,7 @@
 #import "AMPointsViewController.h"
 #import "AMVerificationViewController.h"
 #import "AMCheckoutTabViewController.h"
+#import "AMSyncingManager.h"
 
 @interface AMCheckoutPanelViewController ()
 <
@@ -30,7 +31,9 @@ AMInvoiceViewControllerDelegate
     NSMutableArray *arrTitleItems;
 	BOOL isFullScreen;
     AMWorkOrder *workOrder;
-    
+    UIAlertView *syncAlertview;
+
+
     CGFloat xCoor;
 	CGFloat yCoor;
 }
@@ -73,8 +76,22 @@ AMInvoiceViewControllerDelegate
     [super viewDidLoad];
     [self viewInitialization];
     
+    syncAlertview = [[UIAlertView alloc] initWithTitle:@"Syncing"
+                                               message:@"Please do not shut down device while syncing"
+                                              delegate:nil
+                                     cancelButtonTitle:nil
+                                     otherButtonTitles:nil, nil];
+    
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    
+    // Adjust the indicator so it is up a few pixels from the bottom of the alert
+    indicator.center = CGPointMake(syncAlertview.bounds.size.width / 2, syncAlertview.bounds.size.height - 50);
+    [indicator startAnimating];
+    [syncAlertview setValue:indicator forKey:@"accessoryView"];
+    
 //    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panDetected:)];
 //    [self.view addGestureRecognizer:panGesture];
+
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
@@ -303,12 +320,41 @@ AMInvoiceViewControllerDelegate
             self.invoiceVC.tempInvoiceList = [NSMutableArray arrayWithArray:arrList];
             
             [invoiceVC setupDataSourceByInfo:self.workOrder];
+            
+            [[AMSyncingManager sharedInstance] startSyncing:^(NSInteger type, NSError * error){
+                if (!error ||
+                    [error.localizedDescription rangeOfString:kAM_MESSAGE_SYNC_IN_PROCESS].location == NSNotFound) {
+                    [self syncingCompletion:error];
+                }
+            }];
         }
             break;
             
         default:
             break;
     }
+}
+
+#pragma mark -Sync Completion
+- (void)syncingCompletion:(NSError *)error
+{
+    [syncAlertview dismissWithClickedButtonIndex:0 animated:YES];
+    
+    if (error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSMutableDictionary * userInfo = [NSMutableDictionary dictionary];
+            
+            [userInfo setObject:TYPE_OF_SHOW_ALERT forKey:KEY_OF_TYPE];
+            if (error.localizedDescription) {
+                [userInfo setObject:error.localizedDescription forKey:KEY_OF_INFO];
+            }
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_LOGICCORE object:userInfo];
+        });
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SYNCING_DONE object:nil];
+    });
 }
 
 #pragma mark -
@@ -407,6 +453,14 @@ AMInvoiceViewControllerDelegate
     }
     else
     {
+        [self performSelector:@selector(hideAlert) withObject:syncAlertview afterDelay:30];
+        
+        [syncAlertview show];
+        
+        [[AMSyncingManager sharedInstance] startSyncing:^(NSInteger type, NSError *error) {
+            [self syncingCompletion:error];
+        }];
+        
         //Save check out page 1 data
         [[AMLogicCore sharedInstance] updateAssetList:self.verificationVC.arrResultAsset completionBlock: ^(NSInteger type, NSError *error) {
             MAIN ( ^{
@@ -629,4 +683,9 @@ AMInvoiceViewControllerDelegate
     [UIView commitAnimations];
 }
 
+- (void)hideAlert {
+    if (syncAlertview.visible) {
+        [syncAlertview dismissWithClickedButtonIndex:0 animated:YES];
+    }
+}
 @end

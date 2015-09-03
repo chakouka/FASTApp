@@ -59,7 +59,7 @@ static NSString * const OAuthRedirectURI        = @"sfdc://success";
 @property (nonatomic, strong) NSArray *testAccounts;
 @property (nonatomic, weak) UIWebView *loginWebView;
 @property (nonatomic, strong) AMMainViewController *mainVC;
-
+//@property (nonatomic) UIBackgroundTaskIdentifier background_task;
 /**
  * Handles the notification from SFAuthenticationManager that a logout has been initiated.
  * @param notification The notification containing the details of the logout.
@@ -270,14 +270,14 @@ static NSString * const OAuthRedirectURI        = @"sfdc://success";
 }
 
 -(void)applicationDidEnterBackground:(UIApplication *)application {
-    __block UIBackgroundTaskIdentifier background_task;
-    background_task = [application beginBackgroundTaskWithExpirationHandler:^ {
-        
-        //This code block is execute when the application’s
-        //remaining background time reaches ZERO.
-        [application endBackgroundTask:background_task];
-        background_task = UIBackgroundTaskInvalid;
-    }];
+
+//    self.background_task = [application beginBackgroundTaskWithExpirationHandler:^ {
+//        
+//        //This code block is execute when the application’s
+//        //remaining background time reaches ZERO.
+//        [application endBackgroundTask: self.background_task];
+//        self.background_task = UIBackgroundTaskInvalid;
+//    }];
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken

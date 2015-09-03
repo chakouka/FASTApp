@@ -56,6 +56,8 @@ typedef NS_ENUM (NSInteger, PopViewType) {
     AMInvoiceCaseTableViewSection *invoiceCaseSectionView;
     BOOL isMCEmailSelected;
     
+    UIAlertView *syncAlertview;
+    
 }
 
 @property (nonatomic, strong) AMWorkOrder *workOrder;
@@ -108,7 +110,20 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-	[AMUtilities refreshFontInView:self.viewContact];
+    syncAlertview = [[UIAlertView alloc] initWithTitle:@"Syncing"
+                                               message:@"Please do not shut down device while syncing"
+                                              delegate:nil
+                                     cancelButtonTitle:nil
+                                     otherButtonTitles:nil, nil];
+    
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    
+    // Adjust the indicator so it is up a few pixels from the bottom of the alert
+    indicator.center = CGPointMake(syncAlertview.bounds.size.width / 2, syncAlertview.bounds.size.height - 50);
+    [indicator startAnimating];
+    [syncAlertview setValue:indicator forKey:@"accessoryView"];
+
+    [AMUtilities refreshFontInView:self.viewContact];
     
     [self.btnNext.titleLabel setFont:[AMUtilities applicationFontWithOption:kFontOptionRegular andSize:kAMFontSizeBigger]];
     
@@ -446,7 +461,11 @@ typedef NS_ENUM (NSInteger, PopViewType) {
     //[AMSyncingManager sharedInstance].timeStamp = [NSDate date];
     //[AMDBManager sharedInstance].timeStamp = [NSDate date];
     
-    [[AMSyncingManager sharedInstance] activeAutoSyncing:^(NSInteger type, NSError *error) {
+    [self performSelector:@selector(hideAlert) withObject:syncAlertview afterDelay:30];
+    
+    [syncAlertview show];
+
+    [[AMSyncingManager sharedInstance] startSyncing:^(NSInteger type, NSError *error) {
         [self syncingCompletion:error];
     }];
     
@@ -1057,6 +1076,8 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
 #pragma mark -Sync Completion
 - (void)syncingCompletion:(NSError *)error
 {
+    [syncAlertview dismissWithClickedButtonIndex:0 animated:YES];
+    
     if (error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             NSMutableDictionary * userInfo = [NSMutableDictionary dictionary];
@@ -1072,5 +1093,11 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SYNCING_DONE object:nil];
     });
+}
+
+- (void)hideAlert {
+    if (syncAlertview.visible) {
+        [syncAlertview dismissWithClickedButtonIndex:0 animated:YES];
+    }
 }
 @end
