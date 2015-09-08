@@ -2,6 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Service Contact</key>
+	<string>Contact de service</string>
+	<key>Order Contact</key>
+	<string>Contact pour les commandes</string>
+	<key>Delivery Contact</key>
+	<string>Contact pour les livraisons</string>
+	<key>AP Contact</key>
+	<string>Contact pour les comptes créditeurs</string>
+	<key>Decision Maker</key>
+	<string>Décideur</string>
+	<key>Alternate Contact</key>
+	<string>Contact remplaçant</string>
+	<key>Please Select Role</key>
+	<string>S.V.P. sélectionnez role</string>
+	<key>New Contact</key>
+	<string>Nouveau contact</string>
+	<key>Choose Role(s)</key>
+	<string>Choisir le rôle</string>
 	<key>Must select a filter</key>
 	<string>Vous devez sélectionner un filtre</string>
 	<key>Qty is required</key>
