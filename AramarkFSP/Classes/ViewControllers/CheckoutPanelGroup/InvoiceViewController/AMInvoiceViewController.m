@@ -110,8 +110,8 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-    syncAlertview = [[UIAlertView alloc] initWithTitle:@"Syncing"
-                                               message:@"Please do not shut down device while syncing"
+    syncAlertview = [[UIAlertView alloc] initWithTitle:MyLocal(@"Syncing")
+                                               message:MyLocal(@"Please do not shut down device while syncing")
                                               delegate:nil
                                      cancelButtonTitle:nil
                                      otherButtonTitles:nil, nil];

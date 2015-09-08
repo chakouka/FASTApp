@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Please do not shut down device while syncing</key>
+	<string>S.V.P. ne pas s’arrêtent l’appareil alors qu’il est en cours de synchronisation</string>
+	<key>Syncing</key>
+	<string>Synchronisation</string>
 	<key>Service Contact</key>
 	<string>Contact de service</string>
 	<key>Order Contact</key>
