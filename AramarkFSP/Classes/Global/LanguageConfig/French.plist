@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Please input title</key>
+	<string>Entrez le titre</string>
+	<key>First name must be capitalized</key>
+	<string>Prénom doit être en majuscules</string>
+	<key>Last name must be capitalized</key>
+	<string>Nom de famille doit être en majuscules</string>
 	<key>Please do not shut down device while syncing</key>
 	<string>S.V.P. ne pas s’arrêtent l’appareil alors qu’il est en cours de synchronisation</string>
 	<key>Syncing</key>
