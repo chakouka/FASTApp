@@ -156,7 +156,7 @@ typedef NS_ENUM (NSInteger, PopViewType) {
         [AMUtilities showAlertWithInfo:MyLocal(@"Please Input First Name")];
         return;
     } else if (![[self.dicContactInfo objectForKey:KEY_OF_CONTACT_FIRST_NAME] isEqualToString:[[self.dicContactInfo objectForKey:KEY_OF_CONTACT_FIRST_NAME] capitalizedString]]) {
-        [AMUtilities showAlertWithInfo:MyLocal(@"First Name must be capitalized")];
+        [AMUtilities showAlertWithInfo:MyLocal(@"First name must be capitalized")];
         return;
     }
     
@@ -169,7 +169,7 @@ typedef NS_ENUM (NSInteger, PopViewType) {
         [AMUtilities showAlertWithInfo:MyLocal(@"Please Input Last Name")];
         return;
     } else if (![[self.dicContactInfo objectForKey:KEY_OF_CONTACT_LAST_NAME] isEqualToString:[[self.dicContactInfo objectForKey:KEY_OF_CONTACT_LAST_NAME] capitalizedString]]) {
-        [AMUtilities showAlertWithInfo:MyLocal(@"Last Name must be capitalized")];
+        [AMUtilities showAlertWithInfo:MyLocal(@"Last name must be capitalized")];
         return;
         
     }

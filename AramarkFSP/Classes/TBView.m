@@ -76,7 +76,7 @@ typedef NS_ENUM (NSInteger, PopViewType) {
     self.pickerViewTextField.inputView = picker;
     self.unlistedFilterLabel.text = MyLocal(@"Enter unlisted filter type below");
     self.filterQtyLabel.text = MyLocal(@"Filter Qty");
-    [self.addNewButton setTitle: MyLocal(@"Add new") forState:UIControlStateNormal];
+    [self.addNewButton setTitle: MyLocal(@"Add New") forState:UIControlStateNormal];
     [self.confirmAndCreateButton setTitle: MyLocal(@"Confirm and create case") forState:UIControlStateNormal];
     self.orLabel.text = MyLocal(@"OR");
     [self.filterSelectButton setTitle: MyLocal(@"Select a filter") forState:UIControlStateNormal];
