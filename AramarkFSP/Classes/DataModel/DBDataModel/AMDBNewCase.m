@@ -36,5 +36,5 @@
 @dynamic subject;
 @dynamic type;
 @dynamic recordTypeName;
-
+@dynamic complaintCode;
 @end

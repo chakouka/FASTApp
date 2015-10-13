@@ -41,7 +41,7 @@
     [dict setValue:self.serialNumber forKeyPath:@"SerialNumber"];
     [dict setValue:self.firstName forKeyPath:@"FirstName"];
     [dict setValue:self.lastName forKeyPath:@"LastName"];
-
+    [dict setValue:self.complaintCode forKeyPath:@"Complaint_Code__c"];
     return dict;
 }
 
