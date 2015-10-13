@@ -200,7 +200,6 @@
                 <outlet property="labelSubject" destination="AXT-yn-9vo" id="BVA-5r-aoH"/>
                 <outlet property="labelTComplaintCode" destination="4JX-WA-0Gt" id="cB6-1b-p0e"/>
                 <outlet property="labelTEstimatedWorkDate" destination="G22-Dy-0gJ" id="GO3-30-6ft"/>
-                <outlet property="labelTMachineType" destination="4JX-WA-0Gt" id="JLM-zZ-pyy"/>
                 <outlet property="labelTSubject" destination="2hw-um-eDK" id="nkg-um-bBR"/>
                 <outlet property="labelTWorkorderNumber" destination="7qP-kP-hbs" id="tTe-pC-TcB"/>
                 <outlet property="labelWONumber" destination="Jzx-ry-4bF" id="XZy-6g-Jte"/>
