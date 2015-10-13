@@ -207,7 +207,6 @@
                 <outlet property="label_ContactName" destination="Imc-Rg-uRP" id="Cu6-v1-WGZ"/>
                 <outlet property="label_Distance" destination="PaW-Ix-ED7" id="ISs-D7-WRO"/>
                 <outlet property="label_Index" destination="jAn-V4-wyI" id="z3L-Fb-aYw"/>
-                <outlet property="label_Location" destination="G22-Dy-0gJ" id="eKc-OL-Lek"/>
                 <outlet property="label_Time" destination="kp9-Sg-BaK" id="Bgx-Rc-wap"/>
                 <outlet property="label_Title" destination="OjB-Q0-Muv" id="L4c-aM-ifI"/>
                 <outlet property="label_Type" destination="n7S-fK-GTB" id="gbL-Cs-ExW"/>

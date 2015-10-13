@@ -21,6 +21,7 @@
 
 #define HEIGH_OF_TABLEVIEW_CELL_PM         222.0
 #define HEIGH_OF_TABLEVIEW_CELL_FE         230.0
+#define HEIGH_OF_TABLEVIEW_CELL_ADMIN      254.0
 
 #define kAMPRIORITY_STRING_CRITICAL @"Critical"
 #define kAMPRIORITY_STRING_HIGH @"High"
@@ -222,9 +223,11 @@ AMPopoverSelectTableViewControllerDelegate
     if ([workOrder.woType isEqualToLocalizedString:@"Preventative Maintenance"]) {
         return HEIGH_OF_TABLEVIEW_CELL_PM;
     }
-    else
+    else if ([workOrder.woType isEqualToLocalizedString:@"Filter Exchange"])
     {
         return HEIGH_OF_TABLEVIEW_CELL_FE;
+    } else {
+        return HEIGH_OF_TABLEVIEW_CELL_ADMIN;
     }
 }
 
@@ -418,8 +421,7 @@ AMPopoverSelectTableViewControllerDelegate
         cell.label_Time.text = workOrder.nextTime;
         cell.labelWONumber.text = workOrder.woNumber;
         cell.label_ContactName.text = workOrder.contact == nil ? @"NONE" : workOrder.contact;
-        cell.label_Location.text = workOrder.workLocation;
-        
+        cell.label_Address.text = workOrder.workLocation;
         cell.labelComplaintCode.text = MyLocal(workOrder.complaintCode);
         cell.labelSubject.text = workOrder.subject;
         
