@@ -171,6 +171,8 @@
 		7C55F2FB1A8A582F0081A4B0 /* TBView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C55F2F91A8A582F0081A4B0 /* TBView.xib */; };
 		7C55F2FF1A8A80EC0081A4B0 /* AMFilterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C55F2FD1A8A80EC0081A4B0 /* AMFilterTableViewCell.m */; };
 		7C55F3001A8A80EC0081A4B0 /* AMFilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C55F2FE1A8A80EC0081A4B0 /* AMFilterTableViewCell.xib */; };
+		7C7A4F951BCD3F73001903F4 /* AMNearOrderListAdminCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A4F941BCD3F73001903F4 /* AMNearOrderListAdminCell.m */; settings = {ASSET_TAGS = (); }; };
+		7C7A4F971BCD3F86001903F4 /* AMNearOrderListAdminCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7A4F961BCD3F86001903F4 /* AMNearOrderListAdminCell.xib */; settings = {ASSET_TAGS = (); }; };
 		7CCD7E6E1AB749FF006FED08 /* AMDBNewContact.h in Resources */ = {isa = PBXBuildFile; fileRef = 7CCD7E6D1AB749FF006FED08 /* AMDBNewContact.h */; };
 		7CCD7E701AB74A30006FED08 /* AMDBNewContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD7E6F1AB74A30006FED08 /* AMDBNewContact.m */; };
 		7CCD7E7F1AB76764006FED08 /* AMDBNewContact+AddOn.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD7E7E1AB76764006FED08 /* AMDBNewContact+AddOn.m */; };
@@ -988,6 +990,9 @@
 		7C55F2FC1A8A80EC0081A4B0 /* AMFilterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMFilterTableViewCell.h; sourceTree = "<group>"; };
 		7C55F2FD1A8A80EC0081A4B0 /* AMFilterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMFilterTableViewCell.m; sourceTree = "<group>"; };
 		7C55F2FE1A8A80EC0081A4B0 /* AMFilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMFilterTableViewCell.xib; sourceTree = "<group>"; };
+		7C7A4F931BCD3F59001903F4 /* AMNearOrderListAdminCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMNearOrderListAdminCell.h; path = NearOrderListViewController/NearOrderListCell/AMNearOrderListAdminCell.h; sourceTree = "<group>"; };
+		7C7A4F941BCD3F73001903F4 /* AMNearOrderListAdminCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMNearOrderListAdminCell.m; path = NearOrderListViewController/NearOrderListCell/AMNearOrderListAdminCell.m; sourceTree = "<group>"; };
+		7C7A4F961BCD3F86001903F4 /* AMNearOrderListAdminCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AMNearOrderListAdminCell.xib; path = NearOrderListViewController/NearOrderListCell/AMNearOrderListAdminCell.xib; sourceTree = "<group>"; };
 		7CCD7E6D1AB749FF006FED08 /* AMDBNewContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMDBNewContact.h; sourceTree = "<group>"; };
 		7CCD7E6F1AB74A30006FED08 /* AMDBNewContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMDBNewContact.m; sourceTree = "<group>"; };
 		7CCD7E7D1AB76764006FED08 /* AMDBNewContact+AddOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AMDBNewContact+AddOn.h"; sourceTree = "<group>"; };
@@ -3886,8 +3891,11 @@
 			isa = PBXGroup;
 			children = (
 				D098253619B7187500B96357 /* AMNearOrderListPMCell.h */,
+				7C7A4F931BCD3F59001903F4 /* AMNearOrderListAdminCell.h */,
 				D098253719B7187500B96357 /* AMNearOrderListPMCell.m */,
+				7C7A4F941BCD3F73001903F4 /* AMNearOrderListAdminCell.m */,
 				D098253819B7187500B96357 /* AMNearOrderListPMCell.xib */,
+				7C7A4F961BCD3F86001903F4 /* AMNearOrderListAdminCell.xib */,
 				D098253B19B7189400B96357 /* AMNearOrderListFECell.h */,
 				D098253C19B7189400B96357 /* AMNearOrderListFECell.m */,
 				D098253D19B7189400B96357 /* AMNearOrderListFECell.xib */,
@@ -4427,6 +4435,7 @@
 				D01269B51909050500070DA9 /* AMTitleItemViewController.xib in Resources */,
 				02B6EF78194EE6EC00816281 /* AMAttachmentTableViewCell.xib in Resources */,
 				D0B79E88191A228D00FD1152 /* List-Item-Number.png in Resources */,
+				7C7A4F971BCD3F86001903F4 /* AMNearOrderListAdminCell.xib in Resources */,
 				D013D892196535F1008A7C55 /* preview-button.png in Resources */,
 				D02B3821193D7F49002ABEA0 /* location.png in Resources */,
 				D03DA53619752CA2002D9562 /* green_priority@2x.png in Resources */,
@@ -4795,6 +4804,7 @@
 				16888EEE196BDA4700FBA677 /* AMDBReport+AddOn.m in Sources */,
 				022C691E1963DDF700301361 /* AMRelatedWOHistoryTableViewCell.m in Sources */,
 				D0344581192CABB400C3E18C /* AMVerificationSectionView.m in Sources */,
+				7C7A4F951BCD3F73001903F4 /* AMNearOrderListAdminCell.m in Sources */,
 				D00C9E941936F0D20078CBF2 /* AMWorkOrderNotesTableViewCell.m in Sources */,
 				020236921924BDC4006B0943 /* AMWOPopoverViewController.m in Sources */,
 				A69C5CA11919FC610045630A /* AMUser.m in Sources */,
