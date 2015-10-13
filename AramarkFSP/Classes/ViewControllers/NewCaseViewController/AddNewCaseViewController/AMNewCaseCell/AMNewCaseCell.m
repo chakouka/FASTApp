@@ -29,7 +29,7 @@
     self.labelTOr2.text = MyLocal(@"OR");
     self.labelTAssetNo.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Asset #")];
     self.labelTSerialNo.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Serial #")];
-    
+    self.labelTComplaintCode.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Complaint Code")];
     [AMUtilities refreshFontInView:self.contentView];
 }
 

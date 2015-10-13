@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14C1510" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="14F27" minimumToolsVersion="Xcode 4.3">
     <entity name="AMDBAccount" representedClassName="AMDBAccount" syncable="YES">
         <attribute name="accountID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="atRisk" optional="YES" attributeType="Date" syncable="YES"/>
@@ -223,6 +223,7 @@
         <attribute name="assetNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="caseDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="caseNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="complaintCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="contactEmail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="contactID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -462,7 +463,7 @@
         <element name="AMDBFilterUsed" positionX="-378" positionY="126" width="128" height="135"/>
         <element name="AMDBInvoice" positionX="169" positionY="9" width="128" height="435"/>
         <element name="AMDBLocation" positionX="-9" positionY="324" width="128" height="583"/>
-        <element name="AMDBNewCase" positionX="-378" positionY="531" width="128" height="420"/>
+        <element name="AMDBNewCase" positionX="-378" positionY="531" width="128" height="435"/>
         <element name="AMDBNewContact" positionX="-378" positionY="144" width="128" height="253"/>
         <element name="AMDBNewLead" positionX="-378" positionY="144" width="128" height="463"/>
         <element name="AMDBNewWorkOrder" positionX="-360" positionY="144" width="128" height="525"/>

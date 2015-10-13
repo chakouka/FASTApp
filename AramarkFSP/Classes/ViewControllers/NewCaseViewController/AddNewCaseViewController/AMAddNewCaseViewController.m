@@ -40,6 +40,7 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 	PopViewType_NewCase_Contact,
 	PopViewType_NewCase_Asset,
     PopViewType_NewCase_Priority,
+    PopViewType_NewCase_ComplaintCode,
 };
 
 @interface AMAddNewCaseViewController ()
@@ -154,6 +155,7 @@ UIPopoverControllerDelegate
             [self.dicCaseInfo setObject:@"" forKey:KEY_OF_CASE_CHOOSE_ASSET];
             [self.dicCaseInfo setObject:@"" forKey:KEY_OF_CASE_ASSET_NO];
             [self.dicCaseInfo setObject:@"" forKey:KEY_OF_CASE_SERIAL_NO];
+            [self.dicCaseInfo setObject:@"" forKey:KEY_OF_CASE_COMPLAINT_CODE];
         }
             break;
         case AddNewCasePageSource_Account:
@@ -173,6 +175,7 @@ UIPopoverControllerDelegate
             [self.dicCaseInfo setObject:@"" forKey:KEY_OF_CASE_CHOOSE_ASSET];
             [self.dicCaseInfo setObject:@"" forKey:KEY_OF_CASE_ASSET_NO];
             [self.dicCaseInfo setObject:@"" forKey:KEY_OF_CASE_SERIAL_NO];
+            [self.dicCaseInfo setObject:@"" forKey:KEY_OF_CASE_COMPLAINT_CODE];
             
             if (strAccountId) {
                 AMAccount *account = [[AMLogicCore sharedInstance] getAccountInfoByID:strAccountId];
@@ -209,7 +212,8 @@ UIPopoverControllerDelegate
             [self.dicCaseInfo setObject:@"" forKey:KEY_OF_CASE_CHOOSE_ASSET];
             [self.dicCaseInfo setObject:@"" forKey:KEY_OF_CASE_ASSET_NO];
             [self.dicCaseInfo setObject:@"" forKey:KEY_OF_CASE_SERIAL_NO];
-            
+            [self.dicCaseInfo setObject:@"" forKey:KEY_OF_CASE_COMPLAINT_CODE];
+
             if (strPoSId) {
                 AMPoS *pos = [[AMLogicCore sharedInstance] getPoSInfoByID:strPoSId];
                 [self.dicCaseInfo setObject:[pos.name length] == 0 ? @"" : pos.name forKey:KEY_OF_CASE_POINT_OF_SERVICE];
@@ -382,6 +386,12 @@ UIPopoverControllerDelegate
         [AMUtilities showAlertWithInfo:MyLocal(@"Please Input Last Name")];
         return ;
     }
+    if ([[self.dicCaseInfo objectForKey:KEY_OF_CASE_TYPE] isEqualToString:MyLocal(@"Repair")]) {        
+        if ([[dicCaseInfo objectForKey:KEY_OF_CASE_COMPLAINT_CODE] length] == 0) {
+            [AMUtilities showAlertWithInfo:MyLocal(@"Please Input Complaint Code")];
+            return;
+        }
+    }
     
     switch (source) {
         case AddNewCasePageSource_New:
@@ -435,6 +445,8 @@ UIPopoverControllerDelegate
         newCase.posID = strPoSId;
         newCase.posName = [dicCaseInfo objectForKey:KEY_OF_CASE_POINT_OF_SERVICE];
         newCase.assetNumber = [dicCaseInfo objectForKey:KEY_OF_CASE_ASSET_NO];
+        newCase.complaintCode = [dicCaseInfo objectForKey:KEY_OF_CASE_COMPLAINT_CODE];
+        
     } completion:^(NSInteger type, NSError *error) {
         MAIN(^{
             if (error) {
@@ -558,6 +570,58 @@ UIPopoverControllerDelegate
 	[aPopoverVC presentPopoverFromRect:sender.frame inView:sender.superview permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
 }
 
+- (void)clickComplaintCodeBtn:(UIButton *)sender
+{
+    AMPopoverSelectTableViewController *popView = [[AMPopoverSelectTableViewController alloc] initWithNibName:@"AMPopoverSelectTableViewController" bundle:nil];
+    popView.delegate = self;
+    popView.tag = PopViewType_NewCase_ComplaintCode;
+    
+    NSMutableArray *arrInfos = [NSMutableArray array];
+
+    [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Bad Taste"),kAMPOPOVER_DICTIONARY_KEY_DATA : MyLocal(@"Bad Taste") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"Bad Taste")}];
+    
+    [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Brewing Problem"),kAMPOPOVER_DICTIONARY_KEY_DATA : MyLocal(@"Brewing Problem") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"Brewing Problem")}];
+    
+    [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Desiginated Shop Time"),kAMPOPOVER_DICTIONARY_KEY_DATA : MyLocal(@"Desiginated Shop Time") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"Desiginated Shop Time")}];
+    
+    [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Dripping"),kAMPOPOVER_DICTIONARY_KEY_DATA : MyLocal(@"Dripping") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"Dripping")}];
+    
+    [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Equipment Exchange"),kAMPOPOVER_DICTIONARY_KEY_DATA : MyLocal(@"Equipment Exchange") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"Equipment Exchange")}];
+    
+    [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Filter Exchange"),kAMPOPOVER_DICTIONARY_KEY_DATA : MyLocal(@"Filter Exchange") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"Filter Exchange")}];
+    
+    [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Hot Shot"),kAMPOPOVER_DICTIONARY_KEY_DATA : MyLocal(@"Hot Shot") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"Hot Shot")}];
+    
+    [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Install Equipment"),kAMPOPOVER_DICTIONARY_KEY_DATA : MyLocal(@"Install Equipment") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"Install Equipment")}];
+    
+    [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Machine Leaking"),kAMPOPOVER_DICTIONARY_KEY_DATA : MyLocal(@"Machine Leaking") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"Machine Leaking")}];
+    
+    [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Micro Market Kiosk"),kAMPOPOVER_DICTIONARY_KEY_DATA : MyLocal(@"Micro Market Kiosk") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"Micro Market Kiosk")}];
+    
+    [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Move Equipment"),kAMPOPOVER_DICTIONARY_KEY_DATA : MyLocal(@"Move Equipment") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"Move Equipment")}];
+    
+    [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"No Hot Water"),kAMPOPOVER_DICTIONARY_KEY_DATA : MyLocal(@"No Hot Water") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"No Hot Water")}];
+    
+    [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"No Ice Coming Out"),kAMPOPOVER_DICTIONARY_KEY_DATA : MyLocal(@"No Ice Coming Out") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"No Ice Coming Out")}];
+    
+    [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Pick-up Equipment"),kAMPOPOVER_DICTIONARY_KEY_DATA : MyLocal(@"Pick-up Equipment") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"Pick-up Equipment")}];
+    
+    [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Preventative Maintenance"),kAMPOPOVER_DICTIONARY_KEY_DATA : MyLocal(@"Preventative Maintenance") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"Preventative Maintenance")}];
+    
+    [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Site Survey"),kAMPOPOVER_DICTIONARY_KEY_DATA : MyLocal(@"Site Survey") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"Site Survey")}];
+    
+    [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Vending Machine Problem"),kAMPOPOVER_DICTIONARY_KEY_DATA : MyLocal(@"Vending Machine Problem") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"Vending Machine Problem")}];
+    
+    [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Water Dispenser Slow"),kAMPOPOVER_DICTIONARY_KEY_DATA : MyLocal(@"Water Dispenser Slow") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"Water Dispenser Slow")}];
+    
+    popView.arrInfos = arrInfos;
+    aPopoverVC = [[UIPopoverController alloc] initWithContentViewController:popView];
+    [aPopoverVC setPopoverContentSize:CGSizeMake(CGRectGetWidth(popView.view.frame), CGRectGetHeight(popView.view.frame))];
+    aPopoverVC.delegate = self;
+    [aPopoverVC presentPopoverFromRect:sender.frame inView:sender.superview permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    
+}
+
 - (void)clickPriorityBtn:(UIButton *)sender
 {
     [self.tableViewMain endEditing:YES];
@@ -599,8 +663,10 @@ UIPopoverControllerDelegate
 			[cell.btnChooseAsset addTarget:self action:@selector(clickCaseAssetBtn:) forControlEvents:UIControlEventTouchUpInside];
 			[cell.btnChooseContact addTarget:self action:@selector(clickCaseContactBtn:) forControlEvents:UIControlEventTouchUpInside];
             [cell.btnPriority addTarget:self action:@selector(clickPriorityBtn:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.btnComplaintCode addTarget:self action:@selector(clickComplaintCodeBtn:) forControlEvents:UIControlEventTouchUpInside];
             
             cell.textFieldCaseRecordType.delegate = self;
+            cell.textFieldComplaintCode.delegate = self;
             cell.textFieldCaseRecordType.tag = (indexPath.section * 1000 + AddNewCaseTextInputType_CaseRecordType);
             cell.textFieldCaseRecordType.text = [[self.dicCaseInfo objectForKey:KEY_OF_CASE_RECORD_TYPE] length] == 0 ? TEXT_OF_NULL : MyLocal([self.dicCaseInfo objectForKey:KEY_OF_CASE_RECORD_TYPE]);
             
@@ -656,6 +722,15 @@ UIPopoverControllerDelegate
             
             cell.labelChooseContact.text = [[self.dicCaseInfo objectForKey:KEY_OF_CASE_CHOOSE_CONTACT] length] == 0 ? TEXT_OF_NULL : [self.dicCaseInfo objectForKey:KEY_OF_CASE_CHOOSE_CONTACT];
             
+            cell.textFieldComplaintCode.text = [[self.dicCaseInfo objectForKey:KEY_OF_CASE_COMPLAINT_CODE] length] == 0 ? TEXT_OF_NULL : [self.dicCaseInfo objectForKey:KEY_OF_CASE_COMPLAINT_CODE];
+            
+            
+            if ([[self.dicCaseInfo objectForKey:KEY_OF_CASE_TYPE] length] == 0 || ![[self.dicCaseInfo objectForKey:KEY_OF_CASE_TYPE] isEqualToString:MyLocal(@"Repair")])
+            {
+                [cell.viewComplaintCodeRequired setHidden:YES];
+            } else {
+                [cell.viewComplaintCodeRequired setHidden:NO];
+            }
             switch (source) {
                 case AddNewCasePageSource_New:
                 {
@@ -695,7 +770,7 @@ UIPopoverControllerDelegate
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 525.0;
+    return 575.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -912,6 +987,15 @@ UIPopoverControllerDelegate
         
 		NSLog(@"didSelected : %@", aInfo);
 		[aPopoverVC dismissPopoverAnimated:YES];
+        
+        [self.tableViewMain reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+    }
+    else if(aVerificationStatusTableViewController.tag == PopViewType_NewCase_ComplaintCode) {
+        NSString *strInfo = [aInfo objectForKey:kAMPOPOVER_DICTIONARY_KEY_INFO];
+        [self.dicCaseInfo setObject:strInfo forKey:KEY_OF_CASE_COMPLAINT_CODE];
+        
+        NSLog(@"didSelected : %@", aInfo);
+        [aPopoverVC dismissPopoverAnimated:YES];
         
         [self.tableViewMain reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
     }

@@ -13,12 +13,13 @@
 //2014 06 23 changed -------------- End
 
 @interface AMNewCaseCell : UITableViewCell
-
+@property (weak, nonatomic) IBOutlet UIView *viewComplaintCodeRequired;
 @property (weak, nonatomic) IBOutlet UIButton *btnCaseRecordType;
 @property (weak, nonatomic) IBOutlet UIButton *btnType;
 @property (weak, nonatomic) IBOutlet UIButton *btnChooseContact;
 @property (weak, nonatomic) IBOutlet UIButton *btnChooseAsset;
 @property (weak, nonatomic) IBOutlet UIButton *btnPriority;
+@property (weak, nonatomic) IBOutlet UIButton *btnComplaintCode;
 
 @property (weak, nonatomic) IBOutlet UILabel *labelChooseContact;
 @property (weak, nonatomic) IBOutlet UILabel *labelChooseAsset;
@@ -35,9 +36,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *textFieldLastName;
 @property (weak, nonatomic) IBOutlet UITextField *textFieldAssetNo;
 @property (weak, nonatomic) IBOutlet UITextField *textFieldSerialNo;
+@property (weak, nonatomic) IBOutlet UITextField *textFieldComplaintCode;
 
 @property (weak, nonatomic) IBOutlet UITextView *textViewDescription;
-
+@property (weak, nonatomic) IBOutlet UILabel *labelTComplaintCode;
 @property (weak, nonatomic) IBOutlet UILabel *labelTCaseRecordType;
 @property (weak, nonatomic) IBOutlet UILabel *labelTType;
 @property (weak, nonatomic) IBOutlet UILabel *labelTAccount;

@@ -37,5 +37,5 @@
 @property (nonatomic, retain) NSString * subject;
 @property (nonatomic, retain) NSString * type;
 @property (nonatomic, retain) NSString * recordTypeName;
-
+@property (nonatomic, retain) NSString * complaintCode;
 @end
