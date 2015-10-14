@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Water Dispenser Slow</key>
+	<string>Distributeur d&apos;eau lent</string>
 	<key>Please input title</key>
 	<string>Entrez le titre</string>
 	<key>First name must be capitalized</key>
@@ -963,7 +965,7 @@
 	<key>Vending Fixes</key>
 	<string>Distributrices Fixer</string>
 	<key>Filter Exchange</key>
-	<string>Êchange de Filtre</string>
+	<string>Changement de Filtre</string>
 	<key>Filter List Empty</key>
 	<string>Filtre Liste vide</string>
 	<key>Part List Empty</key>
@@ -1119,35 +1121,35 @@
 	<key>Bad Taste</key>
 	<string>Mauvais Goût</string>
 	<key>Brewing Problem</key>
-	<string>Brewing Problème</string>
+	<string>Problème d&apos;Infusion</string>
 	<key>Desiginated Shop Time</key>
-	<string>Desiginated boutique Temps</string>
+	<string>Temps d&apos;Atelier Réservé</string>
 	<key>Dripping</key>
-	<string>Égouttement</string>
+	<string>Dégoutte</string>
 	<key>Equipment Exchange</key>
-	<string>Equipment Exchange</string>
+	<string>Échange d&apos;Équipement</string>
 	<key>Install Equipment</key>
-	<string>installer le matériel</string>
+	<string>Installer Équipement</string>
 	<key>Machine Leaking</key>
-	<string>Machine de fuites</string>
+	<string>Machine Fuyante</string>
 	<key>Micro Market Kiosk</key>
-	<string>Micro Marché Kiosque</string>
+	<string>Kiosque de Micro Marché</string>
 	<key>Move Equipment</key>
 	<string>Déplacer Équipement</string>
 	<key>No Hot Water</key>
-	<string>Pas d&apos;eau chaude</string>
+	<string>Pas d&apos;eau Chaude</string>
 	<key>No Ice Coming Out</key>
-	<string>En venant pas de glace Out</string>
+	<string>Ne donne pas de Glace</string>
 	<key>Pick-up Equipment</key>
-	<string>Équipement de rendez-vous</string>
+	<string>Ramasser l&apos;Équipement</string>
 	<key>Site Survey</key>
-	<string>Site Survey</string>
+	<string>Étude de Site</string>
 	<key>Vending Machine Problem</key>
-	<string>Vending Machine Problem</string>
+	<string>Problème avec Distributrice</string>
 	<key>Waster Dispenser Slow</key>
 	<string>Waster Distributeur lente</string>
 	<key>Hot Shot</key>
-	<string>Hot Shot</string>
+	<string>hot Shot</string>
 	<key>Last Service Date</key>
 	<string>Date du Dernier Entretien</string>
 	<key>One or more Field Technicians is assigned to a work order, please consider appropriately</key>
