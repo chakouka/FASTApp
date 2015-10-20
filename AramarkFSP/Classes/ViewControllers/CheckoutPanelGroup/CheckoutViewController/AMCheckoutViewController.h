@@ -32,6 +32,7 @@ UIPopoverControllerDelegate
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 @property (nonatomic, strong) NSMutableArray *arrInvoiceItems;
 @property (strong, nonatomic) NSMutableArray *arrCheckoutInfos;
+
 @property (strong, nonatomic) AMWorkOrder *workOrder;
 @property (weak, nonatomic) IBOutlet UILabel *labelPrice;
 @property (weak, nonatomic) id<AMCheckoutViewControllerDelegate> delegate;

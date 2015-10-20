@@ -4,7 +4,7 @@
 <dict>
 	<key>Water Dispenser Slow</key>
 	<string>Distributeur d&apos;eau lent</string>
-	<key>Please input title</key>
+	<key>Please Input Title</key>
 	<string>Entrez le titre</string>
 	<key>First name must be capitalized</key>
 	<string>Prénom doit être en majuscules</string>
@@ -30,7 +30,7 @@
 	<string>S.V.P. sélectionnez role</string>
 	<key>New Contact</key>
 	<string>Nouveau contact</string>
-	<key>Choose Role(s)</key>
+	<key>Choose Role</key>
 	<string>Choisir le rôle</string>
 	<key>Must select a filter</key>
 	<string>Vous devez sélectionner un filtre</string>
@@ -43,6 +43,8 @@
 	<key>Filter Qty</key>
 	<string>Quantité de filtre</string>
 	<key>Add New</key>
+	<string>Ajouter un nouveau</string>
+	<key>ADD NEW</key>
 	<string>Ajouter un nouveau</string>
 	<key>Enter unlisted filter type below</key>
 	<string>Entrez un type de filter non inscrit ci-dessous</string>

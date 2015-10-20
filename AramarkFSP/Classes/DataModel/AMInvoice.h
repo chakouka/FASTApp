@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-//#define INVOICE_TYPE_PM             @"PM"
+//#define INVOICE_TYPE_PM             @"Preventative Maintenance"
 #define INVOICE_TYPE_FILTER         @"Filter"   //No asset id
 //#define INVOICE_TYPE_WORK           @"Work"
 #define INVOICE_TYPE_PART           @"Part" //No asset id

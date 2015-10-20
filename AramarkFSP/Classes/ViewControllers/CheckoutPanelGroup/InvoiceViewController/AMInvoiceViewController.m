@@ -80,6 +80,7 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 @synthesize invoiceSectionView;
 @synthesize workOrder;
 @synthesize arrInvoiceInfos;
+@synthesize arrPMsItems;
 @synthesize delegate;
 @synthesize aPopoverVC;
 @synthesize arrContacts;
@@ -213,10 +214,15 @@ typedef NS_ENUM (NSInteger, PopViewType) {
         [self.arrInvoiceInfos removeAllObjects];
     }
     
+    if ([self.arrPMsItems count] > 0) {
+        [self.arrPMsItems removeAllObjects];
+    }
+    
 	self.workOrder = aWorkOrder;
 
      arrCodePriceList = [NSMutableArray arrayWithArray:[[AMLogicCore sharedInstance] getInvoiceCodeListByWOID:self.workOrder.woID]];
 	self.arrInvoiceInfos = [NSMutableArray array];
+    self.arrPMsItems = [NSMutableArray array];
 	//*
 
 	NSArray *arrContact = [[AMLogicCore sharedInstance] getContactListByPoSID:self.workOrder.posID];
@@ -361,6 +367,14 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 		fTotalPrice += [aInvoice.price floatValue];
 	}
     
+    NSArray *arrTemp2 = [[AMLogicCore sharedInstance] getPMsListByPOSID:aWorkOrder.posID];
+    if (arrTemp2 && [arrTemp2 count] > 0) {
+        AMDBCustomerPrice *custPriceObj = ((AMDBCustomerPrice *) arrTemp2[0]);
+        //fTotalPrice += [inv.price floatValue];
+        [self.arrPMsItems addObject:custPriceObj];
+        
+        [self refreshTotalPrice];
+    }
     //TODO::Enhancement140929
     if (hasFitlerInvoice && [self.workOrder.woType isEqualToLocalizedString:kAMWORK_ORDER_TYPE_EXCHANGE])
     {
@@ -1032,6 +1046,10 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
     for (NSMutableDictionary *dicParts in arrCodeItems) {
         AMDBCustomerPrice *customerPrice = [dicParts objectForKey:KEY_OF_CUSTOMER_PRICE];
         fTotalPrice += [customerPrice.price floatValue];
+    }
+    
+    for (AMDBCustomerPrice *custP in arrPMsItems) {
+        fTotalPrice += [custP.price floatValue];
     }
     
 	self.labelPrice.text =  isHiddenMoney ? @"XXX" : [NSString stringWithFormat:@"%.2f", fTotalPrice];

@@ -133,13 +133,13 @@ typedef NS_ENUM (NSInteger, PopViewType) {
         
         NSMutableArray *arrInfos = [NSMutableArray array];
         
-        [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Alternate Contact") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Alternate Contact"}];
-        [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Decision Maker") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Decision Maker"}];
-        [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"AP Contact") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : @"AP Contact"}];
-        [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Delivery Contact") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Delivery Contact"}];
-        [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Order Contact") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Order Contact"}];
-        [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Service Contact") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Service Contact"}];
-        [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Done") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Done"}];
+        [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Alternate Contact") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"Alternate Contact")}];
+        [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Decision Maker") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"Decision Maker")}];
+        [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"AP Contact") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"AP Contact")}];
+        [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Delivery Contact") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"Delivery Contact")}];
+        [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Order Contact") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"Order Contact")}];
+        [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Service Contact") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"Service Contact")}];
+        [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Done") ,kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"Done")}];
         popView.arrInfos = arrInfos;
         aPopoverVC = [[UIPopoverController alloc] initWithContentViewController:popView];
         [aPopoverVC setPopoverContentSize:CGSizeMake(CGRectGetWidth(popView.view.frame), CGRectGetHeight(popView.view.frame))];

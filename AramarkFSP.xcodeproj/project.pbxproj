@@ -173,6 +173,8 @@
 		7C55F3001A8A80EC0081A4B0 /* AMFilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C55F2FE1A8A80EC0081A4B0 /* AMFilterTableViewCell.xib */; };
 		7C7A4F951BCD3F73001903F4 /* AMNearOrderListAdminCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A4F941BCD3F73001903F4 /* AMNearOrderListAdminCell.m */; settings = {ASSET_TAGS = (); }; };
 		7C7A4F971BCD3F86001903F4 /* AMNearOrderListAdminCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7A4F961BCD3F86001903F4 /* AMNearOrderListAdminCell.xib */; settings = {ASSET_TAGS = (); }; };
+		7C7A4F9A1BCEF2BB001903F4 /* AMPMsNameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A4F991BCEF2BB001903F4 /* AMPMsNameTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		7C7A4F9D1BCEF2FC001903F4 /* AMPMsNameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7A4F9C1BCEF2FC001903F4 /* AMPMsNameTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		7CCD7E6E1AB749FF006FED08 /* AMDBNewContact.h in Resources */ = {isa = PBXBuildFile; fileRef = 7CCD7E6D1AB749FF006FED08 /* AMDBNewContact.h */; };
 		7CCD7E701AB74A30006FED08 /* AMDBNewContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD7E6F1AB74A30006FED08 /* AMDBNewContact.m */; };
 		7CCD7E7F1AB76764006FED08 /* AMDBNewContact+AddOn.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD7E7E1AB76764006FED08 /* AMDBNewContact+AddOn.m */; };
@@ -993,6 +995,9 @@
 		7C7A4F931BCD3F59001903F4 /* AMNearOrderListAdminCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMNearOrderListAdminCell.h; path = NearOrderListViewController/NearOrderListCell/AMNearOrderListAdminCell.h; sourceTree = "<group>"; };
 		7C7A4F941BCD3F73001903F4 /* AMNearOrderListAdminCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMNearOrderListAdminCell.m; path = NearOrderListViewController/NearOrderListCell/AMNearOrderListAdminCell.m; sourceTree = "<group>"; };
 		7C7A4F961BCD3F86001903F4 /* AMNearOrderListAdminCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AMNearOrderListAdminCell.xib; path = NearOrderListViewController/NearOrderListCell/AMNearOrderListAdminCell.xib; sourceTree = "<group>"; };
+		7C7A4F991BCEF2BB001903F4 /* AMPMsNameTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMPMsNameTableViewCell.m; path = CheckoutPanelGroup/CheckoutTableViewCell/AMPMsNameTableViewCell/AMPMsNameTableViewCell.m; sourceTree = "<group>"; };
+		7C7A4F9B1BCEF2CF001903F4 /* AMPMsNameTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMPMsNameTableViewCell.h; path = CheckoutPanelGroup/CheckoutTableViewCell/AMPMsNameTableViewCell/AMPMsNameTableViewCell.h; sourceTree = "<group>"; };
+		7C7A4F9C1BCEF2FC001903F4 /* AMPMsNameTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AMPMsNameTableViewCell.xib; path = CheckoutPanelGroup/CheckoutTableViewCell/AMPMsNameTableViewCell/AMPMsNameTableViewCell.xib; sourceTree = "<group>"; };
 		7CCD7E6D1AB749FF006FED08 /* AMDBNewContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMDBNewContact.h; sourceTree = "<group>"; };
 		7CCD7E6F1AB74A30006FED08 /* AMDBNewContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMDBNewContact.m; sourceTree = "<group>"; };
 		7CCD7E7D1AB76764006FED08 /* AMDBNewContact+AddOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AMDBNewContact+AddOn.h"; sourceTree = "<group>"; };
@@ -2100,6 +2105,16 @@
 				7C55F26C1A83CAC60081A4B0 /* KLCPopup.m */,
 			);
 			path = KLCPopup;
+			sourceTree = "<group>";
+		};
+		7C7A4F981BCEF1AE001903F4 /* AMPMsNameTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				7C7A4F9B1BCEF2CF001903F4 /* AMPMsNameTableViewCell.h */,
+				7C7A4F991BCEF2BB001903F4 /* AMPMsNameTableViewCell.m */,
+				7C7A4F9C1BCEF2FC001903F4 /* AMPMsNameTableViewCell.xib */,
+			);
+			name = AMPMsNameTableViewCell;
 			sourceTree = "<group>";
 		};
 		7CDAE9651AC3308C009066E4 /* NewContactViewController */ = {
@@ -3389,6 +3404,7 @@
 				D0344572192C6E8900C3E18C /* AMVerificationTableViewCell */,
 				D0344561192C44F200C3E18C /* AMPartNameTableViewCell */,
 				D0344560192C44DC00C3E18C /* AMAddTableViewCell */,
+				7C7A4F981BCEF1AE001903F4 /* AMPMsNameTableViewCell */,
 				D034455F192C44A700C3E18C /* AMFilterNameTableViewCell */,
 				D0344559192C373500C3E18C /* AMMaintenanceTypeTableViewCell */,
 				D06806E0192B0A1500EA3440 /* AMWorkPerformedTableViewCell */,
@@ -4434,6 +4450,7 @@
 				D02F334C191CC5F100CF9006 /* cases_icon@2x.png in Resources */,
 				D01269B51909050500070DA9 /* AMTitleItemViewController.xib in Resources */,
 				02B6EF78194EE6EC00816281 /* AMAttachmentTableViewCell.xib in Resources */,
+				7C7A4F9D1BCEF2FC001903F4 /* AMPMsNameTableViewCell.xib in Resources */,
 				D0B79E88191A228D00FD1152 /* List-Item-Number.png in Resources */,
 				7C7A4F971BCD3F86001903F4 /* AMNearOrderListAdminCell.xib in Resources */,
 				D013D892196535F1008A7C55 /* preview-button.png in Resources */,
@@ -4711,6 +4728,7 @@
 				D01C4B2E19D16FB600BC0F9B /* GoogleUtility.m in Sources */,
 				02F5F6A719383F87006DB190 /* AMContactTableViewCell.m in Sources */,
 				025D4AF2193DC90500776B9E /* AMUpdateSiteSurveyViewController.m in Sources */,
+				7C7A4F9A1BCEF2BB001903F4 /* AMPMsNameTableViewCell.m in Sources */,
 				029B7F63196BEB49001BE403 /* NSDate+DateTools.m in Sources */,
 				D06E8911190F3CE10083D9B7 /* AMLeftBarViewController.m in Sources */,
 				D007B3801925BE6D00DD09DE /* AMInvoiceViewController.m in Sources */,

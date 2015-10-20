@@ -22,6 +22,7 @@
 #import "AMWorkPerformedTableViewCell.h"
 #import "AMMaintenanceTypeTableViewCell.h"
 #import "AMFilterNameTableViewCell.h"
+#import "AMPMsNameTableViewCell.h"
 #import "AMAddTableViewCell.h"
 #import "AMWorkOrderViewController.h"
 #import "AMPartNameTableViewCell.h"
@@ -38,6 +39,7 @@
 
 #define MAX_FILTER_COUNT    5
 #define MAX_PART_COUNT      5
+#define MAX_PMS_COUNT      5
 
 #define TEXT_OF_CREATE          @"Unresolved"
 #define TEXT_OF_NEED_PARTS      @"Needs Part"
@@ -59,6 +61,7 @@ typedef NS_ENUM (NSInteger, TextInputType) {
 	TextInputType_MaintenanceFee,
 	TextInputType_FilterQuantity,
 	TextInputType_PartQuantity,
+    TextInputType_PMsQuantity
 };
 
 typedef NS_ENUM (NSInteger, PopViewType) {
@@ -68,6 +71,7 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 	PopViewType_Select_FilterName,
 	PopViewType_Select_PartName,
     PopViewType_Select_FilterType,//bkk 2/5/15
+    PopViewType_Select_PMsName,
 };
 
 //bkk 2/5/2015
@@ -133,6 +137,7 @@ AMWorkOrderViewControllerDelegate
 @property (nonatomic, strong) NSMutableArray *arrCodeItems;
 @property (nonatomic, strong) NSMutableArray *arrFilterItems;
 @property (nonatomic, strong) NSMutableArray *arrPartItems;
+@property (strong, nonatomic) NSMutableArray *arrPMsItems;
 @property (nonatomic, strong) NSMutableArray *arrWorkItems;
 @property (nonatomic, strong) NSMutableArray *arrCodePriceList;
 @property (nonatomic, strong) UILabel *lblQty;//bkk 2/5/15
@@ -149,6 +154,7 @@ AMWorkOrderViewControllerDelegate
 @synthesize aPopoverVC;
 @synthesize workOrder;
 @synthesize arrCheckoutInfos;
+@synthesize arrPMsItems;
 @synthesize delegate;
 @synthesize arrInvoiceItems;
 @synthesize arrCodeItems;
@@ -641,6 +647,14 @@ AMWorkOrderViewControllerDelegate
 		}
 	}
     
+    if (arrPMsItems && [arrPMsItems count] > 0) {
+        for (AMInvoice *invoice in arrPMsItems) {
+            if (![arrInvoiceItems containsObject:invoice]) {
+                [arrInvoiceItems addObject:invoice];
+            }
+        }
+    }
+    
     if (arrPartItems && [arrPartItems count] > 0) {
 		for (AMInvoice *invoice in arrPartItems) {
 			if ([invoice.partsName length] != 0  && [invoice.quantity intValue] != 0) {
@@ -676,6 +690,31 @@ AMWorkOrderViewControllerDelegate
 	[aPopoverVC setPopoverContentSize:CGSizeMake(CGRectGetWidth(popView.view.frame), CGRectGetHeight(popView.view.frame))];
 	aPopoverVC.delegate = self;
 	[aPopoverVC presentPopoverFromRect:sender.frame inView:sender.superview.superview permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+}
+
+- (void)clickAddPMsBtn:(UIButton *)sender {
+    DLog(@"clickAddPMsBtn");
+    
+    NSMutableDictionary *dicInfo = [self dataWithType:AMCheckoutCellType_Checkout_PMs_Item];
+    
+    if (!dicInfo) {
+        return;
+    }
+    
+    if ([arrPMsItems count] >= MAX_PMS_COUNT) {
+        return;
+    }
+    
+    AMInvoice *invoce = [[AMInvoice alloc] init];
+    invoce.assetID = nil;
+    invoce.posID = self.workOrder.posID;
+    invoce.woID = self.workOrder.woID;
+    invoce.recordTypeID = [[AMLogicCore sharedInstance] getRecordTypeIdByName:INVOICE_TYPE_INVOICECODE forObject:RECORD_TYPE_OF_INVOICE];
+    invoce.recordTypeName = INVOICE_TYPE_INVOICECODE;
+    
+    [arrPMsItems addObject:invoce];
+    
+    [self.mainTableView reloadSections:[NSIndexSet indexSetWithIndex:[arrCheckoutInfos indexOfObject:dicInfo]] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (void)clickAddPartBtn:(UIButton *)sender {
@@ -775,6 +814,43 @@ AMWorkOrderViewControllerDelegate
 	[aPopoverVC setPopoverContentSize:CGSizeMake(CGRectGetWidth(popView.view.frame), CGRectGetHeight(popView.view.frame))];
 	aPopoverVC.delegate = self;
 	[aPopoverVC presentPopoverFromRect:sender.frame inView:sender.superview.superview permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+}
+
+- (void)clickPMsNameBtn:(UIButton *)sender {
+    [self.mainTableView endEditing:YES];
+    
+    NSArray *arrTemp0 = [[AMLogicCore sharedInstance] getPMsListByPOSID:self.workOrder.posID];
+    
+    if (!arrTemp0 || [arrTemp0 count] == 0) {
+        [AMUtilities showAlertWithInfo:MyLocal(@"PM Code List Empty")];
+        return;
+    }
+    
+    NSInteger iRow = sender.tag % 1000;
+    NSInteger iSection = (sender.tag - iRow) / 1000;
+    
+    AMPopoverSelectTableViewController *popView = [[AMPopoverSelectTableViewController alloc] initWithNibName:@"AMPopoverSelectTableViewController" bundle:nil];
+    popView.delegate = self;
+    popView.tag = PopViewType_Select_PMsName;
+    
+    DLog(@"sender.tag : %d", sender.tag);
+    
+    popView.aIndexPath = [NSIndexPath indexPathForRow:iRow inSection:iSection];
+    
+    NSMutableArray *arrInfos = [NSMutableArray array];
+    
+    for (AMDBCustomerPrice *customerPrice in arrTemp0) {
+        NSMutableDictionary *dicInfo = [NSMutableDictionary dictionary];
+        [dicInfo setObject:customerPrice forKey:kAMPOPOVER_DICTIONARY_KEY_DATA];
+        [dicInfo setObject:customerPrice.productName forKey:kAMPOPOVER_DICTIONARY_KEY_INFO];
+        [arrInfos addObject:dicInfo];
+    }
+    
+    popView.arrInfos = arrInfos;
+    aPopoverVC = [[UIPopoverController alloc] initWithContentViewController:popView];
+    [aPopoverVC setPopoverContentSize:CGSizeMake(CGRectGetWidth(popView.view.frame), CGRectGetHeight(popView.view.frame))];
+    aPopoverVC.delegate = self;
+    [aPopoverVC presentPopoverFromRect:sender.frame inView:sender.superview.superview permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
 }
 
 - (void)clickFilterNameBtn:(UIButton *)sender {
@@ -948,6 +1024,14 @@ AMWorkOrderViewControllerDelegate
         self.arrPartItems = [NSMutableArray array];
     }
     
+    if (self.arrPMsItems && [self.arrPMsItems count] > 0) {
+        [self.arrPMsItems removeAllObjects];
+    }
+    else
+    {
+        self.arrPMsItems = [NSMutableArray array];
+    }
+    
 	self.workOrder = aWorkOrder;
     
     arrCodePriceList = [NSMutableArray arrayWithArray:[[AMLogicCore sharedInstance] getInvoiceCodeListByWOID:self.workOrder.woID]];
@@ -982,6 +1066,33 @@ AMWorkOrderViewControllerDelegate
         }
     }
 
+    //populate the PMs
+    NSArray *arrTemp0 = [[AMLogicCore sharedInstance] getPMsListByPOSID:self.workOrder.posID];
+    
+    if ([arrTemp0 count] > 0)
+    {
+        AMInvoice *invoce = [[AMInvoice alloc] init];
+        invoce.assetID = nil;
+        invoce.posID = self.workOrder.posID;
+        invoce.woID = self.workOrder.woID;
+        invoce.recordTypeID = [[AMLogicCore sharedInstance] getRecordTypeIdByName:INVOICE_TYPE_INVOICECODE forObject:RECORD_TYPE_OF_INVOICE];
+        invoce.recordTypeName = INVOICE_TYPE_INVOICECODE;
+        for (AMDBCustomerPrice *customerPrice in arrTemp0) {
+            
+            invoce.filterID = customerPrice.productID;
+            invoce.filterName = customerPrice.productName;
+            invoce.invoiceCodeId = customerPrice.productID;
+            invoce.invoiceCodeName = customerPrice.productName;
+            invoce.unitPrice = customerPrice.price;
+            invoce.price = customerPrice.price;
+            invoce.quantity = @1;
+            
+            [arrPMsItems addObject:invoce];
+            break;
+        }
+    }
+
+    
 	NSMutableDictionary *dicWO = [NSMutableDictionary dictionary];
 	[dicWO setObject:[NSNumber numberWithInteger:AMCheckoutCellType_Checkout_RepairCode] forKey:KEY_OF_CELL_TYPE];
 	[dicWO setObject:[NSString stringWithFormat:@"%@", [aWorkOrder.repairCode length] == 0 ? @"":aWorkOrder.repairCode] forKey:KEY_OF_REPAIR_CODE];
@@ -1043,6 +1154,58 @@ AMWorkOrderViewControllerDelegate
     [dicFilterItemT setObject:arrFilterItems forKey:KEY_OF_CELL_DATA];
     
 	[self.arrCheckoutInfos addObject:dicFilterItemT];
+    
+    
+    
+    
+    
+    
+    
+    
+    //Preventative Maintenance START
+    
+    //
+    NSMutableDictionary *dicPMs = [NSMutableDictionary dictionary];
+    [dicPMs setObject:[NSNumber numberWithInteger:AMCheckoutCellType_Checkout_PMs_Title] forKey:KEY_OF_CELL_TYPE];
+    [dicPMs setObject:[NSString stringWithFormat:@"%@:",MyLocal(@"PREVENTATIVE MAINTENANCE")] forKey:KEY_OF_ADD_HEAD_TITLE];
+    [dicPMs setObject:MyLocal(@"PM") forKey:KEY_OF_ADD_HEAD_INFO];
+    
+    NSMutableDictionary *dicPMsT = [NSMutableDictionary dictionary];
+    [dicPMsT setObject:[NSNumber numberWithInteger:AMCheckoutCellType_Checkout_PMs_Title] forKey:KEY_OF_CELL_TYPE];
+    [dicPMsT setObject:dicPMs forKey:KEY_OF_CELL_DATA];
+    
+    [self.arrCheckoutInfos addObject:dicPMsT];
+    
+    //
+    NSMutableDictionary *dicPMsItemT = [NSMutableDictionary dictionary];
+    [dicPMsItemT setObject:[NSNumber numberWithInteger:AMCheckoutCellType_Checkout_PMs_Item] forKey:KEY_OF_CELL_TYPE];
+    [dicPMsItemT setObject:arrPMsItems forKey:KEY_OF_CELL_DATA];
+    
+    [self.arrCheckoutInfos addObject:dicPMsItemT];
+    
+
+    //Preventative Maintenance END
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 	//
 	NSMutableDictionary *dicParts = [NSMutableDictionary dictionary];
@@ -1207,6 +1370,62 @@ AMWorkOrderViewControllerDelegate
 			return cell;
 		}
             
+            
+            
+            
+            
+            
+            
+            
+        //PM Start
+        case AMCheckoutCellType_Checkout_PMs_Title:
+        {
+            AMTitleWithAddTableViewCell *cell = (AMTitleWithAddTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"AMTitleWithAddTableViewCell"];
+            if (cell == nil) {
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AMTitleWithAddTableViewCell" owner:[AMTitleWithAddTableViewCell class] options:nil];
+                cell = (AMTitleWithAddTableViewCell *)[nib objectAtIndex:0];
+            }
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            NSMutableDictionary *dicInfo = [checkoutItem objectForKey:KEY_OF_CELL_DATA];
+            [cell.btnAdd addTarget:self action:@selector(clickAddPMsBtn:) forControlEvents:UIControlEventTouchUpInside];
+            [cell refreshData:dicInfo];
+            
+            return cell;
+        }
+            
+        case AMCheckoutCellType_Checkout_PMs_Item:
+        {
+            AMPMsNameTableViewCell *cell = (AMPMsNameTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"AMPMsNameTableViewCell"];
+            if (cell == nil) {
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AMPMsNameTableViewCell" owner:[AMPMsNameTableViewCell class] options:nil];
+                cell = (AMPMsNameTableViewCell *)[nib objectAtIndex:0];
+            }
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            AMInvoice *invoice = [arrPMsItems objectAtIndex:indexPath.row];
+            
+            cell.textFieldPMName.text = invoice.invoiceCodeName ? invoice.invoiceCodeName : TEXT_OF_NULL;
+            cell.textFieldPMQuantity.text = @"1";
+            [cell.btnPreventativeMaintenance addTarget:self action:@selector(clickPMsNameBtn:) forControlEvents:UIControlEventTouchUpInside];
+            cell.btnPreventativeMaintenance.tag = (indexPath.section * 1000 + indexPath.row);
+            return cell;
+        }
+            
+        //PM END
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
 		case AMCheckoutCellType_Checkout_Part_Title:
 		{
 			AMTitleWithAddTableViewCell *cell = (AMTitleWithAddTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"AMTitleWithAddTableViewCell"];
@@ -1258,9 +1477,12 @@ AMWorkOrderViewControllerDelegate
     NSMutableDictionary *dicFilterItemInfo = [self dataWithType:AMCheckoutCellType_Checkout_Filter_Item];
     NSMutableDictionary *dicPartItemInfo = [self dataWithType:AMCheckoutCellType_Checkout_Part_Item];
     NSMutableDictionary *dicCodesItemInfo = [self dataWithType:AMCheckoutCellType_Checkout_InvoiceCode_Item];
+    NSMutableDictionary *dicPMsItemInfo = [self dataWithType:AMCheckoutCellType_Checkout_PMs_Item];
+
     if (indexPath.section == [arrCheckoutInfos indexOfObject:dicFilterItemInfo]
         || indexPath.section == [arrCheckoutInfos indexOfObject:dicPartItemInfo]
-        || indexPath.section == [arrCheckoutInfos indexOfObject:dicCodesItemInfo]) {
+        || indexPath.section == [arrCheckoutInfos indexOfObject:dicCodesItemInfo]
+        || indexPath.section == [arrCheckoutInfos indexOfObject:dicPMsItemInfo]) {
         return  TRUE;
     }
     
@@ -1271,10 +1493,13 @@ AMWorkOrderViewControllerDelegate
 {
     NSMutableDictionary *dicFilterItemInfo = [self dataWithType:AMCheckoutCellType_Checkout_Filter_Item];
     NSMutableDictionary *dicPartItemInfo = [self dataWithType:AMCheckoutCellType_Checkout_Part_Item];
-     NSMutableDictionary *dicCodesItemInfo = [self dataWithType:AMCheckoutCellType_Checkout_InvoiceCode_Item];
+    NSMutableDictionary *dicCodesItemInfo = [self dataWithType:AMCheckoutCellType_Checkout_InvoiceCode_Item];
+    NSMutableDictionary *dicPMsItemInfo = [self dataWithType:AMCheckoutCellType_Checkout_PMs_Item];
+
     if (indexPath.section == [arrCheckoutInfos indexOfObject:dicFilterItemInfo]
         || indexPath.section == [arrCheckoutInfos indexOfObject:dicPartItemInfo]
-        || indexPath.section == [arrCheckoutInfos indexOfObject:dicCodesItemInfo]) {
+        || indexPath.section == [arrCheckoutInfos indexOfObject:dicCodesItemInfo]
+        || indexPath.section == [arrCheckoutInfos indexOfObject:dicPMsItemInfo]) {
         return  UITableViewCellEditingStyleDelete;
     }
     else
@@ -1292,8 +1517,35 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
         NSMutableDictionary *dicCodeItemInfo = [self dataWithType:AMCheckoutCellType_Checkout_InvoiceCode_Item];
         NSMutableDictionary *dicFilterItemInfo = [self dataWithType:AMCheckoutCellType_Checkout_Filter_Item];
         NSMutableDictionary *dicPartItemInfo = [self dataWithType:AMCheckoutCellType_Checkout_Part_Item];
+        NSMutableDictionary *dicPMsItemInfo = [self dataWithType:AMCheckoutCellType_Checkout_PMs_Item];
         
-        if (indexPath.section == [arrCheckoutInfos indexOfObject:dicFilterItemInfo]) {
+        if (indexPath.section == [arrCheckoutInfos indexOfObject:dicPMsItemInfo]) {
+            AMInvoice *invoice = [arrPMsItems objectAtIndex:indexPath.row];
+            
+            if (invoice.invoiceID) {
+                [[AMLogicCore sharedInstance] deleteInvoiceById:invoice.invoiceID completion:^(NSInteger type, NSError *error) {
+                    if (error) {
+                        [AMUtilities showAlertWithInfo:[error localizedDescription]];
+                        return ;
+                    }
+                    else{
+                        [arrInvoiceItems removeObject:[arrPMsItems objectAtIndex:indexPath.row]];
+                        [arrPMsItems removeObjectAtIndex:indexPath.row];
+                        
+                        MAIN(^{
+                            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+                            [self refreshTotalPrice];
+                        });
+                    }
+                }];
+            } else {
+                [arrInvoiceItems removeObject:[arrPMsItems objectAtIndex:indexPath.row]];
+                [arrPMsItems removeObjectAtIndex:indexPath.row];
+                MAIN(^{
+                    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+                });
+            }
+        } else if (indexPath.section == [arrCheckoutInfos indexOfObject:dicFilterItemInfo]) {
             
             AMInvoice *invoice = [arrFilterItems objectAtIndex:indexPath.row];
             
@@ -1376,6 +1628,7 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
 	id checkoutItem = [self.arrCheckoutInfos objectAtIndex:section];
     
 	switch ([[checkoutItem objectForKey:KEY_OF_CELL_TYPE] integerValue]) {
+        case AMCheckoutCellType_Checkout_PMs_Title :
 		case AMCheckoutCellType_Checkout_RepairCode :
         case AMCheckoutCellType_Checkout_WorkOrderNotes :
         case AMCheckoutCellType_Checkout_WorkPerformed :
@@ -1401,6 +1654,10 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
 		{
 			return [arrPartItems count];
 		}
+        case AMCheckoutCellType_Checkout_PMs_Item:
+        {
+            return [arrPMsItems count];
+        }
             break;
 	}
     
@@ -1649,6 +1906,22 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
 		[self.mainTableView reloadSections:[NSIndexSet indexSetWithIndex:[arrCheckoutInfos indexOfObject:[self dataWithType:AMCheckoutCellType_Checkout_Filter_Item]]] withRowAnimation:UITableViewRowAnimationNone];
         [self refreshTotalPrice];//TODO::Enhancement140929
 	}
+    else if (aVerificationStatusTableViewController.tag == PopViewType_Select_PMsName) {
+        AMDBCustomerPrice *customerPrice = [aInfo objectForKey:kAMPOPOVER_DICTIONARY_KEY_DATA];
+        
+        AMInvoice *invoice = [arrPMsItems objectAtIndex:aVerificationStatusTableViewController.aIndexPath.row];
+        invoice.filterID = customerPrice.productID;
+        invoice.filterName = customerPrice.productName;
+        invoice.invoiceCodeId = customerPrice.productID;
+        invoice.invoiceCodeName = customerPrice.productName;
+        invoice.unitPrice = customerPrice.price;
+        invoice.quantity = @1;
+        
+        NSLog(@"didSelected : %@", aInfo);
+        [aPopoverVC dismissPopoverAnimated:YES];
+        [self.mainTableView reloadSections:[NSIndexSet indexSetWithIndex:[arrCheckoutInfos indexOfObject:[self dataWithType:AMCheckoutCellType_Checkout_PMs_Item]]] withRowAnimation:UITableViewRowAnimationNone];
+        [self refreshTotalPrice];//TODO::Enhancement140929
+    }
 	else if (aVerificationStatusTableViewController.tag == PopViewType_Select_PartName) {
         
         AMParts *part = [aInfo objectForKey:kAMPOPOVER_DICTIONARY_KEY_DATA];
@@ -1726,6 +1999,14 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
                 }
             }
                 break;
+            case AMCheckoutCellType_Checkout_PMs_Item:
+            {
+                for (AMInvoice *invoice in arrPMsItems) {
+                    if (invoice.unitPrice) {
+                        fTotalPrice += [invoice.unitPrice floatValue];
+                    }
+                }
+            }
         }
     }
     

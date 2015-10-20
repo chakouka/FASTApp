@@ -574,6 +574,7 @@
 
 -(AMDBCustomerPrice *)getMaintainanceFeeByWOID:(NSString *)woID;
 -(NSArray *)getFilterListByWOID:(NSString *)woID;
+-(NSArray *)getPMsListByPOSID:(NSString *)posID;
 
 - (NSArray *)getCreatedCasesHistoryByDayInRecentDays:(int)numberOfDays;
 

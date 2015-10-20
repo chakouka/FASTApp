@@ -16,6 +16,7 @@ UITableViewDataSource
 >
 
 @property (strong, nonatomic) NSMutableArray *arrInvoiceInfos;
+@property (strong, nonatomic) NSMutableArray *arrPMsItems;
 @property (strong, nonatomic) IBOutlet UITableView *mainTableView;
 @property (weak, nonatomic) IBOutlet UILabel *labelPrice;
 @property (weak, nonatomic) IBOutlet UIImageView *imageViewSignature;

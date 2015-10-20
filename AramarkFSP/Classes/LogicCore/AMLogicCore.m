@@ -1357,6 +1357,12 @@
 
 }
 
+-(NSArray *)getPMsListByPOSID:(NSString *)posID
+{
+    return [[AMDBManager sharedInstance] getPMsListByPOSID:posID];
+    
+}
+
 #pragma mark - Creation
 -(AMDBNewCase *)createNewCaseInDB
 {

@@ -95,7 +95,8 @@
 - (NSArray *)getContactListByPoSID:(NSString *)posID;
 //- (NSArray *)getFilterListByPoSID:(NSString *)posID;
 -(NSArray *)getFilterListByWOID:(NSString *)woID;
--(NSArray *)getInvoiceCodeListByWOID:(NSString *)woID;
+-(NSArray *)getPMsListByPOSID:(NSString *)posID;
+-(NSArray *)getInvoiceCodeListByWOID:(NSString *)posID;
 
 - (NSArray *)getPartsListByProductID:(NSString *)productID;
 - (NSArray *)getInvoiceListByWOIDList:(NSArray *)woIDList;
