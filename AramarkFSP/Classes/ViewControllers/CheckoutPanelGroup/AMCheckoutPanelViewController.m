@@ -321,12 +321,14 @@ AMInvoiceViewControllerDelegate
             
             [invoiceVC setupDataSourceByInfo:self.workOrder];
             
-            [[AMSyncingManager sharedInstance] startSyncing:^(NSInteger type, NSError * error){
-                if (!error ||
-                    [error.localizedDescription rangeOfString:kAM_MESSAGE_SYNC_IN_PROCESS].location == NSNotFound) {
-                    [self syncingCompletion:error];
-                }
-            }];
+            
+//Don't sync when moving from 3rd tab to this one. bkk 11/2/2015	
+//            [[AMSyncingManager sharedInstance] startSyncing:^(NSInteger type, NSError * error){
+//                if (!error ||
+//                    [error.localizedDescription rangeOfString:kAM_MESSAGE_SYNC_IN_PROCESS].location == NSNotFound) {
+//                    [self syncingCompletion:error];
+//                }
+//            }];
         }
             break;
             

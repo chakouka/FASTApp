@@ -933,8 +933,14 @@
     [idDict setValue:(idList ? idList : @[]) forKey:@"Account"];
     
     objectList = [[AMDBManager sharedInstance] getAllAssetList];
-    idList = [objectList valueForKeyExcludingNull:@"assetID"];
+    
+    //nasty hack to ensure that we don't have any duplicate assetIDs added to the dict that gets sent
+    //to SFDC.  this "fixes" issue where an asset on the device gets changed on the server.  server
+    //copy is now dirty and the device doesn't know it so the end result is that the device has another copy
+    //of the asset BKK INC1205035
+    idList = [[NSSet setWithArray:[objectList valueForKeyExcludingNull:@"assetID"]] allObjects];
     [idDict setValue:(idList ? idList : @[]) forKey:@"Asset"];
+    
     idList = [objectList valueForKeyExcludingNull:@"productID"];
     [idDict setValue:(idList ? idList : @[]) forKey:@"Product2"];
     
