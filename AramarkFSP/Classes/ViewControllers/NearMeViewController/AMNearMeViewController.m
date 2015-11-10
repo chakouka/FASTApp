@@ -297,7 +297,7 @@ RouteMapViewDelegate
                 //bkk 1/23/2015 - sort responseData because the initial order we want to see is
                 //that of the workorder sort
                 NSArray *sortedArray = [responseData sortedArrayUsingComparator: ^NSComparisonResult (AMWorkOrder *workOrder1, AMWorkOrder *workOrder2) {
-                    return -[workOrder1.woType compare:workOrder2.woType];
+                    return [workOrder1.woType compare:workOrder2.woType];
                 }];
                 
                 for (NSInteger i = 0; i < [sortedArray count]; i++) {
