@@ -651,6 +651,10 @@ AMWorkOrderViewControllerDelegate
         for (AMInvoice *invoice in arrPMsItems) {
             if (![arrInvoiceItems containsObject:invoice]) {
                 [arrInvoiceItems addObject:invoice];
+            } else {
+                int index = [arrInvoiceItems indexOfObject:invoice];
+                NSInteger qtySum = [((AMInvoice *)[arrInvoiceItems objectAtIndex:index]).quantity integerValue] + [invoice.quantity integerValue];
+                [(AMInvoice *)[arrInvoiceItems objectAtIndex:index] setQuantity: [NSNumber numberWithInteger: qtySum]];
             }
         }
     }
@@ -1375,8 +1379,7 @@ AMWorkOrderViewControllerDelegate
             
             
             
-            
-            
+
         //PM Start
         case AMCheckoutCellType_Checkout_PMs_Title:
         {
@@ -1415,8 +1418,7 @@ AMWorkOrderViewControllerDelegate
         }
             
         //PM END
-            
-            
+
             
             
             
@@ -1541,6 +1543,7 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
             } else {
                 [arrInvoiceItems removeObject:[arrPMsItems objectAtIndex:indexPath.row]];
                 [arrPMsItems removeObjectAtIndex:indexPath.row];
+                [self refreshTotalPrice];
                 MAIN(^{
                     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
                 });
@@ -1656,7 +1659,12 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
 		}
         case AMCheckoutCellType_Checkout_PMs_Item:
         {
-            return [arrPMsItems count];
+            if([self.workOrder.woType isEqualToString:@"Preventative Maintenance"])
+            {
+                return [arrPMsItems count];
+            } else {
+                return 0;
+            }
         }
             break;
 	}

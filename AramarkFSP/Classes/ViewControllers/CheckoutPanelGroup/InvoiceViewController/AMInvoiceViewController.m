@@ -274,7 +274,9 @@ typedef NS_ENUM (NSInteger, PopViewType) {
         }];
     }
 
-    BOOL hasFitlerInvoice = NO; //If don't have filter invoice, should not auto-populate the SHIP invoice - changed on 11/07/2014
+    BOOL hasFitlerInvoice = NO;
+    
+    //If don't have filter invoice, should not auto-populate the SHIP invoice - changed on 11/07/2014
 	for (AMInvoice *aInvoice in sortedArray) {
 		AMWorkOrder *aWork = [[AMLogicCore sharedInstance] getWorkOrderInfoByID:aInvoice.woID];
 
@@ -333,7 +335,7 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 		}
 
 		[dic0 setObject:@"Preventative Maintenance" forKey:KEY_OF_MAINTENANCE_TYPE];    //TODO::
-
+        
 		if (aInvoice.maintenanceFee) {
 			[dic0 setObject:aInvoice.maintenanceFee forKey:KEY_OF_MAINTENANCE_FEE];
 		}
@@ -399,6 +401,19 @@ typedef NS_ENUM (NSInteger, PopViewType) {
     
      self.arrInvoiceInfoGroups = [self groupedbyKey1:KEY_OF_TITLE key2:KEY_OF_DATE forList:self.arrInvoiceInfos];
 
+    //only calc the preventative maintenance ones if we have a PM WO Type    
+    if ([workOrder.woType isEqualToString:@"Preventative Maintenance"]) {
+        
+        for (AMInvoice *inv in self.tempInvoiceList) {
+            for (int i = 0; i<[inv.quantity intValue] ; i++) {                
+                if ([inv.recordTypeName isEqualToString:@"Invoice Code"]) {
+                    fTotalPrice += [inv.price floatValue];
+                }
+            }
+        }
+        
+    }
+    
 	self.labelPrice.text = isHiddenMoney ? @"XXX" : [NSString stringWithFormat:@"%.2f", fTotalPrice];
     
 	[self.mainTableView reloadData];
@@ -1043,13 +1058,21 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
             fTotalPrice += ([[dic0 objectForKey:KEY_OF_FILTER_PRICE] floatValue] * [[dic0 objectForKey:KEY_OF_FILTER_QUANTITY] floatValue]);
     }
     
+    
     for (NSMutableDictionary *dicParts in arrCodeItems) {
         AMDBCustomerPrice *customerPrice = [dicParts objectForKey:KEY_OF_CUSTOMER_PRICE];
         fTotalPrice += [customerPrice.price floatValue];
     }
     
-    for (AMDBCustomerPrice *custP in arrPMsItems) {
-        fTotalPrice += [custP.price floatValue];
+    //only calc the preventative maintenance ones if we have a PM WO Type
+    if ([workOrder.woType isEqualToString:@"Preventative Maintenance"]) {
+        for (AMInvoice *inv in self.tempInvoiceList) {
+            for (int i = 0; i<[inv.quantity intValue] ; i++) {
+                if ([inv.recordTypeName isEqualToString:@"Invoice Code"]) {
+                    fTotalPrice += [inv.price floatValue];
+                }
+            }
+        }
     }
     
 	self.labelPrice.text =  isHiddenMoney ? @"XXX" : [NSString stringWithFormat:@"%.2f", fTotalPrice];
