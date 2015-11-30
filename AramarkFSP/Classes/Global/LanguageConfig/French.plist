@@ -6,6 +6,8 @@
 	<string>Distributeur d&apos;eau lent</string>
 	<key>Please input title</key>
 	<string>Entrez le titre</string>
+	<key>Please input Title</key>
+	<string>Entrez le titre</string>
 	<key>First name must be capitalized</key>
 	<string>Prénom doit être en majuscules</string>
 	<key>Last name must be capitalized</key>
@@ -32,6 +34,8 @@
 	<string>Nouveau contact</string>
 	<key>Choose Role(s)</key>
 	<string>Choisir le rôle</string>
+	<key>Choose Role</key>
+	<string>Choisir le rôle</string>
 	<key>Must select a filter</key>
 	<string>Vous devez sélectionner un filtre</string>
 	<key>Qty is required</key>
@@ -43,6 +47,8 @@
 	<key>Filter Qty</key>
 	<string>Quantité de filtre</string>
 	<key>Add New</key>
+	<string>Ajouter un nouveau</string>
+	<key>ADD NEW</key>
 	<string>Ajouter un nouveau</string>
 	<key>Enter unlisted filter type below</key>
 	<string>Entrez un type de filter non inscrit ci-dessous</string>

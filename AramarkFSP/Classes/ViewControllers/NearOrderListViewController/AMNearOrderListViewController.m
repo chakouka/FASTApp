@@ -733,7 +733,7 @@ AMPopoverSelectTableViewControllerDelegate
 		case SortType_WoType:
 		{
 			NSArray *sortedArray = [self.localWorkOrders sortedArrayUsingComparator: ^NSComparisonResult (AMWorkOrder *workOrder1, AMWorkOrder *workOrder2) {
-			    return -[workOrder1.woType compare:workOrder2.woType];
+			    return [workOrder1.woType compare:workOrder2.woType];
 			}];
             
 			self.localWorkOrders = [NSMutableArray arrayWithArray:sortedArray];

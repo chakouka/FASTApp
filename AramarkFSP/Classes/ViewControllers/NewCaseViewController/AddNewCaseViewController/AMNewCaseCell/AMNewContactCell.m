@@ -13,7 +13,7 @@
 - (void)awakeFromNib
 {
 
-    self.labelTChooseRoles.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Choose Role(s)")];
+    self.labelTChooseRoles.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Choose Role")];
     self.labelTFirstName.text = [NSString stringWithFormat:@"%@:",MyLocal(@"First Name")];
     self.labelTLastName.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Last Name")];
     self.labelTEmail.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Email")];
