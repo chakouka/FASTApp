@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Refused-No Filter</key>
+	<string>Refusé – pas de filtre</string>
+	<key>Refused-Customer Request</key>
+	<string>Refusé – demande du client</string>
 	<key>Water Dispenser Slow</key>
 	<string>Distributeur d&apos;eau lent</string>
 	<key>Please input title</key>

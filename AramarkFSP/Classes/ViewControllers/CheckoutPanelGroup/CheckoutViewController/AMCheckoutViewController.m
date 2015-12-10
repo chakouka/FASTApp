@@ -349,29 +349,37 @@ AMWorkOrderViewControllerDelegate
 }
 -(NSMutableArray *)repairCodes
 {
-    return       [NSMutableArray arrayWithObjects:
-  @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Administrative Work Done"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Administrative Work Done"},
-  @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Called Machine Manufacturer"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Called Machine Manufacturer"},
-  @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Delivered Product"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Delivered Product"},
-  @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Exchanged Equipment"), kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Exchanged Equipment"},
-  @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(TEXT_OF_REFUSED_FILTER_EXCHANGE),kAMPOPOVER_DICTIONARY_KEY_VALUE : TEXT_OF_REFUSED_FILTER_EXCHANGE},
-  @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Installed Equipment"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Installed Equipment"},
-  @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Kiosk On-Line"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Kiosk On-Line"},
-  @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Moved Equipment"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Moved Equipment"},
-  //bkk 1/30/2015 - removed below line per 
-  //@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Needs Part"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Needs Part"},
-  @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"No Problem"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"No Problem"},
-  @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Preventative Maintenance"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Preventative Maintenance"},
-  @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Removed Equipment"),kAMPOPOVER_DICTIONARY_KEY_VALUE :@"Removed Equipment"},
-  @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Repaired Brewer"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Repaired Brewer"},
-  @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Repaired Leak"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Repaired Leak"},
-  @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Repaired Money/Product Jam"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Repaired Money/Product Jam"},
-  @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Replaced Filter"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Replaced Filter"},
-  @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Shop Work Completed"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Shop Work Completed"},
-  @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Site Survey Complete"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Site Survey Complete"},
-  @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(TEXT_OF_CREATE),kAMPOPOVER_DICTIONARY_KEY_VALUE : TEXT_OF_CREATE},
-  @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Vending"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Vending"},
-                  nil];
+    if ([self.workOrder.woType isEqualToString:MyLocal(@"Filter Exchange")]) {
+        return       [NSMutableArray arrayWithObjects:
+          @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Replaced Filter"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Replaced Filter"},
+          @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Refused-Customer Request"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Refused-Customer Request"},
+          @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Refused-No Filter"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Refused-No Filter"},
+          nil];
+    }else {
+        return       [NSMutableArray arrayWithObjects:
+          @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Administrative Work Done"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Administrative Work Done"},
+          @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Called Machine Manufacturer"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Called Machine Manufacturer"},
+          @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Delivered Product"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Delivered Product"},
+          @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Exchanged Equipment"), kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Exchanged Equipment"},
+          @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(TEXT_OF_REFUSED_FILTER_EXCHANGE),kAMPOPOVER_DICTIONARY_KEY_VALUE : TEXT_OF_REFUSED_FILTER_EXCHANGE},
+          @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Installed Equipment"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Installed Equipment"},
+          @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Kiosk On-Line"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Kiosk On-Line"},
+          @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Moved Equipment"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Moved Equipment"},
+          //bkk 1/30/2015 - removed below line per 
+          //@{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Needs Part"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Needs Part"},
+          @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"No Problem"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"No Problem"},
+          @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Preventative Maintenance"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Preventative Maintenance"},
+          @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Removed Equipment"),kAMPOPOVER_DICTIONARY_KEY_VALUE :@"Removed Equipment"},
+          @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Repaired Brewer"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Repaired Brewer"},
+          @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Repaired Leak"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Repaired Leak"},
+          @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Repaired Money/Product Jam"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Repaired Money/Product Jam"},
+          @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Replaced Filter"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Replaced Filter"},
+          @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Shop Work Completed"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Shop Work Completed"},
+          @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Site Survey Complete"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Site Survey Complete"},
+          @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(TEXT_OF_CREATE),kAMPOPOVER_DICTIONARY_KEY_VALUE : TEXT_OF_CREATE},
+          @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Vending"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Vending"},
+          nil];
+    }
 }
 -(void)showPopup {
     // Generate content view to present
@@ -416,6 +424,14 @@ AMWorkOrderViewControllerDelegate
     
     if ([self.workOrder.woType isEqualToString:TEXT_OF_REPAIR] && (cell.textViewWorkOrderNotes.text.length == 0 || [cell.textViewWorkOrderNotes.text isEqualToString:@"Write note"])) {
         [AMUtilities showAlertWithInfo:MyLocal(@"Please Input Work Order Notes")];
+        return;
+    }
+    
+    //i&e 604 - 12/8/2015 - repair code update
+    if ([self.workOrder.woType isEqualToString:TEXT_OF_FILTER_EXCHANGE] && (cell.textViewWorkOrderNotes.text.length == 0 || [cell.textViewWorkOrderNotes.text isEqualToString:@"Write note"] )) {
+        if ([[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:MyLocal(@"Refused-Customer Request")] || [[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:MyLocal(@"Refused-No Filter")]) {
+            [AMUtilities showAlertWithInfo:MyLocal(@"Please Input Work Order Notes")];
+        }
         return;
     }
     
