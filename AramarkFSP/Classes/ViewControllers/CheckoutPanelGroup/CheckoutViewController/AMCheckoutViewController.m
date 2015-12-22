@@ -46,6 +46,8 @@
 #define TEXT_OF_FILTER_EXCHANGE         @"Filter Exchange"  //TODO::Enhancement140929
 #define TEXT_OF_REFUSED_FILTER_EXCHANGE @"Refused Filter Change"//TODO::Enhancement140929
 #define TEXT_OF_REPLACED_FILTER @"Replaced Filter"//bkk 1/30/2015
+#define TEXT_OF_REFUSED_FILTER_REFUSED @"Refused-Customer Refused"
+#define TEXT_OF_REFUSED_NO_FILTER @"Refused-No Filter"
 #define TEXT_OF_REPAIR @"Repair"
 #define TEXT_OF_INSTALL @"Install"
 
@@ -352,7 +354,7 @@ AMWorkOrderViewControllerDelegate
     if ([self.workOrder.woType isEqualToString:MyLocal(@"Filter Exchange")]) {
         return       [NSMutableArray arrayWithObjects:
           @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Replaced Filter"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Replaced Filter"},
-          @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Refused-Customer Request"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Refused-Customer Request"},
+          @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Refused-Customer Refused"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Refused-Customer Refused"},
           @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Refused-No Filter"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Refused-No Filter"},
           nil];
     }else {
@@ -429,7 +431,7 @@ AMWorkOrderViewControllerDelegate
     
     //i&e 604 - 12/8/2015 - repair code update
     if ([self.workOrder.woType isEqualToString:TEXT_OF_FILTER_EXCHANGE] && (cell.textViewWorkOrderNotes.text.length == 0 || [cell.textViewWorkOrderNotes.text isEqualToString:@"Write note"] )) {
-        if ([[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:MyLocal(@"Refused-Customer Request")] || [[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:MyLocal(@"Refused-No Filter")]) {
+        if ([[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:MyLocal(@"Refused-Customer Refused")] || [[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:MyLocal(@"Refused-No Filter")]) {
             [AMUtilities showAlertWithInfo:MyLocal(@"Please Input Work Order Notes")];
         }
         return;
@@ -451,7 +453,7 @@ AMWorkOrderViewControllerDelegate
         
         if ([self.workOrder.woType isEqualToString:TEXT_OF_FILTER_EXCHANGE]) {
             
-            if (![[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:TEXT_OF_REFUSED_FILTER_EXCHANGE]) {
+            if (![[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:TEXT_OF_REFUSED_FILTER_EXCHANGE] || ![[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:TEXT_OF_REFUSED_FILTER_REFUSED] || ![[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:TEXT_OF_REFUSED_NO_FILTER]) {
                 if ([arrFilterItems count] == 0) {
                     //[AMUtilities showAlertWithInfo:MyLocal(@"Please update the filter information")];
                     [self showPopup];
