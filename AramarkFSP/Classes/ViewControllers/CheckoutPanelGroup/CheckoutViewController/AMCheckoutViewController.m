@@ -433,8 +433,9 @@ AMWorkOrderViewControllerDelegate
     if ([self.workOrder.woType isEqualToString:TEXT_OF_FILTER_EXCHANGE] && (cell.textViewWorkOrderNotes.text.length == 0 || [cell.textViewWorkOrderNotes.text isEqualToString:@"Write note"] )) {
         if ([[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:MyLocal(@"Refused-Customer Refused")] || [[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:MyLocal(@"Refused-No Filter")]) {
             [AMUtilities showAlertWithInfo:MyLocal(@"Please Input Work Order Notes")];
+            return;
         }
-        return;
+        
     }
     
     //bkk 1/29/2015
