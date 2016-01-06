@@ -454,7 +454,7 @@ AMWorkOrderViewControllerDelegate
         
         if ([self.workOrder.woType isEqualToString:TEXT_OF_FILTER_EXCHANGE]) {
             
-            if (![[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:TEXT_OF_REFUSED_FILTER_EXCHANGE] || ![[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:TEXT_OF_REFUSED_FILTER_REFUSED] || ![[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:TEXT_OF_REFUSED_NO_FILTER]) {
+            if (![[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:@"Refused-Customer Refused"] && ![[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:@"Refused-No Filter"]) {
                 if ([arrFilterItems count] == 0) {
                     //[AMUtilities showAlertWithInfo:MyLocal(@"Please update the filter information")];
                     [self showPopup];
