@@ -50,6 +50,7 @@
 #define TEXT_OF_REFUSED_NO_FILTER @"Refused-No Filter"
 #define TEXT_OF_REPAIR @"Repair"
 #define TEXT_OF_INSTALL @"Install"
+#define TEXT_OF_SWAP @"Swap"
 
 typedef NS_ENUM (NSInteger, TextInputType) {
 	TextInputType_WorkOrderNotes = 0,
@@ -445,7 +446,8 @@ AMWorkOrderViewControllerDelegate
         [self showPopup];
     } else {
         //Change: ITEM000121
-        if ([self.workOrder.woType isEqualToString:TEXT_OF_INSTALL]) {
+        //Change item-000611 - Swap Validation Rule
+        if ([self.workOrder.woType isEqualToString:TEXT_OF_INSTALL] || [self.workOrder.woType isEqualToString:TEXT_OF_SWAP]) {
             if([self.arrResultAssetRequest count] == 0) {
                 [AMUtilities showAlertWithInfo:MyLocal(@"Please Add Asset")];
                 return;
