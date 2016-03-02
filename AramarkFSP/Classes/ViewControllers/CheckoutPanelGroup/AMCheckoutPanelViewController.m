@@ -19,6 +19,7 @@
 #import "AMVerificationViewController.h"
 #import "AMCheckoutTabViewController.h"
 #import "AMSyncingManager.h"
+#import "AMOnlineOprManager.h"
 
 @interface AMCheckoutPanelViewController ()
 <
@@ -453,6 +454,13 @@ AMInvoiceViewControllerDelegate
     }
     else
     {
+        //bkk item000662 Checkout Process - no signature needed
+        self.workOrder.status = @"Checked Out";
+        [[AMOnlineOprManager sharedInstance] updateSingleWO:self.workOrder completion:^(NSInteger type, NSError *error) {
+            
+        }];
+        self.workOrder.status = @"In Progress";
+        
         [self performSelector:@selector(hideAlert) withObject:syncAlertview afterDelay:30];
         
         [syncAlertview show];
