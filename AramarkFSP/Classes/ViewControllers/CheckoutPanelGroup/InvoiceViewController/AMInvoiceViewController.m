@@ -19,7 +19,6 @@
 #import "NSDate+DateTools.h"
 #import "AMAddNewContactViewController.h"
 #import "AMSyncingManager.h"
-#import "AMOnlineOprManager.h"
 
 #define KEY_OF_TITLE    @"TITLE"
 #define KEY_OF_DATE     @"DATA"
@@ -462,12 +461,6 @@ typedef NS_ENUM (NSInteger, PopViewType) {
     //[AMSyncingManager sharedInstance].timeStamp = [NSDate date];
     //[AMDBManager sharedInstance].timeStamp = [NSDate date];
     
-    //bkk item000662 Checkout Process - signature needed
-    self.workOrder.status = @"Checked Out";
-    [[AMOnlineOprManager sharedInstance] updateSingleWO:self.workOrder completion:^(NSInteger type, NSError *error) {
-        
-    }];
-    self.workOrder.status = @"In Progress";
 
     [self performSelector:@selector(hideAlert) withObject:syncAlertview afterDelay:30];
     

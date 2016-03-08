@@ -16,6 +16,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import "AMSyncingManager.h"
 
+#import "AMOnlineOprManager.h"
+
 //#define TESTMODEL   1   //Use for test
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 #define HEIGHT_OF_CLOSE_TIP_BTN 35.0
@@ -499,6 +501,12 @@ CLLocationManagerDelegate
                                   }
                                   else
                                   {
+                                      //bkk item000662 Checkout Process - no signature needed
+                                      workorder.status = @"Checked Out";
+                                      [[AMOnlineOprManager sharedInstance] updateSingleWO:workorder completion:^(NSInteger type, NSError *error) {
+                                          
+                                      }];
+                                      
                                       self.currentInCheckoutStatusMapAnnotation = nil;
                                       self.currentInFinishedStatusMapAnnotation = aPointAnnotationView.mapAnnotation;
                                       [self changePointAnnotation:currentInFinishedStatusMapAnnotation withType:AnnotationViewType_Finished animation:YES];

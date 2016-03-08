@@ -65,7 +65,7 @@
             
             //bkk-item 000662 Checkout Process
             //don't update the local DB to this new state.  We just want to push it to the server
-            if(![wo.woType isEqualToString: @"Checked Out"])
+            if(![wo.status isEqualToString: @"Checked Out"])
             {
                 [[AMDBManager sharedInstance] updateLocalModifiedObjectsToDone:userData completion:^(NSInteger type, NSError * error) {
                     if (syncCompletionHandler) {
