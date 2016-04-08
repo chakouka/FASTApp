@@ -300,7 +300,7 @@
     NSDate *startDate = [AMUtilities todayBeginningDate];
     NSDate *endDate = [startDate dateByAddingTimeInterval:24*60*60];
     
-    NSPredicate * filter = [NSPredicate predicateWithFormat:@"(estimatedTimeStart >= %@) AND (estimatedTimeStart < %@)  AND (userID = %@) AND ((status = 'In Progress') OR (status = 'Scheduled'))", startDate, endDate,_selfId];
+    NSPredicate * filter = [NSPredicate predicateWithFormat:@"(estimatedTimeStart >= %@) AND (estimatedTimeStart < %@)  AND (userID = %@) AND ((status = 'In Progress') OR (status = 'Scheduled') OR (status = 'Checked Out'))", startDate, endDate,_selfId];
     //NSPredicate * filter = [NSPredicate predicateWithFormat:@"(status != 'Closed')  AND (userID = %@)",_selfId];
     
     woList = [[AMWODBManager sharedInstance] getDataListByFilter:filter fromDB:__mainManagedObjectContext];
