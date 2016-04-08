@@ -40,7 +40,7 @@
     info.index = aIndex;
     info.woID = aLocalWorkOrderInfo.woID;
     
-    if ([aLocalWorkOrderInfo.status isEqualToLocalizedString:@"In Progress"]) {
+    if ([aLocalWorkOrderInfo.status isEqualToLocalizedString:@"In Progress"] || [aLocalWorkOrderInfo.status isEqualToLocalizedString:@"Checked Out"]) {
         info.viewType = AnnotationViewType_CheckOut;
     }
     else if([aLocalWorkOrderInfo.status isEqualToLocalizedString:@"Scheduled"])
