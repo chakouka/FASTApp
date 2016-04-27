@@ -327,7 +327,8 @@
     NSDate *startDate = [AMUtilities todayBeginningDate];
     NSDate *endDate = [startDate dateByAddingTimeInterval:24*60*60];
     
-    NSPredicate * filter = [NSPredicate predicateWithFormat:@"(estimatedTimeStart >= %@) AND (estimatedTimeStart <= %@)  AND (userID = %@) AND (status = 'In Progress') AND (ownerID = %@)", startDate, endDate, _selfId, _selfId];
+    //BKK - 4/27/2016 added Checked Out to the criteria so that we cannot check in to more than one work order
+    NSPredicate * filter = [NSPredicate predicateWithFormat:@"(estimatedTimeStart >= %@) AND (estimatedTimeStart <= %@)  AND (userID = %@) AND ((status = 'In Progress') OR (status = 'Checked Out')) AND (ownerID = %@)", startDate, endDate, _selfId, _selfId];
     
     woList = [[AMWODBManager sharedInstance] getDataListByFilter:filter fromDB:__mainManagedObjectContext];
     return woList;
