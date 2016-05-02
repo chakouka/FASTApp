@@ -40,7 +40,7 @@
 
 
 //********************For QA Env**********************
-static NSString * const RemoteAccessConsumerKey =  @"3MVG9Nc1qcZ7BbZ3XCQv7kt5uqrmtd_gJA8yFQ3n6sgBDAHoOVUGP3G1_VPcuTO3KDUvg9cqXnYYuRk0h3UBr";
+static NSString * const RemoteAccessConsumerKey =  @"3MVG9OI03ecbG2Vpw3yS9_j_2ioXkFS5prKSYmc9fa5tsEDN9GDbvmXVjNsfK1voKblXgEq0eTqYvM8f6kCq2";
 
 static NSString * const OAuthRedirectURI        = @"sfdc://success";
 
