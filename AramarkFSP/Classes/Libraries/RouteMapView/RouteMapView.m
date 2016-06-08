@@ -501,11 +501,11 @@ CLLocationManagerDelegate
                                   }
                                   else
                                   {
-                                      //bkk item000662 Checkout Process - no signature needed
-                                      workorder.status = @"Checked Out";
-                                      [[AMOnlineOprManager sharedInstance] updateSingleWO:workorder completion:^(NSInteger type, NSError *error) {
-                                          
-                                      }];
+//                                      //bkk item000662 Checkout Process - no signature needed
+//                                      workorder.status = @"Checked Out";
+//                                      [[AMOnlineOprManager sharedInstance] updateSingleWO:workorder completion:^(NSInteger type, NSError *error) {
+//                                          
+//                                      }];
                                       
                                       self.currentInCheckoutStatusMapAnnotation = nil;
                                       self.currentInFinishedStatusMapAnnotation = aPointAnnotationView.mapAnnotation;
