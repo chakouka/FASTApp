@@ -465,14 +465,21 @@ typedef NS_ENUM (NSInteger, PopViewType) {
     //bkk item000662 Checkout Process - signature needed
     self.workOrder.status = @"Checked Out";
     [[AMOnlineOprManager sharedInstance] updateSingleWO:self.workOrder completion:^(NSInteger type, NSError *error) {
-        
+        [self processSync:strFileName];
     }];
-    self.workOrder.status = @"In Progress";
+    
 
+    
+}
+
+- (void) processSync:(NSString *) strFileName
+{
+    self.workOrder.status = @"In Progress";
+    
     [self performSelector:@selector(hideAlert) withObject:syncAlertview afterDelay:30];
     
     [syncAlertview show];
-
+    
     [[AMSyncingManager sharedInstance] startSyncing:^(NSInteger type, NSError *error) {
         [self syncingCompletion:error];
     }];
@@ -481,19 +488,19 @@ typedef NS_ENUM (NSInteger, PopViewType) {
         aCase = [[AMLogicCore sharedInstance] getCaseInfoByID:self.workOrder.caseID];
     }
     
-	aCase.signFirstName = [self.textFieldFirstName.text isEqualToString:TEXT_OF_NULL] ? @"" : self.textFieldFirstName.text;
-	aCase.signLastName = [self.textFieldLastName.text isEqualToString:TEXT_OF_NULL] ? @"" : self.textFieldLastName.text;
-	aCase.signTitle = [self.textFieldTitle.text isEqualToString:TEXT_OF_NULL] ? @"" : self.textFieldTitle.text;
-//	aCase.signContactInfo = [self.textFieldContactInfo.text isEqualToString:TEXT_OF_NULL] ? @"" : self.textFieldContactInfo.text;
+    aCase.signFirstName = [self.textFieldFirstName.text isEqualToString:TEXT_OF_NULL] ? @"" : self.textFieldFirstName.text;
+    aCase.signLastName = [self.textFieldLastName.text isEqualToString:TEXT_OF_NULL] ? @"" : self.textFieldLastName.text;
+    aCase.signTitle = [self.textFieldTitle.text isEqualToString:TEXT_OF_NULL] ? @"" : self.textFieldTitle.text;
+    //	aCase.signContactInfo = [self.textFieldContactInfo.text isEqualToString:TEXT_OF_NULL] ? @"" : self.textFieldContactInfo.text;
     aCase.signContactEmail = [self.textFieldEmail.text isEqualToString:TEXT_OF_NULL] ? @"" : self.textFieldEmail.text;
     aCase.signContactPhone = [self.textFieldContactInfo.text isEqualToString:TEXT_OF_NULL] ? @"" : self.textFieldContactInfo.text;
     
     NSMutableArray *arrInvoiceItems = [NSMutableArray array];
     
     if (arrCodeItems && [arrCodeItems count] > 0) {
-		for (NSMutableDictionary *dicCInfo in arrCodeItems) {
+        for (NSMutableDictionary *dicCInfo in arrCodeItems) {
             AMDBCustomerPrice *customerPrice = [dicCInfo objectForKey:KEY_OF_CUSTOMER_PRICE];
-          
+            
             AMPoS *posInfo = [[AMLogicCore sharedInstance] getPoSInfoByID:self.workOrder.posID];
             
             AMInvoice *invoice = [[AMInvoice alloc] init];
@@ -502,7 +509,7 @@ typedef NS_ENUM (NSInteger, PopViewType) {
             invoice.posName = posInfo.name;
             invoice.recordTypeID = [[AMLogicCore sharedInstance] getRecordTypeIdByName:INVOICE_TYPE_INVOICECODE forObject:RECORD_TYPE_OF_INVOICE];
             invoice.recordTypeName = INVOICE_TYPE_INVOICECODE;
-//            invoice.unitPrice = customerPrice.price;
+            //            invoice.unitPrice = customerPrice.price;
             invoice.price = customerPrice.price;
             invoice.invoiceCodeId = customerPrice.productID;
             invoice.invoiceCodeName = customerPrice.productName;
@@ -517,14 +524,14 @@ typedef NS_ENUM (NSInteger, PopViewType) {
                 [arrInvoiceItems addObject:invoice];
             }
         }
-	}
-
+    }
+    
     // save case -> save invoice -> update case estimated price
-
-	[[AMLogicCore sharedInstance] updateCase:aCase completionBlock:^(NSInteger type, NSError *error){
+    
+    [[AMLogicCore sharedInstance] updateCase:aCase completionBlock:^(NSInteger type, NSError *error){
         
         [[AMLogicCore sharedInstance] saveInvoiceList:arrInvoiceItems completionBlock:^(NSInteger type, NSError *error){
-
+            
             MAIN ( ^{
                 if (error) {
                     [AMUtilities showAlertWithInfo:[error localizedDescription]];
@@ -538,26 +545,25 @@ typedef NS_ENUM (NSInteger, PopViewType) {
             }
         });
     }];
-
-	[[AMLogicCore sharedInstance] saveSignatureData:[AMFileManage dataWithName:strFileName] byCaseID:self.workOrder.caseID completionBlock: ^(NSInteger type, NSError *error) {
-	    MAIN ( ^{
+    
+    [[AMLogicCore sharedInstance] saveSignatureData:[AMFileManage dataWithName:strFileName] byCaseID:self.workOrder.caseID completionBlock: ^(NSInteger type, NSError *error) {
+        MAIN ( ^{
             
             NSString *strFileName = [self.workOrder.caseID length] == 0 ? TEXT_OF_DEFAULT_SIGNIMAGE_NAME : self.workOrder.caseID;
             [AMFileManage removeDataWithName:strFileName];
             self.imageViewSignature.image = nil;
             
-	        if (error) {
+            if (error) {
                 [AMUtilities showAlertWithInfo:[error localizedDescription]];
                 return ;
-			}
-	        else {
-	            if (delegate && [delegate respondsToSelector:@selector(didClickInvoiceViewControllerNextBtn)]) {
-	                [delegate didClickInvoiceViewControllerNextBtn];
-				}
-			}
-		});
-	}];
-    
+            }
+            else {
+                if (delegate && [delegate respondsToSelector:@selector(didClickInvoiceViewControllerNextBtn)]) {
+                    [delegate didClickInvoiceViewControllerNextBtn];
+                }
+            }
+        });
+    }];
 }
 
 - (IBAction)clickSignatureBtn:(id)sender {

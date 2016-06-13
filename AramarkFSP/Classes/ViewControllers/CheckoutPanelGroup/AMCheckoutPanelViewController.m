@@ -458,98 +458,99 @@ AMInvoiceViewControllerDelegate
         self.workOrder.status = @"Checked Out";
         [[AMOnlineOprManager sharedInstance] updateSingleWO:self.workOrder completion:^(NSInteger type, NSError *error) {
             
-        }];
-        self.workOrder.status = @"In Progress";
         
-        [self performSelector:@selector(hideAlert) withObject:syncAlertview afterDelay:30];
-        
-        [syncAlertview show];
-        
-        [[AMSyncingManager sharedInstance] startSyncing:^(NSInteger type, NSError *error) {
-            [self syncingCompletion:error];
-        }];
-        
-        //Save check out page 1 data
-        [[AMLogicCore sharedInstance] updateAssetList:self.verificationVC.arrResultAsset completionBlock: ^(NSInteger type, NSError *error) {
-            MAIN ( ^{
-                if (error) {
-                    [AMUtilities showAlertWithInfo:[error localizedDescription]];
-                }
-                else
-                {
-                    DLog(@"Save check out page 1 data : step 1 Success")
-                }
-            });
+            self.workOrder.status = @"In Progress";
             
-            [[AMLogicCore sharedInstance] saveAssetRequestList:self.verificationVC.arrResultAssetRequest completionBlock: ^(NSInteger type, NSError *error) {
+            [self performSelector:@selector(hideAlert) withObject:syncAlertview afterDelay:30];
+            
+            [syncAlertview show];
+            
+            [[AMSyncingManager sharedInstance] startSyncing:^(NSInteger type, NSError *error) {
+                [self syncingCompletion:error];
+            }];
+            
+            //Save check out page 1 data
+            [[AMLogicCore sharedInstance] updateAssetList:self.verificationVC.arrResultAsset completionBlock: ^(NSInteger type, NSError *error) {
                 MAIN ( ^{
                     if (error) {
                         [AMUtilities showAlertWithInfo:[error localizedDescription]];
                     }
                     else
                     {
-                        DLog(@"Save check out page 1 data : step 2 Success")
+                        DLog(@"Save check out page 1 data : step 1 Success")
                     }
-                    
-                    //Save check out page 2 data
-                    
-                    for (NSMutableDictionary *dicInfo in self.pointsVC.arrPointsInfos) {
-                        if ([[dicInfo objectForKey:KEY_OF_CELL_TYPE] intValue] == AMCheckoutCellType_Points_Check_0) {
-                            self.pointsVC.workOrder.leftInOrderlyManner = [dicInfo objectForKey:KEY_OF_CHECK_STATUS];
+                });
+                
+                [[AMLogicCore sharedInstance] saveAssetRequestList:self.verificationVC.arrResultAssetRequest completionBlock: ^(NSInteger type, NSError *error) {
+                    MAIN ( ^{
+                        if (error) {
+                            [AMUtilities showAlertWithInfo:[error localizedDescription]];
                         }
-                        else if ([[dicInfo objectForKey:KEY_OF_CELL_TYPE] intValue] == AMCheckoutCellType_Points_Check_1) {
-                            self.pointsVC.workOrder.testedAll = [dicInfo objectForKey:KEY_OF_CHECK_STATUS];
+                        else
+                        {
+                            DLog(@"Save check out page 1 data : step 2 Success")
                         }
-                        else if ([[dicInfo objectForKey:KEY_OF_CELL_TYPE] intValue] == AMCheckoutCellType_Points_Check_2) {
-                            self.pointsVC.workOrder.inspectedTubing = [dicInfo objectForKey:KEY_OF_CHECK_STATUS];
-                        }
-                    }
-                    
-                    [[AMLogicCore sharedInstance] updateWorkOrder:self.pointsVC.workOrder completionBlock: ^(NSInteger type, NSError *error) {
-                        MAIN ( ^{
-                            if (error) {
-                                [AMUtilities showAlertWithInfo:[error localizedDescription]];
+                        
+                        //Save check out page 2 data
+                        
+                        for (NSMutableDictionary *dicInfo in self.pointsVC.arrPointsInfos) {
+                            if ([[dicInfo objectForKey:KEY_OF_CELL_TYPE] intValue] == AMCheckoutCellType_Points_Check_0) {
+                                self.pointsVC.workOrder.leftInOrderlyManner = [dicInfo objectForKey:KEY_OF_CHECK_STATUS];
                             }
-                            else
-                            {
-                                DLog(@"Save check out page 2 data : Success")
+                            else if ([[dicInfo objectForKey:KEY_OF_CELL_TYPE] intValue] == AMCheckoutCellType_Points_Check_1) {
+                                self.pointsVC.workOrder.testedAll = [dicInfo objectForKey:KEY_OF_CHECK_STATUS];
                             }
-                        });
+                            else if ([[dicInfo objectForKey:KEY_OF_CELL_TYPE] intValue] == AMCheckoutCellType_Points_Check_2) {
+                                self.pointsVC.workOrder.inspectedTubing = [dicInfo objectForKey:KEY_OF_CHECK_STATUS];
+                            }
+                        }
                         
-                        //Save check out page 3 data
-                        
-                        self.checkoutVC.workOrder.repairCode = self.checkoutVC.strRepairCode;
-                        self.checkoutVC.workOrder.notes = self.checkoutVC.strNotes;
-                        
-                        [[AMLogicCore sharedInstance] updateWorkOrder:self.checkoutVC.workOrder completionBlock:nil];
-                        
-                        [[AMLogicCore sharedInstance] saveInvoiceList:self.checkoutVC.arrInvoiceItems completionBlock: ^(NSInteger type, NSError *error) {
+                        [[AMLogicCore sharedInstance] updateWorkOrder:self.pointsVC.workOrder completionBlock: ^(NSInteger type, NSError *error) {
                             MAIN ( ^{
                                 if (error) {
                                     [AMUtilities showAlertWithInfo:[error localizedDescription]];
                                 }
                                 else
                                 {
-                                    DLog(@"Save check out page 3 data : Success")
+                                    DLog(@"Save check out page 2 data : Success")
                                 }
                             });
                             
-                            [[AMLogicCore sharedInstance] finishCheckOutWorkOrder:workOrder completion: ^(NSInteger type, NSError *error){
+                            //Save check out page 3 data
+                            
+                            self.checkoutVC.workOrder.repairCode = self.checkoutVC.strRepairCode;
+                            self.checkoutVC.workOrder.notes = self.checkoutVC.strNotes;
+                            
+                            [[AMLogicCore sharedInstance] updateWorkOrder:self.checkoutVC.workOrder completionBlock:nil];
+                            
+                            [[AMLogicCore sharedInstance] saveInvoiceList:self.checkoutVC.arrInvoiceItems completionBlock: ^(NSInteger type, NSError *error) {
                                 MAIN ( ^{
                                     if (error) {
                                         [AMUtilities showAlertWithInfo:[error localizedDescription]];
-                                        return ;
                                     }
-                                    else {
-                                        [delegate finishedAllCheckoutProcess];
+                                    else
+                                    {
+                                        DLog(@"Save check out page 3 data : Success")
                                     }
                                 });
+                                
+                                [[AMLogicCore sharedInstance] finishCheckOutWorkOrder:workOrder completion: ^(NSInteger type, NSError *error){
+                                    MAIN ( ^{
+                                        if (error) {
+                                            [AMUtilities showAlertWithInfo:[error localizedDescription]];
+                                            return ;
+                                        }
+                                        else {
+                                            [delegate finishedAllCheckoutProcess];
+                                        }
+                                    });
+                                }];
                             }];
                         }];
-                    }];
-                });
+                    });
+                }];
             }];
-        }];
+        }];            
     }
 }
 

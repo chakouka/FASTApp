@@ -72,6 +72,8 @@
                         syncCompletionHandler(type,error);
                     }
                 }];
+            } else {
+                syncCompletionHandler(type, error);
             }
         }];
     }
