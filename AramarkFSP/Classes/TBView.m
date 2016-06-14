@@ -62,7 +62,7 @@ typedef NS_ENUM (NSInteger, PopViewType) {
                                                object:nil];
     loadView()
     
-    filterNames = @[MyLocal(@"Select a filter"), @"Aramark Bronze Water Filter", @"Aramark Silver Water Filter", @"Aramark Gold Water Filter", @"Aramark In-line Water Filter", @"AquaMark Brew Maker Filter 9633-56", @"AquaMark Filter 1", @"Aquamark Filter 3", @"Aquamark Filter 2", @"Innowave UV Lamp Assy 8W 10-2350", @"Everpure 4C Filter EV-9601", @"Innowave UV Lamp Assy 4W 12-2350", @"Omnipure Inline Filter SCL6", @"Everpure OCS2 Filter C2BGW", @"Everpure OCS Filter QL2"];
+    filterNames = @[MyLocal(@"Select a filter"), @"Aramark Bronze Water Filter", @"Aramark Silver Water Filter", @"Aramark Gold Water Filter", @"Aramark In-line Water Filter", @"AquaMark Brew Maker Filter 9633-56", @"AquaMark Filter 1", @"Aquamark Filter 3", @"Aquamark Filter 2", @"Innowave UV Lamp Assy 8W 10-2350", @"Everpure 4C Filter EV-9601", @"Innowave UV Lamp Assy 4W 12-2350", @"Omnipure Inline Filter SCL6", @"Everpure OCS2 Filter C2BGW", @"Everpure OCS Filter QL2", @"UV-4W", @"UV-8W"];
     
     pickerViewTextField = [[UITextField alloc] initWithFrame:CGRectZero];
     [self addSubview:self.pickerViewTextField];
