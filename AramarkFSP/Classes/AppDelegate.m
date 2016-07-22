@@ -31,6 +31,7 @@
 #import "SFOAuthInfo.h"
 #import "SFLogger.h"
 #import "GAI.h"
+#import "LogManager.h"
 
 #import "AMMainViewController.h"
 
@@ -278,6 +279,9 @@ static NSString * const OAuthRedirectURI        = @"sfdc://success";
 //        [application endBackgroundTask: self.background_task];
 //        self.background_task = UIBackgroundTaskInvalid;
 //    }];
+    
+    FLog(@"Application entered background.")
+    
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
@@ -378,6 +382,11 @@ static NSString * const OAuthRedirectURI        = @"sfdc://success";
             [appDefaults setObject:prefItemDefaultValue forKey:prefItemKey];
         }
     }
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+    FLog(@"application entered Foreground");
 }
 
 @end
