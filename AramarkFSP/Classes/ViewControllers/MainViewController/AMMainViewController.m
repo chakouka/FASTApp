@@ -148,6 +148,9 @@ UIGestureRecognizerDelegate
 @property (weak, nonatomic) IBOutlet UIButton *btnLogout;
 @property (weak, nonatomic) IBOutlet UILabel *labelTHello;
 @property (weak, nonatomic) IBOutlet UIButton *btnClearCache;
+@property (weak, nonatomic) IBOutlet UIButton *sendLogsBtn;
+
+
 
 @end
 
@@ -1014,6 +1017,12 @@ UIGestureRecognizerDelegate
             [[AMLogicCore sharedInstance] clearCache];
         }
     }];
+}
+
+//add logs to email
+- (IBAction)clickSendLogs:(id)sender {
+
+
 }
 
 - (IBAction)clickLogOutBtn:(UIButton *)sender {

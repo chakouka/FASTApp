@@ -171,8 +171,8 @@
 		7C55F2FB1A8A582F0081A4B0 /* TBView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C55F2F91A8A582F0081A4B0 /* TBView.xib */; };
 		7C55F2FF1A8A80EC0081A4B0 /* AMFilterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C55F2FD1A8A80EC0081A4B0 /* AMFilterTableViewCell.m */; };
 		7C55F3001A8A80EC0081A4B0 /* AMFilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C55F2FE1A8A80EC0081A4B0 /* AMFilterTableViewCell.xib */; };
-		7C7A4F951BCD3F73001903F4 /* AMNearOrderListAdminCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A4F941BCD3F73001903F4 /* AMNearOrderListAdminCell.m */; settings = {ASSET_TAGS = (); }; };
-		7C7A4F971BCD3F86001903F4 /* AMNearOrderListAdminCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7A4F961BCD3F86001903F4 /* AMNearOrderListAdminCell.xib */; settings = {ASSET_TAGS = (); }; };
+		7C7A4F951BCD3F73001903F4 /* AMNearOrderListAdminCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A4F941BCD3F73001903F4 /* AMNearOrderListAdminCell.m */; };
+		7C7A4F971BCD3F86001903F4 /* AMNearOrderListAdminCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7A4F961BCD3F86001903F4 /* AMNearOrderListAdminCell.xib */; };
 		7CCD7E6E1AB749FF006FED08 /* AMDBNewContact.h in Resources */ = {isa = PBXBuildFile; fileRef = 7CCD7E6D1AB749FF006FED08 /* AMDBNewContact.h */; };
 		7CCD7E701AB74A30006FED08 /* AMDBNewContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD7E6F1AB74A30006FED08 /* AMDBNewContact.m */; };
 		7CCD7E7F1AB76764006FED08 /* AMDBNewContact+AddOn.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD7E7E1AB76764006FED08 /* AMDBNewContact+AddOn.m */; };
