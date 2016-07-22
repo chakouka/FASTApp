@@ -399,6 +399,8 @@ typedef enum AM_Update_Step_t {
 
 -(void)uploadAttachments
 {
+    
+    //add logs
 //    dispatch_async(dispatch_get_main_queue(), ^{
         NSArray *attachments = [[AMDBManager sharedInstance] getAttachmentsForUpload];
         if (attachments.count) {
