@@ -143,6 +143,8 @@
 		1B7586511A3B799B001B7F35 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7586501A3B799B001B7F35 /* AudioToolbox.framework */; };
 		1BEC0C8C1A38F66A009BA6B2 /* out.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BEC0C8A1A38F66A009BA6B2 /* out.png */; };
 		1BEC0C8D1A38F66A009BA6B2 /* in.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BEC0C8B1A38F66A009BA6B2 /* in.png */; };
+		312AB5D21D42AC6300D5D0E2 /* LogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 312AB5D11D42AC6300D5D0E2 /* LogManager.m */; };
+		312AB5D31D42AC6300D5D0E2 /* LogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 312AB5D11D42AC6300D5D0E2 /* LogManager.m */; };
 		4F3F413517E7CA5C008B3283 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3F413417E7CA5C008B3283 /* ImageIO.framework */; };
 		4F3F413617E7CA71008B3283 /* libMKNetworkKit-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3F412B17E7C9CA008B3283 /* libMKNetworkKit-iOS.a */; };
 		4F3F413717E7CA84008B3283 /* libSalesforceNetworkSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3F413317E7C9CA008B3283 /* libSalesforceNetworkSDK.a */; };
@@ -940,6 +942,8 @@
 		1B7586501A3B799B001B7F35 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1BEC0C8A1A38F66A009BA6B2 /* out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = out.png; sourceTree = "<group>"; };
 		1BEC0C8B1A38F66A009BA6B2 /* in.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = in.png; sourceTree = "<group>"; };
+		312AB5D01D42AC6300D5D0E2 /* LogManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogManager.h; path = Utilities/LogManager.h; sourceTree = "<group>"; };
+		312AB5D11D42AC6300D5D0E2 /* LogManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogManager.m; path = Utilities/LogManager.m; sourceTree = "<group>"; };
 		4F3F412517E7C9CA008B3283 /* MKNetworkEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKNetworkEngine.h; sourceTree = "<group>"; };
 		4F3F412617E7C9CA008B3283 /* MKNetworkKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKNetworkKit.h; sourceTree = "<group>"; };
 		4F3F412717E7C9CA008B3283 /* MKNetworkOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKNetworkOperation.h; sourceTree = "<group>"; };
@@ -2026,6 +2030,15 @@
 			name = NSArray;
 			sourceTree = "<group>";
 		};
+		312AB5CF1D42AC2300D5D0E2 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				312AB5D01D42AC6300D5D0E2 /* LogManager.h */,
+				312AB5D11D42AC6300D5D0E2 /* LogManager.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		4F3F412217E7C9CA008B3283 /* MKNetworkKit-iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -2185,6 +2198,7 @@
 		824A9DDE1724E16400C9BD79 /* AramarkFSP */ = {
 			isa = PBXGroup;
 			children = (
+				312AB5CF1D42AC2300D5D0E2 /* Utilities */,
 				7C55F26A1A83CAC60081A4B0 /* KLCPopup */,
 				1B7586481A3B7775001B7F35 /* beep.wav */,
 				824A9E3C1724E9F400C9BD79 /* readme.txt */,
@@ -4677,6 +4691,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				312AB5D31D42AC6300D5D0E2 /* LogManager.m in Sources */,
 				168A213A195C0CA3003E66AF /* AMProtocolManagerTest.m in Sources */,
 				7C4043D11AE56C390079FC8E /* AMNewContactTest.m in Sources */,
 				166850591963F26200551DC0 /* AMLogicCoreTest.m in Sources */,
@@ -4918,6 +4933,7 @@
 				162BCBBF196D506B00E41DCC /* AMDBRecordType.m in Sources */,
 				A6FCF3E1191B823D00B3731B /* AMAsset.m in Sources */,
 				A69B89AA194999420040F591 /* NSData+Base64.m in Sources */,
+				312AB5D21D42AC6300D5D0E2 /* LogManager.m in Sources */,
 				02E3E7E5192F1E7600064919 /* AMSectionFooterView.m in Sources */,
 				0204285119342E4800CD5425 /* AMBaseTableViewCell.m in Sources */,
 				029B7F71196D06D2001BE403 /* AMDatePickerViewController.m in Sources */,
