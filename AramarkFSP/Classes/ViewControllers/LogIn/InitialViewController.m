@@ -44,6 +44,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.prepareLoginLabel.text = MyLocal(@"Preparing to log in...");
+    
+    FLog(@"loading the application.")
 }
 
 - (void)didReceiveMemoryWarning

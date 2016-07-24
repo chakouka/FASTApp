@@ -7,8 +7,7 @@
 //
 
 #import "LogManager.h"
-
-#define LOG_FILE_NAME @"AramarkFastApp.log"
+#import "FileManager.h"
 
 @implementation LogManager
 
@@ -34,12 +33,18 @@
     
     @try
     {
-        NSString *messageAndDate = [[NSString alloc] initWithFormat:@"%@ - %@", [NSDate date], message];
-        
         NSError *error;
         NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:LOG_FILE_NAME];
         
+        if ([FileManager isFileBiggerThanAllowed:filePath])
+        {
+            filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:BACKUP_LOG_FILE_NAME];
+        }
+        
+        NSString *messageAndDate = [[NSString alloc] initWithFormat:@"%@ - %@", [NSDate date], message];
+        
         [messageAndDate writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+        
     }
     @catch (NSException *exception)
     {
@@ -49,7 +54,5 @@
     
     va_end(ap);
 }
-
-
 
 @end

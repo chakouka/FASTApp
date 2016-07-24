@@ -145,6 +145,8 @@
 		1BEC0C8D1A38F66A009BA6B2 /* in.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BEC0C8B1A38F66A009BA6B2 /* in.png */; };
 		312AB5D21D42AC6300D5D0E2 /* LogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 312AB5D11D42AC6300D5D0E2 /* LogManager.m */; };
 		312AB5D31D42AC6300D5D0E2 /* LogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 312AB5D11D42AC6300D5D0E2 /* LogManager.m */; };
+		312AB5D61D44F1D600D5D0E2 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 312AB5D51D44F1D600D5D0E2 /* FileManager.m */; };
+		312AB5D71D44F1D600D5D0E2 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 312AB5D51D44F1D600D5D0E2 /* FileManager.m */; };
 		4F3F413517E7CA5C008B3283 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3F413417E7CA5C008B3283 /* ImageIO.framework */; };
 		4F3F413617E7CA71008B3283 /* libMKNetworkKit-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3F412B17E7C9CA008B3283 /* libMKNetworkKit-iOS.a */; };
 		4F3F413717E7CA84008B3283 /* libSalesforceNetworkSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3F413317E7C9CA008B3283 /* libSalesforceNetworkSDK.a */; };
@@ -944,6 +946,8 @@
 		1BEC0C8B1A38F66A009BA6B2 /* in.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = in.png; sourceTree = "<group>"; };
 		312AB5D01D42AC6300D5D0E2 /* LogManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogManager.h; path = Utilities/LogManager.h; sourceTree = "<group>"; };
 		312AB5D11D42AC6300D5D0E2 /* LogManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogManager.m; path = Utilities/LogManager.m; sourceTree = "<group>"; };
+		312AB5D41D44F1D600D5D0E2 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileManager.h; path = Utilities/FileManager.h; sourceTree = "<group>"; };
+		312AB5D51D44F1D600D5D0E2 /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileManager.m; path = Utilities/FileManager.m; sourceTree = "<group>"; };
 		4F3F412517E7C9CA008B3283 /* MKNetworkEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKNetworkEngine.h; sourceTree = "<group>"; };
 		4F3F412617E7C9CA008B3283 /* MKNetworkKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKNetworkKit.h; sourceTree = "<group>"; };
 		4F3F412717E7C9CA008B3283 /* MKNetworkOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKNetworkOperation.h; sourceTree = "<group>"; };
@@ -2035,6 +2039,8 @@
 			children = (
 				312AB5D01D42AC6300D5D0E2 /* LogManager.h */,
 				312AB5D11D42AC6300D5D0E2 /* LogManager.m */,
+				312AB5D41D44F1D600D5D0E2 /* FileManager.h */,
+				312AB5D51D44F1D600D5D0E2 /* FileManager.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -4694,6 +4700,7 @@
 				312AB5D31D42AC6300D5D0E2 /* LogManager.m in Sources */,
 				168A213A195C0CA3003E66AF /* AMProtocolManagerTest.m in Sources */,
 				7C4043D11AE56C390079FC8E /* AMNewContactTest.m in Sources */,
+				312AB5D71D44F1D600D5D0E2 /* FileManager.m in Sources */,
 				166850591963F26200551DC0 /* AMLogicCoreTest.m in Sources */,
 				166850501963A9F200551DC0 /* AMProtocolParserTest.m in Sources */,
 				166850551963BD7400551DC0 /* AMDBManagerTest.m in Sources */,
@@ -4746,6 +4753,7 @@
 				02E3E7A31929B39A00064919 /* AMLocationViewController.m in Sources */,
 				D01AB6BC19A336B100FA034F /* AMNearOrderListViewController.m in Sources */,
 				A6CA5CA619247EFB00F2C264 /* AMSyncingManager.m in Sources */,
+				312AB5D61D44F1D600D5D0E2 /* FileManager.m in Sources */,
 				16C28A04195AAEB4004FF31F /* AMDBNewWorkOrder+AddOn.m in Sources */,
 				A6626BA51904C82600DFA6E4 /* InitialViewController.m in Sources */,
 				D02D4245194ED8BC00372334 /* AMLeadHistoryCell.m in Sources */,
