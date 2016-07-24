@@ -31,7 +31,6 @@
 #import "SFOAuthInfo.h"
 #import "SFLogger.h"
 #import "GAI.h"
-#import "LogManager.h"
 
 #import "AMMainViewController.h"
 

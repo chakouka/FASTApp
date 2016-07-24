@@ -90,7 +90,7 @@ typedef enum AM_Update_Step_t {
         return;
     }
     _updateSteps ++;
-    DLog(@"handleUpdateDBProcess steps %d of total %d, cur %d, error %d", _updateSteps,AM_Update_Step_Total,type,_hasUpdateNetError);
+    FLog(@"handleUpdateDBProcess steps %d of total %d, cur %d, error %d", _updateSteps,AM_Update_Step_Total,type,_hasUpdateNetError);
     if (_updateSteps >= AM_Update_Step_Total || _hasUpdateNetError) {
         if (!_hasUpdateNetError && _tempTimeStamp) {
             _timeStamp = _tempTimeStamp;
@@ -174,7 +174,7 @@ typedef enum AM_Update_Step_t {
     NSArray * contactList = [[AMDBManager sharedInstance] getModifiedContacts];
     
     if ([locationList count]) {
-        DLog(@"modified location: %@", locationList);
+        FLog(@"modified location: %@", locationList);
     }
     //NSArray * invoiceList = [[AMDBManager sharedInstance] getModifiedInvoice];
 //    NSArray * posList = [[AMDBManager sharedInstance] getModifiedInvoice];
@@ -311,7 +311,7 @@ typedef enum AM_Update_Step_t {
     
     NSArray * createdLocation = [[AMDBManager sharedInstance] getCreatedLocation];
     if (createdLocation.count) {
-        DLog(@"created location: %@", createdLocation);
+        FLog(@"created location: %@", createdLocation);
     }
     NSArray * createdInvoice = [[AMDBManager sharedInstance] getCreatedInvoices];
     //NSArray * createdFilterUsed = [[AMDBManager sharedInstance] getCreatedFilterUsed];
@@ -374,13 +374,13 @@ typedef enum AM_Update_Step_t {
             [[AMDBManager sharedInstance] saveAsyncReportDictionaryFromSalesforce:responseData completion:^(NSInteger type, NSError *error) {
                 if (error) {
                     _updateNetError = error;
-                    DLog(@"save report error: %@", error.localizedDescription);
+                    FLog(@"save report error: %@", error.localizedDescription);
                 }
             }];
             [self handleUpdateDBProcess:AM_Update_Step_Report];
         } else {
             _updateNetError = error;
-            DLog(@"get report error: %@", error.localizedDescription);
+            FLog(@"get report error: %@", error.localizedDescription);
             [self handleUpdateDBProcess:AM_Update_Step_Report];
         }
     }];
@@ -390,7 +390,7 @@ typedef enum AM_Update_Step_t {
 {
     [[AMLogicCore sharedInstance] uploadCreatedNewLeadsWithCompletion:^(NSInteger type, NSError *error, id userData, id responseData) {
         if (error) {
-            DLog(@"save report error: %@", error.localizedDescription);
+            FLog(@"save report error: %@", error.localizedDescription);
             _updateNetError = error;
         }
         [self handleUpdateDBProcess:AM_Update_Step_UploadNewLeads];
@@ -406,7 +406,7 @@ typedef enum AM_Update_Step_t {
         if (attachments.count) {
             [[AMProtocolManager sharedInstance] uploadAttachments:attachments completion:^(NSInteger type, NSError *error, id userData, id responseData) {
                 if (error) {
-                    DLog(@"save report error: %@", error.localizedDescription);
+                    FLog(@"save report error: %@", error.localizedDescription);
                     _updateNetError = error;
                 }
                 [self handleUpdateDBProcess:AM_Update_Step_UploadAttachments];
@@ -434,7 +434,7 @@ typedef enum AM_Update_Step_t {
 
 - (void)startCheckingFromSFDC
 {
-    DLog(@"will fetch data with timestamp: %@", _timeStamp);
+    FLog(@"will fetch data with timestamp: %@", _timeStamp);
     
     [[AMProtocolManager sharedInstance] syncDataWithTimeStamp:_timeStamp completion:^(NSInteger type, NSError * error, id userData, id responseData){
         [self protocolHandlerWithType:type retErro:error userData:userData responseData:responseData];
@@ -547,7 +547,7 @@ typedef enum AM_Update_Step_t {
             if (!error && [isSuccess intValue]) {
                 if ([retDict objectForKey:NWTIMESTAMP]) {
                     _tempTimeStamp = [retDict objectForKey:NWTIMESTAMP];
-                    DLog(@"timestamp after upload data to salesforce: %@", _tempTimeStamp);
+                    FLog(@"timestamp after upload data to salesforce: %@", _tempTimeStamp);
                 }
 
                 [[AMDBManager sharedInstance] updateLocalModifiedObjectsToDone:userDict completion:^(NSInteger type, NSError * error){
@@ -565,7 +565,7 @@ typedef enum AM_Update_Step_t {
             if (!error && [isSuccess intValue]) {
                 if ([retDict objectForKey:NWTIMESTAMP]) {
                     _tempTimeStamp = [retDict objectForKey:NWTIMESTAMP];
-                    DLog(@"timestamp after download data from salesforce: %@", _tempTimeStamp);
+                    FLog(@"timestamp after download data from salesforce: %@", _tempTimeStamp);
                 }
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self handleSyncingResul:[retDict objectForKey:NWRESPDATA] completion:^(NSInteger type, NSError *error) {
@@ -667,11 +667,13 @@ typedef enum AM_Update_Step_t {
         return;
     }
     
-    DLog(@"access token: %@", [AMUtilities getToken]);
+    
+    
+    FLog(@"access token: %@", [AMUtilities getToken]);
     
     [self activeAutoSyncing:nil];
     
-    DLog(@"post notification to start sync");
+    FLog(@"post notification to start sync");
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SYNCING_START object:nil];
     
     if (syncCompletionHandler) {
@@ -713,7 +715,7 @@ typedef enum AM_Update_Step_t {
 - (void)checkFire
 {
     if (_netStatus) {
-        DLog(@"start sync from automatic sync");
+        FLog(@"start sync from automatic sync");
         [self startSyncing:self.updateComplteHandler];
     } else {
         [AMUtilities showAlertWithInfo:MyLocal(@"Please check network connection.")];
@@ -726,7 +728,7 @@ typedef enum AM_Update_Step_t {
     BOOL inInit = [[[NSUserDefaults standardUserDefaults] valueForKey:USER_DEFAULT_IN_INITIALIZATION] boolValue];
     
     if (!inInit && _netStatus == NO && [status intValue] != SFNotReachable) {
-        DLog(@"start sync from network change");
+        FLog(@"start sync from network change");
         [self startSyncing:^(NSInteger type, NSError *error) {
             if (!error ||
                 [error.localizedDescription rangeOfString:kAM_MESSAGE_SYNC_IN_PROCESS].location == NSNotFound) {
@@ -736,7 +738,7 @@ typedef enum AM_Update_Step_t {
     }
     
     _netStatus = [status boolValue];
-    DLog(@"Network Reachability Changed as: %i", _netStatus);
+    FLog(@"Network Reachability Changed as: %i", _netStatus);
 }
 
 - (void)activeAutoSyncing:(AMDBOperationCompletionBlock)syncCompletionHandler

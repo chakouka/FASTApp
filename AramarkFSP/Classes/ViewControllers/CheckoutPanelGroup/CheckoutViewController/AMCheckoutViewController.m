@@ -413,7 +413,7 @@ AMWorkOrderViewControllerDelegate
 
 //TODO::Enhancement140929
 - (IBAction)clickSubmitBtn:(UIButton *)sender {
-    DLog(@"clickSubmitBtn");
+    FLog(@"clickSubmitBtn");
     
     NSMutableDictionary *dicRepairCode = [[self dataWithType:AMCheckoutCellType_Checkout_RepairCode] objectForKey:KEY_OF_CELL_DATA];
     

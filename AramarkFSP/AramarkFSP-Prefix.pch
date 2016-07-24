@@ -29,6 +29,7 @@
     #import "NSArray+Addition.h"
     #import "LanguageConfig.h"
     #import "AMFileManage.h"
+    #import "LogManager.h"
 #endif
 
 #ifdef DEBUG

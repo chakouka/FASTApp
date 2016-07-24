@@ -455,7 +455,7 @@ typedef NS_ENUM (NSInteger, PopViewType) {
         return;
     }
     
-	DLog(@"%@ | %@ | %@ | %@ | %@", self.labelContact.text, self.textFieldFirstName.text, self.textFieldLastName.text, self.textFieldTitle.text, self.textFieldContactInfo.text);
+	FLog(@"%@ | %@ | %@ | %@ | %@", self.labelContact.text, self.textFieldFirstName.text, self.textFieldLastName.text, self.textFieldTitle.text, self.textFieldContactInfo.text);
 
     //reset the sync timer to now
     //[AMSyncingManager sharedInstance].timeStamp = [NSDate date];
@@ -504,8 +504,8 @@ typedef NS_ENUM (NSInteger, PopViewType) {
             
             if (customerPrice.price && [customerPrice.price intValue] != 0) {
                 
-                DLog(@"Add : self.workOrder.posID : %@ posInfo.name : %@",self.workOrder.posID,posInfo.name);
-                DLog(@"Add : customerPrice.productID : %@ customerPrice.productName : %@",customerPrice.productID,customerPrice.productName);
+                FLog(@"Add : self.workOrder.posID : %@ posInfo.name : %@",self.workOrder.posID,posInfo.name);
+                FLog(@"Add : customerPrice.productID : %@ customerPrice.productName : %@",customerPrice.productID,customerPrice.productName);
                 
                 [arrInvoiceItems addObject:invoice];
             }

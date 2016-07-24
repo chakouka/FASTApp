@@ -23,7 +23,7 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "LogManager.h"
+
 
 @interface InitialViewController : UIViewController
 

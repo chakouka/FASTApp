@@ -6,7 +6,6 @@
 //  Copyright © 2016 PWC Inc. All rights reserved.
 //
 
-#import "LogManager.h"
 #import "FileManager.h"
 
 @implementation LogManager

@@ -202,7 +202,7 @@
     }
     
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Aramark.sqlite"];
-    DLog(@"AMDBManager storeUrl %@",storeURL);
+    FLog(@"AMDBManager storeUrl %@",storeURL);
     NSError *error = nil;
     
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -235,7 +235,7 @@
          Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
          
          */
-        DLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        FLog(@"Unresolved error %@, %@", error, [error userInfo]);
 //        abort();
         [AMUtilities showAlertWithInfo:@"Database updated! Please reinstall the application"];
         return nil;
@@ -271,7 +271,7 @@
             }
         }];
     } else {
-        DLog(@"error: fetching from unknown context")
+        FLog(@"error: fetching from unknown context")
     }
     
     return fetchedObjects;
@@ -1636,7 +1636,7 @@
             }
             
             [tmpContext save:&error];
-            DLog(@"saveAsyncInitialLoadList error:%@",error);
+            FLog(@"saveAsyncInitialLoadList error:%@",error);
         }
         
         completionBlock(AM_DBOPR_SAVEBINITIALLOAD,error);
@@ -1867,7 +1867,7 @@
             
             
             [__privateManagedObjectContext save:&error];
-            DLog(@"updateAddLocationWithIdMap error:%@",error);
+            FLog(@"updateAddLocationWithIdMap error:%@",error);
         }
         
         completionBlock(AM_DBOPR_UPDATENEWOBJECTS,error);
@@ -1916,7 +1916,7 @@
             
             
             [__privateManagedObjectContext save:&error];
-            DLog(@"updateAddObjectWithIdMap error:%@",error);
+            FLog(@"updateAddObjectWithIdMap error:%@",error);
         }
         
         completionBlock(AM_DBOPR_UPDATENEWOBJECTS,error);
@@ -1950,7 +1950,7 @@
             }
             
             [tmpContext save:&error];
-            DLog(@"updateLocalModifiedObjectsToDone error:%@",error);
+            FLog(@"updateLocalModifiedObjectsToDone error:%@",error);
             
             
         }
@@ -2047,7 +2047,7 @@
             }
             
             [tmpContext save:&error];
-            DLog(@"updateLocalModifiedObjectsToDone error:%@",error);
+            FLog(@"updateLocalModifiedObjectsToDone error:%@",error);
             
             
         }
@@ -2183,7 +2183,7 @@
         NSError * error = nil;
         [tmpContext save:&error];
         if (error) {
-           DLog(@"Error deleting - error:%@",error);
+           FLog(@"Error deleting - error:%@",error);
         }
         completionBlock(AM_DBOPR_CLEARALL,error);
     }];
@@ -2288,7 +2288,7 @@
             
             
             [tmpContext save:&error];
-            DLog(@"deleteLocalObjects error:%@",error);
+            FLog(@"deleteLocalObjects error:%@",error);
         }
         completionBlock(AM_DBOPR_DEL,error);
     }];
@@ -2392,7 +2392,7 @@
         
         for (NSManagedObject *managedObject in items) {
             [__privateManagedObjectContext deleteObject:managedObject];
-            //    	DLog(@"%@ object deleted",entityName);
+            //    	FLog(@"%@ object deleted",entityName);
         }
     }];
 }

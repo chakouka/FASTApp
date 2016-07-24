@@ -37,9 +37,9 @@
         dic = [NSJSONSerialization JSONObjectWithData:jsonResponse  options:NSJSONReadingAllowFragments error:&parseError];
     }
     
-    DLog(@"%@",[dic description]);
+    FLog(@"%@",[dic description]);
     if (parseError) {
-        DLog(@"transferJsonResponseToDictionary parseError=%@",[parseError description]);
+        FLog(@"transferJsonResponseToDictionary parseError=%@",[parseError description]);
     }
     return dic;
 }
@@ -96,10 +96,10 @@
     request.queryParams = param;
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"getSelfUserInfo error info %@",[error localizedDescription]);
+        FLog(@"getSelfUserInfo error info %@",[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse){
-        DLog(@"getSelfUserInfo response");
+        FLog(@"getSelfUserInfo response");
         
         AMUser * parsedUser = nil;
         NSDictionary * parsedDict = nil;
@@ -165,10 +165,10 @@
     request.completionBlock = completionBlock;
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"getUserList error info %@",[error localizedDescription]);
+        FLog(@"getUserList error info %@",[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse){
-        DLog(@"getUserList response");
+        FLog(@"getUserList response");
         
         NSDictionary * parsedDict = nil;
         NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
@@ -197,10 +197,10 @@
     request.completionBlock = completionBlock;
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"getOwnRecentWorkOrderList error info %@",[error localizedDescription]);
+        FLog(@"getOwnRecentWorkOrderList error info %@",[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse){
-        DLog(@"getOwnRecentWorkOrderList response");
+        FLog(@"getOwnRecentWorkOrderList response");
         
         NSDictionary * parsedDict = nil;
         NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
@@ -277,10 +277,10 @@
     request.path = pathStr;
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"getWorkOrderListByType %@ error info %@",woType,[error localizedDescription]);
+        FLog(@"getWorkOrderListByType %@ error info %@",woType,[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse){
-        DLog(@"getWorkOrderListByType %@ response",woType);
+        FLog(@"getWorkOrderListByType %@ response",woType);
         
         NSDictionary * parsedDict = nil;
         NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
@@ -326,10 +326,10 @@
     request.path = pathStr;
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"getAccountsWithIDList %@ error info %@",[timeStamp description],[error localizedDescription]);
+        FLog(@"getAccountsWithIDList %@ error info %@",[timeStamp description],[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse){
-        DLog(@"getAccountsWithIDList %@ response",[timeStamp description]);
+        FLog(@"getAccountsWithIDList %@ response",[timeStamp description]);
         
         NSDictionary * parsedDict = nil;
         NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
@@ -369,10 +369,10 @@
     request.path = pathStr;
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"getAssetsWithIDList %@ error info %@",[timeStamp description],[error localizedDescription]);
+        FLog(@"getAssetsWithIDList %@ error info %@",[timeStamp description],[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse){
-        DLog(@"getAssetsWithIDList %@ response",[timeStamp description]);
+        FLog(@"getAssetsWithIDList %@ response",[timeStamp description]);
         
         NSDictionary * parsedDict = nil;
         NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
@@ -412,10 +412,10 @@
     request.path = pathStr;
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"getLocationsWithIDList %@ error info %@",[timeStamp description],[error localizedDescription]);
+        FLog(@"getLocationsWithIDList %@ error info %@",[timeStamp description],[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse){
-        DLog(@"getLocationsWithIDList %@ response",[timeStamp description]);
+        FLog(@"getLocationsWithIDList %@ response",[timeStamp description]);
         
         NSDictionary * parsedDict = nil;
         NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
@@ -453,10 +453,10 @@
     request.path = pathStr;
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"getInvoicesWithIDList %@ error info %@",[timeStamp description],[error localizedDescription]);
+        FLog(@"getInvoicesWithIDList %@ error info %@",[timeStamp description],[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse){
-        DLog(@"getInvoicesWithIDList %@ response",[timeStamp description]);
+        FLog(@"getInvoicesWithIDList %@ response",[timeStamp description]);
         
         NSDictionary * parsedDict = nil;
         NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
@@ -495,10 +495,10 @@
     request.path = pathStr;
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"getPoSsWithIDList %@ error info %@",[timeStamp description],[error localizedDescription]);
+        FLog(@"getPoSsWithIDList %@ error info %@",[timeStamp description],[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse){
-        DLog(@"getPoSsWithIDList %@ response",[timeStamp description]);
+        FLog(@"getPoSsWithIDList %@ response",[timeStamp description]);
         
         NSDictionary * parsedDict = nil;
         NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
@@ -537,10 +537,10 @@
     request.path = pathStr;
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"getPoSContactsWithIDList %@ error info %@",[timeStamp description],[error localizedDescription]);
+        FLog(@"getPoSContactsWithIDList %@ error info %@",[timeStamp description],[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse){
-        DLog(@"getPoSContactsWithIDList %@ response",[timeStamp description]);
+        FLog(@"getPoSContactsWithIDList %@ response",[timeStamp description]);
         
         NSDictionary * parsedDict = nil;
         NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
@@ -578,10 +578,10 @@
     request.path = pathStr;
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"getPartsWithIDList %@ error info %@",[timeStamp description],[error localizedDescription]);
+        FLog(@"getPartsWithIDList %@ error info %@",[timeStamp description],[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse){
-        DLog(@"getPartsWithIDList %@ response",[timeStamp description]);
+        FLog(@"getPartsWithIDList %@ response",[timeStamp description]);
         
         NSDictionary * parsedDict = nil;
         NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
@@ -625,10 +625,10 @@
     request.path = pathStr;
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"getCasesWithIDList %@ error info %@",[timeStamp description],[error localizedDescription]);
+        FLog(@"getCasesWithIDList %@ error info %@",[timeStamp description],[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse){
-        DLog(@"getCasesWithIDList %@ response",[timeStamp description]);
+        FLog(@"getCasesWithIDList %@ response",[timeStamp description]);
         
         NSDictionary * parsedDict = nil;
         NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
@@ -659,10 +659,10 @@
     queue.maxConcurrentOperationCount = 1;
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response,NSData *data,NSError *error){
         if (error) {
-            DLog(@"downloadPhotoWithUrl error %@",urlString);
+            FLog(@"downloadPhotoWithUrl error %@",urlString);
             request.completionBlock(request.type,error,request.userData,nil);
         }else{
-            DLog(@"downloadPhotoWithUrl success %@",urlString);
+            FLog(@"downloadPhotoWithUrl success %@",urlString);
             NSMutableDictionary * parsedDict = [NSMutableDictionary dictionary];
             
             [parsedDict setObject:[NSNumber numberWithInt:YES] forKey:NWRESPRESULT];
@@ -693,10 +693,10 @@
     request.queryParams = [[AMProtocolAssembler sharedInstance] uploadSignatureWithData:photoArray];
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"uploadPhotos error info %@",[error localizedDescription]);
+        FLog(@"uploadPhotos error info %@",[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse){
-        DLog(@"uploadPhotos response");
+        FLog(@"uploadPhotos response");
         
         NSDictionary * parsedDict = nil;
         NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
@@ -718,7 +718,7 @@
     NSString *portNumber=@"";
     portNumber=engine.coordinator.sslPortNumber?[NSString stringWithFormat:@":%d",[engine.coordinator.sslPortNumber intValue]]:@"";
     [hostUrl appendString:[NSString stringWithFormat:@"https://%@%@/services/apexrest/Signature",engine.coordinator.host,portNumber]];
-    DLog(@"upload photo url :%@",hostUrl);
+    FLog(@"upload photo url :%@",hostUrl);
     NSURL *url=nil;
     url=[[NSURL alloc]initWithString:hostUrl];
     AMMutableURLRequest * request = [[AMMutableURLRequest alloc] initWithURL:url];
@@ -744,10 +744,10 @@
     queue.maxConcurrentOperationCount = 1;
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response,NSData *data,NSError *error){
         if (error) {
-            DLog(@"uploadPhotos error info %@",error);
+            FLog(@"uploadPhotos error info %@",error);
             request.completionBlock(request.type,error,request.userData,nil);
         }else{
-            DLog(@"uploadPhotos response");
+            FLog(@"uploadPhotos response");
             NSDictionary * parsedDict = nil;
             NSDictionary * dict = [self transferJsonResponseToDictionary:data];
             
@@ -777,10 +777,10 @@
     request.queryParams = [[AMProtocolAssembler sharedInstance] parameterDictionaryFromAttachments:attachments];
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"upload attachments error info %@",[error localizedDescription]);
+        FLog(@"upload attachments error info %@",[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse){
-        DLog(@"upload attachments response");
+        FLog(@"upload attachments response");
         
         NSDictionary * responseDict = [self transferJsonResponseToDictionary:jsonResponse];
 
@@ -812,7 +812,7 @@
         
         [[AMLogicCore sharedInstance] saveManagedObject:attachments.firstObject completion:^(NSInteger type, NSError *error) {
             if (error) {
-                DLog(@"save new case error: %@", error.localizedDescription);
+                FLog(@"save new case error: %@", error.localizedDescription);
             }
         }];
         
@@ -834,10 +834,10 @@
     request.path = @"/BusinessProcess";
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"getInitialLoad error info %@",[error localizedDescription]);
+        FLog(@"getInitialLoad error info %@",[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse){
-        DLog(@"getInitialLoad response");
+        FLog(@"getInitialLoad response");
         
         NSDictionary * parsedDict = nil;
         NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
@@ -871,10 +871,10 @@
     request.queryParams = bodyDict;
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"createObjectsWithData error info %@",[error localizedDescription]);
+        FLog(@"createObjectsWithData error info %@",[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse){
-        DLog(@"createObjectsWithData response");
+        FLog(@"createObjectsWithData response");
         
         NSDictionary * parsedDict = nil;
         NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
@@ -909,10 +909,10 @@
     request.queryParams = bodyDict;
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"deleteObjectWithData error info %@",[error localizedDescription]);
+        FLog(@"deleteObjectWithData error info %@",[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse){
-        DLog(@"deleteObjectWithData response");
+        FLog(@"deleteObjectWithData response");
         
         NSDictionary * parsedDict = nil;
         NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
@@ -946,10 +946,10 @@
     request.queryParams = bodyDict;
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"updateObjectWithData error info %@",[error localizedDescription]);
+        FLog(@"updateObjectWithData error info %@",[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse){
-        DLog(@"updateObjectWithData response");
+        FLog(@"updateObjectWithData response");
         
         NSDictionary * parsedDict = nil;
         NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
@@ -997,15 +997,15 @@
 #if DEBUG
     NSError * error = nil;
     NSData * postData = [NSJSONSerialization dataWithJSONObject:bodyDictionary options:0 error:&error];
-    DLog(@"sync obj: %@",[[NSString alloc]initWithData:postData encoding:NSUTF8StringEncoding]);
+    FLog(@"sync obj: %@",[[NSString alloc]initWithData:postData encoding:NSUTF8StringEncoding]);
 #endif
     request.queryParams = bodyDictionary;
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"syncDataWithTimeStamp error info %@",[error localizedDescription]);
+        FLog(@"syncDataWithTimeStamp error info %@",[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse){
-        DLog(@"syncDataWithTimeStamp response");
+        FLog(@"syncDataWithTimeStamp response");
         
         NSDictionary * parsedDict = nil;
         NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
@@ -1041,10 +1041,10 @@
     request.queryParams = bodyDict;
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"assignSelfWO error info %@",[error localizedDescription]);
+        FLog(@"assignSelfWO error info %@",[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse){
-        DLog(@"assignSelfWO response");
+        FLog(@"assignSelfWO response");
         
         NSDictionary * parsedDict = nil;
         NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
@@ -1084,10 +1084,10 @@
     request.queryParams = bodyDict;
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"setAssetPoS error info %@",[error localizedDescription]);
+        FLog(@"setAssetPoS error info %@",[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse){
-        DLog(@"setAssetPoS response");
+        FLog(@"setAssetPoS response");
         
         NSDictionary * parsedDict = nil;
         NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
@@ -1109,10 +1109,10 @@
      request.completionBlock = completionBlock;
      
      [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-     DLog(@"getUserList error info %@",[error description]);
+     FLog(@"getUserList error info %@",[error description]);
      request.completionBlock(request.type,error,request.userData,nil);
      } completeBlock:^(id jsonResponse){
-     DLog(@"getUserList user info response");
+     FLog(@"getUserList user info response");
      
      NSDictionary * parsedDict = nil;
      NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
@@ -1150,10 +1150,10 @@
     queue.maxConcurrentOperationCount=1;
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response,NSData *data,NSError *error){
         if (error) {
-            DLog(@"error");
+            FLog(@"error");
         }else{
-            DLog(@"success");
-            DLog(@"a:%@",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
+            FLog(@"success");
+            FLog(@"a:%@",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
         }
     }];
     
@@ -1176,11 +1176,11 @@
     request.queryParams = jsonDict;
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"getUserList error info %@",[error localizedDescription]);
+        FLog(@"getUserList error info %@",[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse){
-        DLog(@"getUserList user info response");
-        DLog(@"a:%@",[[NSString alloc]initWithData:jsonResponse encoding:NSUTF8StringEncoding]);
+        FLog(@"getUserList user info response");
+        FLog(@"a:%@",[[NSString alloc]initWithData:jsonResponse encoding:NSUTF8StringEncoding]);
     }];
 }
 
@@ -1228,14 +1228,14 @@
     }
     request.queryParams = @{topLevelKey: array};
     
-    DLog(@" %@", [request.queryParams description]);
+    FLog(@" %@", [request.queryParams description]);
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request
                                       failBlock:^(NSError *error){
-        DLog(@"createObjectsWithData error info %@",[error localizedDescription]);
+        FLog(@"createObjectsWithData error info %@",[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse){
-        DLog(@"createObjectsWithData response");
+        FLog(@"createObjectsWithData response");
         
         NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
         
@@ -1247,7 +1247,7 @@
 
 -(void)uploadCreatedCasesWithCompletion:(AMSFRestCompletionBlock)completionBlock;
 {
-    DLog(@"start upload created cases");
+    FLog(@"start upload created cases");
     
     NSArray *createdCases = [[AMDBManager sharedInstance] getCreatedCases];
     if (!createdCases.count) {
@@ -1259,7 +1259,7 @@
      createObjectsWithManagedObjects:createdCases
      operationType:AM_REQUEST_ADDCASE
      completion:^(NSInteger type, NSError *error, id userData, id responseData) {
-         DLog(@"finish upload created cases");
+         FLog(@"finish upload created cases");
 
          BOOL isSuccess = ((NSNumber *)[responseData valueForKeyWithNullToNil:@"isSuccess"]).boolValue;
          if (error || !isSuccess) {
@@ -1282,7 +1282,7 @@
              }
              [[AMDBManager sharedInstance] saveAsyncCaseList:caseModels checkExist:YES completion:^(NSInteger type, NSError *error) {
                  if (!error) {
-                     DLog(@"save new cases finished");
+                     FLog(@"save new cases finished");
                  }
              }];
              
@@ -1319,7 +1319,7 @@
          
          [[AMLogicCore sharedInstance] saveManagedObject:createdCases.firstObject completion:^(NSInteger type, NSError *error) {
              if (error) {
-                 DLog(@"save new case error: %@", error.localizedDescription);
+                 FLog(@"save new case error: %@", error.localizedDescription);
              }
          }];
          completionBlock(type, error, userData,responseData);
@@ -1327,7 +1327,7 @@
 }
 
 -(void)uploadCreatedContactsWithCompletion:(AMSFRestCompletionBlock)completionBlock {
-    DLog(@"start upload created contacts");
+    FLog(@"start upload created contacts");
     
     NSArray *createdContacts = [[AMDBManager sharedInstance] getCreatedContacts];
     if (!createdContacts.count) {
@@ -1339,7 +1339,7 @@
      createObjectsWithManagedObjects:createdContacts
      operationType:AM_REQUEST_ADDCONTACTS
      completion:^(NSInteger type, NSError *error, id userData, id responseData) {
-         DLog(@"finish upload created contacts orders");
+         FLog(@"finish upload created contacts orders");
          
          BOOL isSuccess = ((NSNumber *)[responseData valueForKeyWithNullToNil:@"isSuccess"]).boolValue;
          if (error || !isSuccess) {
@@ -1363,7 +1363,7 @@
              
              [[AMDBManager sharedInstance] saveAsyncContactList:newContactModels checkExist:YES completion:^(NSInteger type, NSError *error) {
                  if (!error) {
-                     DLog(@"save new contacts finished");
+                     FLog(@"save new contacts finished");
                      
                  }
              }];
@@ -1387,7 +1387,7 @@
 
          [[AMLogicCore sharedInstance] saveManagedObject:createdContacts.firstObject completion:^(NSInteger type, NSError *error) {
              if (error) {
-                 DLog(@"save new contact error: %@", error.localizedDescription);
+                 FLog(@"save new contact error: %@", error.localizedDescription);
              }
          }];
          completionBlock(type, error, userData,responseData);
@@ -1397,7 +1397,7 @@
 
 -(void)uploadCreatedWorkOrdersWithCompletion:(AMSFRestCompletionBlock)completionBlock
 {
-    DLog(@"start upload created work orders");
+    FLog(@"start upload created work orders");
 
     NSArray *createdWorkOrders = [[AMDBManager sharedInstance] getCreatedWorkOrders];
     if (!createdWorkOrders.count) {
@@ -1409,7 +1409,7 @@
      createObjectsWithManagedObjects:createdWorkOrders
      operationType:AM_REQUEST_ADDWORKORDER
      completion:^(NSInteger type, NSError *error, id userData, id responseData) {
-         DLog(@"finish upload created work orders");
+         FLog(@"finish upload created work orders");
 
          BOOL isSuccess = ((NSNumber *)[responseData valueForKeyWithNullToNil:@"isSuccess"]).boolValue;
          if (error || !isSuccess) {
@@ -1432,7 +1432,7 @@
              }
              [[AMDBManager sharedInstance] saveAsyncWorkOrderList:workOrderModels checkExist:YES completion:^(NSInteger type, NSError *error) {
                  if (!error) {
-                     DLog(@"save new work orders finished");
+                     FLog(@"save new work orders finished");
                  }
              }];
              
@@ -1451,7 +1451,7 @@
          }
          [[AMLogicCore sharedInstance] saveManagedObject:createdWorkOrders.firstObject completion:^(NSInteger type, NSError *error) {
              if (error) {
-                 DLog(@"save new work order error: %@", error.localizedDescription);
+                 FLog(@"save new work order error: %@", error.localizedDescription);
              }
          }];
          completionBlock(type, error, userData,responseData);
@@ -1472,10 +1472,10 @@
 
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"get report data error info %@",[error localizedDescription]);
+        FLog(@"get report data error info %@",[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse){
-        DLog(@"get report data response success");
+        FLog(@"get report data response success");
         
         NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
         request.completionBlock(request.type,nil, request.userData, dict);
@@ -1495,7 +1495,7 @@
     
     NSArray *array = [[AMDBManager sharedInstance] getUnfetchedAttachments];
     
-    DLog(@"start download %d attachments", array.count);
+    FLog(@"start download %d attachments", array.count);
 
     if (array.count) {
         for (AMDBAttachment *attachment in array) {
@@ -1517,7 +1517,7 @@
     request.path = [attachment.remoteURL stringByAppendingString:@"/Body"];
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"get attachment error info %@",[error localizedDescription]);
+        FLog(@"get attachment error info %@",[error localizedDescription]);
 //        request.completionBlock(request.type,error,request.userData,nil);
 //        attachment.dataStatus = @(EntityStatusSyncFail);
 //        [[AMDBManager sharedInstance] saveManagedObject:attachment completion:^(NSInteger type, NSError *error) {
@@ -1525,7 +1525,7 @@
 //        }];
         
     } completeBlock:^(id jsonResponse){
-        DLog(@"get attachment response");
+        FLog(@"get attachment response");
         
 //        if ([attachment.contentType isEqualToString:@"image/jpg"]
 //            || [attachment.contentType isEqualToString:@"image/jpeg"]) {
@@ -1580,7 +1580,7 @@
 
                                                   } completion:^(NSInteger type, NSError *error) {
                                                       if (error) {
-                                                          DLog(@"save attachment error: %@", error.localizedDescription);
+                                                          FLog(@"save attachment error: %@", error.localizedDescription);
                                                       } else {
                                                           [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_ATTACHMENT_DOWNLOADED object:attachment];
                                                       }
@@ -1589,7 +1589,7 @@
 //        attachment.localURL = [[[AMFileCache sharedInstance] getDirectoryPath] stringByAppendingFormat:@"/%@", attachment.id];
 //        [[AMLogicCore sharedInstance] saveManagedObject:attachment completion:^(NSInteger type, NSError *error) {
 //            if (error) {
-//                DLog(@"save attachment error: %@", error.localizedDescription);
+//                FLog(@"save attachment error: %@", error.localizedDescription);
 //            }
 //        }];
         
@@ -1637,10 +1637,10 @@
     request.queryParams = bodyDict;
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"create new leads error info %@",[error localizedDescription]);
+        FLog(@"create new leads error info %@",[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse){
-        DLog(@"finish upload created new leads");
+        FLog(@"finish upload created new leads");
         
         NSDictionary * responseDict = [self transferJsonResponseToDictionary:jsonResponse];
 
@@ -1672,7 +1672,7 @@
      
         [[AMLogicCore sharedInstance] saveManagedObject:newLeads.firstObject completion:^(NSInteger type, NSError *error) {
             if (error) {
-                DLog(@"save new case error: %@", error.localizedDescription);
+                FLog(@"save new case error: %@", error.localizedDescription);
             }
         }];
         completionBlock(AM_REQUEST_UPDATEOBJECTS, nil, newLeads,responseDict);
@@ -1707,10 +1707,10 @@
     
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"delete attachments error info %@",[error localizedDescription]);
+        FLog(@"delete attachments error info %@",[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse){
-        DLog(@"delete attachments response");
+        FLog(@"delete attachments response");
         
         NSDictionary * responseDict = [self transferJsonResponseToDictionary:jsonResponse];
         
@@ -1726,7 +1726,7 @@
             
             [[AMLogicCore sharedInstance] saveManagedObject:attachments.firstObject completion:^(NSInteger type, NSError *error) {
                 if (error) {
-                    DLog(@"save new case error: %@", error.localizedDescription);
+                    FLog(@"save new case error: %@", error.localizedDescription);
                 }
             }];
             
@@ -1754,12 +1754,12 @@
     request.path = @"/InitSignal";
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"get init code error info %@",[error localizedDescription]);
+        FLog(@"get init code error info %@",[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse){
         NSDictionary * responseDict = [self transferJsonResponseToDictionary:jsonResponse];
         NSNumber *initCode = [responseDict valueForKeyPathWithNullToNil:@"initCode"];
-        DLog(@"get init code response: %i", [initCode intValue]);
+        FLog(@"get init code response: %i", [initCode intValue]);
         request.completionBlock(request.type,nil,request.userData,initCode);
     }];
 }
@@ -1782,10 +1782,10 @@
     request.queryParams = paramDict;
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"get near by rest request failed %@",[error localizedDescription]);
+        FLog(@"get near by rest request failed %@",[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse){
-        DLog(@"get near by rest request succeed");
+        FLog(@"get near by rest request succeed");
         
         NSDictionary * responseDict = [self transferJsonResponseToDictionary:jsonResponse];
         NSMutableArray *WOArr = nil;
@@ -1822,10 +1822,10 @@
     request.queryParams = @{@"idList": woIds};
     
     [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error) {
-        DLog(@"get WorkOrderDetail rest request failed %@",[error localizedDescription]);
+        FLog(@"get WorkOrderDetail rest request failed %@",[error localizedDescription]);
         request.completionBlock(request.type,error,request.userData,nil);
     } completeBlock:^(id jsonResponse) {
-        DLog(@"get WorkOrderDetail rest request succeed");
+        FLog(@"get WorkOrderDetail rest request succeed");
         
         NSDictionary * responseDict = [self transferJsonResponseToDictionary:jsonResponse];
         BOOL isSuccess = ((NSNumber *)[responseDict valueForKeyWithNullToNil:@"isSuccess"]).boolValue;

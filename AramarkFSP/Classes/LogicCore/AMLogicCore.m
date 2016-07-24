@@ -139,14 +139,14 @@
         [self clearHistoryDBData:^(NSInteger type, NSError * error){
             if (self.selfUser) {
                 [[AMDBManager sharedInstance] saveAsyncUserList:@[self.selfUser] checkExist:YES completion:^(NSInteger type, NSError *error) {
-                    DLog(@"Save User Profile %@", error ? @"Failed" : @"Succeed");
+                    FLog(@"Save User Profile %@", error ? @"Failed" : @"Succeed");
                 }];
             }
             [[AMInitailManager sharedInstance] startInitialization:^(NSInteger type, NSError * error){
                 dispatch_async(dispatch_get_main_queue(), ^(){//read wo list and timer should be schedueled on main queue
                     NSArray * woList = [self getTodayWorkOrderList];
                     if (!error && woList.count) {//save latest timestamp only after get today's wo list
-                        DLog(@"initial timestamp %@",[[AMInitailManager sharedInstance].timeStamp description]);
+                        FLog(@"initial timestamp %@",[[AMInitailManager sharedInstance].timeStamp description]);
                         [userDefaults setObject:[AMInitailManager sharedInstance].timeStamp forKey:USRLOGINTIMESTAMP];
                         [userDefaults setObject:[AMInitailManager sharedInstance].timeStamp forKey:USRLASTSYNCTIMESTAMP];
                         [userDefaults synchronize];
@@ -305,7 +305,7 @@
     NSDictionary * retDict = (NSDictionary *)responseData;
     NSNumber * isSuccess = (NSNumber *)[retDict objectForKey:NWRESPRESULT];
     
-    DLog(@"AMLogicCore protocolHandlerWithType type=%d",type);
+    FLog(@"AMLogicCore protocolHandlerWithType type=%d",type);
     switch (type) {
         case AM_REQUEST_GETUSERINFO:
         {
@@ -755,9 +755,9 @@
         [self updateWorkOrder:wo completionBlock:^(NSInteger type, NSError *error) {
             [[AMOnlineOprManager sharedInstance] updateSingleWO:wo completion:^(NSInteger type, NSError *error) {
                 if (error) {
-                    DLog(@"update single WO failed: %@", error.localizedDescription);
+                    FLog(@"update single WO failed: %@", error.localizedDescription);
                 } else {
-                    DLog(@"update single WO success");
+                    FLog(@"update single WO success");
                 }
             }];
             completionBlock(type,error);
@@ -794,9 +794,9 @@
                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_WORK_ORDER_STATUS_CHANGED object:nil];
                 [[AMOnlineOprManager sharedInstance] updateSingleWO:wo completion:^(NSInteger type, NSError *error) {
                     if (error) {
-                        DLog(@"update single WO failed: %@", error.localizedDescription);
+                        FLog(@"update single WO failed: %@", error.localizedDescription);
                     } else {
-                        DLog(@"update single WO success");
+                        FLog(@"update single WO success");
                     }
                 }];
             }
@@ -930,7 +930,7 @@
         if (!error) {
             //when check out process finished, start syncing at once
             dispatch_async(dispatch_get_main_queue(), ^{
-                DLog(@"start sync when check out finished");
+                FLog(@"start sync when check out finished");
                 [self startSyncing];
             });
         }
@@ -1377,9 +1377,9 @@
 -(NSArray *)getReportDataArranged
 {
 //    count++;
-//    DLog(@"start get report data %d", count);
+//    FLog(@"start get report data %d", count);
     NSArray *array = [[AMDBManager sharedInstance] getAllReportData];
-//    DLog(@"finish get report data %d", count);
+//    FLog(@"finish get report data %d", count);
     
 //    return array;
     

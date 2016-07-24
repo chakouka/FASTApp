@@ -20,6 +20,7 @@
 #import "AMCheckoutTabViewController.h"
 #import "AMSyncingManager.h"
 
+
 @interface AMCheckoutPanelViewController ()
 <
 AMCheckoutViewControllerDelegate,
@@ -369,7 +370,7 @@ AMInvoiceViewControllerDelegate
             }
             else
             {
-                DLog(@"Save check out page 1 data : step 1 Success")
+                FLog(@"Save check out page 1 data : step 1 Success")
             }
         });
         
@@ -380,7 +381,7 @@ AMInvoiceViewControllerDelegate
                 }
                 else
                 {
-                    DLog(@"Save check out page 1 data : step 2 Success")
+                    FLog(@"Save check out page 1 data : step 2 Success")
                 }
                 
                 //Save check out page 2 data
@@ -404,7 +405,7 @@ AMInvoiceViewControllerDelegate
                         }
                         else
                         {
-                            DLog(@"Save check out page 2 data : Success")
+                            FLog(@"Save check out page 2 data : Success")
                         }
                     });
                     
@@ -420,7 +421,7 @@ AMInvoiceViewControllerDelegate
                             }
                             else
                             {
-                                DLog(@"Save check out page 3 data : Success")
+                                FLog(@"Save check out page 3 data : Success")
                             }
                         });
                         
@@ -470,7 +471,7 @@ AMInvoiceViewControllerDelegate
                 }
                 else
                 {
-                    DLog(@"Save check out page 1 data : step 1 Success")
+                    FLog(@"Save check out page 1 data : step 1 Success")
                 }
             });
             
@@ -481,7 +482,7 @@ AMInvoiceViewControllerDelegate
                     }
                     else
                     {
-                        DLog(@"Save check out page 1 data : step 2 Success")
+                        FLog(@"Save check out page 1 data : step 2 Success")
                     }
                     
                     //Save check out page 2 data
@@ -505,7 +506,7 @@ AMInvoiceViewControllerDelegate
                             }
                             else
                             {
-                                DLog(@"Save check out page 2 data : Success")
+                                FLog(@"Save check out page 2 data : Success")
                             }
                         });
                         
@@ -523,7 +524,7 @@ AMInvoiceViewControllerDelegate
                                 }
                                 else
                                 {
-                                    DLog(@"Save check out page 3 data : Success")
+                                    FLog(@"Save check out page 3 data : Success")
                                 }
                             });
                             
@@ -569,7 +570,7 @@ AMInvoiceViewControllerDelegate
             }
             else
             {
-                DLog(@"Save check out page 1 data : step 1 Success")
+               FLog(@"Save check out page 1 data : step 1 Success")
             }
         });
         
@@ -580,7 +581,7 @@ AMInvoiceViewControllerDelegate
                 }
                 else
                 {
-                    DLog(@"Save check out page 1 data : step 2 Success")
+                    FLog(@"Save check out page 1 data : step 2 Success")
                 }
                 
                 //Save check out page 2 data
@@ -604,7 +605,7 @@ AMInvoiceViewControllerDelegate
                         }
                         else
                         {
-                            DLog(@"Save check out page 2 data : Success")
+                            FLog(@"Save check out page 2 data : Success")
                         }
                     });
                     
@@ -620,7 +621,7 @@ AMInvoiceViewControllerDelegate
                             }
                             else
                             {
-                                DLog(@"Save check out page 3 data : Success")
+                                FLog(@"Save check out page 3 data : Success")
                             }
                         });
                         
