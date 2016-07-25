@@ -11,7 +11,7 @@
 #import "ZipUtility.h"
 #import "LogManager.h"
 
-#define LOG_FILE_EMAIL_RECIPIENT @"bruno@simplinova.com"
+#define LOG_FILE_EMAIL_RECIPIENT @"Kendall-Brian@aramark.com, pkrepsztul@simplinova.com"
 
 @implementation LogFileMailer
 
