@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "GAITrackedViewController.h"
+#import <MessageUI/MFMailComposeViewController.h>
+#import "LogManager.h"
 
-@interface AMMainViewController : GAITrackedViewController
+@interface AMMainViewController : GAITrackedViewController<MFMailComposeViewControllerDelegate>
+
 @property (weak, nonatomic) IBOutlet UIView *viewLogin;
 @property (weak, nonatomic) IBOutlet UIView *viewTitle;
 @property (weak, nonatomic) IBOutlet UIView *viewLeftPanel;

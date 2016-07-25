@@ -32,6 +32,7 @@
 #import "GoogleRouteInfo.h"
 #import "AMNearMeViewController.h"
 #import "LanguageConfig.h"
+#import "LogFileMailer.h"
 
 typedef NS_ENUM (NSInteger, MainViewLayoutType) {
 	MainViewLayoutType_MapOnly = 0,
@@ -150,7 +151,7 @@ UIGestureRecognizerDelegate
 @property (weak, nonatomic) IBOutlet UIButton *btnClearCache;
 @property (weak, nonatomic) IBOutlet UIButton *sendLogsBtn;
 
-
+@property (nonatomic, strong) LogFileMailer *logFileMailer;
 
 @end
 
@@ -205,8 +206,26 @@ UIGestureRecognizerDelegate
 	return self;
 }
 
+- (void) emailLogFiles
+{
+    self.logFileMailer = [[LogFileMailer alloc] init];
+    self.logFileMailer.attachmentType = LOGS;
+    
+    if ([MFMailComposeViewController canSendMail])
+    {
+        // Show the composer
+        [self showMailComposer];
+    }
+    else
+    {
+        //can not send - log info
+        FLog(@"This device can not send email.");
+    }    
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
+    
     //To indicate that this view is displayed in Google Analytics View Report
     self.screenName = @"Home Screen";
     
@@ -1020,9 +1039,52 @@ UIGestureRecognizerDelegate
 }
 
 //add logs to email
-- (IBAction)clickSendLogs:(id)sender {
+- (IBAction)clickSendLogs:(id)sender
+{
+    [self emailLogFiles];
+}
 
+-(void) showMailComposer
+{
+    [self.logFileMailer composeLogsEmail];
+    
+    MFMailComposeViewController *mailComposer = [self.logFileMailer getMailComposer];
+    
+    mailComposer.mailComposeDelegate = self;
+    
+    if (mailComposer)
+    {
+        [self presentViewController:mailComposer animated:YES completion:nil];
+    }
+}
 
+- (void)mailComposeController:(MFMailComposeViewController *)controller
+          didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultSent:
+            DLog(@"You sent the email.");
+            break;
+            
+        case MFMailComposeResultSaved:
+            DLog(@"You saved a draft of this email");
+            break;
+            
+        case MFMailComposeResultCancelled:
+            DLog(@"You cancelled sending this email.");
+            break;
+            
+        case MFMailComposeResultFailed:
+            DLog(@"Mail failed:  An error occurred when trying to compose this email");
+            break;
+            
+        default:
+            DLog(@"An error occurred when trying to compose this email");
+            break;
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (IBAction)clickLogOutBtn:(UIButton *)sender {

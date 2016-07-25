@@ -49,4 +49,9 @@
         return NO;
 }
 
++(NSString *) getFilePathInDirectory:(NSString *)directory WithName:(NSString *)name
+{
+    return [directory stringByAppendingPathComponent:name];
+}
+
 @end

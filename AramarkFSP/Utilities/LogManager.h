@@ -10,10 +10,6 @@
 
 @interface LogManager : NSObject
 
-
-#define LOG_FILE_NAME @"fast.log"
-#define LOG_ZIP_FILE_NAME @"fast.zlib"
-
 #define FLog(fmt, ...) [[LogManager sharedInstance] log:@"%s [Line %d] " fmt, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__];
 
 + (LogManager *)sharedInstance;

@@ -42,11 +42,77 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view from its nib.
     self.prepareLoginLabel.text = MyLocal(@"Preparing to log in...");
     
+    //TODO: ENABLE THIS BELOW TO TEST EMAIL LOGIC.
+    //[self emailLogFiles];
+    
     FLog(@"loading the application.")
 }
+
+-(void) emailLogFiles
+{
+    self.logFileMailer = [[LogFileMailer alloc] init];
+    
+    self.logFileMailer.attachmentType = LOGS;
+    
+    if ([MFMailComposeViewController canSendMail])
+    {
+        // Show the composer
+        [self showMailComposer];
+    }
+    else
+    {
+        //can not send - log info
+        FLog(@"This device can not send email.");
+    }
+}
+
+-(void) showMailComposer
+{
+    [self.logFileMailer composeLogsEmail];
+    
+    MFMailComposeViewController *mailComposer = [self.logFileMailer getMailComposer];
+    
+    mailComposer.mailComposeDelegate = self;
+    
+    if (mailComposer)
+    {
+        [self presentViewController:mailComposer animated:YES completion:nil];
+    }
+}
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller
+          didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultSent:
+            DLog(@"You sent the email.");
+            break;
+            
+        case MFMailComposeResultSaved:
+            DLog(@"You saved a draft of this email");
+            break;
+            
+        case MFMailComposeResultCancelled:
+            DLog(@"You cancelled sending this email.");
+            break;
+            
+        case MFMailComposeResultFailed:
+            DLog(@"Mail failed:  An error occurred when trying to compose this email");
+            break;
+            
+        default:
+            DLog(@"An error occurred when trying to compose this email");
+            break;
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
 
 - (void)didReceiveMemoryWarning
 {

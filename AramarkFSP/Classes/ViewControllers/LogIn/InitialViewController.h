@@ -23,9 +23,12 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MFMailComposeViewController.h>
+#import "LogFileMailer.h"
 
-
-@interface InitialViewController : UIViewController
+@interface InitialViewController : UIViewController<MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *prepareLoginLabel;
+@property (nonatomic, strong) LogFileMailer *logFileMailer;
+
 @end

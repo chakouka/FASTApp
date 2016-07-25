@@ -147,6 +147,12 @@
 		312AB5D31D42AC6300D5D0E2 /* LogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 312AB5D11D42AC6300D5D0E2 /* LogManager.m */; };
 		312AB5D61D44F1D600D5D0E2 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 312AB5D51D44F1D600D5D0E2 /* FileManager.m */; };
 		312AB5D71D44F1D600D5D0E2 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 312AB5D51D44F1D600D5D0E2 /* FileManager.m */; };
+		312AB5DA1D450BF100D5D0E2 /* ZipUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 312AB5D91D450BF100D5D0E2 /* ZipUtility.m */; };
+		312AB5DB1D450BF100D5D0E2 /* ZipUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 312AB5D91D450BF100D5D0E2 /* ZipUtility.m */; };
+		312AB5DE1D450F9E00D5D0E2 /* LogFileMailer.m in Sources */ = {isa = PBXBuildFile; fileRef = 312AB5DD1D450F9D00D5D0E2 /* LogFileMailer.m */; };
+		312AB5DF1D450F9E00D5D0E2 /* LogFileMailer.m in Sources */ = {isa = PBXBuildFile; fileRef = 312AB5DD1D450F9D00D5D0E2 /* LogFileMailer.m */; };
+		312AB5E21D46310900D5D0E2 /* Mailer.m in Sources */ = {isa = PBXBuildFile; fileRef = 312AB5E11D46310900D5D0E2 /* Mailer.m */; };
+		312AB5E31D46310900D5D0E2 /* Mailer.m in Sources */ = {isa = PBXBuildFile; fileRef = 312AB5E11D46310900D5D0E2 /* Mailer.m */; };
 		4F3F413517E7CA5C008B3283 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3F413417E7CA5C008B3283 /* ImageIO.framework */; };
 		4F3F413617E7CA71008B3283 /* libMKNetworkKit-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3F412B17E7C9CA008B3283 /* libMKNetworkKit-iOS.a */; };
 		4F3F413717E7CA84008B3283 /* libSalesforceNetworkSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3F413317E7C9CA008B3283 /* libSalesforceNetworkSDK.a */; };
@@ -948,6 +954,12 @@
 		312AB5D11D42AC6300D5D0E2 /* LogManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogManager.m; path = Utilities/LogManager.m; sourceTree = "<group>"; };
 		312AB5D41D44F1D600D5D0E2 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileManager.h; path = Utilities/FileManager.h; sourceTree = "<group>"; };
 		312AB5D51D44F1D600D5D0E2 /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileManager.m; path = Utilities/FileManager.m; sourceTree = "<group>"; };
+		312AB5D81D450BF100D5D0E2 /* ZipUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZipUtility.h; path = Utilities/ZipUtility.h; sourceTree = "<group>"; };
+		312AB5D91D450BF100D5D0E2 /* ZipUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZipUtility.m; path = Utilities/ZipUtility.m; sourceTree = "<group>"; };
+		312AB5DC1D450F9D00D5D0E2 /* LogFileMailer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogFileMailer.h; path = Utilities/LogFileMailer.h; sourceTree = "<group>"; };
+		312AB5DD1D450F9D00D5D0E2 /* LogFileMailer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileMailer.m; path = Utilities/LogFileMailer.m; sourceTree = "<group>"; };
+		312AB5E01D46310900D5D0E2 /* Mailer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mailer.h; path = Utilities/Mailer.h; sourceTree = "<group>"; };
+		312AB5E11D46310900D5D0E2 /* Mailer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Mailer.m; path = Utilities/Mailer.m; sourceTree = "<group>"; };
 		4F3F412517E7C9CA008B3283 /* MKNetworkEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKNetworkEngine.h; sourceTree = "<group>"; };
 		4F3F412617E7C9CA008B3283 /* MKNetworkKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKNetworkKit.h; sourceTree = "<group>"; };
 		4F3F412717E7C9CA008B3283 /* MKNetworkOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKNetworkOperation.h; sourceTree = "<group>"; };
@@ -2041,6 +2053,12 @@
 				312AB5D11D42AC6300D5D0E2 /* LogManager.m */,
 				312AB5D41D44F1D600D5D0E2 /* FileManager.h */,
 				312AB5D51D44F1D600D5D0E2 /* FileManager.m */,
+				312AB5D81D450BF100D5D0E2 /* ZipUtility.h */,
+				312AB5D91D450BF100D5D0E2 /* ZipUtility.m */,
+				312AB5DC1D450F9D00D5D0E2 /* LogFileMailer.h */,
+				312AB5DD1D450F9D00D5D0E2 /* LogFileMailer.m */,
+				312AB5E01D46310900D5D0E2 /* Mailer.h */,
+				312AB5E11D46310900D5D0E2 /* Mailer.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -4700,6 +4718,9 @@
 				312AB5D31D42AC6300D5D0E2 /* LogManager.m in Sources */,
 				168A213A195C0CA3003E66AF /* AMProtocolManagerTest.m in Sources */,
 				7C4043D11AE56C390079FC8E /* AMNewContactTest.m in Sources */,
+				312AB5DB1D450BF100D5D0E2 /* ZipUtility.m in Sources */,
+				312AB5DF1D450F9E00D5D0E2 /* LogFileMailer.m in Sources */,
+				312AB5E31D46310900D5D0E2 /* Mailer.m in Sources */,
 				312AB5D71D44F1D600D5D0E2 /* FileManager.m in Sources */,
 				166850591963F26200551DC0 /* AMLogicCoreTest.m in Sources */,
 				166850501963A9F200551DC0 /* AMProtocolParserTest.m in Sources */,
@@ -4773,6 +4794,7 @@
 				0206C95319753016008423CB /* AMAttachmentCollViewLocalCell.m in Sources */,
 				D01A5B21192F087C00E9E05F /* AMVerificationStatusTableViewCell.m in Sources */,
 				D0E2597E198639A50090A323 /* AMInvoiceCaseTableViewSection.m in Sources */,
+				312AB5E21D46310900D5D0E2 /* Mailer.m in Sources */,
 				62AD8AC11961057E00E5FBAB /* AMPieChart.m in Sources */,
 				D07F5DD519B4427B00D28F94 /* AMNearMeViewController.m in Sources */,
 				16AE966F1940219E00904E7A /* AMBarChartView.m in Sources */,
@@ -4894,6 +4916,7 @@
 				D07222D6197F94BD008AF1F7 /* AMInvoiceCodeTableViewCell.m in Sources */,
 				02E3E7AD1929B3BC00064919 /* AMAssetsViewController.m in Sources */,
 				A6B8F2F9192670490072BD5F /* AMContactDBManager.m in Sources */,
+				312AB5DE1D450F9E00D5D0E2 /* LogFileMailer.m in Sources */,
 				D01C4B2D19D16FB600BC0F9B /* GoogleRouteResult.m in Sources */,
 				167E1BDE197FA8130008F5FF /* NSDictionary+Addition.m in Sources */,
 				D011C42A19C7E3EE0099F0F8 /* LanguageConfig.m in Sources */,
@@ -4910,6 +4933,7 @@
 				A681EC421918B3D700D5ED0B /* AMProtocolManager.m in Sources */,
 				A65927341930B67A00914876 /* AMPartsUsed.m in Sources */,
 				824A9E331724E2A900C9BD79 /* AppDelegate.m in Sources */,
+				312AB5DA1D450BF100D5D0E2 /* ZipUtility.m in Sources */,
 				D02D423F194EB83300372334 /* AMAddNewLeadViewController.m in Sources */,
 				D00C9E8E1936E7180078CBF2 /* AMRepairTableViewCell.m in Sources */,
 				D02D424A194EDA4200372334 /* AMLeadHistorySection.m in Sources */,
