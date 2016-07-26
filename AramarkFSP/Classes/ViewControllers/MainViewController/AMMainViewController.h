@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIView *viewLeadPanel;
 @property (weak, nonatomic) IBOutlet UIView *viewCasePanel;
 @property (weak, nonatomic) IBOutlet UIView *viewNearMePanel;
+@property (weak, nonatomic) IBOutlet UIView *viewBenchPanel;
 
 - (IBAction)clickLoginBtn:(UIButton *)sender;
 - (IBAction)clickLogOutBtn:(UIButton *)sender;

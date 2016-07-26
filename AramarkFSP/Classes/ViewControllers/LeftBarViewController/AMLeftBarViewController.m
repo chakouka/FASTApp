@@ -23,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btn4;
 @property (weak, nonatomic) IBOutlet UIButton *btn5;
 @property (weak, nonatomic) IBOutlet UIButton *btn6;
+@property (weak, nonatomic) IBOutlet UIButton *btn7;
+
 @property (strong, nonatomic) UIButton *selectedButtn;
 @end
 
@@ -84,6 +86,9 @@
     //TODO::
     [self.btn6 setImage:[UIImage imageNamed:MyImage(@"near-me")] forState:UIControlStateNormal];
     [self.btn6 setImage:[UIImage imageNamed:MyImage(@"near-me")] forState:UIControlStateHighlighted];
+
+    [self.btn7 setImage:[UIImage imageNamed:MyImage(@"bench")] forState:UIControlStateNormal];
+    [self.btn7 setImage:[UIImage imageNamed:MyImage(@"bench")] forState:UIControlStateHighlighted];
 }
 
 - (void)changeDisplay {
@@ -109,6 +114,10 @@
     //TODO::
     [self.btn6 setBackgroundImage:nil forState:UIControlStateNormal];
 	[self.btn6 setBackgroundImage:[UIImage imageNamed:@"clicked-sate-button"] forState:UIControlStateSelected];
+
+    [self.btn7 setBackgroundImage:nil forState:UIControlStateNormal];
+    [self.btn7 setBackgroundImage:[UIImage imageNamed:@"clicked-sate-button"] forState:UIControlStateSelected];
+
 }
 
 - (void)selectItemWithType:(LeftViewButtonType)aType
@@ -119,6 +128,7 @@
 	[self.btn4 setSelected:NO];
     [self.btn5 setSelected:NO];
     [self.btn6 setSelected:NO];
+    [self.btn7 setSelected:NO];
     
     switch (aType) {
         case LeftViewButtonType_Sync:
@@ -166,6 +176,12 @@
         {
             [self.btn6 setSelected:YES];
             selectedButtn = self.btn6;
+        }
+            break;
+        case LeftViewButtonType_BenchTech:
+        {
+            [self.btn7 setSelected:YES];
+            selectedButtn = self.btn7;
         }
             break;
             
@@ -223,8 +239,13 @@
             break;
             
         case LeftViewButtonType_NearMe:
-		{
-		}
+        {
+        }
+            break;
+            
+        case LeftViewButtonType_BenchTech:
+        {
+        }
             break;
             
 		default:

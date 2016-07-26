@@ -171,11 +171,16 @@
 		7C55F2FB1A8A582F0081A4B0 /* TBView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C55F2F91A8A582F0081A4B0 /* TBView.xib */; };
 		7C55F2FF1A8A80EC0081A4B0 /* AMFilterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C55F2FD1A8A80EC0081A4B0 /* AMFilterTableViewCell.m */; };
 		7C55F3001A8A80EC0081A4B0 /* AMFilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C55F2FE1A8A80EC0081A4B0 /* AMFilterTableViewCell.xib */; };
-		7C7A4F951BCD3F73001903F4 /* AMNearOrderListAdminCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A4F941BCD3F73001903F4 /* AMNearOrderListAdminCell.m */; settings = {ASSET_TAGS = (); }; };
-		7C7A4F971BCD3F86001903F4 /* AMNearOrderListAdminCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7A4F961BCD3F86001903F4 /* AMNearOrderListAdminCell.xib */; settings = {ASSET_TAGS = (); }; };
+		7C7A4F951BCD3F73001903F4 /* AMNearOrderListAdminCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A4F941BCD3F73001903F4 /* AMNearOrderListAdminCell.m */; };
+		7C7A4F971BCD3F86001903F4 /* AMNearOrderListAdminCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7A4F961BCD3F86001903F4 /* AMNearOrderListAdminCell.xib */; };
 		7CCD7E6E1AB749FF006FED08 /* AMDBNewContact.h in Resources */ = {isa = PBXBuildFile; fileRef = 7CCD7E6D1AB749FF006FED08 /* AMDBNewContact.h */; };
 		7CCD7E701AB74A30006FED08 /* AMDBNewContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD7E6F1AB74A30006FED08 /* AMDBNewContact.m */; };
 		7CCD7E7F1AB76764006FED08 /* AMDBNewContact+AddOn.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD7E7E1AB76764006FED08 /* AMDBNewContact+AddOn.m */; };
+		7CD3205B1D47CD3500AF15F1 /* AMBenchListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD3205A1D47CD3500AF15F1 /* AMBenchListViewController.m */; };
+		7CD3205D1D47CD4100AF15F1 /* AMBenchListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CD3205C1D47CD4100AF15F1 /* AMBenchListViewController.xib */; };
+		7CD320611D47CDD500AF15F1 /* AMBenchListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD320601D47CDD500AF15F1 /* AMBenchListCell.m */; };
+		7CD320631D47CDDE00AF15F1 /* AMBenchListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CD320621D47CDDE00AF15F1 /* AMBenchListCell.xib */; };
+		7CD320651D48033600AF15F1 /* bench@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CD320641D48033600AF15F1 /* bench@2x.png */; };
 		7CDAE9631AC300A8009066E4 /* AMAddContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CDAE9611AC300A8009066E4 /* AMAddContactTableViewCell.m */; };
 		7CDAE9641AC300A8009066E4 /* AMAddContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CDAE9621AC300A8009066E4 /* AMAddContactTableViewCell.xib */; };
 		7CDAE96B1AC33185009066E4 /* AMNewContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CDAE9691AC33185009066E4 /* AMNewContactCell.m */; };
@@ -997,6 +1002,13 @@
 		7CCD7E6F1AB74A30006FED08 /* AMDBNewContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMDBNewContact.m; sourceTree = "<group>"; };
 		7CCD7E7D1AB76764006FED08 /* AMDBNewContact+AddOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AMDBNewContact+AddOn.h"; sourceTree = "<group>"; };
 		7CCD7E7E1AB76764006FED08 /* AMDBNewContact+AddOn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AMDBNewContact+AddOn.m"; sourceTree = "<group>"; };
+		7CD320591D47CD2800AF15F1 /* AMBenchListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMBenchListViewController.h; path = OrderListViewController/AMBenchListViewController.h; sourceTree = "<group>"; };
+		7CD3205A1D47CD3500AF15F1 /* AMBenchListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMBenchListViewController.m; sourceTree = "<group>"; };
+		7CD3205C1D47CD4100AF15F1 /* AMBenchListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AMBenchListViewController.xib; path = OrderListViewController/AMBenchListViewController.xib; sourceTree = "<group>"; };
+		7CD3205F1D47CDCA00AF15F1 /* AMBenchListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMBenchListCell.h; path = OrderListViewController/AMOrderListCell/AMBenchListCell.h; sourceTree = "<group>"; };
+		7CD320601D47CDD500AF15F1 /* AMBenchListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMBenchListCell.m; sourceTree = "<group>"; };
+		7CD320621D47CDDE00AF15F1 /* AMBenchListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AMBenchListCell.xib; path = OrderListViewController/AMOrderListCell/AMBenchListCell.xib; sourceTree = "<group>"; };
+		7CD320641D48033600AF15F1 /* bench@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bench@2x.png"; sourceTree = "<group>"; };
 		7CDAE9601AC300A8009066E4 /* AMAddContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMAddContactTableViewCell.h; sourceTree = "<group>"; };
 		7CDAE9611AC300A8009066E4 /* AMAddContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMAddContactTableViewCell.m; sourceTree = "<group>"; };
 		7CDAE9621AC300A8009066E4 /* AMAddContactTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMAddContactTableViewCell.xib; sourceTree = "<group>"; };
@@ -2102,6 +2114,27 @@
 			path = KLCPopup;
 			sourceTree = "<group>";
 		};
+		7CD320531D47CB1800AF15F1 /* BenchListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7CD3205E1D47CD8800AF15F1 /* AMBenchListCell */,
+				7CD320591D47CD2800AF15F1 /* AMBenchListViewController.h */,
+				7CD3205A1D47CD3500AF15F1 /* AMBenchListViewController.m */,
+				7CD3205C1D47CD4100AF15F1 /* AMBenchListViewController.xib */,
+			);
+			name = BenchListViewController;
+			sourceTree = "<group>";
+		};
+		7CD3205E1D47CD8800AF15F1 /* AMBenchListCell */ = {
+			isa = PBXGroup;
+			children = (
+				7CD3205F1D47CDCA00AF15F1 /* AMBenchListCell.h */,
+				7CD320601D47CDD500AF15F1 /* AMBenchListCell.m */,
+				7CD320621D47CDDE00AF15F1 /* AMBenchListCell.xib */,
+			);
+			name = AMBenchListCell;
+			sourceTree = "<group>";
+		};
 		7CDAE9651AC3308C009066E4 /* NewContactViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -2599,6 +2632,7 @@
 				D074B7FB190A58020042DD10 /* DetailPanelGroup */,
 				D0DE021F1907C75A005BFB5F /* DetailViewController */,
 				D0DE02131907A6BB005BFB5F /* OrderListViewController */,
+				7CD320531D47CB1800AF15F1 /* BenchListViewController */,
 				D0DE01FC19078423005BFB5F /* MainViewController */,
 				A6626B9E1904C82600DFA6E4 /* Controls */,
 				A6626B9F1904C82600DFA6E4 /* LogIn */,
@@ -3574,6 +3608,7 @@
 		D07827A51918BDDE0065A28F /* images */ = {
 			isa = PBXGroup;
 			children = (
+				7CD320641D48033600AF15F1 /* bench@2x.png */,
 				7C55F2821A8954DA0081A4B0 /* down.png */,
 				7C55F2831A8954DA0081A4B0 /* up.png */,
 				7C55F2841A8954DA0081A4B0 /* down@2x.png */,
@@ -4331,6 +4366,7 @@
 				D06D82A21935EDF700407855 /* ChartViewController.xib in Resources */,
 				D02F32F0191B7ECE00CF9006 /* PinPoint.png in Resources */,
 				D0139C25199E0724000F04EE /* AMInvoiceWorkorderTitleView.xib in Resources */,
+				7CD3205D1D47CD4100AF15F1 /* AMBenchListViewController.xib in Resources */,
 				D02F333C191CC5F100CF9006 /* 10-point@2x.png in Resources */,
 				D03DA52C19752C8E002D9562 /* green_priority.png in Resources */,
 				D02F3370191CC5F100CF9006 /* trip-time@2x.png in Resources */,
@@ -4450,6 +4486,7 @@
 				D0912E3E19D54F0E00E5F6FA /* contacts_icon_1-fr@2x.png in Resources */,
 				D0B79E92191A228D00FD1152 /* sort-by-drop.png in Resources */,
 				824A9E6D1724F03D00C9BD79 /* Default-Portrait@2x~ipad.png in Resources */,
+				7CD320651D48033600AF15F1 /* bench@2x.png in Resources */,
 				D0912E4919D54F0E00E5F6FA /* new-case-fr@2x.png in Resources */,
 				D0912E7119D54F0E00E5F6FA /* invoice_on-fr.png in Resources */,
 				D0B79E6E191A228D00FD1152 /* arrow-down.png in Resources */,
@@ -4626,6 +4663,7 @@
 				D0344583192CABC800C3E18C /* AMVerificationSectionView.xib in Resources */,
 				D02F333E191CC5F100CF9006 /* account@2x.png in Resources */,
 				D02F3371191CC5F100CF9006 /* type-drop-down@2x.png in Resources */,
+				7CD320631D47CDDE00AF15F1 /* AMBenchListCell.xib in Resources */,
 				D0912E3A19D54F0E00E5F6FA /* cases_icon_1-fr@2x.png in Resources */,
 				D02F3369191CC5F100CF9006 /* pos_icon_1@2x.png in Resources */,
 				62A5FAA81970059000779DE3 /* AMSummaryEmptyListCell.xib in Resources */,
@@ -4730,6 +4768,7 @@
 				16AE9666193EE53400904E7A /* AMSummaryLabel.m in Sources */,
 				02E3E7A31929B39A00064919 /* AMLocationViewController.m in Sources */,
 				D01AB6BC19A336B100FA034F /* AMNearOrderListViewController.m in Sources */,
+				7CD320611D47CDD500AF15F1 /* AMBenchListCell.m in Sources */,
 				A6CA5CA619247EFB00F2C264 /* AMSyncingManager.m in Sources */,
 				16C28A04195AAEB4004FF31F /* AMDBNewWorkOrder+AddOn.m in Sources */,
 				A6626BA51904C82600DFA6E4 /* InitialViewController.m in Sources */,
@@ -4873,6 +4912,7 @@
 				A6B8F2F9192670490072BD5F /* AMContactDBManager.m in Sources */,
 				D01C4B2D19D16FB600BC0F9B /* GoogleRouteResult.m in Sources */,
 				167E1BDE197FA8130008F5FF /* NSDictionary+Addition.m in Sources */,
+				7CD3205B1D47CD3500AF15F1 /* AMBenchListViewController.m in Sources */,
 				D011C42A19C7E3EE0099F0F8 /* LanguageConfig.m in Sources */,
 				A69937AE194314B3004C16A2 /* AMWOTypeManager.m in Sources */,
 				16E26165196D282C0034333C /* AMDBAttachment+AddOn.m in Sources */,

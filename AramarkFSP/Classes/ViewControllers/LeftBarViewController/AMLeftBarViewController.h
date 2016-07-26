@@ -16,6 +16,7 @@ typedef NS_ENUM(NSInteger, LeftViewButtonType) {
     LeftViewButtonType_NewCase,
     LeftViewButtonType_NewLead,
     LeftViewButtonType_NearMe,
+    LeftViewButtonType_BenchTech,
 };
 
 typedef NS_ENUM(NSInteger, SYNCType) {

@@ -83,6 +83,9 @@
     __mainManagedObjectContext = [self mainManagedObjectContext];
     __privateManagedObjectContext = [self privateManagedObjectContext];
     
+   //Attempting to fix Could Not Merge Changes error - INC1223238
+    //[__privateManagedObjectContext setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
+    //[__mainManagedObjectContext setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
     
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(mergeChanges:) name:NSManagedObjectContextDidSaveNotification object:__privateManagedObjectContext];

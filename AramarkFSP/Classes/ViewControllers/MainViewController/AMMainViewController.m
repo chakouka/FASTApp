@@ -31,6 +31,7 @@
 #import "GoogleRouteManage.h"
 #import "GoogleRouteInfo.h"
 #import "AMNearMeViewController.h"
+#import "AMBenchListViewController.h"
 #import "LanguageConfig.h"
 
 typedef NS_ENUM (NSInteger, MainViewLayoutType) {
@@ -64,6 +65,7 @@ typedef NS_ENUM (NSInteger, PanelType) {
     PanelType_Case,
     PanelType_Lead,
     PanelType_NearMe,
+    PanelType_Bench,
 };
 
 
@@ -102,6 +104,7 @@ UIGestureRecognizerDelegate
     AMNewCaseViewController *caseVC;
     AMNewLeadViewController *leadVC;
     AMNearMeViewController *nearMeVC;
+    AMBenchListViewController *benchListVC;
     
 	PositionDetailPanel detailPanelPosition;
 	PositionDetailPanel checkoutPanelPosition;
@@ -141,6 +144,7 @@ UIGestureRecognizerDelegate
 @property (nonatomic, strong) AMNewCaseViewController *caseVC;
 @property (nonatomic, strong) AMNewLeadViewController *leadVC;
 @property (nonatomic, strong) AMNearMeViewController *nearMeVC;
+@property (nonatomic, strong) AMBenchListViewController *benchListVC;
 @property (nonatomic, strong) RouteMapView *routeView;
 @property (nonatomic, strong) AMSignViewController *signVC;
 @property (nonatomic, strong) AMSummaryViewController *summaryVC;
@@ -172,7 +176,7 @@ UIGestureRecognizerDelegate
 @synthesize leadVC;
 @synthesize routeView;
 @synthesize nearMeVC;
-
+@synthesize benchListVC;
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_FROM_AMLEFTBARVIEWCONTROLLER object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_FROM_AMORDERLISTVIEWCONTROLLER object:nil];
@@ -447,6 +451,52 @@ UIGestureRecognizerDelegate
     });
 }
 
+- (void)benchListLoadData {
+    
+    MAIN(^{
+        
+#ifdef TESTMODEL
+        NSArray *arrResult = [[TestManage sharedInstance] arrLocalList];
+#else
+        NSArray *arrResult = [[AMLogicCore sharedInstance] getTodayWorkOrderList];
+#endif
+        
+        DLog(@"arrResult : %@",arrResult);
+        
+        [self.benchListVC refreshOrderList:[NSMutableArray arrayWithArray:arrResult]];
+        
+        [self requestRoutesTimeDistanceWithList:self.orderListVC.localWorkOrders];
+        
+        if ([self.benchListVC.localWorkOrders count] == 0) {
+            [self refreshMapWithList:[NSMutableArray arrayWithArray:arrResult]];
+        }
+        else
+        {
+            [self refreshMapWithList:self.benchListVC.localWorkOrders];
+        }
+        
+        if ([self.benchListVC.localWorkOrders count] == 0 && [arrResult count] == 0) {
+            [self.routeView clearRoutes];
+            [self.routeView centerWithCurrentLocation];
+        }
+        
+        shouldDisappearDetailVC = YES;
+        if (self.detailVC.selectedWorkOrder) {
+            for (AMWorkOrder *wo in arrResult) {
+                if ([wo.woNumber isEqualToString:self.detailVC.selectedWorkOrder.woNumber]) {
+                    shouldDisappearDetailVC = NO;
+                    break;
+                }
+            }
+            [self disappearDetailVC];
+            if (!shouldDisappearDetailVC) { //Intend to update lable count(pending WO amount of Account/POS)
+                [self refreshCurrentWorkOrder];
+                //            [self.detailVC assignNewWorkOrder:[[AMLogicCore sharedInstance] getWorkOrderInfoByID:self.orderListVC.selectedWorkOrderId]];
+            }
+        }
+        
+    });
+}
 - (void)refreshCurrentWorkOrder
 {
     [self.detailVC assignNewWorkOrder:self.detailVC.selectedWorkOrder];
@@ -555,6 +605,14 @@ UIGestureRecognizerDelegate
     return nearMeVC;
 }
 
+- (AMBenchListViewController *)benchListVC
+{
+    if (!benchListVC) {
+        benchListVC = [[AMBenchListViewController alloc] initWithNibName:@"AMBenchListViewController" bundle:nil];
+    }
+    
+    return benchListVC;
+}
 #pragma mark - Touch
 
 - (void)addGuesture
@@ -944,7 +1002,7 @@ UIGestureRecognizerDelegate
     self.viewLeadPanel.hidden = YES;
     self.viewCasePanel.hidden = YES;
     self.viewNearMePanel.hidden = YES;
-    
+    self.viewBenchPanel.hidden = YES;
 	switch (aType) {
 		case PanelType_Main:
 		{
@@ -980,10 +1038,16 @@ UIGestureRecognizerDelegate
 		}
             break;
         case PanelType_NearMe:
-		{
-			self.viewNearMePanel.hidden = NO;
-			[[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SHOW_NEAR object:nil];
-		}
+        {
+            self.viewNearMePanel.hidden = NO;
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SHOW_NEAR object:nil];
+        }
+            break;
+        case PanelType_Bench:
+        {
+            self.viewBenchPanel.hidden = NO;
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SHOW_BENCH object:nil];
+        }
             break;
 	}
 }
@@ -1273,6 +1337,79 @@ UIGestureRecognizerDelegate
                 
                 [self.nearMeVC refreshdata];
 			}
+                break;
+            case LeftViewButtonType_BenchTech:
+            {
+
+//                [self changeLeftListPanelHidden:NO animation:YES];
+//                //[self changeRouteViewWithPosition:PositionRouteView_Half animation:YES];
+//                [self changeDetailPanelViewTo:PositionDetailPanel_Bottom animation:NO];
+//                [self changeCheckoutPanelViewTo:PositionDetailPanel_Bottom animation:NO];
+//                [self benchListLoadData];
+//                [self changePanelWithType:PanelType_Bench];
+//                
+//                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                if (!self.benchListVC.show) {
+                    if (detailPanelPosition != PositionDetailPanel_Full) {
+                        [self changeLeftListPanelHidden:NO animation:YES];
+                        [self changeRouteViewWithPosition:PositionRouteView_Half animation:YES];
+                        [self changeDetailPanelViewTo:PositionDetailPanel_Bottom animation:NO];
+                        [self changeCheckoutPanelViewTo:PositionDetailPanel_Bottom animation:NO];
+                        [self benchListLoadData];
+                    }
+                    else
+                    {
+                        [self changeRouteViewWithPosition:PositionRouteView_Full animation:NO];
+                        [self changeLeftListPanelHidden:YES animation:YES];
+                        if (detailPanelPosition != PositionDetailPanel_Bottom) {
+                            [self changeDetailPanelViewTo:PositionDetailPanel_Bottom animation:YES];
+                        }
+                        if (checkoutPanelPosition != PositionDetailPanel_Bottom) {
+                            [self changeCheckoutPanelViewTo:PositionDetailPanel_Bottom animation:YES];
+                        }
+                        [self.leftVC resetAllBtns];
+                        [self.routeView centerWithAllAnnotations];
+                        [self changePanelWithType:PanelType_Bench];
+                    }
+                }
+                else {
+                    [self changeRouteViewWithPosition:PositionRouteView_Full animation:NO];
+                    [self changeLeftListPanelHidden:YES animation:YES];
+                    if (detailPanelPosition != PositionDetailPanel_Bottom) {
+                        [self changeDetailPanelViewTo:PositionDetailPanel_Bottom animation:YES];
+                    }
+                    if (checkoutPanelPosition != PositionDetailPanel_Bottom) {
+                        [self changeCheckoutPanelViewTo:PositionDetailPanel_Bottom animation:YES];
+                    }
+                    [self.leftVC resetAllBtns];
+                    [self.routeView centerWithAllAnnotations];
+                }
+                [self changePanelWithType:PanelType_Main];
+                
+                [self.nearMeVC changeLeftListPanelHidden:YES animation:NO];
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+
+                
+            }
                 break;
 		}
 	}
@@ -1586,6 +1723,7 @@ UIGestureRecognizerDelegate
 {
     self.viewMainPanel.userInteractionEnabled = enable;
     self.viewNearMePanel.userInteractionEnabled = enable;
+    self.viewBenchPanel.userInteractionEnabled = enable;
     self.viewReportPanel.userInteractionEnabled = enable;
     self.viewSummaryPanel.userInteractionEnabled = enable;
     self.viewLeadPanel.userInteractionEnabled = enable;
