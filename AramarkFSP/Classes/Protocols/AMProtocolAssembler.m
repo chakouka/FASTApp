@@ -360,12 +360,12 @@
 
     [dataDict setObject:objectListDict forKey:@"objectListMap"];
     
-#if DEBUG
+//#if DEBUG
     NSError * error = nil;
     NSData * postData = [NSJSONSerialization dataWithJSONObject:dataDict options:0 error:&error];
     NSString * postStr = [[NSString alloc]initWithData:postData encoding:NSUTF8StringEncoding];
-    DLog(@"create obj: %@",postStr);
-#endif
+    FLog(@"create obj: %@",postStr);
+//#endif
     
     return dataDict;
 }
@@ -812,11 +812,11 @@
     }
 
     [dataDict setObject:objectListDict forKey:@"objectListMap"];
-#if DEBUG
+//#if DEBUG
     NSError * error = nil;
     NSData * postData = [NSJSONSerialization dataWithJSONObject:dataDict options:0 error:&error];
-    DLog(@"update obj: %@",[[NSString alloc]initWithData:postData encoding:NSUTF8StringEncoding]);
-#endif
+    FLog(@"update obj: %@",[[NSString alloc]initWithData:postData encoding:NSUTF8StringEncoding]);
+//#endif
     
     return dataDict;
 
@@ -841,11 +841,11 @@
     }
     
     [dataDict setObject:dataList forKey:@"objectListMap"];
-#if DEBUG
+//#if DEBUG
     NSError * error = nil;
     NSData * postData = [NSJSONSerialization dataWithJSONObject:dataDict options:0 error:&error];
-    DLog(@"upload signature: %@",[[NSString alloc]initWithData:postData encoding:NSUTF8StringEncoding]);
-#endif
+    FLog(@"upload signature: %@",[[NSString alloc]initWithData:postData encoding:NSUTF8StringEncoding]);
+//#endif
     return dataDict;
 }
 
@@ -869,11 +869,11 @@
     }
     
     [dataDict setObject:dataList forKey:@"objectListMap"];
-#if DEBUG
+//#if DEBUG
     NSError * error = nil;
     NSData * postData = [NSJSONSerialization dataWithJSONObject:dataDict options:0 error:&error];
-    DLog(@"set asset pos: %@",[[NSString alloc]initWithData:postData encoding:NSUTF8StringEncoding]);
-#endif
+    FLog(@"set asset pos: %@",[[NSString alloc]initWithData:postData encoding:NSUTF8StringEncoding]);
+//#endif
     return dataDict;
 }
 
@@ -888,10 +888,10 @@
     
     [dataDict setObject:dataList forKey:@"lstMapCreateKeyValue"];
 #if DEBUG
-    NSError * error = nil;
-    NSData * postData = [NSJSONSerialization dataWithJSONObject:dataDict options:0 error:&error];
-    NSString * postStr = [[NSString alloc]initWithData:postData encoding:NSUTF8StringEncoding];
-    DLog(@"Upload Attachment: %@",postStr);
+//    NSError * error = nil;
+//    NSData * postData = [NSJSONSerialization dataWithJSONObject:dataDict options:0 error:&error];
+//    NSString * postStr = [[NSString alloc]initWithData:postData encoding:NSUTF8StringEncoding];
+//    DLog(@"Upload Attachment: %@",postStr);
 #endif
     return dataDict;
 }
