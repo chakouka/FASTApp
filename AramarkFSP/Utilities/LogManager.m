@@ -32,18 +32,15 @@
     
     @try
     {
-        NSError *error;
         NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:LOG_FILE_NAME];
         
-        if ([FileManager isFileBiggerThanAllowed:filePath])
-        {
-            filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:BACKUP_LOG_FILE_NAME];
-        }
+        NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:filePath];
         
-        NSString *messageAndDate = [[NSString alloc] initWithFormat:@"%@ - %@", [NSDate date], message];
+        NSString *finalMessage = [NSString stringWithFormat:@"%@\n", message];
         
-        [messageAndDate writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
-        
+        [fileHandle seekToEndOfFile];
+        [fileHandle writeData:[finalMessage dataUsingEncoding:NSUTF8StringEncoding]];
+        [fileHandle closeFile];
     }
     @catch (NSException *exception)
     {
