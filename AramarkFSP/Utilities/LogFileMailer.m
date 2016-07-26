@@ -11,7 +11,7 @@
 #import "ZipUtility.h"
 #import "LogManager.h"
 
-#define LOG_FILE_EMAIL_RECIPIENT @"Kendall-Brian@aramark.com, pkrepsztul@simplinova.com"
+#define LOG_FILE_EMAIL_RECIPIENT @"Kendall-Brian@aramark.com; pkrepsztul@simplinova.com"
 
 @implementation LogFileMailer
 
@@ -33,7 +33,7 @@
 {
     self.subject =  @"FAST Log Files";
     self.body = [self getMessageBodyContent];
-    self.recipients = @[LOG_FILE_EMAIL_RECIPIENT];
+    self.recipients = @[@"Kendall-Brian@aramark.com",@"pkrepsztul@simplinova.com"];
     self.attachments = [self getAttachments];
     self.isHtml = NO;
 }
