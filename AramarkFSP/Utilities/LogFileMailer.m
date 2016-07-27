@@ -77,6 +77,8 @@
                 [arrayOfCompressedFiles addObject:dict];
             }
             
+            counter++;
+            
         }];
         
         return arrayOfCompressedFiles;
