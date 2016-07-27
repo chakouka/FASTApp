@@ -36,7 +36,9 @@
         
         NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:filePath];
         
-        NSString *finalMessage = [NSString stringWithFormat:@"%@\n", message];
+        NSString *finalMessage = [NSString stringWithFormat:@"%@ - %@\n",
+                                  [NSDate date],
+                                  message];
         
         [fileHandle seekToEndOfFile];
         [fileHandle writeData:[finalMessage dataUsingEncoding:NSUTF8StringEncoding]];
