@@ -53,6 +53,7 @@
         NSArray *logFilesArray = [NSArray arrayWithObjects:
                          LOG_FILE_NAME,
                          BACKUP_LOG_FILE_NAME,
+                         DB_FILE_NAME,
                          nil];
         
         __block NSInteger counter = 1;

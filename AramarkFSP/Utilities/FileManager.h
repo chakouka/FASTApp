@@ -11,6 +11,7 @@
 #define LOG_FILE_MAX_SIZE 3000000 // 3 MB
 #define LOG_FILE_NAME @"fast.log"
 #define BACKUP_LOG_FILE_NAME @"fast-backup.log"
+#define DB_FILE_NAME @"Aramark.sqlite"
 #define LOG_ZIP_FILE_NAME @"fast.zlib"
 
 @interface FileManager : NSObject
