@@ -58,6 +58,12 @@ typedef NS_ENUM (NSInteger, PositionRouteView) {
 	PositionRouteView_Full,
 };
 
+typedef NS_ENUM (NSInteger, PositionBenchView) {
+    PositionBenchView_Small = 0,
+    PositionBenchView_Half,
+    PositionBenchView_Full,
+};
+
 typedef NS_ENUM (NSInteger, PanelType) {
 	PanelType_Main = 0,
 	PanelType_Report,
@@ -112,6 +118,7 @@ UIGestureRecognizerDelegate
 	PositionDetailPanel beforeCheckoutPanelPosition;
     
 	PositionRouteView routeViewPosition;
+    PositionBenchView benchViewPosition;
     
 	BOOL isFullScreen;
 	BOOL isLogOutViewShow;
@@ -146,6 +153,7 @@ UIGestureRecognizerDelegate
 @property (nonatomic, strong) AMNearMeViewController *nearMeVC;
 @property (nonatomic, strong) AMBenchListViewController *benchListVC;
 @property (nonatomic, strong) RouteMapView *routeView;
+@property (nonatomic, strong) UIView *benchView;
 @property (nonatomic, strong) AMSignViewController *signVC;
 @property (nonatomic, strong) AMSummaryViewController *summaryVC;
 @property (strong, nonatomic) NSOperationQueue *requestQueue;
@@ -175,8 +183,10 @@ UIGestureRecognizerDelegate
 @synthesize caseVC;
 @synthesize leadVC;
 @synthesize routeView;
+@synthesize benchView;
 @synthesize nearMeVC;
 @synthesize benchListVC;
+
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_FROM_AMLEFTBARVIEWCONTROLLER object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_FROM_AMORDERLISTVIEWCONTROLLER object:nil];
@@ -675,6 +685,39 @@ UIGestureRecognizerDelegate
      }];
 }
 
+- (void)changeLeftBenchPanelHidden:(BOOL)isHidden animation:(BOOL)aAnimation {
+    [self changeBenchViewWithPosition:PositionBenchView_Full animation:NO];
+    
+    [UIView animateWithDuration:(aAnimation ? DEFAULT_DURATION : 0.0)
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations: ^{
+                         if (isHidden) {
+                             [self.viewBenchPanel setFrame:CGRectMake(-300,
+                                                                         0,
+                                                                         CGRectGetWidth(self.viewBenchPanel.frame),
+                                                                         CGRectGetHeight(self.viewBenchPanel.frame))];
+                             [self.orderListVC viewWillDisappear:YES];
+                         }
+                         else {
+                             if (![self.viewBenchPanel.subviews containsObject:self.benchListVC.view]) {
+                                 [self.viewBenchPanel addSubview:self.orderListVC.view];
+                             }
+                             
+                             [self.viewBenchPanel setFrame:CGRectMake(92,
+                                                                         52,
+                                                                         CGRectGetWidth(self.viewBenchPanel.frame),
+                                                                         CGRectGetHeight(self.viewBenchPanel.frame))];
+                             [self.benchListVC viewWillAppear:YES];
+                         }
+                     }
+     
+                     completion: ^(BOOL finished)
+     {
+         self.benchListVC.show = !isHidden;
+     }];
+}
+
 - (void)showFullDetailScreenWithAnimation:(BOOL)aAnimation {
 	[UIView animateWithDuration:(aAnimation ? DEFAULT_DURATION : 0.0)
 	                      delay:0.0
@@ -892,6 +935,35 @@ UIGestureRecognizerDelegate
                              case PositionRouteView_Small:
                              {
                                  [self.routeView resizeWithFrame:FRAME_OF_ROUTE_RIGHT_SMALL];
+                             }
+                                 break;
+                         }
+                     } completion:NULL];
+}
+
+- (void)changeBenchViewWithPosition:(PositionBenchView)aPosition animation:(BOOL)aAnimation {
+    benchViewPosition = aPosition;
+    
+    [UIView animateWithDuration:(aAnimation ? DEFAULT_DURATION : 0.0)
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations: ^{
+                         switch (benchViewPosition) {
+                             case PositionBenchView_Full:
+                             {
+                                 self.benchView.frame =  CGRectMake(92, 52, 830, 716);
+                             }
+                                 break;
+                                 
+                             case PositionBenchView_Half:
+                             {
+                                 self.benchView.frame =  CGRectMake(92, 52, 830, 716);
+                             }
+                                 break;
+                                 
+                             case PositionBenchView_Small:
+                             {
+                                 self.benchView.frame =  CGRectMake(92, 52, 830, 716);
                              }
                                  break;
                          }
@@ -1341,6 +1413,10 @@ UIGestureRecognizerDelegate
             case LeftViewButtonType_BenchTech:
             {
 
+                //first time in, add the benchListVC to the view
+                if (![[self.viewBenchPanel subviews] containsObject:self.benchListVC.view]) {
+                    [self.viewBenchPanel addSubview: self.benchListVC.view];
+                }
 //                [self changeLeftListPanelHidden:NO animation:YES];
 //                //[self changeRouteViewWithPosition:PositionRouteView_Half animation:YES];
 //                [self changeDetailPanelViewTo:PositionDetailPanel_Bottom animation:NO];
@@ -1348,38 +1424,26 @@ UIGestureRecognizerDelegate
 //                [self benchListLoadData];
 //                [self changePanelWithType:PanelType_Bench];
 //                
-//                
+//
                 
-                
-                
-                
-                
-                
-                
-                
-                
+                [self changePanelWithType:PanelType_Bench];
                 
                 if (!self.benchListVC.show) {
                     if (detailPanelPosition != PositionDetailPanel_Full) {
-                        [self changeLeftListPanelHidden:NO animation:YES];
-                        [self changeRouteViewWithPosition:PositionRouteView_Half animation:YES];
-                        [self changeDetailPanelViewTo:PositionDetailPanel_Bottom animation:NO];
-                        [self changeCheckoutPanelViewTo:PositionDetailPanel_Bottom animation:NO];
+                        [self changeLeftBenchPanelHidden:NO animation:YES];
+                        [self changeBenchViewWithPosition:PositionBenchView_Half animation:YES];
+                        //[self changeDetailPanelViewTo:PositionDetailPanel_Bottom animation:NO];
+                        //[self changeCheckoutPanelViewTo:PositionDetailPanel_Bottom animation:NO];
                         [self benchListLoadData];
                     }
                     else
                     {
                         [self changeRouteViewWithPosition:PositionRouteView_Full animation:NO];
-                        [self changeLeftListPanelHidden:YES animation:YES];
-                        if (detailPanelPosition != PositionDetailPanel_Bottom) {
-                            [self changeDetailPanelViewTo:PositionDetailPanel_Bottom animation:YES];
-                        }
-                        if (checkoutPanelPosition != PositionDetailPanel_Bottom) {
-                            [self changeCheckoutPanelViewTo:PositionDetailPanel_Bottom animation:YES];
-                        }
+                        [self changeLeftBenchPanelHidden:YES animation:YES];
+      
                         [self.leftVC resetAllBtns];
                         [self.routeView centerWithAllAnnotations];
-                        [self changePanelWithType:PanelType_Bench];
+                        [self changePanelWithType:PanelType_Main];
                     }
                 }
                 else {
@@ -1394,21 +1458,9 @@ UIGestureRecognizerDelegate
                     [self.leftVC resetAllBtns];
                     [self.routeView centerWithAllAnnotations];
                 }
-                [self changePanelWithType:PanelType_Main];
+                //[self changePanelWithType:PanelType_Main];
                 
-                [self.nearMeVC changeLeftListPanelHidden:YES animation:NO];
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-
-                
+                //[self.nearMeVC changeLeftListPanelHidden:YES animation:NO];
             }
                 break;
 		}

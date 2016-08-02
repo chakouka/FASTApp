@@ -34,6 +34,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnSort;
 @property (weak, nonatomic) IBOutlet UILabel *labelSort;
 
+@property (weak, nonatomic) IBOutlet UIView *viewMainPanel;
+@property (weak, nonatomic) IBOutlet UIView *viewLeftListPanel;
+
 - (IBAction)clickSortBtn:(UIButton *)sender;
 
 - (IBAction)clickMoveBtn:(UIButton *)sender;

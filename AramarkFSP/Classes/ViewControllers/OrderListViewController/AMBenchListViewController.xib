@@ -8,8 +8,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AMBenchListViewController">
             <connections>
                 <outlet property="btnSort" destination="7Qe-6s-v4I" id="6Jf-yL-V0b"/>
-                <outlet property="labelSort" destination="riJ-07-iuR" id="oPe-XO-ofC"/>
                 <outlet property="tableViewList" destination="EWw-bZ-hxr" id="7Qg-dU-r6r"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="GMd-j7-1QL"/>
                 <outlet property="viewSearch" destination="hbV-Zg-10w" id="DdT-4n-zQq"/>
             </connections>
         </placeholder>
@@ -22,7 +22,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <searchBar contentMode="redraw" placeholder="SEARCH SPECIFIC ACCOUNT" id="hbV-Zg-10w">
+                        <searchBar contentMode="redraw" placeholder="Search: Mach.|Asset|S#" id="hbV-Zg-10w">
                             <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
@@ -37,11 +37,6 @@
                     <rect key="frame" x="0.0" y="44" width="300" height="180"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <view contentMode="scaleToFill" id="Jip-Nw-A4S">
-                            <rect key="frame" x="0.0" y="0.0" width="250" height="45"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7Qe-6s-v4I">
                             <rect key="frame" x="250" y="0.0" width="50" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -53,17 +48,10 @@
                                 <action selector="clickSortBtn:" destination="-1" eventType="touchUpInside" id="96W-Gb-6rt"/>
                             </connections>
                         </button>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SORT BY" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="riJ-07-iuR">
-                            <rect key="frame" x="65" y="9" width="62" height="31"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Machine Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9Nm-b2-dpn">
+                            <rect key="frame" x="0.0" y="6" width="255" height="31"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="START TIME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9Nm-b2-dpn">
-                            <rect key="frame" x="125" y="9" width="130" height="31"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ghb-Ld-DdW">
@@ -78,19 +66,8 @@
                                 <action selector="clickSortByEndTimeBtn:" destination="-1" eventType="touchUpInside" id="bKH-K4-rPf"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yTU-EL-3md">
-                            <rect key="frame" x="11" y="10" width="51" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <state key="normal" title="Move">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="clickMoveBtn:" destination="-1" eventType="touchUpInside" id="ZHj-Mp-1zt"/>
-                            </connections>
-                        </button>
                         <view contentMode="scaleToFill" id="P6W-LJ-AX0">
-                            <rect key="frame" x="140" y="32" width="100" height="1"/>
+                            <rect key="frame" x="14" y="40" width="226" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
@@ -118,6 +95,11 @@
                                 <action selector="clickSortByDistanceBtn:" destination="-1" eventType="touchUpInside" id="hFX-V5-JOo"/>
                             </connections>
                         </button>
+                        <view contentMode="scaleToFill" id="Jip-Nw-A4S">
+                            <rect key="frame" x="0.0" y="0.0" width="250" height="45"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
