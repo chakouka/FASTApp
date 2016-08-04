@@ -457,7 +457,7 @@ UISearchBarDelegate
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	AMBenchListCell *cell = (AMBenchListCell *)[tableView dequeueReusableCellWithIdentifier:@"AMOrderListCell"];
+	AMBenchListCell *cell = (AMBenchListCell *)[tableView dequeueReusableCellWithIdentifier:@"AMBenchListCell"];
 	if (cell == nil) {
 		NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AMBenchListCell" owner:[AMBenchListCell class] options:nil];
 		cell = (AMBenchListCell *)[nib objectAtIndex:0];
@@ -570,7 +570,7 @@ UISearchBarDelegate
                               KEY_OF_FLAG:[NSNumber numberWithBool:NO]
                               };
     
-	[[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMORDERLISTVIEWCONTROLLER object:dicInfo];
+	[[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMBENCHLISTVIEWCONTROLLER object:dicInfo];
     
 	[self reloadData];
 }
@@ -1014,4 +1014,45 @@ UISearchBarDelegate
                       }];
 }
 
+
+
+#pragma mark - Layout Change
+
+- (void)changeLeftListPanelHidden:(BOOL)isHidden animation:(BOOL)aAnimation {
+    
+    self.show = !isHidden;
+    
+ //   [self changeRouteViewWithPosition:PositionRouteView_Full animation:NO];
+    
+    [UIView animateWithDuration:(aAnimation ? DEFAULT_DURATION : 0.0)
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations: ^{
+                         if (isHidden) {
+                             [self.viewLeftListPanel setFrame:CGRectMake(-300,
+                                                                         0,
+                                                                         CGRectGetWidth(self.viewLeftListPanel.frame),
+                                                                         CGRectGetHeight(self.viewLeftListPanel.frame))];
+                             
+//                             [self changeRouteViewWithPosition:PositionRouteView_Full animation:aAnimation];
+                             
+//                             [self.nearOrderListVC viewWillDisappear:YES];
+                         }
+                         else {
+                             [self.viewLeftListPanel setFrame:CGRectMake(0,
+                                                                         0,
+                                                                         CGRectGetWidth(self.viewLeftListPanel.frame),
+                                                                         CGRectGetHeight(self.viewLeftListPanel.frame))];
+                             
+//                             [self changeRouteViewWithPosition:PositionRouteView_Half animation:aAnimation];
+                             
+//                             [self.nearOrderListVC viewWillAppear:YES];
+                         }
+                     }
+     
+                     completion: ^(BOOL finished)
+     {
+//         self.nearOrderListVC.show = !isHidden;
+     }];
+}
 @end

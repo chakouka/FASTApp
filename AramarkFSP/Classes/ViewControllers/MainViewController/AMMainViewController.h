@@ -32,6 +32,13 @@
 @property (weak, nonatomic) IBOutlet UIView *viewCasePanel;
 @property (weak, nonatomic) IBOutlet UIView *viewNearMePanel;
 @property (weak, nonatomic) IBOutlet UIView *viewBenchPanel;
+@property (weak, nonatomic) IBOutlet UILabel *labelBenchAssetNumber;
+@property (weak, nonatomic) IBOutlet UILabel *labelBenchSerialNumber;
+@property (weak, nonatomic) IBOutlet UILabel *labelBenchMachineType;
+@property (weak, nonatomic) IBOutlet UILabel *labelBenchPOSName;
+@property (weak, nonatomic) IBOutlet UILabel *labelBenchTechName;
+@property (weak, nonatomic) IBOutlet UILabel *labelBenchAVNotes;
+@property (weak, nonatomic) IBOutlet UILabel *labelBenchRepairMatrixNTE;
 
 - (IBAction)clickLoginBtn:(UIButton *)sender;
 - (IBAction)clickLogOutBtn:(UIButton *)sender;
