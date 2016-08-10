@@ -19,11 +19,11 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" id="E2m-r8-sNa">
-                    <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                    <rect key="frame" x="0.0" y="0.0" width="341" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <searchBar contentMode="redraw" placeholder="Search: Mach.|Asset|S#" id="hbV-Zg-10w">
-                            <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="341" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
@@ -34,26 +34,9 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" id="IWd-ab-oeA">
-                    <rect key="frame" x="0.0" y="44" width="300" height="180"/>
+                    <rect key="frame" x="0.0" y="44" width="340" height="180"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7Qe-6s-v4I">
-                            <rect key="frame" x="250" y="0.0" width="50" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" image="arrow-down.png">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" image="Arrow-up.png"/>
-                            <connections>
-                                <action selector="clickSortBtn:" destination="-1" eventType="touchUpInside" id="96W-Gb-6rt"/>
-                            </connections>
-                        </button>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Machine Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9Nm-b2-dpn">
-                            <rect key="frame" x="0.0" y="6" width="255" height="31"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ghb-Ld-DdW">
                             <rect key="frame" x="70" y="59" width="176" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -66,11 +49,6 @@
                                 <action selector="clickSortByEndTimeBtn:" destination="-1" eventType="touchUpInside" id="bKH-K4-rPf"/>
                             </connections>
                         </button>
-                        <view contentMode="scaleToFill" id="P6W-LJ-AX0">
-                            <rect key="frame" x="14" y="40" width="226" height="1"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7PI-08-IEw">
                             <rect key="frame" x="70" y="95" width="176" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -95,11 +73,22 @@
                                 <action selector="clickSortByDistanceBtn:" destination="-1" eventType="touchUpInside" id="hFX-V5-JOo"/>
                             </connections>
                         </button>
+                        <view contentMode="scaleToFill" id="P6W-LJ-AX0">
+                            <rect key="frame" x="16" y="40" width="224" height="1"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <view contentMode="scaleToFill" id="Jip-Nw-A4S">
-                            <rect key="frame" x="0.0" y="0.0" width="250" height="45"/>
+                            <rect key="frame" x="0.0" y="0.0" width="300" height="45"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Machine Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9Nm-b2-dpn">
+                            <rect key="frame" x="0.0" y="6" width="296" height="31"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
@@ -113,6 +102,17 @@
                         <outlet property="delegate" destination="-1" id="cwJ-Lj-ROu"/>
                     </connections>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7Qe-6s-v4I">
+                    <rect key="frame" x="290" y="44" width="50" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="arrow-down.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="Arrow-up.png"/>
+                    <connections>
+                        <action selector="clickSortBtn:" destination="-1" eventType="touchUpInside" id="96W-Gb-6rt"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <nil key="simulatedStatusBarMetrics"/>
