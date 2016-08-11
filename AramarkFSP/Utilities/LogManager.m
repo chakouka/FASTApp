@@ -8,7 +8,7 @@
 
 #import "FileManager.h"
 
-@implementation LogManager
+@implementation LogManager : NSObject
 
 + (LogManager *)sharedInstance
 {

@@ -183,6 +183,9 @@
 		7C55F3001A8A80EC0081A4B0 /* AMFilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C55F2FE1A8A80EC0081A4B0 /* AMFilterTableViewCell.xib */; };
 		7C7A4F951BCD3F73001903F4 /* AMNearOrderListAdminCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A4F941BCD3F73001903F4 /* AMNearOrderListAdminCell.m */; };
 		7C7A4F971BCD3F86001903F4 /* AMNearOrderListAdminCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7A4F961BCD3F86001903F4 /* AMNearOrderListAdminCell.xib */; };
+		7C8CD7AC1D5BBB1300959E4F /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8CD7AB1D5BBB1300959E4F /* libz.tbd */; };
+		7C8CD7AE1D5BBBC200959E4F /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8CD7AD1D5BBBC200959E4F /* libstdc++.tbd */; };
+		7CC2F76B1D5CE9C600B71107 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8CD7AB1D5BBB1300959E4F /* libz.tbd */; };
 		7CCD7E6E1AB749FF006FED08 /* AMDBNewContact.h in Resources */ = {isa = PBXBuildFile; fileRef = 7CCD7E6D1AB749FF006FED08 /* AMDBNewContact.h */; };
 		7CCD7E701AB74A30006FED08 /* AMDBNewContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD7E6F1AB74A30006FED08 /* AMDBNewContact.m */; };
 		7CCD7E7F1AB76764006FED08 /* AMDBNewContact+AddOn.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD7E7E1AB76764006FED08 /* AMDBNewContact+AddOn.m */; };
@@ -1013,6 +1016,8 @@
 		7C7A4F931BCD3F59001903F4 /* AMNearOrderListAdminCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMNearOrderListAdminCell.h; path = NearOrderListViewController/NearOrderListCell/AMNearOrderListAdminCell.h; sourceTree = "<group>"; };
 		7C7A4F941BCD3F73001903F4 /* AMNearOrderListAdminCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMNearOrderListAdminCell.m; path = NearOrderListViewController/NearOrderListCell/AMNearOrderListAdminCell.m; sourceTree = "<group>"; };
 		7C7A4F961BCD3F86001903F4 /* AMNearOrderListAdminCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AMNearOrderListAdminCell.xib; path = NearOrderListViewController/NearOrderListCell/AMNearOrderListAdminCell.xib; sourceTree = "<group>"; };
+		7C8CD7AB1D5BBB1300959E4F /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		7C8CD7AD1D5BBBC200959E4F /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		7CCD7E6D1AB749FF006FED08 /* AMDBNewContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMDBNewContact.h; sourceTree = "<group>"; };
 		7CCD7E6F1AB74A30006FED08 /* AMDBNewContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMDBNewContact.m; sourceTree = "<group>"; };
 		7CCD7E7D1AB76764006FED08 /* AMDBNewContact+AddOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AMDBNewContact+AddOn.h"; sourceTree = "<group>"; };
@@ -1771,6 +1776,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CC2F76B1D5CE9C600B71107 /* libz.tbd in Frameworks */,
 				16C289E9195A7192004FF31F /* XCTest.framework in Frameworks */,
 				16C289EB195A7193004FF31F /* UIKit.framework in Frameworks */,
 				16C289EA195A7193004FF31F /* Foundation.framework in Frameworks */,
@@ -1781,6 +1787,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C8CD7AE1D5BBBC200959E4F /* libstdc++.tbd in Frameworks */,
+				7C8CD7AC1D5BBB1300959E4F /* libz.tbd in Frameworks */,
 				1B7586511A3B799B001B7F35 /* AudioToolbox.framework in Frameworks */,
 				1B75864B1A3B7893001B7F35 /* AVFoundation.framework in Frameworks */,
 				02A99E3619EBBBA0003E4396 /* libGoogleAnalyticsServices.a in Frameworks */,
@@ -2192,6 +2200,8 @@
 		824A9DD71724E16400C9BD79 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7C8CD7AD1D5BBBC200959E4F /* libstdc++.tbd */,
+				7C8CD7AB1D5BBB1300959E4F /* libz.tbd */,
 				1B7586501A3B799B001B7F35 /* AudioToolbox.framework */,
 				1B75864E1A3B793E001B7F35 /* AVKit.framework */,
 				1B75864C1A3B791B001B7F35 /* CoreAudio.framework */,
@@ -5057,6 +5067,7 @@
 				INFOPLIST_FILE = "AramarkFSP Tests/AramarkFSP Tests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -5090,6 +5101,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "AramarkFSP Tests/AramarkFSP Tests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -5194,6 +5206,7 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
+					"-lz",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -5238,6 +5251,7 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
+					"-lz",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
