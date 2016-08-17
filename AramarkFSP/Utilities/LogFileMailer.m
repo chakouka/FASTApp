@@ -66,11 +66,10 @@
         
             if (umcompressedData != nil)
             {
+                
                 NSData *compressedData = [ZipUtility gzipData:umcompressedData];
-            
-                NSString *fileName = [obj isEqualToString:DB_FILE_NAME]
-                ? @"Aramark_DB.zlib"
-                : [NSString stringWithFormat:@"%ld-%@", (long)counter, LOG_ZIP_FILE_NAME];
+                
+                NSString *fileName = [NSString stringWithFormat:@"%ld-%@", (long)counter, LOG_ZIP_FILE_NAME];
                 
                 NSMutableDictionary *dict = [NSMutableDictionary new];
                 
