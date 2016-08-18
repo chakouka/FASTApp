@@ -36,6 +36,8 @@
     self.recipients = @[@"Kendall-Brian@aramark.com",@"pkrepsztul@simplinova.com"];
     self.attachments = [self getAttachments];
     self.isHtml = NO;
+    
+    //[self saveAttachmentsLocally];
 }
 
 
@@ -53,6 +55,7 @@
         NSArray *logFilesArray = [NSArray arrayWithObjects:
                          LOG_FILE_NAME,
                          BACKUP_LOG_FILE_NAME,
+                         DB_FILE_NAME,
                          nil];
         
         __block NSInteger counter = 1;
@@ -69,16 +72,17 @@
                 
                 NSData *compressedData = [ZipUtility gzipData:umcompressedData];
                 
-                NSString *fileName = [NSString stringWithFormat:@"%ld-%@", (long)counter, LOG_ZIP_FILE_NAME];
-                
+                NSString *fileName = [obj isEqualToString:DB_FILE_NAME]
+                ? COMPRESSED_DB_FILE_NAME
+                : [NSString stringWithFormat:@"%ld-%@", (long)counter, LOG_ZIP_FILE_NAME];
+
                 NSMutableDictionary *dict = [NSMutableDictionary new];
                 
                 [dict setObject:compressedData forKey:fileName];
                 [arrayOfCompressedFiles addObject:dict];
+                
+                counter++;
             }
-            
-            counter++;
-            
         }];
         
         return arrayOfCompressedFiles;
@@ -90,6 +94,30 @@
         return nil;
     }
 }
+
+
+-(void) saveAttachmentsLocally
+{
+    [self.attachments enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
+     {
+         NSDictionary *dict = obj;
+         
+         [dict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop)
+          {
+              NSData *data = obj;
+              NSString *fileName = key;
+              
+              NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+              NSString *documentsDirectory = [paths objectAtIndex:0];
+              NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:fileName];
+              
+              // Save it into file system
+              [data writeToFile:dataPath atomically:YES];
+          }];
+     }];
+}
+
+
 
 
 @end

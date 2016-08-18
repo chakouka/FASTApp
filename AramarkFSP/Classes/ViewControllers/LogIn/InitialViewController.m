@@ -49,10 +49,10 @@
     // Do any additional setup after loading the view from its nib.
     self.prepareLoginLabel.text = MyLocal(@"Preparing to log in...");
     
+    FLog(@"loading the application.")
+    
     //TODO: ENABLE THIS BELOW TO TEST EMAIL LOGIC.
     //[self emailLogFiles];
-    
-    FLog(@"loading the application.")
 }
 
 -(void) emailLogFiles

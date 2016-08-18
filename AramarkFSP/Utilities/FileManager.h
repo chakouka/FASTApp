@@ -11,6 +11,8 @@
 #define LOG_FILE_MAX_SIZE 3000000 // 3 MB
 #define LOG_FILE_NAME @"fast.log"
 #define BACKUP_LOG_FILE_NAME @"fast-backup.log"
+#define DB_FILE_NAME @"Aramark.sqlite"
+#define COMPRESSED_DB_FILE_NAME @"Fast-DB.zlib"
 #define LOG_ZIP_FILE_NAME @"fast.zlib"
 
 @interface FileManager : NSObject
@@ -19,5 +21,6 @@
 + (void) renameFileInDirectory:(NSString *) directory FileName:(NSString *)name
                    NewFileName:(NSString *) newName;
 +(NSString *) getFilePathInDirectory:(NSString *)directory WithName:(NSString *)name;
++ (BOOL) fileExistsAtpath:(NSString * ) filePath;
 
 @end

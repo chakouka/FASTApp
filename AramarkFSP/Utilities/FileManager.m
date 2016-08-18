@@ -54,4 +54,12 @@
     return [directory stringByAppendingPathComponent:name];
 }
 
++ (BOOL) fileExistsAtpath:(NSString * ) filePath
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    return [fileManager fileExistsAtPath:filePath];
+}
+
+
 @end

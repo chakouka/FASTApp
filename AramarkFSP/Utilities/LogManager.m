@@ -34,6 +34,12 @@
     {
         NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:LOG_FILE_NAME];
         
+        if (![FileManager fileExistsAtpath:filePath])
+        {
+            [[NSFileManager defaultManager] createFileAtPath:filePath
+                                                    contents:nil attributes:nil];
+        }
+        
         NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:filePath];
         
         NSString *finalMessage = [NSString stringWithFormat:@"%@ - %@\n",
