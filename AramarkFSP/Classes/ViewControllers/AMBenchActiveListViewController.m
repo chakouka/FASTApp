@@ -1,5 +1,5 @@
 //
-//  AMBENCHLISTVIEWCONTROLLER.m
+//  AMBENCHACTIVELISTVIEWCONTROLLER.m
 //  AramarkFSP
 //
 //  Created by PwC on 4/23/14.
@@ -11,8 +11,8 @@
  December 2014 Relese. ITEM000118: iPad Beep on Sync with new WO. By Hari Kolasani. 12/9/2014
  *************************************************************************************************/
 
-#import "AMBenchListViewController.h"
-#import "AMBenchListcell.h"
+#import "AMBenchActiveListViewController.h"
+#import "AMBenchActiveListcell.h"
 #import "AMWorkOrder.h"
 #import "AMLogicCore.h"
 #import "GoogleRouteManage.h"
@@ -38,7 +38,7 @@ typedef NS_ENUM (NSInteger, SortType) {
 };
 
 
-@interface AMBenchListViewController ()
+@interface AMBenchActiveListViewController ()
 <
 UISearchBarDelegate
 >
@@ -64,7 +64,7 @@ UISearchBarDelegate
 
 @end
 
-@implementation AMBenchListViewController
+@implementation AMBenchActiveListViewController
 @synthesize isSortByDistance;
 @synthesize selectedWorkOrderId;
 @synthesize show;
@@ -201,10 +201,10 @@ UISearchBarDelegate
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	AMBenchListCell *cell = (AMBenchListCell *)[tableView dequeueReusableCellWithIdentifier:@"AMBenchListCell"];
+	AMBenchActiveListCell *cell = (AMBenchActiveListCell *)[tableView dequeueReusableCellWithIdentifier:@"AMBenchActiveListCell"];
 	if (cell == nil) {
-		NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AMBenchListCell" owner:[AMBenchListCell class] options:nil];
-		cell = (AMBenchListCell *)[nib objectAtIndex:0];
+		NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AMBenchActiveListCell" owner:[AMBenchActiveListCell class] options:nil];
+		cell = (AMBenchActiveListCell *)[nib objectAtIndex:0];
 		cell.contentView.backgroundColor = [UIColor clearColor];
 	}
     
@@ -224,7 +224,7 @@ UISearchBarDelegate
     
 	cell.label_AssetNumber.text = workOrder.assetID;//workOrder.accountName;
 	cell.label_SerialNumber.text = @"BKSerialNumber";//strType;
-	cell.label_MachineGroup.text = @"BKMachineGroup";//workOrder.contact;
+	//cell.label_MachineGroup.text = @"BKMachineGroup";//workOrder.contact;
     cell.label_MachineType.text = workOrder.machineTypeName;// @"BKMachineType";
     
     UIImage *image = nil;
@@ -254,9 +254,19 @@ UISearchBarDelegate
 //        cell.viewM.hidden = YES;
 //    }
 //    
-//    cell.btnMap.tag = indexPath.row;
-//    [cell.btnMap addTarget:self action:@selector(clickMapBtn:) forControlEvents:UIControlEventTouchUpInside];
-//    
+    cell.btnGetAssetInfo.tag = indexPath.row;
+
+    cell.btnStart.tag = indexPath.row;
+    cell.btnStop.tag = indexPath.row;
+    cell.btnCheckout.tag = indexPath.row;
+
+    [cell.btnGetAssetInfo addTarget:self action:@selector(clickGetAssetInfoBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.btnStart addTarget:self action:@selector(clickStartBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.btnStop addTarget:self action:@selector(clickStopBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.btnCheckout addTarget:self action:@selector(clickCheckoutBtn:) forControlEvents:UIControlEventTouchUpInside];
+    
+
+//
 //    NSTimeZone *aZone = [[AMProtocolParser sharedInstance] timeZoneOnSalesforce];
 //    
 //    cell.label_EstimationDuration.text = [NSString stringWithFormat:@"%@ - %@",[workOrder.estimatedTimeStart formattedDateWithFormat:@"HH:mm" timeZone:aZone],[workOrder.estimatedTimeEnd formattedDateWithFormat:@"HH:mm" timeZone:aZone]];
@@ -710,4 +720,107 @@ UISearchBarDelegate
 //         self.nearOrderListVC.show = !isHidden;
      }];
 }
+- (IBAction)btnBackToBench:(id)sender {
+    //Back to bench view
+    NSDictionary *dicInfo = @{
+                              KEY_OF_TYPE:TYPE_OF_BTN_ITEM_CLICKED,
+                              KEY_OF_INFO:[NSNumber numberWithInteger:7]
+                              };
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMLEFTBARVIEWCONTROLLER object:dicInfo];
+}
+
+- (IBAction)clickGetAssetInfoBtn:(id)sender {
+    [UIAlertView showWithTitle:@""
+                       message:MyLocal(@"Get Asset Info")
+             cancelButtonTitle:MyLocal(@"OK")
+             otherButtonTitles:nil
+                      tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
+                          if (buttonIndex == [alertView cancelButtonIndex]) {
+                              return;
+                          }
+                          else
+                          {
+                              
+                          }
+                      }];
+}
+
+- (IBAction)clickStartBtn:(id)sender {
+    [UIAlertView showWithTitle:@""
+                       message:MyLocal(@"Start Timer")
+             cancelButtonTitle:MyLocal(@"OK")
+             otherButtonTitles:nil
+                      tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
+                          if (buttonIndex == [alertView cancelButtonIndex]) {
+                              return;
+                          }
+                          else
+                          {
+                              
+                              //                              [[AMLogicCore sharedInstance] checkInWorkOrder:workorder completionBlock:^(NSInteger type, NSError *error) {
+                              //                                  if (error) {
+                              //                                      [AMUtilities showAlertWithInfo:[error localizedDescription]];
+                              //                                      return ;
+                              //                                  }
+                              //                                  NSDictionary *dicInfo = @{
+                              //                                                            KEY_OF_TYPE:TYPE_OF_WORK_ORDER_LIST_CHANGE,
+                              //                                                            KEY_OF_INFO:self.localWorkOrders,
+                              //                                                            KEY_OF_FLAG:[NSNumber numberWithBool:NO]
+                              //                                                            };
+                              //                                  [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMORDERLISTVIEWCONTROLLER object:dicInfo];
+                              //
+                              //                              }];
+                              
+                          }
+                      }];
+}
+
+- (IBAction)clickStopBtn:(id)sender {
+    [UIAlertView showWithTitle:@""
+                       message:MyLocal(@"Stop Timer")
+             cancelButtonTitle:MyLocal(@"OK")
+             otherButtonTitles:nil
+                      tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
+                          if (buttonIndex == [alertView cancelButtonIndex]) {
+                              return;
+                          }
+                          else
+                          {
+                              
+                          }
+                      }];
+}
+
+- (IBAction)clickCheckoutBtn:(id)sender {
+
+    [UIAlertView showWithTitle:@""
+                       message:MyLocal(@"Check Out of Bench Tech Workerder?")
+             cancelButtonTitle:MyLocal(@"NO")
+             otherButtonTitles:@[MyLocal(@"YES")]
+                      tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
+                          if (buttonIndex == [alertView cancelButtonIndex]) {
+                              return;
+                          }
+                          else
+                          {
+                              
+//                              [[AMLogicCore sharedInstance] checkInWorkOrder:workorder completionBlock:^(NSInteger type, NSError *error) {
+//                                  if (error) {
+//                                      [AMUtilities showAlertWithInfo:[error localizedDescription]];
+//                                      return ;
+//                                  }
+//                                  NSDictionary *dicInfo = @{
+//                                                            KEY_OF_TYPE:TYPE_OF_WORK_ORDER_LIST_CHANGE,
+//                                                            KEY_OF_INFO:self.localWorkOrders,
+//                                                            KEY_OF_FLAG:[NSNumber numberWithBool:NO]
+//                                                            };
+//                                  [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMORDERLISTVIEWCONTROLLER object:dicInfo];
+//                                  
+//                              }];
+                              
+                          }
+                      }];
+}
+
 @end

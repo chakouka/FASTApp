@@ -23,6 +23,7 @@
                 <outlet property="labelTHello" destination="OVa-cQ-qnI" id="GpZ-rB-rIw"/>
                 <outlet property="labelWelcome" destination="ihg-CJ-IPA" id="eLi-EE-TN5"/>
                 <outlet property="view" destination="aOG-v4-Xn9" id="noe-yT-oc7"/>
+                <outlet property="viewActiveBenchPanel" destination="ZQj-n8-BVQ" id="XaX-Fx-br2"/>
                 <outlet property="viewAlert" destination="SY7-MK-3Ac" id="tlf-9G-eiT"/>
                 <outlet property="viewBenchPanel" destination="JUp-na-XZ1" id="Ium-Bj-mhc"/>
                 <outlet property="viewCasePanel" destination="Lwd-bb-X19" id="01u-YG-yrz"/>
@@ -181,7 +182,7 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                         <view hidden="YES" contentMode="scaleToFill" id="JUp-na-XZ1">
-                            <rect key="frame" x="47" y="26" width="930" height="716"/>
+                            <rect key="frame" x="94" y="52" width="930" height="716"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Asset Number: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pkv-F9-nLs">
@@ -301,6 +302,11 @@
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                        <view hidden="YES" contentMode="scaleToFill" id="ZQj-n8-BVQ" userLabel="View Bench Active Panel">
+                            <rect key="frame" x="94" y="52" width="930" height="716"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.53924461272964841" green="1" blue="0.31649003558309918" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

@@ -7,7 +7,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AMBenchListViewController">
             <connections>
-                <outlet property="btnSort" destination="7Qe-6s-v4I" id="6Jf-yL-V0b"/>
                 <outlet property="tableViewList" destination="EWw-bZ-hxr" id="7Qg-dU-r6r"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="GMd-j7-1QL"/>
                 <outlet property="viewSearch" destination="hbV-Zg-10w" id="DdT-4n-zQq"/>
@@ -34,7 +33,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" id="IWd-ab-oeA">
-                    <rect key="frame" x="0.0" y="44" width="340" height="180"/>
+                    <rect key="frame" x="0.0" y="44" width="340" height="36"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ghb-Ld-DdW">
@@ -45,9 +44,6 @@
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
-                            <connections>
-                                <action selector="clickSortByEndTimeBtn:" destination="-1" eventType="touchUpInside" id="bKH-K4-rPf"/>
-                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7PI-08-IEw">
                             <rect key="frame" x="70" y="95" width="176" height="30"/>
@@ -57,9 +53,6 @@
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
-                            <connections>
-                                <action selector="clickSortByPriorityBtn:" destination="-1" eventType="touchUpInside" id="ldO-Wl-czH"/>
-                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BQ0-8u-PSB">
                             <rect key="frame" x="70" y="130" width="176" height="30"/>
@@ -69,9 +62,6 @@
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
-                            <connections>
-                                <action selector="clickSortByDistanceBtn:" destination="-1" eventType="touchUpInside" id="hFX-V5-JOo"/>
-                            </connections>
                         </button>
                         <view contentMode="scaleToFill" id="P6W-LJ-AX0">
                             <rect key="frame" x="16" y="40" width="224" height="1"/>
@@ -103,15 +93,12 @@
                     </connections>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7Qe-6s-v4I">
-                    <rect key="frame" x="290" y="44" width="50" height="44"/>
+                    <rect key="frame" x="295" y="42" width="50" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" image="arrow-down.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <state key="selected" image="Arrow-up.png"/>
-                    <connections>
-                        <action selector="clickSortBtn:" destination="-1" eventType="touchUpInside" id="96W-Gb-6rt"/>
-                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

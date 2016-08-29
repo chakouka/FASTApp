@@ -1,5 +1,5 @@
 //
-//  AMBENCHLISTVIEWCONTROLLER.h
+//  AMAMBENCHACTIVELISTVIEWCONTROLLER.h
 //  AramarkFSP
 //
 //  Created by PwC on 4/23/14.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AMBenchListViewController : UIViewController
+@interface AMBenchActiveListViewController : UIViewController
 	<
 	    UITableViewDelegate,
 	    UITableViewDataSource,

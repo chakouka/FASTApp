@@ -1,14 +1,14 @@
 //
-//  AMBenchListCell.m
+//  AMBenchActiveListCell.m
 //  AramarkFSP
 //
 //  Created by PwC on 4/23/14.
 //  Copyright (c) 2014 Aramark FSP. All rights reserved.
 //
 
-#import "AMBenchListCell.h"
+#import "AMBenchActiveListCell.h"
 
-@implementation AMBenchListCell
+@implementation AMBenchActiveListCell
 @synthesize strPriority;
 
 - (void)awakeFromNib

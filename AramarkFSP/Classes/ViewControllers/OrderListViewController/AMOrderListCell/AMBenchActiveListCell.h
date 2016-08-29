@@ -1,5 +1,5 @@
 //
-//  AMBenchListCell.h
+//  AMBenchActiveListCell.h
 //  AramarkFSP
 //
 //  Created by PwC on 4/23/14.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AMBenchListCell : UITableViewCell
+@interface AMBenchActiveListCell : UITableViewCell
 {
     
 }
@@ -17,7 +17,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *label_AssetNumber;
 @property (weak, nonatomic) IBOutlet UILabel *label_SerialNumber;
 @property (weak, nonatomic) IBOutlet UILabel *label_MachineType;
-@property (weak, nonatomic) IBOutlet UILabel *label_MachineGroup;
+@property (weak, nonatomic) IBOutlet UIButton *btnGetAssetInfo;
+@property (weak, nonatomic) IBOutlet UIButton *btnStart;
+@property (weak, nonatomic) IBOutlet UIButton *btnStop;
+@property (weak, nonatomic) IBOutlet UIButton *btnCheckout;
 
 
 @property (weak, nonatomic) IBOutlet UIView *viewShade;

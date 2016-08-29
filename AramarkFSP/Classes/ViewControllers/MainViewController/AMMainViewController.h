@@ -32,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet UIView *viewCasePanel;
 @property (weak, nonatomic) IBOutlet UIView *viewNearMePanel;
 @property (weak, nonatomic) IBOutlet UIView *viewBenchPanel;
+@property (weak, nonatomic) IBOutlet UIView *viewActiveBenchPanel;
 @property (weak, nonatomic) IBOutlet UILabel *labelBenchAssetNumber;
 @property (weak, nonatomic) IBOutlet UILabel *labelBenchSerialNumber;
 @property (weak, nonatomic) IBOutlet UILabel *labelBenchMachineType;
