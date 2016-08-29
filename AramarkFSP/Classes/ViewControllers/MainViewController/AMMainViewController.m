@@ -74,6 +74,7 @@ typedef NS_ENUM (NSInteger, PanelType) {
     PanelType_NearMe,
     PanelType_Bench,
     PanelType_ActiveBench,
+    PanelType_ActiveDetailBench,
 };
 
 
@@ -1161,6 +1162,7 @@ UIGestureRecognizerDelegate
     self.viewNearMePanel.hidden = YES;
     self.viewBenchPanel.hidden = YES;
     self.viewActiveBenchPanel.hidden = YES;
+    self.viewActiveDetailBenchPanel.hidden = YES;
     
 	switch (aType) {
 		case PanelType_Main:
@@ -1212,6 +1214,12 @@ UIGestureRecognizerDelegate
         {
             self.viewActiveBenchPanel.hidden = NO;
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SHOW_ACTIVEBENCH object:nil];
+        }
+            break;
+        case PanelType_ActiveDetailBench:
+        {
+            self.viewActiveDetailBenchPanel.hidden = NO;
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SHOW_ACTIVEDETAILBENCH object:nil];
         }
             break;
 	}
@@ -1607,6 +1615,51 @@ UIGestureRecognizerDelegate
                 }
             }
                 break;
+
+            case LeftViewButtonType_ActiveAssetInfoBenchTech:
+            {
+//                //first time in, add the benchListVC to the view
+//                if (![[self.viewActiveBenchPanel subviews] containsObject:self.benchActiveListVC.view]) {
+//                    [self.viewActiveBenchPanel addSubview: self.benchActiveListVC.view];
+//                }
+//                if (self.orderListVC.show) {
+//                    [self changeLeftListPanelHidden:YES animation:NO];
+//                }
+//                if (detailPanelPosition != PositionDetailPanel_Bottom) {
+//                    [self changeDetailPanelViewTo:PositionDetailPanel_Bottom animation:NO];
+//                }
+                
+                [self changePanelWithType:PanelType_ActiveBench];
+                
+                if (self.nearMeVC.show) {
+                    [self.nearMeVC changeLeftListPanelHidden:YES animation:YES];
+                    [self.leftVC resetAllBtns];
+                }
+                else
+                {
+                    [self.nearMeVC changeLeftListPanelHidden:NO animation:YES];
+                }
+                
+                if (detailPanelPosition != PositionDetailPanel_Full) {
+                    [self changeLeftActiveBenchPanelHidden:NO animation:YES];
+                    [self changeBenchActiveViewWithPosition:PositionBenchView_Half animation:YES];
+                    //[self changeDetailPanelViewTo:PositionDetailPanel_Bottom animation:NO];
+                    //[self changeCheckoutPanelViewTo:PositionDetailPanel_Bottom animation:NO];
+                    [self benchListLoadData];
+                }
+                else
+                {
+                    [self changeRouteViewWithPosition:PositionRouteView_Full animation:NO];
+                    [self changeLeftActiveBenchPanelHidden:YES animation:YES];
+                    
+                    [self.leftVC resetAllBtns];
+                    [self.routeView centerWithAllAnnotations];
+                    [self changePanelWithType:PanelType_Main];
+                }
+                
+            }
+                break;
+                
 		}
 	}
 }

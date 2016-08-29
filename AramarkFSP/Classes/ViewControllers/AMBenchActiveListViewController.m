@@ -731,19 +731,13 @@ UISearchBarDelegate
 }
 
 - (IBAction)clickGetAssetInfoBtn:(id)sender {
-    [UIAlertView showWithTitle:@""
-                       message:MyLocal(@"Get Asset Info")
-             cancelButtonTitle:MyLocal(@"OK")
-             otherButtonTitles:nil
-                      tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
-                          if (buttonIndex == [alertView cancelButtonIndex]) {
-                              return;
-                          }
-                          else
-                          {
-                              
-                          }
-                      }];
+    //Asset info view
+    NSDictionary *dicInfo = @{
+                              KEY_OF_TYPE:TYPE_OF_BTN_ITEM_CLICKED,
+                              KEY_OF_INFO:[NSNumber numberWithInteger:8]
+                              };
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMLEFTBARVIEWCONTROLLER object:dicInfo];
 }
 
 - (IBAction)clickStartBtn:(id)sender {

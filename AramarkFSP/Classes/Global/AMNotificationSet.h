@@ -30,6 +30,8 @@
 #define NOTIFICATION_SHOW_NEAR      @"Notification to Show Near"
 #define NOTIFICATION_SHOW_BENCH     @"Notification to Show Bench"
 #define NOTIFICATION_SHOW_ACTIVEBENCH @"Notification to Show Active Bench"
+#define NOTIFICATION_SHOW_ACTIVEDETAILBENCH @"Notification to Show Active Detail Bench"
+
 //Notification Type for Operation Online
 #define NOTIFICATION_LOGIN_INITIALDATADONE              @"NOTIFICATION_LOGIN_INITIALDATADONE"
 #define NOTIFICATION_LOGOUT_DONE                        @"NOTIFICATION_LOGOUT_DONE"
