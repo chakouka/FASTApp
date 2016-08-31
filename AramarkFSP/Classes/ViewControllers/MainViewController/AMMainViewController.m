@@ -475,50 +475,27 @@ UIGestureRecognizerDelegate
 
     });
 }
-
+- (void)activeBenchListLoadData {
+    
+    MAIN(^{
+        
+        NSArray *arrResult;
+        
+        DLog(@"arrResult : %@",arrResult);
+        
+        [self.benchActiveListVC refreshActiveBenchList:[NSMutableArray arrayWithArray:arrResult]];
+        
+    });
+}
 - (void)benchListLoadData {
     
     MAIN(^{
         
-#ifdef TESTMODEL
-        NSArray *arrResult = [[TestManage sharedInstance] arrLocalList];
-#else
-        NSArray *arrResult = [[AMLogicCore sharedInstance] getTodayWorkOrderList];
-#endif
+        NSArray *arrResult;
         
         DLog(@"arrResult : %@",arrResult);
         
-        [self.benchListVC refreshOrderList:[NSMutableArray arrayWithArray:arrResult]];
-        
-        [self requestRoutesTimeDistanceWithList:self.orderListVC.localWorkOrders];
-        
-        if ([self.benchListVC.localWorkOrders count] == 0) {
-            [self refreshMapWithList:[NSMutableArray arrayWithArray:arrResult]];
-        }
-        else
-        {
-            [self refreshMapWithList:self.benchListVC.localWorkOrders];
-        }
-        
-        if ([self.benchListVC.localWorkOrders count] == 0 && [arrResult count] == 0) {
-            [self.routeView clearRoutes];
-            [self.routeView centerWithCurrentLocation];
-        }
-        
-        shouldDisappearDetailVC = YES;
-        if (self.detailVC.selectedWorkOrder) {
-            for (AMWorkOrder *wo in arrResult) {
-                if ([wo.woNumber isEqualToString:self.detailVC.selectedWorkOrder.woNumber]) {
-                    shouldDisappearDetailVC = NO;
-                    break;
-                }
-            }
-            [self disappearDetailVC];
-            if (!shouldDisappearDetailVC) { //Intend to update lable count(pending WO amount of Account/POS)
-                [self refreshCurrentWorkOrder];
-                //            [self.detailVC assignNewWorkOrder:[[AMLogicCore sharedInstance] getWorkOrderInfoByID:self.orderListVC.selectedWorkOrderId]];
-            }
-        }
+        [self.benchListVC refreshBenchList:[NSMutableArray arrayWithArray:arrResult]];
         
     });
 }
@@ -1558,7 +1535,7 @@ UIGestureRecognizerDelegate
                     [self changeBenchActiveViewWithPosition:PositionBenchView_Half animation:YES];
                     //[self changeDetailPanelViewTo:PositionDetailPanel_Bottom animation:NO];
                     //[self changeCheckoutPanelViewTo:PositionDetailPanel_Bottom animation:NO];
-                    [self benchListLoadData];
+                    [self activeBenchListLoadData];
                 }
                 else
                 {
@@ -1645,7 +1622,7 @@ UIGestureRecognizerDelegate
                     [self changeBenchActiveViewWithPosition:PositionBenchView_Half animation:YES];
                     //[self changeDetailPanelViewTo:PositionDetailPanel_Bottom animation:NO];
                     //[self changeCheckoutPanelViewTo:PositionDetailPanel_Bottom animation:NO];
-                    [self benchListLoadData];
+                    [self activeBenchListLoadData];
                 }
                 else
                 {

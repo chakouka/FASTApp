@@ -363,7 +363,7 @@ UISearchBarDelegate
 #pragma mark - Load Data
 
 
-- (void)refreshOrderList:(NSMutableArray *)aLocalWorkOrders;
+- (void)refreshActiveBenchList:(NSMutableArray *)aLocalWorkOrders;
 {
     [self myRefreshTaskMethod:aLocalWorkOrders];
 }

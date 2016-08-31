@@ -41,7 +41,7 @@
 
 - (void)deSelectRow;
 
-- (void)refreshOrderList:(NSMutableArray *)aLocalWorkOrders;
+- (void)refreshBenchList:(NSMutableArray *)aLocalWorkOrders;
 
 - (void)refreshWorkOrderStatus:(NSMutableArray *)aList;
 
