@@ -56,6 +56,33 @@
                             <rect key="frame" x="94" y="52" width="930" height="716"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
+                                <view contentMode="scaleToFill" id="PUI-tl-JAK" userLabel="TopHorizontalLine">
+                                    <rect key="frame" x="350" y="130" width="532" height="2"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
+                                <view contentMode="scaleToFill" id="ZcL-uL-VVa" userLabel="LeftVerticalLine">
+                                    <rect key="frame" x="350" y="130" width="2" height="506"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
+                                <view contentMode="scaleToFill" id="7q2-tN-nDO" userLabel="RightVerticalLine">
+                                    <rect key="frame" x="881" y="130" width="2" height="506"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
+                                <view contentMode="scaleToFill" id="Poy-QD-DYx" userLabel="BottomHorizontalLine">
+                                    <rect key="frame" x="350" y="635" width="532" height="2"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zyN-sm-g1m">
+                                    <rect key="frame" x="359" y="90" width="149" height="38"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Asset Number: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pkv-F9-nLs">
                                     <rect key="frame" x="359" y="134" width="149" height="38"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -68,9 +95,10 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ZRN-kO-aP5">
-                                    <rect key="frame" x="526" y="562" width="139" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZRN-kO-aP5">
+                                    <rect key="frame" x="359" y="562" width="140" height="60"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="0.36209877309999999" green="0.60108417670000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <state key="normal" title="Start BENCH"/>
                                     <connections>
                                         <action selector="tapStartBenchButtn:" destination="-1" eventType="touchUpInside" id="uch-V6-VR2"/>
@@ -155,17 +183,19 @@
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ugd-cO-N7J">
-                                    <rect key="frame" x="719" y="66" width="102" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ugd-cO-N7J">
+                                    <rect key="frame" x="732" y="16" width="140" height="60"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="0.36209877309999999" green="0.60108417670000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <state key="normal" title="Active Bench"/>
                                     <connections>
                                         <action selector="tapActiveBenchButtn:" destination="-1" eventType="touchUpInside" id="rOe-Ry-PeS"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jv5-iP-eCz">
-                                    <rect key="frame" x="732" y="562" width="89" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jv5-iP-eCz">
+                                    <rect key="frame" x="732" y="562" width="140" height="60"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="0.36209877309999999" green="0.60108417670000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <state key="normal" title="SCRAP"/>
                                     <connections>
                                         <action selector="tapScrapBenchButtn:" destination="-1" eventType="touchUpInside" id="5QD-th-jOn"/>

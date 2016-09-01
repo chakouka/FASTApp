@@ -60,6 +60,7 @@
  * AMWorkOrder List parser
  *
  */
+- (NSDictionary *)parseBTWorkOrderInfoList:(NSArray *)array;
 - (NSDictionary *)parseWorkOrderInfoList:(NSDictionary *)dict;
 
 /**

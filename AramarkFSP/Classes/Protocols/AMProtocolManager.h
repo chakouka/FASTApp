@@ -27,6 +27,12 @@
  * get FT's own recent WO list on Salesforce
  *
  */
+
+- (void)getBenchTechWOList:(AMSFRestCompletionBlock)completionBlock;
+- (void)getActiveBenchTechWOList:(AMSFRestCompletionBlock)completionBlock;
+- (void)toggleTimerForAsset:(NSString *)assetID completion:(AMSFRestCompletionBlock)completionBlock;
+- (void)scrapBenchAsset:(NSString *)assetID completion:(AMSFRestCompletionBlock)completionBlock;
+
 - (void)getOwnRecentWorkOrderList:(AMSFRestCompletionBlock)completionBlock;
 
 - (void)getWorkOrderListByType:(AM_NWWOLIST_Type)type timeStamp:(NSDate *)timeStamp withIDList:(NSArray *)idList completion:(AMSFRestCompletionBlock)completionBlock;

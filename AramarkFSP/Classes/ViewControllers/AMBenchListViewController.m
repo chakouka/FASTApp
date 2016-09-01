@@ -13,7 +13,6 @@
 
 #import "AMBenchListViewController.h"
 #import "AMBenchListcell.h"
-#import "AMWorkOrder.h"
 #import "AMLogicCore.h"
 #import "GoogleRouteManage.h"
 #import "JumpMapApp.h"
@@ -208,7 +207,7 @@ UISearchBarDelegate
 		cell.contentView.backgroundColor = [UIColor clearColor];
 	}
     
-	AMWorkOrder *workOrder = nil;
+	NSDictionary *workOrder = nil;
     
 	if (isSearching) {
 		workOrder = [self.searchResultList objectAtIndex:indexPath.row];
@@ -222,47 +221,13 @@ UISearchBarDelegate
     
 
     
-	cell.label_AssetNumber.text = workOrder.assetID;//workOrder.accountName;
-	cell.label_SerialNumber.text = @"BKSerialNumber";//strType;
-	cell.label_MachineGroup.text = @"BKMachineGroup";//workOrder.contact;
-    cell.label_MachineType.text = workOrder.machineTypeName;// @"BKMachineType";
-    
-    UIImage *image = nil;
-    
-    if ([workOrder.priority isEqualToLocalizedString:kAMPRIORITY_STRING_CRITICAL]) {
-        image = [UIImage imageNamed:@"alert-background.png"];
-    }
-    else if([workOrder.priority isEqualToLocalizedString:kAMPRIORITY_STRING_HIGH]) {
-        image = [UIImage imageNamed:@"orange_priority.png"];
-    }
-    else if([workOrder.priority isEqualToLocalizedString:kAMPRIORITY_STRING_MEDIUM]) {
-        image = [UIImage imageNamed:@"blue_priority.png"];
-    }
-    else {
-        image = [UIImage imageNamed:@"green_priority.png"];
-    }
-    
-//    cell.label_Index.text = [NSString stringWithFormat:@"%d", indexPath.row + 1];
-//    cell.imageIndex.image = image;
-//    
-//    if (([workOrder.eventList count] > 1)) {
-//        cell.viewM.hidden = NO;
-//        cell.imageM.image = image;
-//    }
-//    else
-//    {
-//        cell.viewM.hidden = YES;
-//    }
-//    
-//    cell.btnMap.tag = indexPath.row;
-//    [cell.btnMap addTarget:self action:@selector(clickMapBtn:) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    NSTimeZone *aZone = [[AMProtocolParser sharedInstance] timeZoneOnSalesforce];
-//    
-//    cell.label_EstimationDuration.text = [NSString stringWithFormat:@"%@ - %@",[workOrder.estimatedTimeStart formattedDateWithFormat:@"HH:mm" timeZone:aZone],[workOrder.estimatedTimeEnd formattedDateWithFormat:@"HH:mm" timeZone:aZone]];
+    cell.label_AssetNumber.text = [workOrder valueForKeyWithNullToNil: @"Machine_Number__c"];
+    cell.label_SerialNumber.text = [workOrder valueForKeyWithNullToNil: @"SerialNumber"];
+	cell.label_MachineGroup.text = [workOrder valueForKeyWithNullToNil:@"Machine_Number__c"];
+    cell.label_MachineType.text = [[workOrder valueForKeyWithNullToNil: @"Asset__r"]valueForKey:@"Test"];
     
 	if (selectedWorkOrderId) {
-		if ([workOrder.woID isEqual:selectedWorkOrderId]) {
+		if ([[workOrder valueForKey:@"Id"] isEqual:selectedWorkOrderId]) {
 			[cell showShadeStatus:NO];
 		}
 		else {
@@ -279,7 +244,7 @@ UISearchBarDelegate
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	AMWorkOrder *info = nil;
+	NSDictionary *info = nil;
     
 	if (isSearching) {
 		info = [searchResultList objectAtIndex:indexPath.row];
@@ -288,7 +253,7 @@ UISearchBarDelegate
 		info = [localWorkOrders objectAtIndex:indexPath.row];
 	}
     
-    self.selectedWorkOrderId = info.woID;
+    self.selectedWorkOrderId = [info valueForKey:@"Id"];
     
 	NSDictionary *dicInfo = @{
                               KEY_OF_TYPE:TYPE_OF_CELL_SELECTED,
@@ -353,71 +318,19 @@ UISearchBarDelegate
 #pragma mark - Load Data
 
 
-- (void)refreshBenchList:(NSMutableArray *)aLocalWorkOrders;
+- (void)refreshBenchList:(NSMutableArray *)aLocalBenchWorkOrders;
 {
-    [self myRefreshTaskMethod:aLocalWorkOrders];
+    [self myRefreshBenchTaskMethod:aLocalBenchWorkOrders];
 }
 
-- (void)refreshWorkOrderStatus:(NSMutableArray *)aList
-{
-    for (AMWorkOrder *workOrder in localWorkOrders) {
-        for (AMWorkOrder *info in aList) {
-            if ([workOrder.woID isEqualToString:info.woID]) {
-                workOrder.status = info.status;
-                break;
-            }
-        }
-    }
-    
-    [self reloadData];
-}
+- (void)myRefreshBenchTaskMethod:(NSMutableArray *)array {
+    self.localWorkOrders = [NSMutableArray arrayWithArray:array];
 
-- (void)refreshTimeAndDistanceBySingleRequest:(NSMutableArray *)aList
-{
-    for (AMWorkOrder *workOrder in localWorkOrders) {
-        for (GoogleRouteInfo *info in aList) {
-            if ([workOrder.woID isEqualToString:info.gId]) {
-                workOrder.nextDistance = [info.gDistance.text length] != 0 ? info.gDistance.text : workOrder.nextDistance;
-                workOrder.nextTime =  [info.gDuration.text length] != 0 ? info.gDuration.text : workOrder.nextTime;
-                break;
-            }
-        }
-    }
-    
-    [self reloadData];
-}
-
-- (void)refreshTimeAndDistanceByRouteRequest:(NSMutableArray *)aList
-{
-    for (AMWorkOrder *workOrder in localWorkOrders) {
-        for (GooglePointInfo *info in aList) {
-            if ([workOrder.woID isEqualToString:info.gId]) {
-                workOrder.nextDistance = [info.gDistance.text length] != 0 ? info.gDistance.text : workOrder.nextDistance;
-                workOrder.nextTime =  [info.gDuration.text length] != 0 ? info.gDuration.text : workOrder.nextTime;
-                break;
-            }
-        }
-    }
-    
-    [self reloadData];
-}
-
-- (void)myRefreshTaskMethod:(NSMutableArray *)aWorkOrders {
-    
-    for (AMWorkOrder *work in aWorkOrders) {
-        if ([work.eventList count] > 1) {
-            isCooperative = YES;
-            break;
-        }
-    }
-    
-	self.localWorkOrders = [NSMutableArray arrayWithArray:aWorkOrders];
-    
     if (isSearching) {
         [self searchItemWithString:self.searchbarTitle.text inList:localWorkOrders];
     }
     
-	[self reloadData];
+    [self reloadData];
 }
 
 - (void)searchItemWithString:(NSString *)aString inList:(NSMutableArray *)aList {
@@ -449,8 +362,8 @@ UISearchBarDelegate
 }
 
 - (void)mySearchTaskMethod:(id)Info {
-	for (AMWorkOrder *order in[Info objectForKey:@"List"]) {
-		if ([order.accountName rangeOfString:[Info objectForKey:@"String"] options:NSCaseInsensitiveSearch].location != NSNotFound) {
+	for (NSDictionary *order in[Info objectForKey:@"List"]) {
+		if ([[[order valueForKeyWithNullToNil:@"Asset__r"] valueForKeyWithNullToNil:@"Id"] rangeOfString:[Info objectForKey:@"String"] options:NSCaseInsensitiveSearch].location != NSNotFound) {
 			[searchResultList addObject:order];
 		}
 	}
@@ -576,98 +489,57 @@ UISearchBarDelegate
 	});
 }
 
-#pragma mark - Sort
-
-- (void)refreshMoveList
-{
-    if ([arrMoveList count] > 0) {
-        [arrMoveList removeAllObjects];
-    }
-    
-    for (AMWorkOrder *workorder in self.localWorkOrders) {
-        [arrMoveList addObject:workorder.woID];
-    }
-}
-
-- (NSMutableArray *)sortWithMoveList:(NSMutableArray *)moveList
-{
-    if ([moveList count] == 0) {
-        return localWorkOrders;
-    }
-    
-    self.arrMoveList = moveList;
-    
-    NSMutableArray *arrResult = [NSMutableArray array];
-    
-    NSMutableArray *arrNew = [localWorkOrders mutableCopy];
-    
-    for (NSString *woId in moveList) {
-        for (AMWorkOrder *workorder in self.localWorkOrders) {
-            if ([workorder.woID isEqualToString:woId]) {
-                [arrResult addObject:workorder];
-                [arrNew removeObject:workorder];
-                break;
-            }
-        }
-    }
-    
-    if ([arrNew count] > 0) {
-        [arrResult addObjectsFromArray:arrNew];
-    }
-    
-    return arrResult;
-}
 
 #pragma mark - Gesture delegate //bkk 2/2/15 - item 000124
--(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
-{
-    CGPoint p = [gestureRecognizer locationInView:self.tableViewList];
-    
-    NSIndexPath *indexPath = [self.tableViewList indexPathForRowAtPoint:p];
-    if (indexPath == nil) {
-        NSLog(@"long press on table view but not on a row");
-    } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        NSArray *todayCheckInWOList = [[AMDBManager sharedInstance] getSelfOwnedTodayCheckInWorkOrders];
-        if (todayCheckInWOList.count == 0)
-        {
-            [self.tableViewList selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
-            [self tableView:self.tableViewList didSelectRowAtIndexPath:indexPath];
-            [self showCheckInAlert:self.localWorkOrders[indexPath.row]];
-        }
-        NSLog(@"long press on table view at row %d", indexPath.row);
-    } else {
-        NSLog(@"gestureRecognizer.state = %d", gestureRecognizer.state);
-    }
-}
+//-(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+//{
+//    CGPoint p = [gestureRecognizer locationInView:self.tableViewList];
+//    
+//    NSIndexPath *indexPath = [self.tableViewList indexPathForRowAtPoint:p];
+//    if (indexPath == nil) {
+//        NSLog(@"long press on table view but not on a row");
+//    } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+//        NSArray *todayCheckInWOList = [[AMDBManager sharedInstance] getSelfOwnedTodayCheckInWorkOrders];
+//        if (todayCheckInWOList.count == 0)
+//        {
+//            [self.tableViewList selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+//            [self tableView:self.tableViewList didSelectRowAtIndexPath:indexPath];
+//            [self showCheckInAlert:self.localWorkOrders[indexPath.row]];
+//        }
+//        NSLog(@"long press on table view at row %d", indexPath.row);
+//    } else {
+//        NSLog(@"gestureRecognizer.state = %d", gestureRecognizer.state);
+//    }
+//}
 #pragma mark - CheckIn //bkk 2/2/15 - item 000124
-- (void)showCheckInAlert:(AMWorkOrder *)workorder {
-    [UIAlertView showWithTitle:@""
-                       message:MyLocal(@"Are you sure you want to Check In ?")
-             cancelButtonTitle:MyLocal(@"NO")
-             otherButtonTitles:@[MyLocal(@"YES")]
-                      tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
-                          if (buttonIndex == [alertView cancelButtonIndex]) {
-                              return;
-                          }
-                          else
-                          {
-                              [[AMLogicCore sharedInstance] checkInWorkOrder:workorder completionBlock:^(NSInteger type, NSError *error) {
-                                  if (error) {
-                                      [AMUtilities showAlertWithInfo:[error localizedDescription]];
-                                      return ;
-                                  }
-                                  NSDictionary *dicInfo = @{
-                                                            KEY_OF_TYPE:TYPE_OF_WORK_ORDER_LIST_CHANGE,
-                                                            KEY_OF_INFO:self.localWorkOrders,
-                                                            KEY_OF_FLAG:[NSNumber numberWithBool:NO]
-                                                            };
-                                  [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMORDERLISTVIEWCONTROLLER object:dicInfo];
-
-                              }];
-                              
-                          }
-                      }];
-}
+//- (void)showCheckInAlert:(AMWorkOrder *)workorder {
+//    [UIAlertView showWithTitle:@""
+//                       message:MyLocal(@"Are you sure you want to Check In ?")
+//             cancelButtonTitle:MyLocal(@"NO")
+//             otherButtonTitles:@[MyLocal(@"YES")]
+//                      tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
+//                          if (buttonIndex == [alertView cancelButtonIndex]) {
+//                              return;
+//                          }
+//                          else
+//                          {
+//                              [[AMLogicCore sharedInstance] checkInWorkOrder:workorder completionBlock:^(NSInteger type, NSError *error) {
+//                                  if (error) {
+//                                      [AMUtilities showAlertWithInfo:[error localizedDescription]];
+//                                      return ;
+//                                  }
+//                                  NSDictionary *dicInfo = @{
+//                                                            KEY_OF_TYPE:TYPE_OF_WORK_ORDER_LIST_CHANGE,
+//                                                            KEY_OF_INFO:self.localWorkOrders,
+//                                                            KEY_OF_FLAG:[NSNumber numberWithBool:NO]
+//                                                            };
+//                                  [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMORDERLISTVIEWCONTROLLER object:dicInfo];
+//
+//                              }];
+//                              
+//                          }
+//                      }];
+//}
 
 
 

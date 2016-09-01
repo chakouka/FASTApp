@@ -147,6 +147,25 @@
     parsedUser.lunchBreakFrom = [dict valueForKeyWithNullToNil:@"Lunch_Break_From__c"];
     parsedUser.lunchBreakTo = [dict valueForKeyWithNullToNil:@"Lunch_Break_To__c"];
     
+    NSDictionary *serviceAssignmentDict = [dict objectForKey:@"Service_Assignments__r"];
+    NSArray *isBenchTechAvailableArray = [serviceAssignmentDict objectForKey:@"records"];
+    NSDictionary *tempdict;
+    if(isBenchTechAvailableArray != nil)
+    {
+        tempdict = isBenchTechAvailableArray[0];
+        
+        if (tempdict != nil)
+        {
+            if ([tempdict valueForKey:@"Beta_Enabled__c"] != nil)
+            {
+               NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+                [prefs setInteger: [[tempdict valueForKey:@"Beta_Enabled__c"] integerValue] forKey:@"isBenchTechActive"];
+            }
+            
+        }
+    }
+    
+    
     return parsedUser;
 }
 
@@ -854,7 +873,32 @@
     
     return parsedEvent;
 }
-
+- (NSDictionary *)parseBTWorkOrderInfoList:(NSArray *)array
+{
+    NSMutableArray *machineTypeArray = [[NSMutableArray alloc] init];
+    NSMutableDictionary *tempDict = [NSMutableDictionary dictionary];
+    NSMutableDictionary *actualDict = [NSMutableDictionary dictionary];
+    
+    for (NSDictionary *item in array) {
+        bool addOK = YES;
+        @try {
+                [tempDict setObject:item forKey: [item valueForKey: @"machine_Type__c"]];
+        } @catch (NSException *exception) {
+            addOK = NO;
+        } @finally {
+            
+        }
+        if(addOK)
+        {
+            [machineTypeArray addObject:item];
+        }
+    }
+    
+    [actualDict setObject:array forKey:@"BTWorkOrders"];
+    [actualDict setObject:machineTypeArray forKey:@"BTMachineTypesList"];
+    
+    return actualDict;
+}
 - (NSDictionary *)parseWorkOrderInfoList:(NSDictionary *)dict
 {
     NSMutableArray * parsedArray = [NSMutableArray array];

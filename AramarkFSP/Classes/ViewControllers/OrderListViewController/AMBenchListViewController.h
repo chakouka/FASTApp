@@ -43,15 +43,7 @@
 
 - (void)refreshBenchList:(NSMutableArray *)aLocalWorkOrders;
 
-- (void)refreshWorkOrderStatus:(NSMutableArray *)aList;
-
-- (void)refreshTimeAndDistanceBySingleRequest:(NSMutableArray *)aList;
-
-- (void)refreshTimeAndDistanceByRouteRequest:(NSMutableArray *)aList;
-
 - (void)refreshSelectStatusWithWorkOrderId:(NSString *)aWorkOrderId;
-
-- (NSMutableArray *)sortWithMoveList:(NSMutableArray *)moveList;
 
 - (void)showProgressHUD;
 

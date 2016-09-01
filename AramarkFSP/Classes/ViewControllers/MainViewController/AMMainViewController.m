@@ -34,6 +34,7 @@
 #import "AMBenchListViewController.h"
 #import "AMBenchActiveListViewController.h"
 #import "LanguageConfig.h"
+#import "AMProtocolManager.h"
 
 typedef NS_ENUM (NSInteger, MainViewLayoutType) {
 	MainViewLayoutType_MapOnly = 0,
@@ -476,28 +477,28 @@ UIGestureRecognizerDelegate
     });
 }
 - (void)activeBenchListLoadData {
-    
-    MAIN(^{
-        
+
+    [[AMProtocolManager sharedInstance] getActiveBenchTechWOList:^(NSInteger type, NSError *error, id userData, id responseData) {
         NSArray *arrResult;
         
         DLog(@"arrResult : %@",arrResult);
         
-        [self.benchActiveListVC refreshActiveBenchList:[NSMutableArray arrayWithArray:arrResult]];
-        
-    });
+        //[self.benchActiveListVC refreshActiveBenchList:[NSMutableArray arrayWithArray:arrResult]];
+    }];
 }
 - (void)benchListLoadData {
     
-    MAIN(^{
-        
+    [[AMProtocolManager sharedInstance] getBenchTechWOList :^(NSInteger type, NSError *error, id userData, id responseData) {
         NSArray *arrResult;
         
-        DLog(@"arrResult : %@",arrResult);
+        if (responseData != nil && [responseData valueForKey:@"BTWorkOrders"] != nil) {
+            arrResult = [NSArray arrayWithArray:[responseData valueForKey:@"BTWorkOrders"]];
         
-        [self.benchListVC refreshBenchList:[NSMutableArray arrayWithArray:arrResult]];
+            DLog(@"arrResult : %@",arrResult);
+            [self.benchListVC refreshBenchList:[NSMutableArray arrayWithArray:arrResult]];
+        }
         
-    });
+    }];
 }
 - (void)refreshCurrentWorkOrder
 {
@@ -1287,14 +1288,14 @@ UIGestureRecognizerDelegate
 }
 - (void)dealWithNotiFromBenchListViewController:(NSNotification *)notification {
     if ([[[notification object] objectForKey:KEY_OF_TYPE] isEqualToString:TYPE_OF_CELL_SELECTED]) {
-        AMWorkOrder *workOrderInfo = [[notification object] objectForKey:KEY_OF_INFO];
-        self.labelBenchPOSName.text = @"POS Name Data";
-        self.labelBenchAVNotes.text = @"AV Notes Data";
-        self.labelBenchTechName.text = @"Tech Name Data";
-        self.labelBenchAssetNumber.text = @"Asset Number Data";
-        self.labelBenchMachineType.text = @"Machine Type Data";
-        self.labelBenchSerialNumber.text = @"Serial Number Data";
-        self.labelBenchRepairMatrixNTE.text = @"Repair Matrix NTE Data";
+        NSDictionary *workOrderInfo = [[notification object] objectForKey:KEY_OF_INFO];
+        self.labelBenchPOSName.text = [workOrderInfo valueForKeyWithNullToNil: @""];
+        self.labelBenchAVNotes.text = [workOrderInfo valueForKeyWithNullToNil: @""];
+        self.labelBenchTechName.text = [workOrderInfo valueForKeyWithNullToNil: @""];
+        self.labelBenchAssetNumber.text = [workOrderInfo valueForKeyWithNullToNil: @"Id"];
+        self.labelBenchMachineType.text = [workOrderInfo valueForKeyWithNullToNil: @""];
+        self.labelBenchSerialNumber.text = [workOrderInfo valueForKeyWithNullToNil: @"SerialNumber"];
+        self.labelBenchRepairMatrixNTE.text = [workOrderInfo valueForKeyWithNullToNil: @""];
     }
 }
 
