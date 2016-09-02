@@ -36,6 +36,7 @@ typedef NS_ENUM (NSInteger, SortType) {
 	SortType_Null
 };
 
+NSMutableArray *machineTypesArray;
 
 @interface AMBenchListViewController ()
 <
@@ -68,11 +69,13 @@ UISearchBarDelegate
 @synthesize selectedWorkOrderId;
 @synthesize show;
 @synthesize localWorkOrders;
+@synthesize machineTypesArray;
 @synthesize isSorting;
 @synthesize searchOperationQueue;
 @synthesize refreshOperationQueue;
 @synthesize searchResultList;
 @synthesize arrMoveList;
+@synthesize pickerMachineType;
 
 #pragma mark - TEST
 
@@ -114,6 +117,12 @@ UISearchBarDelegate
     
     [self refreshFontInView:self.view];
     
+    self.pickerMachineType = [[UIPickerView alloc] init];
+    self.pickerMachineType.delegate = self;
+    self.pickerMachineType.dataSource = self;
+    [self.viewPickerPanel addSubview:self.pickerMachineType];
+    [[self.viewPickerPanel superview] bringSubviewToFront:self.viewPickerPanel];
+
     self.searchbarTitle.placeholder = MyLocal(@"SEARCH ASSET or Serial No.");
     
     //bkk 2/2/15 - item 000124
@@ -126,9 +135,11 @@ UISearchBarDelegate
 
 - (void)viewWillAppear:(BOOL)animated
 {
+
     [self searchEnable:NO];
     [super viewWillAppear:animated];
     originViewRect = self.view.superview.frame;
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -224,7 +235,7 @@ UISearchBarDelegate
     cell.label_AssetNumber.text = [workOrder valueForKeyWithNullToNil: @"Machine_Number__c"];
     cell.label_SerialNumber.text = [workOrder valueForKeyWithNullToNil: @"SerialNumber"];
 	cell.label_MachineGroup.text = [workOrder valueForKeyWithNullToNil:@"Machine_Number__c"];
-    cell.label_MachineType.text = [[workOrder valueForKeyWithNullToNil: @"Asset__r"]valueForKey:@"Test"];
+    cell.label_MachineType.text = [[[workOrder valueForKeyWithNullToNil: @"Work_Orders__r"]valueForKeyWithNullToNil:@"Machine_Type__r"] valueForKeyWithNullToNil:@"Name"];
     
 	if (selectedWorkOrderId) {
 		if ([[workOrder valueForKey:@"Id"] isEqual:selectedWorkOrderId]) {
@@ -317,7 +328,13 @@ UISearchBarDelegate
 
 #pragma mark - Load Data
 
-
+- (void)refreshBenchMachineTypeList:(NSMutableArray *)aMachineTypes
+{
+    self.machineTypesArray = aMachineTypes;
+    
+    [self myRefreshBenchMachineTypeMethod:aMachineTypes];
+    [self.pickerMachineType reloadAllComponents];
+}
 - (void)refreshBenchList:(NSMutableArray *)aLocalBenchWorkOrders;
 {
     [self myRefreshBenchTaskMethod:aLocalBenchWorkOrders];
@@ -333,6 +350,15 @@ UISearchBarDelegate
     [self reloadData];
 }
 
+- (void)myRefreshBenchMachineTypeMethod:(NSMutableArray *)array {
+   
+    if (isSearching) {
+        [self searchItemWithString:self.searchbarTitle.text inList:localWorkOrders];
+    }
+    
+    
+
+}
 - (void)searchItemWithString:(NSString *)aString inList:(NSMutableArray *)aList {
 	if (!aList || [aList count] == 0) {
         
@@ -363,7 +389,7 @@ UISearchBarDelegate
 
 - (void)mySearchTaskMethod:(id)Info {
 	for (NSDictionary *order in[Info objectForKey:@"List"]) {
-		if ([[[order valueForKeyWithNullToNil:@"Asset__r"] valueForKeyWithNullToNil:@"Id"] rangeOfString:[Info objectForKey:@"String"] options:NSCaseInsensitiveSearch].location != NSNotFound) {
+		if ( ([[order valueForKeyWithNullToNil:@"Machine_Number__c"] rangeOfString:[Info objectForKey:@"String"] options:NSCaseInsensitiveSearch].location != NSNotFound) || ([[order valueForKeyWithNullToNil:@"SerialNumber"] rangeOfString:[Info objectForKey:@"String"] options:NSCaseInsensitiveSearch].location != NSNotFound) || ([[order valueForKeyWithNullToNil:@"Id"] rangeOfString:[Info objectForKey:@"String"] options:NSCaseInsensitiveSearch].location != NSNotFound) ) {//modify Id part in last one to also factor in the Machine Type
 			[searchResultList addObject:order];
 		}
 	}
@@ -431,6 +457,7 @@ UISearchBarDelegate
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if (searchText.length > 0) {
+        [self searchEnable:YES];
         [self searchItemWithString:searchText inList:localWorkOrders];
     } else {
         [self searchEnable:NO];
@@ -582,4 +609,35 @@ UISearchBarDelegate
 //         self.nearOrderListVC.show = !isHidden;
      }];
 }
+
+- (IBAction)btnMachineType:(id)sender
+{
+    [self.pickerMachineType reloadAllComponents];
+    self.viewPickerPanel.hidden = !self.viewPickerPanel.isHidden;
+    
+    //pickerMachineType.hidden = !pickerMachineType.isHidden;
+   
+}
+
+#pragma mark - Picker Delegate
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return [self.machineTypesArray count];
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    NSString *strPickerSelection;
+    NSDictionary *selectedItem = [NSDictionary dictionaryWithDictionary:((NSDictionary *)self.machineTypesArray[row])];
+    NSArray *recordsArray = [NSArray arrayWithArray:    [[selectedItem valueForKeyWithNullToNil: @"Work_Orders__r"]valueForKeyWithNullToNil:@"records"]];
+    
+    
+    strPickerSelection = [[((NSDictionary *)recordsArray[0]) valueForKeyWithNullToNil:@"Machine_Type__r"] valueForKeyWithNullToNil:@"Name"];
+    _labelMachineType.text = strPickerSelection;
+    return strPickerSelection;
+}
+
+
 @end

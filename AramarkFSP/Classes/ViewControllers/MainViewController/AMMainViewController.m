@@ -498,6 +498,13 @@ UIGestureRecognizerDelegate
             [self.benchListVC refreshBenchList:[NSMutableArray arrayWithArray:arrResult]];
         }
         
+        if (responseData != nil && [responseData valueForKey:@"BTMachineTypesList"] != nil) {
+            arrResult = [NSArray arrayWithArray:[responseData valueForKey:@"BTMachineTypesList"]];
+            
+            DLog(@"arrResult : %@",arrResult);
+            [self.benchListVC refreshBenchMachineTypeList:[NSMutableArray arrayWithArray:arrResult]];
+        }
+       
     }];
 }
 - (void)refreshCurrentWorkOrder
@@ -1296,6 +1303,7 @@ UIGestureRecognizerDelegate
         self.labelBenchMachineType.text = [workOrderInfo valueForKeyWithNullToNil: @""];
         self.labelBenchSerialNumber.text = [workOrderInfo valueForKeyWithNullToNil: @"SerialNumber"];
         self.labelBenchRepairMatrixNTE.text = [workOrderInfo valueForKeyWithNullToNil: @""];
+        self.selectedAssetID = [workOrderInfo valueForKeyWithNullToNil:@"Id"];
     }
 }
 
@@ -2177,11 +2185,21 @@ UIGestureRecognizerDelegate
     [UIAlertView showWithTitle:MyLocal(@"Start Bench") message:MyLocal(@"Start Bench Tapped.") style:UIAlertViewStyleDefault cancelButtonTitle:MyLocal(@"OK") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
         return ;
     }];
+    
+    
 }
 
 - (IBAction)tapScrapBenchButtn:(UIButton *)sender {
-    [UIAlertView showWithTitle:MyLocal(@"Scrap Bench") message:MyLocal(@"Scrap Bench Tapped.") style:UIAlertViewStyleDefault cancelButtonTitle:MyLocal(@"OK") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-        return ;
+    
+    [[AMProtocolManager sharedInstance] scrapBenchAsset: self.selectedAssetID completion:^(NSInteger type, NSError *error, id userData, id responseData) {
+
+        if(error)
+        {
+            [UIAlertView showWithTitle:@"Scrap Error" message:[NSString stringWithFormat: @"Error:%@",error] cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                
+            }];
+        }
+        
     }];
 }
 

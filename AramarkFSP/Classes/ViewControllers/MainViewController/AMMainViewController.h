@@ -41,6 +41,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelBenchTechName;
 @property (weak, nonatomic) IBOutlet UILabel *labelBenchAVNotes;
 @property (weak, nonatomic) IBOutlet UILabel *labelBenchRepairMatrixNTE;
+@property (weak, nonatomic) NSString *selectedAssetID;
 
 - (IBAction)clickLoginBtn:(UIButton *)sender;
 - (IBAction)clickLogOutBtn:(UIButton *)sender;

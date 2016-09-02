@@ -880,16 +880,16 @@
     NSMutableDictionary *actualDict = [NSMutableDictionary dictionary];
     
     for (NSDictionary *item in array) {
-        bool addOK = YES;
-        @try {
-                [tempDict setObject:item forKey: [item valueForKey: @"machine_Type__c"]];
-        } @catch (NSException *exception) {
-            addOK = NO;
-        } @finally {
-            
-        }
-        if(addOK)
+
+        //if we get exception, we don't add it because we already added it.
+        NSDictionary *btWODict = [item valueForKeyWithNullToNil:@"Work_Orders__r"];
+        NSArray *recordsArray = [btWODict valueForKeyWithNullToNil:@"records"];
+        NSDictionary *machineTypeDict = recordsArray[0];
+        NSDictionary *machineTypeR = [machineTypeDict valueForKeyWithNullToNil:@"Machine_Type__r"];
+        
+        if([tempDict objectForKey:[machineTypeR valueForKeyWithNullToNil:@"Name"]] == nil)
         {
+            [tempDict setObject:[machineTypeR valueForKeyWithNullToNil:@"Name"] forKey:[machineTypeR valueForKeyWithNullToNil:@"Name"]];
             [machineTypeArray addObject:item];
         }
     }

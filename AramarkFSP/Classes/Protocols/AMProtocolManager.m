@@ -1914,29 +1914,32 @@
 
 - (void)scrapBenchAsset:(NSString *)assetID completion:(AMSFRestCompletionBlock)completionBlock
 {
-    AMSFRequest *request = [[AMSFRequest alloc] init];
-    
-    request.method = SFRestMethodPOST;
-    request.path = @"/Bench/Scrap";
-    request.endpoint = @"/services/apexrest";
-    request.type = AM_REQUEST_SCRAPBTASSET;
-    request.completionBlock = completionBlock;
-    NSDictionary * bodyDict = @{@"assetID": assetID};
-    
-    request.queryParams = bodyDict;
-    
-    [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
-        DLog(@"getActiveBenchTechWOList error info %@",[error localizedDescription]);
-        request.completionBlock(request.type,error,request.userData,nil);
-    } completeBlock:^(id jsonResponse){
-        DLog(@"getActiveBenchTechWOList response");
+    if (assetID != nil)
+    {
+        AMSFRequest *request = [[AMSFRequest alloc] init];
         
-        NSDictionary * parsedDict = nil;
-        NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
+        request.method = SFRestMethodPOST;
+        request.path = @"/Bench/Scrap";
+        request.endpoint = @"/services/apexrest";
+        request.type = AM_REQUEST_SCRAPBTASSET;
+        request.completionBlock = completionBlock;
+        NSDictionary * bodyDict = @{@"assetId": assetID};
         
-        parsedDict = [[AMProtocolParser sharedInstance] parseWorkOrderInfoList:dict];
-        request.completionBlock(request.type,nil, request.userData,parsedDict);
-    }];
+        request.queryParams = bodyDict;
+        
+        [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
+            DLog(@"getActiveBenchTechWOList error info %@",[error localizedDescription]);
+            request.completionBlock(request.type,error,request.userData,nil);
+        } completeBlock:^(id jsonResponse){
+            DLog(@"getActiveBenchTechWOList response");
+            
+            NSDictionary * parsedDict = nil;
+            NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
+            
+            parsedDict = [[AMProtocolParser sharedInstance] parseWorkOrderInfoList:dict];
+            request.completionBlock(request.type,nil, request.userData,parsedDict);
+        }];
+    }
 }
 
 @end
