@@ -1839,6 +1839,31 @@
 }
 
 #pragma mark - Bench Tech Related
+- (void)setBenchWOActive:(NSString *)woID completion:(AMSFRestCompletionBlock)completionBlock
+{
+    AMSFRequest *request = [[AMSFRequest alloc] init];
+    
+    request.method = SFRestMethodPATCH;
+    request.path = @"/Bench/Queue";
+    request.endpoint = @"/services/apexrest";
+    request.type = AM_REQUEST_SETBTWOACTIVE;
+    request.completionBlock = completionBlock;
+    
+    request.queryParams = @{@"workOrderId" : woID};// benchWODict;
+    
+    [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
+        DLog(@"setBenchWOActive error info %@",[error localizedDescription]);
+        request.completionBlock(request.type,error,request.userData,nil);
+    } completeBlock:^(id jsonResponse){
+        DLog(@"setBenchWOActive response");
+        
+        NSDictionary * parsedDict = nil;
+        
+        parsedDict = @{@"Status" : @"Success" };
+        request.completionBlock(request.type,nil, request.userData,parsedDict);
+    }];
+    
+}
 - (void)getBenchTechWOList:(AMSFRestCompletionBlock)completionBlock
 {
     AMSFRequest *request = [[AMSFRequest alloc] init];
@@ -1879,9 +1904,9 @@
         DLog(@"getActiveBenchTechWOList response");
         
         NSDictionary * parsedDict = nil;
-        NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
+        NSArray * array = (NSArray *)[self transferJsonResponseToDictionary:jsonResponse];
         
-        parsedDict = [[AMProtocolParser sharedInstance] parseWorkOrderInfoList:dict];
+        parsedDict = [[AMProtocolParser sharedInstance] parseBTActiveWorkOrderInfoList:array];
         request.completionBlock(request.type,nil, request.userData,parsedDict);
     }];
 }
@@ -1894,7 +1919,7 @@
     request.endpoint = @"/services/apexrest";
     request.type = AM_REQUEST_SETBTACTTIMER;
     request.completionBlock = completionBlock;
-    NSDictionary * bodyDict = @{@"assetID": assetID};
+    NSDictionary * bodyDict = @{@"assetId": assetID};
     
     request.queryParams = bodyDict;
 
@@ -1934,9 +1959,8 @@
             DLog(@"getActiveBenchTechWOList response");
             
             NSDictionary * parsedDict = nil;
-            NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
             
-            parsedDict = [[AMProtocolParser sharedInstance] parseWorkOrderInfoList:dict];
+            parsedDict = @{@"Success": @"YES" }; //[[AMProtocolParser sharedInstance] parseWorkOrderInfoList:dict];
             request.completionBlock(request.type,nil, request.userData,parsedDict);
         }];
     }

@@ -27,5 +27,5 @@
 @dynamic verifyNotes;
 @dynamic woID;
 @dynamic statusID;
-
+@dynamic moveToWarehouse;
 @end

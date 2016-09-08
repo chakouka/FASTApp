@@ -195,6 +195,7 @@ UIGestureRecognizerDelegate
 @synthesize nearMeVC;
 @synthesize benchListVC;
 @synthesize benchActiveListVC;
+@synthesize scrHistoryScroller;
 
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_FROM_AMLEFTBARVIEWCONTROLLER object:nil];
@@ -479,11 +480,12 @@ UIGestureRecognizerDelegate
 - (void)activeBenchListLoadData {
 
     [[AMProtocolManager sharedInstance] getActiveBenchTechWOList:^(NSInteger type, NSError *error, id userData, id responseData) {
-        NSArray *arrResult;
+        NSDictionary *dict = (NSDictionary *)responseData;
+        NSArray *arrResult = [NSArray arrayWithArray: [dict objectForKey: @"BTActiveArray"]];
         
         DLog(@"arrResult : %@",arrResult);
         
-        //[self.benchActiveListVC refreshActiveBenchList:[NSMutableArray arrayWithArray:arrResult]];
+        [self.benchActiveListVC refreshActiveBenchList:[NSMutableArray arrayWithArray:arrResult]];
     }];
 }
 - (void)benchListLoadData {
@@ -1294,16 +1296,24 @@ UIGestureRecognizerDelegate
 
 }
 - (void)dealWithNotiFromBenchListViewController:(NSNotification *)notification {
-    if ([[[notification object] objectForKey:KEY_OF_TYPE] isEqualToString:TYPE_OF_CELL_SELECTED]) {
+
+    if ([[[notification object] objectForKey:KEY_OF_TYPE] isEqualToString:TYPE_OF_CELL_SELECTED])
+    {
         NSDictionary *workOrderInfo = [[notification object] objectForKey:KEY_OF_INFO];
-        self.labelBenchPOSName.text = [workOrderInfo valueForKeyWithNullToNil: @""];
-        self.labelBenchAVNotes.text = [workOrderInfo valueForKeyWithNullToNil: @""];
-        self.labelBenchTechName.text = [workOrderInfo valueForKeyWithNullToNil: @""];
-        self.labelBenchAssetNumber.text = [workOrderInfo valueForKeyWithNullToNil: @"Id"];
-        self.labelBenchMachineType.text = [workOrderInfo valueForKeyWithNullToNil: @""];
+        NSArray *records = [[workOrderInfo valueForKeyWithNullToNil:@"Work_Orders__r"] objectForKey:@"records"];
+        NSArray *assetRequestRecords = [[workOrderInfo valueForKeyWithNullToNil:@"Asset_Requests__r"] objectForKey:@"records"];
+        
+        self.labelBenchAssetNumber.text = [workOrderInfo valueForKeyWithNullToNil:@"Machine_Number__c"]; //[workOrderInfo valueForKeyWithNullToNil: @"Id"];
         self.labelBenchSerialNumber.text = [workOrderInfo valueForKeyWithNullToNil: @"SerialNumber"];
-        self.labelBenchRepairMatrixNTE.text = [workOrderInfo valueForKeyWithNullToNil: @""];
+        self.labelBenchMachineType.text = [[records[0] valueForKeyWithNullToNil:@"Machine_Type__r"] valueForKeyWithNullToNil:@"Name"];
+        self.labelBenchPOSName.text = [[records[0] valueForKeyWithNullToNil:@"Owner"] valueForKeyWithNullToNil:@"Name"];
+        self.labelBenchAVNotes.text = [assetRequestRecords[0] valueForKeyWithNullToNil:@"Verification_Note__c"];
+        self.labelBenchTechName.text = self.labelName.text;
+        
+        self.labelBenchRepairMatrixNTE.text = [NSString stringWithFormat:@"%i", ((int)[workOrderInfo valueForKeyWithNullToNil: @"Repair_Matrix__c"])];
         self.selectedAssetID = [workOrderInfo valueForKeyWithNullToNil:@"Id"];
+        self.selectedWorkorderID = [records[0] valueForKeyWithNullToNil:@"Id"];
+        
     }
 }
 
@@ -1604,18 +1614,51 @@ UIGestureRecognizerDelegate
 
             case LeftViewButtonType_ActiveAssetInfoBenchTech:
             {
-//                //first time in, add the benchListVC to the view
-//                if (![[self.viewActiveBenchPanel subviews] containsObject:self.benchActiveListVC.view]) {
-//                    [self.viewActiveBenchPanel addSubview: self.benchActiveListVC.view];
-//                }
-//                if (self.orderListVC.show) {
-//                    [self changeLeftListPanelHidden:YES animation:NO];
-//                }
-//                if (detailPanelPosition != PositionDetailPanel_Bottom) {
-//                    [self changeDetailPanelViewTo:PositionDetailPanel_Bottom animation:NO];
-//                }
+                //9
+                NSDictionary *fullAssetDict = [NSDictionary dictionaryWithDictionary: [[notification object] objectForKey:@"FullAsset"]];
+                if(fullAssetDict)
+                {
+                    self.lblDtlName.text = [fullAssetDict valueForKeyWithNullToNil:@"Name"];
+                    self.lblDtlSerialNumber.text = [fullAssetDict valueForKeyWithNullToNil:@"SerialNumber"];
+                    self.lblDtlInstallDate.text = [fullAssetDict valueForKeyWithNullToNil:@"InstallDate"];
+                    self.lblDtlAssetNumber.text = [fullAssetDict valueForKeyWithNullToNil:@"Machine_Number__c"];
+                    self.lblDtlMachineType.text = [fullAssetDict valueForKeyWithNullToNil:@""];
+                    self.lblDtlManufacturerWebsite.text = [fullAssetDict valueForKeyWithNullToNil:@""];
+                    self.lblDtlVendKey.text = [fullAssetDict valueForKeyWithNullToNil:@""];
+                    self.lblDtlNextPMDate.text = [fullAssetDict valueForKeyWithNullToNil:@""];
+                    self.lblDtlLocation.text = [fullAssetDict valueForKeyWithNullToNil:@""];
+                    
+                    NSDictionary *historyDict = [fullAssetDict valueForKeyWithNullToNil:@"WODict"];
+                    NSArray *historyArray = [NSArray arrayWithArray:[historyDict objectForKey:@"records"]];
+                    
+                    //remove everything from the scroller to start fresh
+                    for (UIView *subview in self.scrHistoryScroller.subviews) {
+                        [subview removeFromSuperview];
+                    }
+                    
+                    for (NSDictionary *dict in historyArray) {
+                        //loop through all of them and add labels for each to the scrollview
+                        UILabel *woNum = [[UILabel alloc] initWithFrame:CGRectMake(20, 30, 200, 50)];
+                        UILabel *woType = [[UILabel alloc] initWithFrame:CGRectMake(320, 30, 200, 50)];
+                        UILabel *woRepairCode = [[UILabel alloc] initWithFrame:CGRectMake(420, 30, 200, 50)];
+                        UILabel *woAssignedTo = [[UILabel alloc] initWithFrame:CGRectMake(520, 30, 200, 50)];
+                        UILabel *woDate = [[UILabel alloc] initWithFrame:CGRectMake(620, 30, 200, 50)];
+
+                        woNum.text = [dict valueForKeyWithNullToNil:@"Name"];
+                        woType.text = [[dict valueForKeyWithNullToNil: @"RecordType"] valueForKeyWithNullToNil:@"Name"];
+                        woRepairCode.text = @"Blank Type BKK";
+                        woAssignedTo.text = @"Blank Assigned to BKK";
+                        woDate.text = @"Blank Date BKK";
+                        [self.scrHistoryScroller addSubview:woNum];
+                        [self.scrHistoryScroller addSubview:woType];
+                        [self.scrHistoryScroller addSubview:woRepairCode];
+                        [self.scrHistoryScroller addSubview:woAssignedTo];
+                        [self.scrHistoryScroller addSubview:woDate];
+
+                    }
+                }
                 
-                [self changePanelWithType:PanelType_ActiveBench];
+                [self changePanelWithType:PanelType_ActiveDetailBench];
                 
                 if (self.nearMeVC.show) {
                     [self.nearMeVC changeLeftListPanelHidden:YES animation:YES];
@@ -2176,17 +2219,37 @@ UIGestureRecognizerDelegate
     }
 }
 
-//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-//{
-//   
-//}
 #pragma mark BenchTechViewRelated
 - (IBAction)tapStartBenchButtn:(UIButton *)sender {
-    [UIAlertView showWithTitle:MyLocal(@"Start Bench") message:MyLocal(@"Start Bench Tapped.") style:UIAlertViewStyleDefault cancelButtonTitle:MyLocal(@"OK") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-        return ;
+
+    
+//    NSMutableDictionary *btWODict = [[NSMutableDictionary alloc] init];
+//    
+//    NSArray *workorderIDArray = [NSArray arrayWithObjects: @{@"Id" : self.selectedWorkorderID,
+//                                                             @"Status__c" : @"BT In Progress",
+//                                                            }, nil];
+//    
+//    [btWODict setObject:workorderIDArray forKey:@"Work_Order__c"];
+//    NSMutableDictionary *payloadDict = [[NSMutableDictionary alloc] init];
+//    [payloadDict setObject:btWODict forKey:@"data"];
+//    
+    [[AMProtocolManager sharedInstance] setBenchWOActive:self.selectedWorkorderID completion:^(NSInteger type, NSError *error, id userData, id responseData) {
+        if(error)
+        {
+//            [UIAlertView showWithTitle:MyLocal(@"Error adding to active queue.") message:MyLocal(error.description) style:UIAlertViewStyleDefault cancelButtonTitle:MyLocal(@"OK") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+//                return;
+//                
+//            }];
+        }
     }];
+}
+- (IBAction)tapDoneFromDetailInfo:(id)sender {
+    NSDictionary *dicInfo = @{
+                              KEY_OF_TYPE:TYPE_OF_BTN_ITEM_CLICKED,
+                              KEY_OF_INFO:[NSNumber numberWithInteger:8]
+                              };
     
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMLEFTBARVIEWCONTROLLER object:dicInfo];
 }
 
 - (IBAction)tapScrapBenchButtn:(UIButton *)sender {

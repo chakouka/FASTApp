@@ -34,6 +34,7 @@
 
 @synthesize repairWOHistory;
 @synthesize locationName;
+@synthesize moveToWarehouse;
 
 - (NSString *)description
 {

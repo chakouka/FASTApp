@@ -899,6 +899,38 @@
     
     return actualDict;
 }
+
+- (NSDictionary *)parseBTActiveWorkOrderInfoList:(NSArray *)array
+{
+    NSMutableDictionary *woDict = [NSMutableDictionary dictionary];
+    
+    NSMutableDictionary *outerDict = [NSMutableDictionary dictionary];
+    NSMutableArray *arrayBTActiveData = [NSMutableArray array];
+    
+    for (NSDictionary *item in array) {
+        NSArray *records;// = [NSMutableArray array];
+        NSMutableDictionary *innerDict = [NSMutableDictionary dictionary];
+                                   
+        NSString *value = [item valueForKey:@"Id"];
+        [innerDict setObject:value forKey:@"Id"];
+        value = [item valueForKey: @"InstallDate"];
+        [innerDict setObject:value forKey:@"InstallDate"];
+        value = [item valueForKey: @"Machine_Number__c"];
+        [innerDict setObject:value forKey:@"Machine_Number__c"];
+        value = [item valueForKey: @"Name"];
+        [innerDict setObject:value forKey:@"Name"];
+        value = [item valueForKey: @"SerialNumber"];
+        [innerDict setObject:value forKey:@"SerialNumber"];
+        woDict = [item objectForKey:@"Work_Orders__r"];
+        [innerDict setObject:woDict forKey:@"WODict"];
+        records = [NSArray arrayWithArray:[woDict objectForKey:@"records"]];
+        [innerDict setObject:records[0] forKey:@"Item"];
+        [arrayBTActiveData addObject:innerDict];        
+    }
+    [outerDict setObject:arrayBTActiveData forKey:@"BTActiveArray"];
+    return outerDict;
+}
+
 - (NSDictionary *)parseWorkOrderInfoList:(NSDictionary *)dict
 {
     NSMutableArray * parsedArray = [NSMutableArray array];

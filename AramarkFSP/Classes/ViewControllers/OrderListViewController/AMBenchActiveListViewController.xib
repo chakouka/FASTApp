@@ -13,11 +13,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="340" height="716"/>
+            <rect key="frame" x="0.0" y="0.0" width="930" height="716"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" id="EWw-bZ-hxr">
-                    <rect key="frame" x="0.0" y="88" width="340" height="628"/>
+                    <rect key="frame" x="0.0" y="88" width="930" height="628"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -27,11 +27,11 @@
                     </connections>
                 </tableView>
                 <view contentMode="scaleToFill" id="hFI-Wf-B9E">
-                    <rect key="frame" x="0.0" y="0.0" width="340" height="87"/>
+                    <rect key="frame" x="0.0" y="0.0" width="1013" height="87"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ykE-t7-z6t">
-                            <rect key="frame" x="121" y="29" width="99" height="30"/>
+                            <rect key="frame" x="121" y="29" width="772" height="30"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <state key="normal" title="Back to Bench"/>
                             <connections>
@@ -39,7 +39,7 @@
                             </connections>
                         </button>
                         <view contentMode="scaleToFill" id="Bue-LL-SbH">
-                            <rect key="frame" x="0.0" y="84" width="340" height="2"/>
+                            <rect key="frame" x="0.0" y="84" width="930" height="2"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
@@ -51,7 +51,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="272" y="305"/>
+            <point key="canvasLocation" x="380.5" y="305"/>
         </view>
     </objects>
 </document>

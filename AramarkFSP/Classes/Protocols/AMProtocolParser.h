@@ -61,6 +61,7 @@
  *
  */
 - (NSDictionary *)parseBTWorkOrderInfoList:(NSArray *)array;
+- (NSDictionary *)parseBTActiveWorkOrderInfoList:(NSArray *)array;
 - (NSDictionary *)parseWorkOrderInfoList:(NSDictionary *)dict;
 
 /**

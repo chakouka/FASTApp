@@ -28,5 +28,6 @@
 @property (nonatomic, retain) NSString * verifyNotes;
 @property (nonatomic, retain) NSString * woID;
 @property (nonatomic, retain) NSString * statusID;
+@property (nonatomic, retain) NSString *moveToWarehouse;
 
 @end

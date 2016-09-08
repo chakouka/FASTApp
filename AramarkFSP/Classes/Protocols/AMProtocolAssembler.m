@@ -254,7 +254,20 @@
             if (assetReq.verifyNotes) {
                 [assetReqDict setObject:assetReq.verifyNotes forKey:@"Verification_Note__c"];
             }
-
+            //bkk 9/6/2016 - added Move to WarehouseFunctionality
+            NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+            bool isBenchTech = [[prefs valueForKey:@"isBenchTechActive"] boolValue];
+            
+            if(isBenchTech) {
+                //bkk 9/2/2016 - Move to Warehouse
+                if (assetReq.moveToWarehouse) {
+                    [assetReqDict setObject:assetReq.moveToWarehouse forKey:@"Condition__c"];
+                    if([assetReq.status isEqualToString: @"Found"]  && ([assetReq.moveToWarehouse isEqualToString:@"Working"] || [assetReq.moveToWarehouse isEqualToString:@"Not Working"]))
+                    {
+                        [assetReqDict setObject:@1 forKey:@"Return_to_Warehouse__c"];//Flag for Shobha - unnecessary
+                    }
+                }
+            }
             [assetRequestDictArray addObject:assetReqDict];
         }
         

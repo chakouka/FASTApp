@@ -26,5 +26,6 @@
 @property (nonatomic, strong) NSDate * verifiedDate;
 @property (nonatomic, strong) NSString * verifyNotes;
 @property (nonatomic, retain) NSString * statusID;
+@property (nonatomic, strong) NSString *moveToWarehouse;
 
 @end

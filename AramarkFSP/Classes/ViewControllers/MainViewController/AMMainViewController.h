@@ -41,7 +41,22 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelBenchTechName;
 @property (weak, nonatomic) IBOutlet UILabel *labelBenchAVNotes;
 @property (weak, nonatomic) IBOutlet UILabel *labelBenchRepairMatrixNTE;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblDtlName;
+@property (weak, nonatomic) IBOutlet UILabel *lblDtlSerialNumber;
+@property (weak, nonatomic) IBOutlet UILabel *lblDtlInstallDate;
+@property (weak, nonatomic) IBOutlet UILabel *lblDtlAssetNumber;
+@property (weak, nonatomic) IBOutlet UILabel *lblDtlMachineType;
+@property (weak, nonatomic) IBOutlet UILabel *lblDtlManufacturerWebsite;
+@property (weak, nonatomic) IBOutlet UILabel *lblDtlVendKey;
+@property (weak, nonatomic) IBOutlet UILabel *lblDtlNextPMDate;
+@property (weak, nonatomic) IBOutlet UILabel *lblDtlLocation;
+
+@property (weak, nonatomic) IBOutlet UIScrollView *scrHistoryScroller;
+
+
 @property (weak, nonatomic) NSString *selectedAssetID;
+@property (weak, nonatomic) NSString *selectedWorkorderID;
 
 - (IBAction)clickLoginBtn:(UIButton *)sender;
 - (IBAction)clickLogOutBtn:(UIButton *)sender;

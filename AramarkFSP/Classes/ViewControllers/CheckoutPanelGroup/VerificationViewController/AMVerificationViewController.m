@@ -37,7 +37,8 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 	PopViewType_Select_VerificationStatus = 1000,
 	PopViewType_Select_NormalLocation,
 	PopViewType_Select_AddLocation,
-	PopViewType_Select_AddStatus
+	PopViewType_Select_AddStatus,
+    PopViewType_Select_MoveToWarehouse
 };
 
 typedef NS_ENUM (NSInteger, InfoType) {
@@ -48,6 +49,8 @@ typedef NS_ENUM (NSInteger, InfoType) {
 
 #define TEXT_OF_NEW         @"New"
 #define TEXT_OF_FOUND       @"Found"
+#define TEXT_OF_WORKING         @"Working"
+#define TEXT_OF_NOT_WORKING       @"Not Working"
 
 @interface AMVerificationViewController ()
 <
@@ -348,6 +351,8 @@ AMVerificationAddSectionViewDelegate
                     aRequest.woID = self.workOrder.woID;
                     aRequest.posID = self.workOrder.posID;
                     aRequest.locationID = aAsset.locationID;
+                    aRequest.moveToWarehouse = aAsset.moveToWarehouse;
+                    
                     [arrResultAssetRequest addObject:aRequest];
                 }
             }
@@ -401,6 +406,41 @@ AMVerificationAddSectionViewDelegate
     if (sender.superview.superview.window) {
         [aPopoverVC presentPopoverFromRect:sender.frame inView:sender.superview.superview permittedArrowDirections:UIPopoverArrowDirectionRight animated:NO];
     }
+}
+
+- (void)btnMoveToWarehouseTapped:(UIButton *)sender {
+    UIButton *button = ((UIButton*) sender);
+    
+    AMVerificationAddTableViewCell *cell = [self.mainTableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow:button.tag inSection:[self.mainTableView numberOfSections]-1]];
+
+    cell.imgCheckmark.hidden = !cell.imgCheckmark.isHidden;
+    
+    NSMutableDictionary *dicInfos = [self.arrVerificationInfos objectAtIndex:sender.tag];
+    //AMAsset *aAsset = [dicInfos objectForKey:KEY_OF_ASSET_INFO];
+    AMAssetRequest *aAsset = [dicInfos objectForKey:KEY_OF_ASSETREQUEST_INFO];
+    
+    if(!cell.imgCheckmark.hidden)
+    {
+        [UIAlertView showWithTitle:@"Working/Not Working" message:MyLocal(@"Is equipment being returned in working condition?") style:UIAlertViewStyleDefault cancelButtonTitle:MyLocal(@"NO") otherButtonTitles:@[MyLocal(@"YES"), MyLocal(@"MISSING")] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            
+            if(buttonIndex == 0)
+            {
+                //YES
+                aAsset.moveToWarehouse = MyLocal(@"Not Working");
+                
+            } else if (buttonIndex == 1) {
+                //NO
+                aAsset.moveToWarehouse = MyLocal(@"Working");
+            } else {
+                aAsset.moveToWarehouse = MyLocal(@"Missing");
+            }
+            [dicAddInfo setObject:aAsset.moveToWarehouse forKey:KEY_OF_MOVE_TO_WAREHOUSE];
+            
+        }];
+    } else {
+        [dicAddInfo setObject:@"" forKey:KEY_OF_MOVE_TO_WAREHOUSE];
+    }
+    
 }
 
 - (void)clickAddStatusBtn:(UIButton *)sender {
@@ -480,6 +520,7 @@ AMVerificationAddSectionViewDelegate
     aNew.statusID = [[AMLogicCore sharedInstance] getRecordTypeIdByName:aAsset.status forObject:RECORD_TYPE_OF_ASSET];
     aNew.woID = self.workOrder.woID;
     aNew.verifyNotes = aAsset.verifyNotes;
+    aNew.moveToWarehouse = [dicAddInfo objectForKey:KEY_OF_MOVE_TO_WAREHOUSE];//aAsset.moveToWarehouse;
     
     NSString *strLocation = [dicAddInfo objectForKey:KEY_OF_LOCATION];
     
@@ -514,6 +555,8 @@ AMVerificationAddSectionViewDelegate
 #pragma mark -
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section == [self.arrVerificationInfos count]) {
+        
+        //This part is for adding new verification
 		AMVerificationAddTableViewCell *cell = (AMVerificationAddTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"AMVerificationAddTableViewCell"];
 		if (cell == nil) {
 			NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AMVerificationAddTableViewCell" owner:[AMVerificationAddTableViewCell class] options:nil];
@@ -548,10 +591,28 @@ AMVerificationAddSectionViewDelegate
 		[cell.btnAdd addTarget:self action:@selector(clickAddBtn:) forControlEvents:UIControlEventTouchUpInside];
         
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+        //bkk 9/2/2016 - added Move to WarehouseFunctionality
+        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+        bool isBenchTech = [[prefs valueForKey:@"isBenchTechActive"] boolValue];
+        if(isBenchTech)
+        {
+            cell.btnMoveToWarehouse.tag = indexPath.row;
+            
+            [cell.btnMoveToWarehouse addTarget:self action:@selector(btnMoveToWarehouseTapped:) forControlEvents:UIControlEventTouchUpInside];
+            cell.btnMoveToWarehouse.hidden = NO;
+            cell.imgCheckmarkBackground.hidden = NO;
+            cell.lblMoveToWarehouse.hidden = NO;
+        } else {
+            cell.btnMoveToWarehouse.hidden = YES;
+            cell.imgCheckmark.hidden = YES;
+            cell.imgCheckmarkBackground.hidden = YES;
+            cell.lblMoveToWarehouse.hidden = YES;
+        }
 		return cell;
 	}
 	else {
+        
+        //This section is for existing verification, ie. NOT NEW
 		NSMutableDictionary *dicInfos = [self.arrVerificationInfos objectAtIndex:indexPath.section];
         
 		NSInteger iInfoType = [[dicInfos objectForKey:KEY_OF_INFOTYPE] intValue];
@@ -636,7 +697,24 @@ AMVerificationAddSectionViewDelegate
             cell.textFieldUpdateSerial.text = [aAssetRequest.updatedSNumber length] == 0 ? TEXT_OF_NULL : aAssetRequest.updatedSNumber;
             
             [cell enableEdit:[[dicInfos objectForKey:KEY_OF_EDITABLE] boolValue]];
-            
+//            //bkk 9/2/2016 - added Move to WarehouseFunctionality
+//            NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+//            bool isBenchTech = [[prefs valueForKey:@"isBenchTechActive"] boolValue];
+//            if(isBenchTech)
+//            {
+//                cell.btnMoveToWarehouse.tag = indexPath.row;
+//            
+//                [cell.btnMoveToWarehouse addTarget:self action:@selector(btnMoveToWarehouseTapped:) forControlEvents:UIControlEventTouchUpInside];
+//                cell.btnMoveToWarehouse.hidden = NO;
+//                cell.imgCheckmarkBackground.hidden = NO;
+//                cell.lblMoveToWarehouse.hidden = NO;
+//            } else {
+//                cell.btnMoveToWarehouse.hidden = YES;
+//                cell.imgCheckmark.hidden = YES;
+//                cell.imgCheckmarkBackground.hidden = YES;
+//                cell.lblMoveToWarehouse.hidden = YES;
+//            }
+         
 			return cell;
 		}
 		else {
@@ -662,7 +740,7 @@ AMVerificationAddSectionViewDelegate
 			cell.textViewNote.tag = (indexPath.section * 1000 + VerificationTextInputType_AddNotes);
             cell.textViewNote.text = [aAssetRequest.verifyNotes length] == 0 ? TEXT_OF_WRITE_NOTE : aAssetRequest.verifyNotes;
             cell.textViewNote.editable = NO;
-            
+            cell.imgCheckmark.hidden = ([dicInfos objectForKey:KEY_OF_MOVE_TO_WAREHOUSE] != nil && ![[dicInfos objectForKey:KEY_OF_MOVE_TO_WAREHOUSE] isEqualToString: @""]);//bkk 9/6/2016
 			return cell;
 		}
 	}
@@ -1083,12 +1161,26 @@ AMVerificationAddSectionViewDelegate
 		aAsset.verificationStatus = strNewStatus;
         
 		[aPopoverVC dismissPopoverAnimated:YES];
-		[self.mainTableView reloadSections:[NSIndexSet indexSetWithIndex:aVerificationStatusTableViewController.aIndexPath.section] withRowAnimation:UITableViewRowAnimationNone];
+        
+        [UIAlertView showWithTitle:@"Working/Not Working" message:MyLocal(@"Is equipment being returned in working condition?") style:UIAlertViewStyleDefault cancelButtonTitle:MyLocal(@"NO") otherButtonTitles:@[MyLocal(@"YES")] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            
+            if(buttonIndex > 0)
+            {
+                //YES
+                aAsset.moveToWarehouse = @"Working";
+            } else {
+                //NO
+                aAsset.moveToWarehouse = @"Not Working";
+            }
+            
+            [self.mainTableView reloadSections:[NSIndexSet indexSetWithIndex:aVerificationStatusTableViewController.aIndexPath.section] withRowAnimation:UITableViewRowAnimationNone];
+        }];
 	}
 	else if (aVerificationStatusTableViewController.tag == PopViewType_Select_NormalLocation) {
         
         if ([[aInfo objectForKey:@"DATA"] isKindOfClass:[AMLocation class]])
         {
+            //Existing location
             NSMutableDictionary *dicInfos = [self.arrVerificationInfos objectAtIndex:aVerificationStatusTableViewController.aIndexPath.section];
             AMAsset *aAsset = [dicInfos objectForKey:KEY_OF_ASSET_INFO];
             AMLocation *aLocation = [aInfo objectForKey:kAMPOPOVER_DICTIONARY_KEY_DATA];
@@ -1097,6 +1189,8 @@ AMVerificationAddSectionViewDelegate
             [aPopoverVC dismissPopoverAnimated:YES];
             [self.mainTableView reloadSections:[NSIndexSet indexSetWithIndex:aVerificationStatusTableViewController.aIndexPath.section] withRowAnimation:UITableViewRowAnimationNone];
         } else {
+            
+            //New User entered location
             [aPopoverVC dismissPopoverAnimated:YES];
             
            // UIAlertView *alertViewChangeName=[[UIAlertView alloc] sh
@@ -1150,6 +1244,29 @@ AMVerificationAddSectionViewDelegate
         
 		[aPopoverVC dismissPopoverAnimated:YES];
 	}
+    else if (aVerificationStatusTableViewController.tag == PopViewType_Select_MoveToWarehouse) {
+//        AMAssetRequest *aAsset = [dicAddInfo objectForKey:KEY_OF_MOVE_TO_WAREHOUSE];
+//        aAsset.status = [aInfo objectForKey:kAMPOPOVER_DICTIONARY_KEY_DATA];
+//        aAsset.moveToWarehouse = @"Working";
+//        
+//        [self.mainTableView reloadSections:[NSIndexSet indexSetWithIndex:[self.arrVerificationInfos count]] withRowAnimation:UITableViewRowAnimationNone];
+//        
+//        [aPopoverVC dismissPopoverAnimated:YES];
+        AMAssetRequest *aAsset = [dicAddInfo objectForKey:KEY_OF_ADD_ASSETREQUEST_INFO];
+        aAsset.status = [aInfo objectForKey:kAMPOPOVER_DICTIONARY_KEY_DATA];
+        
+        [UIAlertView showWithTitle:@"Working/Not Working" message:MyLocal(@"Is equipment being returned in working condition?") style:UIAlertViewStyleDefault cancelButtonTitle:MyLocal(@"NO") otherButtonTitles:@[MyLocal(@"YES")] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            
+            if(buttonIndex > 0)
+            {
+                //YES
+                aAsset.moveToWarehouse = @"Working";
+            } else {
+                //NO
+                aAsset.moveToWarehouse = @"Not Working";
+            }
+        }];
+    }
 }
 
 - (void)acquireLocationFor:(AMAssetRequest *)aAssetRequest withLocation:(NSString *)strLocation

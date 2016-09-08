@@ -56,6 +56,7 @@
 #define KEY_OF_INITIAL_DATE             @"INITIAL_DATE"
 #define KEY_OF_EDITABLE                 @"KEY_OF_EDITABLE"
 #define KEY_OF_LOCATION                   @"KEY_OF_LOCATION"
+#define KEY_OF_MOVE_TO_WAREHOUSE          @"MOVE_TO_WAREHOUSE"
 
 #define KEY_OF_CHECK_STATUS             @"CHECK_STATUS"
 #define KEY_OF_QUESTION                 @"QUESTION"

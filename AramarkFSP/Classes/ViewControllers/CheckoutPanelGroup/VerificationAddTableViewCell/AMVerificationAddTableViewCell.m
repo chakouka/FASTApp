@@ -17,6 +17,7 @@
     self.labelTSerial.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Serial #")];
     self.labelTLocation.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Location")];
     self.labelTVerificationNotes.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Verification Notes")];
+    self.lblMoveToWarehouse.text = [NSString stringWithFormat:@"%@:", MyLocal(@"Move To Warehouse")];
     
     [self.btnAdd setTitle:MyLocal(@"ADD") forState:UIControlStateNormal];
     [self.btnAdd setTitle:MyLocal(@"ADD") forState:UIControlStateHighlighted];

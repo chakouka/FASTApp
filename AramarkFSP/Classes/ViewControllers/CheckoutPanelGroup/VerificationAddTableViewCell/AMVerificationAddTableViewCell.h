@@ -25,4 +25,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelTLocation;
 @property (weak, nonatomic) IBOutlet UILabel *labelTVerificationNotes;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnMoveToWarehouse;
+@property (weak, nonatomic) IBOutlet UILabel *lblMoveToWarehouse;
+@property (weak, nonatomic) IBOutlet UIImageView *imgCheckmark;
+@property (weak, nonatomic) IBOutlet UIImageView *imgCheckmarkBackground;
+
 @end

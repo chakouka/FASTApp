@@ -25,10 +25,11 @@
 @synthesize machineType;
 @synthesize verifiedDate;
 @synthesize verifyNotes;
+@synthesize moveToWarehouse;
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"\n assetID : %@ \n locationID : %@ \n posID : %@ \n machineNumber : %@ \n serialNumber : %@ \n updatedMNumber : %@ \n updatedSNumber : %@ \n status : %@ \n verifyNotes : %@",assetID,locationID,posID,machineNumber,serialNumber,updatedMNumber,updatedSNumber,status,verifyNotes];
+    return [NSString stringWithFormat:@"\n assetID : %@ \n locationID : %@ \n posID : %@ \n machineNumber : %@ \n serialNumber : %@ \n updatedMNumber : %@ \n updatedSNumber : %@ \n status : %@ \n verifyNotes : %@ :\n moveToWarehouse : %@",assetID,locationID,posID,machineNumber,serialNumber,updatedMNumber,updatedSNumber,status,verifyNotes, moveToWarehouse];
 }
 
 @end

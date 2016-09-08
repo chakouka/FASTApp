@@ -34,7 +34,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelTUpdatedSerial;
 @property (weak, nonatomic) IBOutlet UILabel *labelTVerificationNotes;
 
-
 - (void)enableEdit:(BOOL)enable;
 
 @end

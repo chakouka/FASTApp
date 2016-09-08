@@ -19,7 +19,7 @@
 #import "JumpMapApp.h"
 #import "AppDelegate.h"
 #import <AVFoundation/AVFoundation.h>
-
+#import "AMProtocolManager.h"
 #define HEIGH_OF_TABLEVIEW_ORIGINAL     88.0
 #define HEIGH_OF_TABLEVIEW_CHANGED      218.0
 #define HEIGH_OF_TABLEVIEW_CELL         146.0   //TODO::Hidden estimate time
@@ -127,7 +127,7 @@ UISearchBarDelegate
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self searchEnable:NO];
+//    [self searchEnable:NO];
     [super viewWillAppear:animated];
     originViewRect = self.view.superview.frame;
 }
@@ -208,52 +208,19 @@ UISearchBarDelegate
 		cell.contentView.backgroundColor = [UIColor clearColor];
 	}
     
-	AMWorkOrder *workOrder = nil;
-    
-	if (isSearching) {
-		workOrder = [self.searchResultList objectAtIndex:indexPath.row];
-	}
-	else
-    {
-		workOrder = [self.localWorkOrders objectAtIndex:indexPath.row];
-	}
-    
+	NSDictionary *workOrder = nil;
+
+    workOrder = [self.localWorkOrders objectAtIndex:indexPath.row];
+
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
 
+    cell.fullAssetInfoDict = [NSDictionary dictionaryWithDictionary: workOrder];
+    cell.label_AssetNumber.text = [workOrder valueForKeyWithNullToNil:@"Machine_Number__c"];
+    cell.label_SerialNumber.text = [workOrder valueForKeyWithNullToNil:@"SerialNumber"];
+    cell.label_MachineType.text = @"BKMachineType";
     
-	cell.label_AssetNumber.text = workOrder.assetID;//workOrder.accountName;
-	cell.label_SerialNumber.text = @"BKSerialNumber";//strType;
-	//cell.label_MachineGroup.text = @"BKMachineGroup";//workOrder.contact;
-    cell.label_MachineType.text = workOrder.machineTypeName;// @"BKMachineType";
-    
-    UIImage *image = nil;
-    
-    if ([workOrder.priority isEqualToLocalizedString:kAMPRIORITY_STRING_CRITICAL]) {
-        image = [UIImage imageNamed:@"alert-background.png"];
-    }
-    else if([workOrder.priority isEqualToLocalizedString:kAMPRIORITY_STRING_HIGH]) {
-        image = [UIImage imageNamed:@"orange_priority.png"];
-    }
-    else if([workOrder.priority isEqualToLocalizedString:kAMPRIORITY_STRING_MEDIUM]) {
-        image = [UIImage imageNamed:@"blue_priority.png"];
-    }
-    else {
-        image = [UIImage imageNamed:@"green_priority.png"];
-    }
-    
-//    cell.label_Index.text = [NSString stringWithFormat:@"%d", indexPath.row + 1];
-//    cell.imageIndex.image = image;
-//    
-//    if (([workOrder.eventList count] > 1)) {
-//        cell.viewM.hidden = NO;
-//        cell.imageM.image = image;
-//    }
-//    else
-//    {
-//        cell.viewM.hidden = YES;
-//    }
-//    
+
     cell.btnGetAssetInfo.tag = indexPath.row;
 
     cell.btnStart.tag = indexPath.row;
@@ -265,25 +232,18 @@ UISearchBarDelegate
     [cell.btnStop addTarget:self action:@selector(clickStopBtn:) forControlEvents:UIControlEventTouchUpInside];
     [cell.btnCheckout addTarget:self action:@selector(clickCheckoutBtn:) forControlEvents:UIControlEventTouchUpInside];
     
-
-//
-//    NSTimeZone *aZone = [[AMProtocolParser sharedInstance] timeZoneOnSalesforce];
-//    
-//    cell.label_EstimationDuration.text = [NSString stringWithFormat:@"%@ - %@",[workOrder.estimatedTimeStart formattedDateWithFormat:@"HH:mm" timeZone:aZone],[workOrder.estimatedTimeEnd formattedDateWithFormat:@"HH:mm" timeZone:aZone]];
-    
-	if (selectedWorkOrderId) {
-		if ([workOrder.woID isEqual:selectedWorkOrderId]) {
-			[cell showShadeStatus:NO];
-		}
-		else {
-			[cell showShadeStatus:YES];
-		}
-	}
-	else {
-		cell.viewShade.hidden = YES;
-		cell.viewRight.hidden = YES;
-	}
-    
+    if (selectedWorkOrderId) {
+        if ([[workOrder valueForKey:@"Id"] isEqual:selectedWorkOrderId]) {
+            [cell showShadeStatus:NO];
+        }
+        else {
+            [cell showShadeStatus:YES];
+        }
+    }
+    else {
+        cell.viewShade.hidden = YES;
+        cell.viewRight.hidden = YES;
+    }
     
 	return cell;
 }
@@ -318,8 +278,8 @@ UISearchBarDelegate
     }
     self.selectedWorkOrderId = aWorkOrderId;
     
-    if (isSearching) {
-		[self searchEnable:NO];
+    if (isSearching) {//
+//		[self searchEnable:NO];
         self.searchbarTitle.text = @"";
         if ([self.searchbarTitle isFirstResponder]) {
             [self.searchbarTitle resignFirstResponder];
@@ -381,92 +341,92 @@ UISearchBarDelegate
     
     [self reloadData];
 }
+//
+//- (void)refreshTimeAndDistanceBySingleRequest:(NSMutableArray *)aList
+//{
+//    for (AMWorkOrder *workOrder in localWorkOrders) {
+//        for (GoogleRouteInfo *info in aList) {
+//            if ([workOrder.woID isEqualToString:info.gId]) {
+//                workOrder.nextDistance = [info.gDistance.text length] != 0 ? info.gDistance.text : workOrder.nextDistance;
+//                workOrder.nextTime =  [info.gDuration.text length] != 0 ? info.gDuration.text : workOrder.nextTime;
+//                break;
+//            }
+//        }
+//    }
+//    
+//    [self reloadData];
+//}
 
-- (void)refreshTimeAndDistanceBySingleRequest:(NSMutableArray *)aList
-{
-    for (AMWorkOrder *workOrder in localWorkOrders) {
-        for (GoogleRouteInfo *info in aList) {
-            if ([workOrder.woID isEqualToString:info.gId]) {
-                workOrder.nextDistance = [info.gDistance.text length] != 0 ? info.gDistance.text : workOrder.nextDistance;
-                workOrder.nextTime =  [info.gDuration.text length] != 0 ? info.gDuration.text : workOrder.nextTime;
-                break;
-            }
-        }
-    }
-    
-    [self reloadData];
-}
-
-- (void)refreshTimeAndDistanceByRouteRequest:(NSMutableArray *)aList
-{
-    for (AMWorkOrder *workOrder in localWorkOrders) {
-        for (GooglePointInfo *info in aList) {
-            if ([workOrder.woID isEqualToString:info.gId]) {
-                workOrder.nextDistance = [info.gDistance.text length] != 0 ? info.gDistance.text : workOrder.nextDistance;
-                workOrder.nextTime =  [info.gDuration.text length] != 0 ? info.gDuration.text : workOrder.nextTime;
-                break;
-            }
-        }
-    }
-    
-    [self reloadData];
-}
+//- (void)refreshTimeAndDistanceByRouteRequest:(NSMutableArray *)aList
+//{
+//    for (AMWorkOrder *workOrder in localWorkOrders) {
+//        for (GooglePointInfo *info in aList) {
+//            if ([workOrder.woID isEqualToString:info.gId]) {
+//                workOrder.nextDistance = [info.gDistance.text length] != 0 ? info.gDistance.text : workOrder.nextDistance;
+//                workOrder.nextTime =  [info.gDuration.text length] != 0 ? info.gDuration.text : workOrder.nextTime;
+//                break;
+//            }
+//        }
+//    }
+//    
+//    [self reloadData];
+//}
 
 - (void)myRefreshTaskMethod:(NSMutableArray *)aWorkOrders {
     
-    for (AMWorkOrder *work in aWorkOrders) {
-        if ([work.eventList count] > 1) {
-            isCooperative = YES;
-            break;
-        }
-    }
+//    for (AMWorkOrder *work in aWorkOrders) {
+//        if ([work.eventList count] > 1) {
+//            isCooperative = YES;
+//            break;
+//        }
+//    }
     
 	self.localWorkOrders = [NSMutableArray arrayWithArray:aWorkOrders];
     
-    if (isSearching) {
-        [self searchItemWithString:self.searchbarTitle.text inList:localWorkOrders];
-    }
+//    if (isSearching) {
+//        [self searchItemWithString:self.searchbarTitle.text inList:localWorkOrders];
+//    }
     
 	[self reloadData];
 }
 
-- (void)searchItemWithString:(NSString *)aString inList:(NSMutableArray *)aList {
-	if (!aList || [aList count] == 0) {
-        
-        if (searchResultList && [searchResultList count] > 0) {
-            [searchResultList removeAllObjects];
-        }
-        
-		return;
-	}
-    
-	if (!aString) {
-		aString = @"";
-	}
-    
-	[searchOperationQueue cancelAllOperations];
-    
-	if (searchResultList && [searchResultList count] > 0) {
-		[searchResultList removeAllObjects];
-	}
-    
-	NSInvocationOperation *theOp = [[NSInvocationOperation alloc]
-	                                initWithTarget:self
-                                    selector:@selector(mySearchTaskMethod:)
-                                    object:@{ @"String":aString, @"List":aList }];
-    
-	[searchOperationQueue addOperation:theOp];
-}
+//- (void)searchItemWithString:(NSString *)aString inList:(NSMutableArray *)aList {
+//	if (!aList || [aList count] == 0) {
+//        
+//        if (searchResultList && [searchResultList count] > 0) {
+//            [searchResultList removeAllObjects];
+//        }
+//        
+//		return;
+//	}
+//    
+//	if (!aString) {
+//		aString = @"";
+//	}
+//    
+//	[searchOperationQueue cancelAllOperations];
+//    
+//	if (searchResultList && [searchResultList count] > 0) {
+//		[searchResultList removeAllObjects];
+//	}
+//    
+//	NSInvocationOperation *theOp = [[NSInvocationOperation alloc]
+//	                                initWithTarget:self
+//                                    selector:@selector(mySearchTaskMethod:)
+//                                    object:@{ @"String":aString, @"List":aList }];
+//    
+//	[searchOperationQueue addOperation:theOp];
+//}
 
-- (void)mySearchTaskMethod:(id)Info {
-	for (AMWorkOrder *order in[Info objectForKey:@"List"]) {
-		if ([order.accountName rangeOfString:[Info objectForKey:@"String"] options:NSCaseInsensitiveSearch].location != NSNotFound) {
-			[searchResultList addObject:order];
-		}
-	}
-    
-	[self reloadData];
-}
+//- (void)mySearchTaskMethod:(id)Info {
+//	for (AMWorkOrder *order in[Info objectForKey:@"List"]) {
+//		if ([order.accountName rangeOfString:[Info objectForKey:@"String"] options:NSCaseInsensitiveSearch].location != NSNotFound) {
+//			[searchResultList addObject:order];
+//		}
+//	}
+//    
+//	[self reloadData];
+//}
 
 - (void)deSelectRow {
 	selectedWorkOrderId = nil;
@@ -489,62 +449,62 @@ UISearchBarDelegate
     }
 }
 
-#pragma mark - Searchbar delegate
-
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
-	[self searchEnable:YES];
-    //	searchBar.showsCancelButton = YES;
-    
-    NSDictionary *dicInfo = @{
-                              KEY_OF_TYPE:TYPE_OF_SEARCH_BAR_CHANGE,
-                              KEY_OF_INFO:[NSNumber numberWithBool:YES]
-                              };
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMORDERLISTVIEWCONTROLLER object:dicInfo];
-    
-    [self reloadData];
-	return YES;
-}
-
-- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar {
-    if ([searchBar.text length] == 0) {
-        [self searchEnable:NO];
-        [searchResultList removeAllObjects];
-    }
-	
-    //	searchBar.showsCancelButton = NO;
-    
-    NSDictionary *dicInfo = @{
-                              KEY_OF_TYPE:TYPE_OF_SEARCH_BAR_CHANGE,
-                              KEY_OF_INFO:[NSNumber numberWithBool:NO]
-                              };
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMORDERLISTVIEWCONTROLLER object:dicInfo];
-    
-    
-    [self reloadData];
-	return YES;
-}
-
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    if (searchText.length > 0) {
-        [self searchItemWithString:searchText inList:localWorkOrders];
-    } else {
-        [self searchEnable:NO];
-        [self reloadData];
-    }
-}
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-	[self searchEnable:NO];
-	searchBar.text = @"";
-	[searchBar resignFirstResponder];
-}
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
-    [searchBar resignFirstResponder];
-}
+//#pragma mark - Searchbar delegate
+//
+//- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+//	[self searchEnable:YES];
+//    //	searchBar.showsCancelButton = YES;
+//    
+//    NSDictionary *dicInfo = @{
+//                              KEY_OF_TYPE:TYPE_OF_SEARCH_BAR_CHANGE,
+//                              KEY_OF_INFO:[NSNumber numberWithBool:YES]
+//                              };
+//    
+//    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMORDERLISTVIEWCONTROLLER object:dicInfo];
+//    
+//    [self reloadData];
+//	return YES;
+//}
+//
+//- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar {
+//    if ([searchBar.text length] == 0) {
+//        [self searchEnable:NO];
+//        [searchResultList removeAllObjects];
+//    }
+//	
+//    //	searchBar.showsCancelButton = NO;
+//    
+//    NSDictionary *dicInfo = @{
+//                              KEY_OF_TYPE:TYPE_OF_SEARCH_BAR_CHANGE,
+//                              KEY_OF_INFO:[NSNumber numberWithBool:NO]
+//                              };
+//    
+//    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMORDERLISTVIEWCONTROLLER object:dicInfo];
+//    
+//    
+//    [self reloadData];
+//	return YES;
+//}
+//
+//- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+//    if (searchText.length > 0) {
+//        [self searchItemWithString:searchText inList:localWorkOrders];
+//    } else {
+//        [self searchEnable:NO];
+//        [self reloadData];
+//    }
+//}
+//
+//- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+//	[self searchEnable:NO];
+//	searchBar.text = @"";
+//	[searchBar resignFirstResponder];
+//}
+//
+//- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+//{
+//    [searchBar resignFirstResponder];
+//}
 
 #pragma mark - View
 
@@ -562,71 +522,64 @@ UISearchBarDelegate
 	self.view.userInteractionEnabled = YES;
 }
 
-- (void)searchEnable:(BOOL)isEnable {
-	isSearching = isEnable;
-	if (!isEnable) {
-		[self reloadData];
-	}
-}
+//- (void)searchEnable:(BOOL)isEnable {
+//	isSearching = isEnable;
+//	if (!isEnable) {
+//		[self reloadData];
+//	}
+//}
 
 
 
 - (void)reloadData {
 	MAIN ( ^{
-	    if (isSearching) {
-	        if (searchResultList) {
-	            [self.tableViewList reloadData];
-			}
-		}
-	    else {
-	        if (localWorkOrders) {
-	            [self.tableViewList reloadData];
-			}
-		}
+        if (localWorkOrders) {
+            [self.tableViewList reloadData];
+        }
 	});
 }
 
-#pragma mark - Sort
-
-- (void)refreshMoveList
-{
-    if ([arrMoveList count] > 0) {
-        [arrMoveList removeAllObjects];
-    }
-    
-    for (AMWorkOrder *workorder in self.localWorkOrders) {
-        [arrMoveList addObject:workorder.woID];
-    }
-}
-
-- (NSMutableArray *)sortWithMoveList:(NSMutableArray *)moveList
-{
-    if ([moveList count] == 0) {
-        return localWorkOrders;
-    }
-    
-    self.arrMoveList = moveList;
-    
-    NSMutableArray *arrResult = [NSMutableArray array];
-    
-    NSMutableArray *arrNew = [localWorkOrders mutableCopy];
-    
-    for (NSString *woId in moveList) {
-        for (AMWorkOrder *workorder in self.localWorkOrders) {
-            if ([workorder.woID isEqualToString:woId]) {
-                [arrResult addObject:workorder];
-                [arrNew removeObject:workorder];
-                break;
-            }
-        }
-    }
-    
-    if ([arrNew count] > 0) {
-        [arrResult addObjectsFromArray:arrNew];
-    }
-    
-    return arrResult;
-}
+//#pragma mark - Sort
+//
+//- (void)refreshMoveList
+//{
+//    if ([arrMoveList count] > 0) {
+//        [arrMoveList removeAllObjects];
+//    }
+//    
+//    for (AMWorkOrder *workorder in self.localWorkOrders) {
+//        [arrMoveList addObject:workorder.woID];
+//    }
+//}
+//
+//- (NSMutableArray *)sortWithMoveList:(NSMutableArray *)moveList
+//{
+//    if ([moveList count] == 0) {
+//        return localWorkOrders;
+//    }
+//    
+//    self.arrMoveList = moveList;
+//    
+//    NSMutableArray *arrResult = [NSMutableArray array];
+//    
+//    NSMutableArray *arrNew = [localWorkOrders mutableCopy];
+//    
+//    for (NSString *woId in moveList) {
+//        for (AMWorkOrder *workorder in self.localWorkOrders) {
+//            if ([workorder.woID isEqualToString:woId]) {
+//                [arrResult addObject:workorder];
+//                [arrNew removeObject:workorder];
+//                break;
+//            }
+//        }
+//    }
+//    
+//    if ([arrNew count] > 0) {
+//        [arrResult addObjectsFromArray:arrNew];
+//    }
+//    
+//    return arrResult;
+//}
 
 #pragma mark - Gesture delegate //bkk 2/2/15 - item 000124
 -(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
@@ -732,58 +685,39 @@ UISearchBarDelegate
 
 - (IBAction)clickGetAssetInfoBtn:(id)sender {
     //Asset info view
+    UIButton *button = ((UIButton*) sender);
+    
+    AMBenchActiveListCell *cell = [self.tableViewList cellForRowAtIndexPath: [NSIndexPath indexPathForRow:button.tag inSection:[self.tableViewList numberOfSections]-1]];
+    
     NSDictionary *dicInfo = @{
                               KEY_OF_TYPE:TYPE_OF_BTN_ITEM_CLICKED,
-                              KEY_OF_INFO:[NSNumber numberWithInteger:8]
+                              KEY_OF_INFO:[NSNumber numberWithInteger:9],
+                              @"FullAsset" : cell.fullAssetInfoDict
                               };
     
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMLEFTBARVIEWCONTROLLER object:dicInfo];
 }
 
 - (IBAction)clickStartBtn:(id)sender {
-    [UIAlertView showWithTitle:@""
-                       message:MyLocal(@"Start Timer")
-             cancelButtonTitle:MyLocal(@"OK")
-             otherButtonTitles:nil
-                      tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
-                          if (buttonIndex == [alertView cancelButtonIndex]) {
-                              return;
-                          }
-                          else
-                          {
-                              
-                              //                              [[AMLogicCore sharedInstance] checkInWorkOrder:workorder completionBlock:^(NSInteger type, NSError *error) {
-                              //                                  if (error) {
-                              //                                      [AMUtilities showAlertWithInfo:[error localizedDescription]];
-                              //                                      return ;
-                              //                                  }
-                              //                                  NSDictionary *dicInfo = @{
-                              //                                                            KEY_OF_TYPE:TYPE_OF_WORK_ORDER_LIST_CHANGE,
-                              //                                                            KEY_OF_INFO:self.localWorkOrders,
-                              //                                                            KEY_OF_FLAG:[NSNumber numberWithBool:NO]
-                              //                                                            };
-                              //                                  [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMORDERLISTVIEWCONTROLLER object:dicInfo];
-                              //
-                              //                              }];
-                              
-                          }
-                      }];
+    UIButton *button = ((UIButton*) sender);
+    
+    AMBenchActiveListCell *cell = [self.tableViewList cellForRowAtIndexPath: [NSIndexPath indexPathForRow:button.tag inSection:[self.tableViewList numberOfSections]-1]];
+    
+    
+//    NSMutableDictionary *dicInfos = [self.arrVerificationInfos objectAtIndex:sender.tag];
+//    //AMAsset *aAsset = [dicInfos objectForKey:KEY_OF_ASSET_INFO];
+//    AMAssetRequest *aAsset = [dicInfos objectForKey:KEY_OF_ASSETREQUEST_INFO];
+//    
+    [[AMProtocolManager sharedInstance] toggleTimerForAsset:cell.label_AssetNumber.text completion:^(NSInteger type, NSError *error, id userData, id responseData) {
+        //
+    }];
+
 }
 
 - (IBAction)clickStopBtn:(id)sender {
-    [UIAlertView showWithTitle:@""
-                       message:MyLocal(@"Stop Timer")
-             cancelButtonTitle:MyLocal(@"OK")
-             otherButtonTitles:nil
-                      tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
-                          if (buttonIndex == [alertView cancelButtonIndex]) {
-                              return;
-                          }
-                          else
-                          {
-                              
-                          }
-                      }];
+    [[AMProtocolManager sharedInstance] toggleTimerForAsset:@"" completion:^(NSInteger type, NSError *error, id userData, id responseData) {
+        //
+    }];
 }
 
 - (IBAction)clickCheckoutBtn:(id)sender {

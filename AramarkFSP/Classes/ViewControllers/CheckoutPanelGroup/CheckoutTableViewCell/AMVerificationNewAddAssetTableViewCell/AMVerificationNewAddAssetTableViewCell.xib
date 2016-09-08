@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6724" systemVersion="14A389" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="768" height="263"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="j5O-7g-rsw" id="BFO-6F-67j">
-                <rect key="frame" x="0.0" y="0.0" width="768" height="262"/>
+                <rect key="frame" x="0.0" y="0.0" width="768" height="263"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l5p-Nc-LgV">
@@ -95,15 +95,6 @@
                         <color key="textColor" red="0.63137254899999995" green="0.63137254899999995" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="_ _ _ _ _ _ _" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pMo-5y-hwn">
-                        <rect key="frame" x="517" y="50" width="200" height="44"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="44" id="3cb-Pu-G0l"/>
-                            <constraint firstAttribute="width" constant="200" id="Pk1-nx-4W7"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                    </textField>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fr3-Fd-Ffz">
                         <rect key="frame" x="12" y="99" width="744" height="155"/>
                         <subviews>
@@ -162,29 +153,56 @@
                             <constraint firstItem="pKx-SW-nG5" firstAttribute="top" secondItem="fr3-Fd-Ffz" secondAttribute="top" constant="1" id="XaN-9Y-naN"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Move to whse." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ztu-25-khh">
+                        <rect key="frame" x="594" y="57" width="111" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark_2.png" translatesAutoresizingMaskIntoConstraints="NO" id="0sL-Xs-Lcf">
+                        <rect key="frame" x="713" y="53" width="35" height="35"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.png" translatesAutoresizingMaskIntoConstraints="NO" id="m0p-4r-YXS">
+                        <rect key="frame" x="713" y="53" width="35" height="35"/>
+                    </imageView>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="_ _ _ _ _ _ _" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pMo-5y-hwn">
+                        <rect key="frame" x="448" y="50" width="101" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="3cb-Pu-G0l"/>
+                            <constraint firstAttribute="width" constant="101" id="Pk1-nx-4W7"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                    </textField>
                 </subviews>
                 <constraints>
                     <constraint firstItem="p18-3C-A5y" firstAttribute="top" secondItem="l5p-Nc-LgV" secondAttribute="bottom" id="2Z6-7S-HuA"/>
+                    <constraint firstItem="m0p-4r-YXS" firstAttribute="top" secondItem="0sL-Xs-Lcf" secondAttribute="top" id="4WZ-7m-e47"/>
                     <constraint firstAttribute="trailing" secondItem="l5p-Nc-LgV" secondAttribute="trailing" constant="12" id="5cG-Ck-qFE"/>
                     <constraint firstItem="8IE-VE-loU" firstAttribute="leading" secondItem="BFO-6F-67j" secondAttribute="leading" constant="12" id="8p3-U9-HHG"/>
                     <constraint firstItem="5OT-fw-FrX" firstAttribute="leading" secondItem="BFO-6F-67j" secondAttribute="leading" constant="12" id="CtB-U9-erQ"/>
                     <constraint firstAttribute="trailing" secondItem="8IE-VE-loU" secondAttribute="trailing" constant="12" id="DxU-bX-JTT"/>
+                    <constraint firstItem="Ztu-25-khh" firstAttribute="leading" secondItem="pMo-5y-hwn" secondAttribute="trailing" constant="45" id="GWP-ZN-Cca"/>
                     <constraint firstItem="l5p-Nc-LgV" firstAttribute="leading" secondItem="BFO-6F-67j" secondAttribute="leading" constant="12" id="LLi-iD-KPJ"/>
                     <constraint firstItem="p18-3C-A5y" firstAttribute="top" secondItem="l5p-Nc-LgV" secondAttribute="bottom" id="LhO-tM-gXY"/>
-                    <constraint firstAttribute="trailing" secondItem="pMo-5y-hwn" secondAttribute="trailing" constant="51" id="Nu1-T5-6Xk"/>
+                    <constraint firstItem="m0p-4r-YXS" firstAttribute="leading" secondItem="Ztu-25-khh" secondAttribute="trailing" constant="8" id="NCG-zz-JwO"/>
+                    <constraint firstAttribute="trailing" secondItem="pMo-5y-hwn" secondAttribute="trailing" constant="219" id="Nu1-T5-6Xk"/>
                     <constraint firstItem="WkG-Qs-6ry" firstAttribute="top" secondItem="aLD-GK-83j" secondAttribute="bottom" id="Oa9-z3-Huo"/>
                     <constraint firstItem="aLD-GK-83j" firstAttribute="leading" secondItem="gvF-xj-DXA" secondAttribute="trailing" constant="8" id="S6c-Nj-sGo"/>
                     <constraint firstAttribute="trailing" secondItem="hnu-zc-jw7" secondAttribute="trailing" constant="51" id="TNF-IY-q5y"/>
+                    <constraint firstItem="0sL-Xs-Lcf" firstAttribute="leading" secondItem="Ztu-25-khh" secondAttribute="trailing" constant="8" symbolic="YES" id="V03-gl-as0"/>
                     <constraint firstAttribute="trailing" secondItem="fr3-Fd-Ffz" secondAttribute="trailing" constant="12" id="YtD-un-xyB"/>
                     <constraint firstItem="pMo-5y-hwn" firstAttribute="top" secondItem="l5p-Nc-LgV" secondAttribute="bottom" id="Z8A-Ei-mzJ"/>
+                    <constraint firstItem="m0p-4r-YXS" firstAttribute="centerY" secondItem="WkG-Qs-6ry" secondAttribute="centerY" id="dES-FB-3KO"/>
                     <constraint firstItem="WkG-Qs-6ry" firstAttribute="leading" secondItem="5OT-fw-FrX" secondAttribute="trailing" constant="8" id="dYz-ZB-tEt"/>
                     <constraint firstItem="l5p-Nc-LgV" firstAttribute="top" secondItem="aLD-GK-83j" secondAttribute="bottom" id="f9z-wo-F35"/>
                     <constraint firstItem="hnu-zc-jw7" firstAttribute="leading" secondItem="vQ5-26-Hwc" secondAttribute="trailing" constant="8" id="g00-Jx-rKe"/>
                     <constraint firstItem="gvF-xj-DXA" firstAttribute="leading" secondItem="BFO-6F-67j" secondAttribute="leading" constant="12" id="gmk-mA-efi"/>
-                    <constraint firstItem="pMo-5y-hwn" firstAttribute="leading" secondItem="p18-3C-A5y" secondAttribute="trailing" constant="8" id="hzF-aT-etK"/>
+                    <constraint firstItem="pMo-5y-hwn" firstAttribute="leading" secondItem="p18-3C-A5y" secondAttribute="trailing" constant="-61" id="hzF-aT-etK"/>
                     <constraint firstItem="vQ5-26-Hwc" firstAttribute="top" secondItem="BFO-6F-67j" secondAttribute="top" constant="5" id="icq-qM-KvF"/>
                     <constraint firstItem="aLD-GK-83j" firstAttribute="top" secondItem="BFO-6F-67j" secondAttribute="top" constant="5" id="iku-Jl-q4q"/>
                     <constraint firstItem="8IE-VE-loU" firstAttribute="top" secondItem="WkG-Qs-6ry" secondAttribute="bottom" id="l8y-vQ-Cyu"/>
+                    <constraint firstItem="Ztu-25-khh" firstAttribute="top" secondItem="hnu-zc-jw7" secondAttribute="bottom" constant="8" symbolic="YES" id="lIf-6b-UQl"/>
                     <constraint firstItem="hnu-zc-jw7" firstAttribute="top" secondItem="BFO-6F-67j" secondAttribute="top" constant="5" id="lUq-3T-a6E"/>
                     <constraint firstItem="p18-3C-A5y" firstAttribute="top" secondItem="l5p-Nc-LgV" secondAttribute="bottom" id="oo9-zt-pYh"/>
                     <constraint firstItem="fr3-Fd-Ffz" firstAttribute="leading" secondItem="BFO-6F-67j" secondAttribute="leading" constant="12" id="pfD-Dx-a0X"/>
@@ -194,6 +212,8 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="imgCheckmark" destination="0sL-Xs-Lcf" id="3iY-Qh-iEa"/>
+                <outlet property="imgCheckmarkBackground" destination="m0p-4r-YXS" id="jzx-F0-hgo"/>
                 <outlet property="labelTAsset" destination="gvF-xj-DXA" id="0Ua-Y3-kry"/>
                 <outlet property="labelTLocation" destination="p18-3C-A5y" id="Nt3-mL-HPz"/>
                 <outlet property="labelTPointOfService" destination="vQ5-26-Hwc" id="dxA-a4-3ky"/>
@@ -207,9 +227,8 @@
             </connections>
         </tableViewCell>
     </objects>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination"/>
-    </simulatedMetricsContainer>
+    <resources>
+        <image name="checkmark.png" width="35" height="35"/>
+        <image name="checkmark_2.png" width="35" height="35"/>
+    </resources>
 </document>

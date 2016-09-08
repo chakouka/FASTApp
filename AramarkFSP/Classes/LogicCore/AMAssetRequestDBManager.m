@@ -44,6 +44,7 @@
     dbAssetRequest.verifyNotes = assetRequest.verifyNotes;
     dbAssetRequest.status = assetRequest.status;
     dbAssetRequest.statusID = assetRequest.statusID;
+    dbAssetRequest.moveToWarehouse = assetRequest.moveToWarehouse;
 }
 
 - (id)transferDBObjectToObject:(id)dbObject
@@ -67,7 +68,7 @@
     assetRequest.verifyNotes = dbAssetRequest.verifyNotes;
     assetRequest.status = dbAssetRequest.status;
     assetRequest.statusID = dbAssetRequest.statusID;
-    
+    assetRequest.moveToWarehouse = dbAssetRequest.moveToWarehouse;
     return assetRequest;
 }
 

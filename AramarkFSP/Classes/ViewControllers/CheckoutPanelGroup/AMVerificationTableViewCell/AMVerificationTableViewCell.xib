@@ -44,14 +44,20 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oXA-yG-K8D">
                                         <rect key="frame" x="0.0" y="0.0" width="742" height="40"/>
                                         <subviews>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Verification Notes:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ob3-Qz-E9F">
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verification Notes:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ob3-Qz-E9F">
                                                 <rect key="frame" x="10" y="0.0" width="300" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="300" id="PgC-rF-DcS"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" red="0.63137254899999995" green="0.63137254899999995" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hOQ-TD-SgE">
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hOQ-TD-SgE">
                                                 <rect key="frame" x="706" y="0.0" width="40" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="40" id="tig-UF-EqD"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                                 <state key="normal" title="+">
                                                     <color key="titleColor" red="0.30588235289999999" green="0.29803921570000003" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -62,6 +68,12 @@
                                         <color key="backgroundColor" red="0.92156862745098034" green="0.91764705882352937" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="7oW-14-Qwz"/>
+                                            <constraint firstItem="Ob3-Qz-E9F" firstAttribute="top" secondItem="hOQ-TD-SgE" secondAttribute="top" id="dTt-nW-YSD"/>
+                                            <constraint firstAttribute="trailing" secondItem="hOQ-TD-SgE" secondAttribute="trailing" constant="-4" id="eha-2t-azX"/>
+                                            <constraint firstItem="hOQ-TD-SgE" firstAttribute="bottom" secondItem="Ob3-Qz-E9F" secondAttribute="bottom" id="i4B-bJ-Mfa"/>
+                                            <constraint firstItem="Ob3-Qz-E9F" firstAttribute="leading" secondItem="oXA-yG-K8D" secondAttribute="leading" constant="10" id="nhs-MW-DPp"/>
+                                            <constraint firstItem="Ob3-Qz-E9F" firstAttribute="top" secondItem="oXA-yG-K8D" secondAttribute="top" id="pFU-gl-dqV"/>
+                                            <constraint firstAttribute="bottom" secondItem="hOQ-TD-SgE" secondAttribute="bottom" id="rep-nb-ZRb"/>
                                         </constraints>
                                     </view>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" text="Write note" translatesAutoresizingMaskIntoConstraints="NO" id="XKg-p2-b7y">

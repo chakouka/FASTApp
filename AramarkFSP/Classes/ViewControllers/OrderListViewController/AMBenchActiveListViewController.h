@@ -45,13 +45,13 @@
 
 - (void)refreshWorkOrderStatus:(NSMutableArray *)aList;
 
-- (void)refreshTimeAndDistanceBySingleRequest:(NSMutableArray *)aList;
-
-- (void)refreshTimeAndDistanceByRouteRequest:(NSMutableArray *)aList;
+//- (void)refreshTimeAndDistanceBySingleRequest:(NSMutableArray *)aList;
+//
+//- (void)refreshTimeAndDistanceByRouteRequest:(NSMutableArray *)aList;
 
 - (void)refreshSelectStatusWithWorkOrderId:(NSString *)aWorkOrderId;
 
-- (NSMutableArray *)sortWithMoveList:(NSMutableArray *)moveList;
+//- (NSMutableArray *)sortWithMoveList:(NSMutableArray *)moveList;
 
 - (void)showProgressHUD;
 

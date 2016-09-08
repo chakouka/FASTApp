@@ -36,5 +36,5 @@
 @property (nonatomic, retain) NSString * locationName;
 @property (nonatomic, retain) NSString * productName;
 @property (nonatomic, retain) NSString * manufacturerWebsite;
-
+@property (nonatomic, retain) NSString *moveToWarehouse;
 @end

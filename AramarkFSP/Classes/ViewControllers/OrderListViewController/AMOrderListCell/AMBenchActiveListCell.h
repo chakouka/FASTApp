@@ -21,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnStart;
 @property (weak, nonatomic) IBOutlet UIButton *btnStop;
 @property (weak, nonatomic) IBOutlet UIButton *btnCheckout;
-
+@property (strong, nonatomic) NSDictionary *fullAssetInfoDict;
 
 @property (weak, nonatomic) IBOutlet UIView *viewShade;
 @property (weak, nonatomic) IBOutlet UIView *viewRight;
