@@ -1839,6 +1839,32 @@
 }
 
 #pragma mark - Bench Tech Related
+- (void)setBenchWOCheckout:(NSDictionary *)checkoutDict completion:(AMSFRestCompletionBlock)completionBlock
+{
+    AMSFRequest *request = [[AMSFRequest alloc] init];
+    
+    request.method = SFRestMethodPATCH;
+    request.path = @"/Bench/Checkout";
+    request.endpoint = @"/services/apexrest";
+    request.type = AM_REQUEST_SETBTWOACTIVE;
+    request.completionBlock = completionBlock;
+    
+    request.queryParams = checkoutDict;// benchWODict;
+    
+    [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
+        DLog(@"setBenchWOCheckout error info %@",[error localizedDescription]);
+        request.completionBlock(request.type,error,request.userData,nil);
+    } completeBlock:^(id jsonResponse){
+        DLog(@"setBenchWOCheckout response");
+        
+        NSDictionary * parsedDict = nil;
+        
+        parsedDict = @{@"Status" : @"Success" };
+        request.completionBlock(request.type,nil, request.userData,parsedDict);
+    }];
+    
+}
+
 - (void)setBenchWOActive:(NSString *)woID completion:(AMSFRestCompletionBlock)completionBlock
 {
     AMSFRequest *request = [[AMSFRequest alloc] init];
@@ -1911,7 +1937,8 @@
     }];
 }
 
-- (void)toggleTimerForAsset:(NSString *)assetID completion:(AMSFRestCompletionBlock)completionBlock {
+- (void)toggleTimerForAssetStop:(NSString *)assetID completion:(AMSFRestCompletionBlock)completionBlock
+{
     AMSFRequest *request = [[AMSFRequest alloc] init];
     
     request.method = SFRestMethodPATCH;
@@ -1932,7 +1959,34 @@
         NSDictionary * parsedDict = nil;
         NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
         
-        parsedDict = [[AMProtocolParser sharedInstance] parseWorkOrderInfoList:dict];
+        //parsedDict = [[AMProtocolParser sharedInstance] parseWorkOrderInfoList:dict];
+        request.completionBlock(request.type,nil, request.userData,parsedDict);
+    }];
+}
+
+- (void)toggleTimerForAssetStart:(NSString *)assetID completion:(AMSFRestCompletionBlock)completionBlock
+{
+    AMSFRequest *request = [[AMSFRequest alloc] init];
+    
+    request.method = SFRestMethodPOST;
+    request.path = @"/Bench/Active";
+    request.endpoint = @"/services/apexrest";
+    request.type = AM_REQUEST_SETBTACTTIMER;
+    request.completionBlock = completionBlock;
+    NSDictionary * bodyDict = @{@"assetId": assetID};
+    
+    request.queryParams = bodyDict;
+    
+    [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *error){
+        DLog(@"getActiveBenchTechWOList error info %@",[error localizedDescription]);
+        request.completionBlock(request.type,error,request.userData,nil);
+    } completeBlock:^(id jsonResponse){
+        DLog(@"getActiveBenchTechWOList response");
+        
+        NSDictionary * parsedDict = nil;
+        NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
+        
+      //  parsedDict = [[AMProtocolParser sharedInstance] parseWorkOrderInfoList:dict];
         request.completionBlock(request.type,nil, request.userData,parsedDict);
     }];
 }

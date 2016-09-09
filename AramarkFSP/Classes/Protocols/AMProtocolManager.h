@@ -27,10 +27,12 @@
  * get FT's own recent WO list on Salesforce
  *
  */
+- (void)setBenchWOCheckout:(NSDictionary *)checkoutDict completion:(AMSFRestCompletionBlock)completionBlock;
 - (void)setBenchWOActive:(NSString *)woID completion:(AMSFRestCompletionBlock)completionBlock;
 - (void)getBenchTechWOList:(AMSFRestCompletionBlock)completionBlock;
 - (void)getActiveBenchTechWOList:(AMSFRestCompletionBlock)completionBlock;
-- (void)toggleTimerForAsset:(NSString *)assetID completion:(AMSFRestCompletionBlock)completionBlock;
+- (void)toggleTimerForAssetStop:(NSString *)assetID completion:(AMSFRestCompletionBlock)completionBlock;
+- (void)toggleTimerForAssetStart:(NSString *)assetID completion:(AMSFRestCompletionBlock)completionBlock;
 - (void)scrapBenchAsset:(NSString *)assetID completion:(AMSFRestCompletionBlock)completionBlock;
 
 - (void)getOwnRecentWorkOrderList:(AMSFRestCompletionBlock)completionBlock;

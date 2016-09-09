@@ -38,7 +38,7 @@ UIPopoverControllerDelegate
 @property (strong, nonatomic) NSString *strRepairCode;
 @property (strong, nonatomic) NSMutableArray *arrResultAssetRequest;
 
-- (id)initWithWorkOrder:(AMWorkOrder *)aWorkOrder;
+- (id)initWithWorkOrder:(NSDictionary *)aWorkOrder;
 - (IBAction)clickSubmitBtn:(UIButton *)sender;
 - (void)setupDataSourceByWorkOrder:(NSDictionary *)aWorkOrder;
 - (void)refreshToInitialization;

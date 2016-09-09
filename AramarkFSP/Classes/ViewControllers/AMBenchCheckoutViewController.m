@@ -35,6 +35,7 @@
 
 #import "KLCPopup.h"
 #import "TBView.h"
+#import "AMProtocolManager.h"
 
 #define MAX_FILTER_COUNT    5
 #define MAX_PART_COUNT      5
@@ -90,8 +91,7 @@ typedef NS_ENUM(NSInteger, FieldTag) {
 UITextViewDelegate,
 UITextFieldDelegate,
 UIPopoverControllerDelegate,
-AMPopoverSelectTableViewControllerDelegate,
-AMWorkOrderViewControllerDelegate
+AMPopoverSelectTableViewControllerDelegate
 >
 {
 	UIPopoverController *aPopoverVC;
@@ -139,7 +139,6 @@ AMWorkOrderViewControllerDelegate
 @property (nonatomic, strong) NSMutableArray *arrWorkItems;
 @property (nonatomic, strong) NSMutableArray *arrCodePriceList;
 @property (nonatomic, strong) UILabel *lblQty;//bkk 2/5/15
-@property (nonatomic, strong) UIButton *selectFilterButton;//bkk 2/5/15
 @property (nonatomic, strong) NSDictionary *workorderDict;
 
 
@@ -161,7 +160,6 @@ AMWorkOrderViewControllerDelegate
 @synthesize strRepairCode;
 @synthesize arrResultAssetRequest;
 @synthesize lblQty;//bkk 2/5/15
-@synthesize selectFilterButton;
 @synthesize workorderDict;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -307,7 +305,7 @@ AMWorkOrderViewControllerDelegate
 -(void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-- (id)initWithWorkOrder:(AMWorkOrder *)aWorkOrder {
+- (id)initWithWorkOrder:(NSDictionary *)aWorkOrder {
 	self = [self initWithNibName:@"AMWorkOrderViewController" bundle:nil];
 	if (self) {
 		[self setupDataSourceByWorkOrder:aWorkOrder];
@@ -360,48 +358,45 @@ AMWorkOrderViewControllerDelegate
 - (IBAction)clickSubmitBtn:(UIButton *)sender {
     DLog(@"clickSubmitBtn");
     
+    
     NSMutableDictionary *dicRepairCode = [[self dataWithType:AMCheckoutCellType_Checkout_RepairCode] objectForKey:KEY_OF_CELL_DATA];
     
     if ([[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] length] == 0) {
         [AMUtilities showAlertWithInfo:MyLocal(@"Please Input Repair Code")];
         return;
     }
-    
-    
+    NSString *WOID = [[self.workorderDict valueForKeyWithNullToNil:@"Item"] valueForKeyWithNullToNil:@"Id"];
+    NSString *repairCode = [dicRepairCode valueForKeyWithNullToNil:@"REPAIR_CODE"];
+
+
+
     AMWorkOrderNotesTableViewCell *cell = (AMWorkOrderNotesTableViewCell *)[(UITableView *)self.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
     
     if ((cell.textViewWorkOrderNotes.text.length == 0 || [cell.textViewWorkOrderNotes.text isEqualToString:@"Write note"])) {
         [AMUtilities showAlertWithInfo:MyLocal(@"Please Input Work Order Notes")];
         return;
     }
-    [self showSubmit];
-}
-
-- (void)showSubmit
-{
-    [UIAlertView showWithTitle:@""
-                       message:MyLocal(@"Are you sure you want to submit?")
-             cancelButtonTitle:MyLocal(@"Cancel")
-             otherButtonTitles:@[MyLocal(@"OK")]
-                      tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
-                          if (buttonIndex == [alertView cancelButtonIndex]) {
-                              return ;
-                          }
-                          else
-                          {
-                              NSMutableDictionary *dicRepairCode = [[self dataWithType:AMCheckoutCellType_Checkout_RepairCode] objectForKey:KEY_OF_CELL_DATA];
-                              
-                              self.strRepairCode = [dicRepairCode objectForKey:KEY_OF_REPAIR_CODE];
-                              NSMutableDictionary *dicNots = [[self dataWithType:AMCheckoutCellType_Checkout_WorkOrderNotes] objectForKey:KEY_OF_CELL_DATA];
-                              self.strNotes = [dicNots objectForKey:KEY_OF_WORKORDER_NOTES];
-                              
-                              //[self invoiceListWithCurrentData];
-                              
-                              if (delegate && [delegate respondsToSelector:@selector(didClickCheckoutViewControllerNextBtn)]) {
-                                  [delegate didClickCheckoutViewControllerNextBtn];
-                              }
-                          }
-                      }];
+    
+    NSDictionary *benchWODict = @{
+                                 @"workOrderId" : WOID,
+                                 @"repairCode" : repairCode,
+                                 @"notes" : cell.textViewWorkOrderNotes.text
+                                 };
+    
+    [[AMProtocolManager sharedInstance] setBenchWOCheckout:benchWODict completion:^(NSInteger type, NSError *error, id userData, id responseData) {
+        //
+        if (!error)
+        {
+            NSDictionary *dicInfo = @{
+                                      KEY_OF_TYPE:TYPE_OF_BTN_ITEM_CLICKED,
+                                      KEY_OF_INFO:[NSNumber numberWithInteger:7],
+                                      };
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMLEFTBARVIEWCONTROLLER object:dicInfo];
+            });
+        }
+        
+    }];
 }
 
 - (void)clickAddPartBtn:(UIButton *)sender {

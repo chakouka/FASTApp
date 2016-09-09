@@ -1697,25 +1697,31 @@ UIGestureRecognizerDelegate
                         [subview removeFromSuperview];
                     }
                     
-                    for (NSDictionary *dict in historyArray) {
-                        //loop through all of them and add labels for each to the scrollview
-                        UILabel *woNum = [[UILabel alloc] initWithFrame:CGRectMake(20, 30, 200, 50)];
-                        UILabel *woType = [[UILabel alloc] initWithFrame:CGRectMake(320, 30, 200, 50)];
-                        UILabel *woRepairCode = [[UILabel alloc] initWithFrame:CGRectMake(420, 30, 200, 50)];
-                        UILabel *woAssignedTo = [[UILabel alloc] initWithFrame:CGRectMake(520, 30, 200, 50)];
-                        UILabel *woDate = [[UILabel alloc] initWithFrame:CGRectMake(620, 30, 200, 50)];
+                    if(historyArray)
+                    {
+                        int yPos = 15;
+                        int xPos = 0;
+                        for (NSDictionary *dict in historyArray) {
+                            //loop through all of them and add labels for each to the scrollview
+                            UILabel *woNum = [[UILabel alloc] initWithFrame:CGRectMake(xPos, yPos, 130, 50)];
+                            UILabel *woType = [[UILabel alloc] initWithFrame:CGRectMake(woNum.frame.origin.x + woNum.frame.size.width + 10, yPos, 100, 50)];
+                            UILabel *woRepairCode = [[UILabel alloc] initWithFrame:CGRectMake(woType.frame.origin.x + woType.frame.size.width + 10, yPos, 200, 50)];
+                            UILabel *woAssignedTo = [[UILabel alloc] initWithFrame:CGRectMake(woRepairCode.frame.origin.x + woRepairCode.frame.size.width + 10, yPos, 200, 50)];
+                            UILabel *woDate = [[UILabel alloc] initWithFrame:CGRectMake(woAssignedTo.frame.origin.x + woAssignedTo.frame.size.width + 10, yPos, 100, 50)];
 
-                        woNum.text = [dict valueForKeyWithNullToNil:@"Name"];
-                        woType.text = [[dict valueForKeyWithNullToNil: @"RecordType"] valueForKeyWithNullToNil:@"Name"];
-                        woRepairCode.text = @"Blank Type BKK";
-                        woAssignedTo.text = @"Blank Assigned to BKK";
-                        woDate.text = @"Blank Date BKK";
-                        [self.scrHistoryScroller addSubview:woNum];
-                        [self.scrHistoryScroller addSubview:woType];
-                        [self.scrHistoryScroller addSubview:woRepairCode];
-                        [self.scrHistoryScroller addSubview:woAssignedTo];
-                        [self.scrHistoryScroller addSubview:woDate];
+                            woNum.text = [dict valueForKeyWithNullToNil:@"Name"];
+                            woType.text = [[dict valueForKeyWithNullToNil: @"RecordType"] valueForKeyWithNullToNil:@"Name"];
+                            woRepairCode.text = @"Blank Type BKK";
+                            woAssignedTo.text = @"Blank Assigned to BKK";
+                            woDate.text = @"Blank Date BKK";
+                            [self.scrHistoryScroller addSubview:woNum];
+                            [self.scrHistoryScroller addSubview:woType];
+                            [self.scrHistoryScroller addSubview:woRepairCode];
+                            [self.scrHistoryScroller addSubview:woAssignedTo];
+                            [self.scrHistoryScroller addSubview:woDate];
+                            yPos = yPos + 60;
 
+                        }
                     }
                 }
                 
