@@ -19,6 +19,7 @@ typedef NS_ENUM(NSInteger, LeftViewButtonType) {
     LeftViewButtonType_BenchTech,
     LeftViewButtonType_ActiveBenchTech,
     LeftViewButtonType_ActiveAssetInfoBenchTech,
+    LeftViewButtonType_BenchTechCheckout,
 };
 
 typedef NS_ENUM(NSInteger, SYNCType) {

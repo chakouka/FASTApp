@@ -33,6 +33,7 @@
 #import "AMNearMeViewController.h"
 #import "AMBenchListViewController.h"
 #import "AMBenchActiveListViewController.h"
+#import "AMBenchCheckoutViewController.h"
 #import "LanguageConfig.h"
 #import "AMProtocolManager.h"
 
@@ -76,6 +77,7 @@ typedef NS_ENUM (NSInteger, PanelType) {
     PanelType_Bench,
     PanelType_ActiveBench,
     PanelType_ActiveDetailBench,
+    PanelType_ActiveBenchCheckout,
 };
 
 
@@ -116,7 +118,7 @@ UIGestureRecognizerDelegate
     AMNearMeViewController *nearMeVC;
     AMBenchListViewController *benchListVC;
     AMBenchActiveListViewController *benchActiveListVC;
-    
+    AMBenchCheckoutViewController *benchCheckoutVC;
 	PositionDetailPanel detailPanelPosition;
 	PositionDetailPanel checkoutPanelPosition;
 	PositionDetailPanel beforeDetailPanelPosition;
@@ -125,6 +127,7 @@ UIGestureRecognizerDelegate
 	PositionRouteView routeViewPosition;
     PositionBenchView benchViewPosition;
     PositionBenchView benchActiveViewPosition;
+    PositionBenchView benchCheckoutViewPosition;
 	BOOL isFullScreen;
 	BOOL isLogOutViewShow;
     BOOL shouldDisappearDetailVC;
@@ -157,6 +160,7 @@ UIGestureRecognizerDelegate
 @property (nonatomic, strong) AMNewLeadViewController *leadVC;
 @property (nonatomic, strong) AMNearMeViewController *nearMeVC;
 @property (nonatomic, strong) AMBenchListViewController *benchListVC;
+@property (nonatomic, strong) AMBenchCheckoutViewController *benchCheckoutVC;
 @property (nonatomic, strong) AMBenchActiveListViewController *benchActiveListVC;
 @property (nonatomic, strong) RouteMapView *routeView;
 @property (nonatomic, strong) UIView *benchView;
@@ -195,6 +199,7 @@ UIGestureRecognizerDelegate
 @synthesize nearMeVC;
 @synthesize benchListVC;
 @synthesize benchActiveListVC;
+@synthesize benchCheckoutVC;
 @synthesize scrHistoryScroller;
 
 - (void)dealloc {
@@ -202,6 +207,7 @@ UIGestureRecognizerDelegate
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_FROM_AMORDERLISTVIEWCONTROLLER object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_FROM_AMBENCHLISTVIEWCONTROLLER object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_FROM_AMBENCHACTIVELISTVIEWCONTROLLER object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_FROM_AMBENCHCHECKOUTVIEWCONTROLLER object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_FROM_AMDETAILPANELVIEWCONTROLLER object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_FROM_CHECKOUTPANELVIEWCONTROLLER object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_FROM_MAPVIEW object:nil];
@@ -245,6 +251,8 @@ UIGestureRecognizerDelegate
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dealWithNotiFromBenchListViewController:) name:NOTIFICATION_FROM_AMBENCHLISTVIEWCONTROLLER object:nil];
 
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dealWithNotiFromBenchActiveListViewController:) name:NOTIFICATION_FROM_AMBENCHACTIVELISTVIEWCONTROLLER object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dealWithNotiFromBenchCheckoutViewController:) name:NOTIFICATION_FROM_AMBENCHCHECKOUTVIEWCONTROLLER object:nil];
     
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dealWithNotiFromDetailPanelViewController:) name:NOTIFICATION_FROM_AMDETAILPANELVIEWCONTROLLER object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dealWithNotiFromCheckoutPanelViewController:) name:NOTIFICATION_FROM_CHECKOUTPANELVIEWCONTROLLER object:nil];
@@ -634,6 +642,16 @@ UIGestureRecognizerDelegate
     
     return benchActiveListVC;
 }
+
+- (AMBenchCheckoutViewController *)benchCheckoutVC
+{
+    if (!benchCheckoutVC) {
+        benchCheckoutVC = [[AMBenchCheckoutViewController alloc] initWithNibName:@"AMBenchCheckoutViewController" bundle:nil];
+    }
+    
+    return benchCheckoutVC;
+}
+
 #pragma mark - Touch
 
 - (void)addGuesture
@@ -1043,6 +1061,35 @@ UIGestureRecognizerDelegate
                      } completion:NULL];
 }
 
+- (void)changeBenchCheckoutViewWithPosition:(PositionBenchView)aPosition animation:(BOOL)aAnimation {
+    benchCheckoutViewPosition = aPosition;
+    
+    [UIView animateWithDuration:(aAnimation ? DEFAULT_DURATION : 0.0)
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations: ^{
+                         switch (benchCheckoutViewPosition) {
+                             case PositionBenchView_Full:
+                             {
+                                 self.benchActiveView.frame =  CGRectMake(92, 52, 830, 716);
+                             }
+                                 break;
+                                 
+                             case PositionBenchView_Half:
+                             {
+                                 self.benchActiveView.frame =  CGRectMake(92, 52, 830, 716);
+                             }
+                                 break;
+                                 
+                             case PositionBenchView_Small:
+                             {
+                                 self.benchActiveView.frame =  CGRectMake(92, 52, 830, 716);
+                             }
+                                 break;
+                         }
+                     } completion:NULL];
+}
+
 - (MainViewLayoutType)currentMainViewLayoutType {
 	if (!self.orderListVC.show) {
 		return MainViewLayoutType_MapOnly;
@@ -1150,6 +1197,7 @@ UIGestureRecognizerDelegate
     self.viewBenchPanel.hidden = YES;
     self.viewActiveBenchPanel.hidden = YES;
     self.viewActiveDetailBenchPanel.hidden = YES;
+    self.viewBenchCheckoutPanel.hidden = YES;
     
 	switch (aType) {
 		case PanelType_Main:
@@ -1207,6 +1255,12 @@ UIGestureRecognizerDelegate
         {
             self.viewActiveDetailBenchPanel.hidden = NO;
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SHOW_ACTIVEDETAILBENCH object:nil];
+        }
+            break;
+        case PanelType_ActiveBenchCheckout:
+        {
+            self.viewBenchCheckoutPanel.hidden = NO;
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SHOW_BENCHCHECKOUT object:nil];
         }
             break;
 	}
@@ -1293,8 +1347,15 @@ UIGestureRecognizerDelegate
 
 #pragma mark - Deal With Notification
 - (void)dealWithNotiFromBenchActiveListViewController:(NSNotification *)notification {
-
+    
 }
+
+- (void)dealWithNotiFromBenchCheckoutViewController:(NSNotification *)notification {
+    if (true) {
+        
+    }
+}
+
 - (void)dealWithNotiFromBenchListViewController:(NSNotification *)notification {
 
     if ([[[notification object] objectForKey:KEY_OF_TYPE] isEqualToString:TYPE_OF_CELL_SELECTED])
@@ -1688,7 +1749,54 @@ UIGestureRecognizerDelegate
                 
             }
                 break;
+            case LeftViewButtonType_BenchTechCheckout:
+            {
+                //10
+                NSDictionary *fullAssetDict = [NSDictionary dictionaryWithDictionary: [[notification object] objectForKey:@"FullAsset"]];
+
+                if(fullAssetDict)
+                {
+                    [self.benchCheckoutVC setupDataSourceByWorkOrder:fullAssetDict];
+                }
+                //first time in, add the benchListVC to the view
+                if (![[self.viewBenchCheckoutPanel subviews] containsObject:self.benchCheckoutVC.view]) {
+                    [self.viewBenchCheckoutPanel addSubview: self.benchCheckoutVC.view];
+                }
+
+//                if (self.orderListVC.show) {
+//                    [self changeLeftListPanelHidden:YES animation:NO];
+//                }
+                if (detailPanelPosition != PositionDetailPanel_Bottom) {
+                    [self changeDetailPanelViewTo:PositionDetailPanel_Bottom animation:NO];
+                }
                 
+                [self changePanelWithType:PanelType_ActiveBenchCheckout];
+                
+                if (self.nearMeVC.show) {
+                    [self.nearMeVC changeLeftListPanelHidden:YES animation:YES];
+                    [self.leftVC resetAllBtns];
+                }
+                else
+                {
+                    [self.nearMeVC changeLeftListPanelHidden:NO animation:YES];
+                }
+                
+                if (detailPanelPosition != PositionDetailPanel_Full) {
+                    //[self changeLeftActiveBenchPanelHidden:NO animation:YES];
+                    [self changeBenchCheckoutViewWithPosition:PositionBenchView_Half animation:YES];
+                    //[self activeBenchListLoadData];
+                }
+                else
+                {
+                    [self changeRouteViewWithPosition:PositionRouteView_Full animation:NO];
+                    [self changeLeftActiveBenchPanelHidden:YES animation:YES];
+                    
+                    [self.leftVC resetAllBtns];
+                    [self.routeView centerWithAllAnnotations];
+                    [self changePanelWithType:PanelType_Main];
+                }
+                
+            }
 		}
 	}
 }

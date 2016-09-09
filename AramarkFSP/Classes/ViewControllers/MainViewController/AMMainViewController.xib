@@ -36,6 +36,7 @@
                 <outlet property="viewActiveBenchPanel" destination="ZQj-n8-BVQ" id="XaX-Fx-br2"/>
                 <outlet property="viewActiveDetailBenchPanel" destination="DVd-ju-zcj" id="VYt-hs-qkj"/>
                 <outlet property="viewAlert" destination="SY7-MK-3Ac" id="tlf-9G-eiT"/>
+                <outlet property="viewBenchCheckoutPanel" destination="GKJ-Gf-xin" id="c14-ly-CLQ"/>
                 <outlet property="viewBenchPanel" destination="JUp-na-XZ1" id="Ium-Bj-mhc"/>
                 <outlet property="viewCasePanel" destination="Lwd-bb-X19" id="01u-YG-yrz"/>
                 <outlet property="viewCheckoutPanel" destination="QEP-1H-sSk" id="bIB-oc-plx"/>
@@ -62,6 +63,11 @@
                     <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
+                        <view contentMode="scaleToFill" id="GKJ-Gf-xin" userLabel="View Bench Checkout Panel">
+                            <rect key="frame" x="94" y="52" width="930" height="716"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <view hidden="YES" contentMode="scaleToFill" id="JUp-na-XZ1">
                             <rect key="frame" x="94" y="52" width="930" height="716"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

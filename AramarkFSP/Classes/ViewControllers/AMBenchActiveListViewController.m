@@ -722,33 +722,32 @@ UISearchBarDelegate
 
 - (IBAction)clickCheckoutBtn:(id)sender {
 
-    [UIAlertView showWithTitle:@""
-                       message:MyLocal(@"Check Out of Bench Tech Workerder?")
-             cancelButtonTitle:MyLocal(@"NO")
-             otherButtonTitles:@[MyLocal(@"YES")]
-                      tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
-                          if (buttonIndex == [alertView cancelButtonIndex]) {
-                              return;
-                          }
-                          else
-                          {
-                              
-//                              [[AMLogicCore sharedInstance] checkInWorkOrder:workorder completionBlock:^(NSInteger type, NSError *error) {
-//                                  if (error) {
-//                                      [AMUtilities showAlertWithInfo:[error localizedDescription]];
-//                                      return ;
-//                                  }
-//                                  NSDictionary *dicInfo = @{
-//                                                            KEY_OF_TYPE:TYPE_OF_WORK_ORDER_LIST_CHANGE,
-//                                                            KEY_OF_INFO:self.localWorkOrders,
-//                                                            KEY_OF_FLAG:[NSNumber numberWithBool:NO]
-//                                                            };
-//                                  [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMORDERLISTVIEWCONTROLLER object:dicInfo];
-//                                  
-//                              }];
-                              
-                          }
-                      }];
+    //Asset info view
+    UIButton *button = ((UIButton*) sender);
+    
+    AMBenchActiveListCell *cell = [self.tableViewList cellForRowAtIndexPath: [NSIndexPath indexPathForRow:button.tag inSection:[self.tableViewList numberOfSections]-1]];
+    
+    NSDictionary *dicInfo = @{
+                              KEY_OF_TYPE:TYPE_OF_BTN_ITEM_CLICKED,
+                              KEY_OF_INFO:[NSNumber numberWithInteger:10],
+                              @"FullAsset" : cell.fullAssetInfoDict
+                              };
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMLEFTBARVIEWCONTROLLER object:dicInfo];
+    
+//    [UIAlertView showWithTitle:@""
+//                       message:MyLocal(@"Check Out of Bench Tech Workerder?")
+//             cancelButtonTitle:MyLocal(@"NO")
+//             otherButtonTitles:@[MyLocal(@"YES")]
+//                      tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
+//                          if (buttonIndex == [alertView cancelButtonIndex]) {
+//                              return;
+//                          }
+//                          else
+//                          {
+//                              
+//                          }
+//                      }];
 }
 
 @end
