@@ -1858,8 +1858,9 @@
         DLog(@"setBenchWOCheckout response");
         
         NSDictionary * parsedDict = nil;
+        NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
         
-        parsedDict = @{@"Status" : @"Success" };
+        parsedDict = dict;//@{@"Status" : @"Success" };
         request.completionBlock(request.type,nil, request.userData,parsedDict);
     }];
     
@@ -1956,10 +1957,10 @@
     } completeBlock:^(id jsonResponse){
         DLog(@"getActiveBenchTechWOList response");
         
-        NSDictionary * parsedDict = nil;
+        NSDictionary *parsedDict = nil;
         NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
         
-        //parsedDict = [[AMProtocolParser sharedInstance] parseWorkOrderInfoList:dict];
+        parsedDict = dict;//[[AMProtocolParser sharedInstance] parseWorkOrderInfoList:dict];
         request.completionBlock(request.type,nil, request.userData,parsedDict);
     }];
 }
@@ -1986,7 +1987,7 @@
         NSDictionary * parsedDict = nil;
         NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
         
-      //  parsedDict = [[AMProtocolParser sharedInstance] parseWorkOrderInfoList:dict];
+        parsedDict = dict;//[[AMProtocolParser sharedInstance] parseWorkOrderInfoList:dict];
         request.completionBlock(request.type,nil, request.userData,parsedDict);
     }];
 }
@@ -2012,9 +2013,10 @@
         } completeBlock:^(id jsonResponse){
             DLog(@"getActiveBenchTechWOList response");
             
-            NSDictionary * parsedDict = nil;
+            NSDictionary *parsedDict = nil;
+            NSDictionary * dict = [self transferJsonResponseToDictionary:jsonResponse];
             
-            parsedDict = @{@"Success": @"YES" }; //[[AMProtocolParser sharedInstance] parseWorkOrderInfoList:dict];
+            parsedDict = dict;//[[AMProtocolParser sharedInstance] parseWorkOrderInfoList:dict];
             request.completionBlock(request.type,nil, request.userData,parsedDict);
         }];
     }

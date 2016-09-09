@@ -468,7 +468,8 @@ UISearchBarDelegate
     //toggleTimer on Server
     [[AMProtocolManager sharedInstance] toggleTimerForAssetStart:cell.strAssetID completion:^(NSInteger type, NSError *error, id userData, id responseData) {
         
-        if(responseData == nil && error == nil)
+        
+        if([[responseData valueForKeyWithNullToNil:@"success"] isEqualToString:@"true"])
         {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [UIAlertView showWithTitle:@"Success" message:@"Started Successfully" style:UIAlertViewStyleDefault cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
@@ -500,7 +501,7 @@ UISearchBarDelegate
     //toggleTimer on Server
     [[AMProtocolManager sharedInstance] toggleTimerForAssetStop: cell.strAssetID completion:^(NSInteger type, NSError *error, id userData, id responseData) {
         
-        if(responseData == nil && error == nil)
+        if([[responseData valueForKeyWithNullToNil:@"success"] isEqualToString:@"true"])
         {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [UIAlertView showWithTitle:@"Success" message:@"Stopped Successfully" style:UIAlertViewStyleDefault cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
@@ -531,17 +532,32 @@ UISearchBarDelegate
     AMBenchActiveListCell *cell = [self.tableViewList cellForRowAtIndexPath: [NSIndexPath indexPathForRow:button.tag inSection:[self.tableViewList numberOfSections]-1]];
     
 
-    //enable Start button
-    [cell.btnStart setUserInteractionEnabled:YES];
-    [cell.btnStop setUserInteractionEnabled:NO];
+    [[AMProtocolManager sharedInstance] toggleTimerForAssetStop:cell.strAssetID completion:^(NSInteger type, NSError *error, id userData, id responseData) {
         
-    NSDictionary *dicInfo = @{
-                              KEY_OF_TYPE:TYPE_OF_BTN_ITEM_CLICKED,
-                              KEY_OF_INFO:[NSNumber numberWithInteger:10],
-                              @"FullAsset" : cell.fullAssetInfoDict
-                              };
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMLEFTBARVIEWCONTROLLER object:dicInfo];
+        if([[responseData valueForKeyWithNullToNil:@"success"] isEqualToString:@"true"])
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //enable Start button
+                [cell.btnStart setUserInteractionEnabled:YES];
+                [cell.btnStop setUserInteractionEnabled:NO];
+                
+                NSDictionary *dicInfo = @{
+                                          KEY_OF_TYPE:TYPE_OF_BTN_ITEM_CLICKED,
+                                          KEY_OF_INFO:[NSNumber numberWithInteger:10],
+                                          @"FullAsset" : cell.fullAssetInfoDict
+                                          };
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMLEFTBARVIEWCONTROLLER object:dicInfo];
+            });
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [UIAlertView showWithTitle:@"Check Out Error" message:@"Must Stop Timer to Checkout" cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                    
+                }];
+            });
+        }
+    }];
+
 }
 
 @end
