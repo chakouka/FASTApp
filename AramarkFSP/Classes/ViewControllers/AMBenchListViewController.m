@@ -120,6 +120,8 @@ UISearchBarDelegate
     self.pickerMachineType = [[UIPickerView alloc] init];
     self.pickerMachineType.delegate = self;
     self.pickerMachineType.dataSource = self;
+    [self.pickerMachineType setUserInteractionEnabled:NO];
+    
     [self.viewPickerPanel addSubview:self.pickerMachineType];
     [[self.viewPickerPanel superview] bringSubviewToFront:self.viewPickerPanel];
 
@@ -614,9 +616,7 @@ UISearchBarDelegate
 {
     [self.pickerMachineType reloadAllComponents];
     self.viewPickerPanel.hidden = !self.viewPickerPanel.isHidden;
-    
-    //pickerMachineType.hidden = !pickerMachineType.isHidden;
-   
+    [self.pickerMachineType setUserInteractionEnabled:!self.viewPickerPanel.isHidden];
 }
 
 #pragma mark - Picker Delegate
