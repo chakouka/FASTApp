@@ -2375,6 +2375,11 @@ UIGestureRecognizerDelegate
             [UIAlertView showWithTitle:@"Scrap Error" message:[NSString stringWithFormat: @"Error:%@",error] cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 
             }];
+        } else {
+            [self benchListLoadData];
+            MAIN ( ^{
+                [self clearBTDetail];
+            });
         }
         
     }];
@@ -2393,5 +2398,18 @@ UIGestureRecognizerDelegate
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMLEFTBARVIEWCONTROLLER object:dicInfo];
 }
 
+- (void)clearBTDetail
+{
+    self.labelBenchAssetNumber.text = @"";
+    self.labelBenchSerialNumber.text = @"";
+    self.labelBenchMachineType.text = @"";
+    self.labelBenchPOSName.text = @"";
+    self.labelBenchAVNotes.text = @"";
+    self.labelBenchTechName.text = @"";
+    
+    self.labelBenchRepairMatrixNTE.text = @"";
+    self.selectedAssetID = @"";
+    self.selectedWorkorderID = @"";
+}
 
 @end
