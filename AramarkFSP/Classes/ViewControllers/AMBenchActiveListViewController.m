@@ -76,7 +76,7 @@ UISearchBarDelegate
 @synthesize arrMoveList;
 
 #pragma mark - TEST
-
+bool isTimerStarted;
 
 #pragma mark -
 
@@ -459,69 +459,87 @@ UISearchBarDelegate
 }
 
 - (IBAction)clickStartBtn:(id)sender {
-    UIButton *button = ((UIButton*) sender);
     
-    AMBenchActiveListCell *cell = [self.tableViewList cellForRowAtIndexPath: [NSIndexPath indexPathForRow:button.tag inSection:[self.tableViewList numberOfSections]-1]];
-    
+    if(!isTimerStarted)
+    {
+        isTimerStarted = YES;
+        UIButton *button = ((UIButton*) sender);
+        
+        AMBenchActiveListCell *cell = [self.tableViewList cellForRowAtIndexPath: [NSIndexPath indexPathForRow:button.tag inSection:[self.tableViewList numberOfSections]-1]];
+        
+        
+        
+        //toggleTimer on Server
+        [[AMProtocolManager sharedInstance] toggleTimerForAssetStart:cell.strAssetID completion:^(NSInteger type, NSError *error, id userData, id responseData) {
+            
+            
+            if([[responseData valueForKeyWithNullToNil:@"success"] isEqualToString:@"true"])
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [UIAlertView showWithTitle:@"Success" message:@"Started Successfully" style:UIAlertViewStyleDefault cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                        //disable Start button
+                        [button setUserInteractionEnabled:NO];
+                        
+                        //Enable Stop button
+                        [cell.btnStop setUserInteractionEnabled:YES];
+                    }];
+                });
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [UIAlertView showWithTitle:@"Error" message:@"Already in progress" style:UIAlertViewStyleDefault cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                        
+                    }];
+                });
+            }
+        }];
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIAlertView showWithTitle:@"Error" message:@"Timer Already Started!" style:UIAlertViewStyleDefault cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
 
+                
+            }];
+        });
+    }
     
-    //toggleTimer on Server
-    [[AMProtocolManager sharedInstance] toggleTimerForAssetStart:cell.strAssetID completion:^(NSInteger type, NSError *error, id userData, id responseData) {
-        
-        
-        if([[responseData valueForKeyWithNullToNil:@"success"] isEqualToString:@"true"])
-        {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [UIAlertView showWithTitle:@"Success" message:@"Started Successfully" style:UIAlertViewStyleDefault cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                    //disable Start button
-                    [button setUserInteractionEnabled:NO];
-                    
-                    //Enable Stop button
-                    [cell.btnStop setUserInteractionEnabled:YES];
-                }];
-            });
-        } else {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [UIAlertView showWithTitle:@"Error" message:@"Already in progress" style:UIAlertViewStyleDefault cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                    
-                }];
-            });
-        }
-    }];
 
 }
 
 - (IBAction)clickStopBtn:(id)sender {
-    UIButton *button = ((UIButton*) sender);
     
-    AMBenchActiveListCell *cell = [self.tableViewList cellForRowAtIndexPath: [NSIndexPath indexPathForRow:button.tag inSection:[self.tableViewList numberOfSections]-1]];
-    
-
-
-    //toggleTimer on Server
-    [[AMProtocolManager sharedInstance] toggleTimerForAssetStop: cell.strAssetID completion:^(NSInteger type, NSError *error, id userData, id responseData) {
+    if(isTimerStarted)
+    {
+        UIButton *button = ((UIButton*) sender);
         
-        if([[responseData valueForKeyWithNullToNil:@"success"] isEqualToString:@"true"])
-        {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [UIAlertView showWithTitle:@"Success" message:@"Stopped Successfully" style:UIAlertViewStyleDefault cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                    //Disable Stop button
-                    [button setUserInteractionEnabled:NO];
-                    
-                    //Enable Start button
-                    [cell.btnStart setUserInteractionEnabled:YES];
-                }];
-            });
+        AMBenchActiveListCell *cell = [self.tableViewList cellForRowAtIndexPath: [NSIndexPath indexPathForRow:button.tag inSection:[self.tableViewList numberOfSections]-1]];
+        
 
 
-        } else {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [UIAlertView showWithTitle:@"Error" message:@"Cannot stop one you haven't started." style:UIAlertViewStyleDefault cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                    
-                }];
-            });
-        }
-    }];
+        //toggleTimer on Server
+        [[AMProtocolManager sharedInstance] toggleTimerForAssetStop: cell.strAssetID completion:^(NSInteger type, NSError *error, id userData, id responseData) {
+            
+            if([[responseData valueForKeyWithNullToNil:@"success"] isEqualToString:@"true"])
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [UIAlertView showWithTitle:@"Success" message:@"Stopped Successfully" style:UIAlertViewStyleDefault cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                        //Disable Stop button
+                        [button setUserInteractionEnabled:NO];
+                        
+                        //Enable Start button
+                        [cell.btnStart setUserInteractionEnabled:YES];
+                        isTimerStarted = NO;
+                    }];
+                });
+
+
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [UIAlertView showWithTitle:@"Error" message:@"Cannot stop one you haven't started." style:UIAlertViewStyleDefault cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                        
+                    }];
+                });
+            }
+        }];
+    }
 }
 
 - (IBAction)clickCheckoutBtn:(id)sender {
