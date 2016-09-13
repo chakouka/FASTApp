@@ -1705,9 +1705,9 @@ UIGestureRecognizerDelegate
                             //loop through all of them and add labels for each to the scrollview
                             UILabel *woNum = [[UILabel alloc] initWithFrame:CGRectMake(xPos, yPos, 130, 50)];
                             UILabel *woType = [[UILabel alloc] initWithFrame:CGRectMake(woNum.frame.origin.x + woNum.frame.size.width + 10, yPos, 100, 50)];
-                            UILabel *woRepairCode = [[UILabel alloc] initWithFrame:CGRectMake(woType.frame.origin.x + woType.frame.size.width + 10, yPos, 200, 50)];
-                            UILabel *woAssignedTo = [[UILabel alloc] initWithFrame:CGRectMake(woRepairCode.frame.origin.x + woRepairCode.frame.size.width + 10, yPos, 200, 50)];
-                            UILabel *woDate = [[UILabel alloc] initWithFrame:CGRectMake(woAssignedTo.frame.origin.x + woAssignedTo.frame.size.width + 10, yPos, 100, 50)];
+                            UILabel *woRepairCode = [[UILabel alloc] initWithFrame:CGRectMake(woType.frame.origin.x + woType.frame.size.width + 85, yPos, 200, 50)];
+                            UILabel *woAssignedTo = [[UILabel alloc] initWithFrame:CGRectMake(woRepairCode.frame.origin.x + woRepairCode.frame.size.width + 5, yPos, 200, 50)];
+                            UILabel *woDate = [[UILabel alloc] initWithFrame:CGRectMake(woAssignedTo.frame.origin.x + woAssignedTo.frame.size.width + 5, yPos, 100, 50)];
 
                             woNum.text = [dict valueForKeyWithNullToNil:@"Name"];
                             woType.text = [[dict valueForKeyWithNullToNil: @"RecordType"] valueForKeyWithNullToNil:@"Name"];
