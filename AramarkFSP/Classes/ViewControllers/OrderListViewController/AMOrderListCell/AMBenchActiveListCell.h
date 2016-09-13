@@ -12,7 +12,7 @@
 {
     
 }
-
+@property (assign, nonatomic) BOOL isTimerRunning;
 @property (strong, nonatomic) NSString *strPriority;
 @property (weak, nonatomic) IBOutlet UILabel *label_AssetNumber;
 @property (weak, nonatomic) IBOutlet UILabel *label_SerialNumber;

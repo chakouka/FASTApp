@@ -37,6 +37,7 @@ typedef NS_ENUM (NSInteger, SortType) {
 	SortType_Null
 };
 
+bool isTimerStarted;
 
 @interface AMBenchActiveListViewController ()
 <
@@ -76,7 +77,6 @@ UISearchBarDelegate
 @synthesize arrMoveList;
 
 #pragma mark - TEST
-bool isTimerStarted;
 
 #pragma mark -
 
@@ -459,16 +459,13 @@ bool isTimerStarted;
 }
 
 - (IBAction)clickStartBtn:(id)sender {
+    UIButton *button = ((UIButton*) sender);
     
+    AMBenchActiveListCell *cell = [self.tableViewList cellForRowAtIndexPath: [NSIndexPath indexPathForRow:button.tag inSection:[self.tableViewList numberOfSections]-1]];
+    
+    //Make sure global isTimerStarted is false before coming in here
     if(!isTimerStarted)
     {
-        isTimerStarted = YES;
-        UIButton *button = ((UIButton*) sender);
-        
-        AMBenchActiveListCell *cell = [self.tableViewList cellForRowAtIndexPath: [NSIndexPath indexPathForRow:button.tag inSection:[self.tableViewList numberOfSections]-1]];
-        
-        
-        
         //toggleTimer on Server
         [[AMProtocolManager sharedInstance] toggleTimerForAssetStart:cell.strAssetID completion:^(NSInteger type, NSError *error, id userData, id responseData) {
             
@@ -482,6 +479,10 @@ bool isTimerStarted;
                         
                         //Enable Stop button
                         [cell.btnStop setUserInteractionEnabled:YES];
+                        
+                        cell.isTimerRunning = YES;
+                        isTimerStarted = YES;
+
                     }];
                 });
             } else {
@@ -505,14 +506,12 @@ bool isTimerStarted;
 }
 
 - (IBAction)clickStopBtn:(id)sender {
+    UIButton *button = ((UIButton*) sender);
     
-    if(isTimerStarted)
+    AMBenchActiveListCell *cell = [self.tableViewList cellForRowAtIndexPath: [NSIndexPath indexPathForRow:button.tag inSection:[self.tableViewList numberOfSections]-1]];
+    
+    if(cell.isTimerRunning)
     {
-        UIButton *button = ((UIButton*) sender);
-        
-        AMBenchActiveListCell *cell = [self.tableViewList cellForRowAtIndexPath: [NSIndexPath indexPathForRow:button.tag inSection:[self.tableViewList numberOfSections]-1]];
-        
-
 
         //toggleTimer on Server
         [[AMProtocolManager sharedInstance] toggleTimerForAssetStop: cell.strAssetID completion:^(NSInteger type, NSError *error, id userData, id responseData) {
@@ -526,6 +525,7 @@ bool isTimerStarted;
                         
                         //Enable Start button
                         [cell.btnStart setUserInteractionEnabled:YES];
+                        cell.isTimerRunning = NO;
                         isTimerStarted = NO;
                     }];
                 });
