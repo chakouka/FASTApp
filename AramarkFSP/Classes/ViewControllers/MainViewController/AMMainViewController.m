@@ -1371,7 +1371,7 @@ UIGestureRecognizerDelegate
         self.labelBenchAVNotes.text = [assetRequestRecords[0] valueForKeyWithNullToNil:@"Verification_Note__c"];
         self.labelBenchTechName.text = self.labelName.text;
         
-        self.labelBenchRepairMatrixNTE.text = [NSString stringWithFormat:@"%i", ((int)[workOrderInfo valueForKeyWithNullToNil: @"Repair_Matrix__c"])];
+        self.labelBenchRepairMatrixNTE.text = [workOrderInfo valueForKeyWithNullToNil: @"Repair_Matrix__c"];
         self.selectedAssetID = [workOrderInfo valueForKeyWithNullToNil:@"Id"];
         self.selectedWorkorderID = [records[0] valueForKeyWithNullToNil:@"Id"];
         
