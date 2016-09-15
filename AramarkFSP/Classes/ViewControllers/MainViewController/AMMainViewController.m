@@ -1711,9 +1711,9 @@ UIGestureRecognizerDelegate
 
                             woNum.text = [dict valueForKeyWithNullToNil:@"Name"];
                             woType.text = [[dict valueForKeyWithNullToNil: @"RecordType"] valueForKeyWithNullToNil:@"Name"];
-                            woRepairCode.text = @"Blank Type BKK";
-                            woAssignedTo.text = @"Blank Assigned to BKK";
-                            woDate.text = @"Blank Date BKK";
+                            woRepairCode.text = @"RepairCode BKK";
+                            woAssignedTo.text = @"AssignedTo BKK";
+                            woDate.text = [dict valueForKeyWithNullToNil: @"Estimated_Work_Date__c"];
                             [self.scrHistoryScroller addSubview:woNum];
                             [self.scrHistoryScroller addSubview:woType];
                             [self.scrHistoryScroller addSubview:woRepairCode];
@@ -2354,6 +2354,11 @@ UIGestureRecognizerDelegate
 //                return;
 //                
 //            }];
+        } else {
+            [self benchListLoadData];
+            MAIN ( ^{
+                [self clearBTDetail];
+            });
         }
     }];
 }

@@ -218,7 +218,7 @@ UISearchBarDelegate
     cell.fullAssetInfoDict = [NSDictionary dictionaryWithDictionary: workOrder];
     cell.label_AssetNumber.text = [workOrder valueForKeyWithNullToNil:@"Machine_Number__c"];
     cell.label_SerialNumber.text = [workOrder valueForKeyWithNullToNil:@"SerialNumber"];
-    cell.label_MachineType.text = @"BKMachineType";
+    cell.label_MachineType.text = [workOrder valueForKeyWithNullToNil:@"Name"];
     cell.strAssetID = [[workOrder valueForKeyWithNullToNil:@"Item"] valueForKeyWithNullToNil:@"Asset__c"];
 
     cell.btnGetAssetInfo.tag = indexPath.row;

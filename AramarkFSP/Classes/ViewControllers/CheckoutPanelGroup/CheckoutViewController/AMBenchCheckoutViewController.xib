@@ -28,7 +28,7 @@
                 <rect key="frame" x="0.0" y="412" width="630" height="218"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gxf-Ee-e4w">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gxf-Ee-e4w">
                         <rect key="frame" x="12" y="156" width="606" height="50"/>
                         <color key="backgroundColor" red="0.0" green="0.65098039220000004" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -47,6 +47,7 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="Gxf-Ee-e4w" secondAttribute="trailing" constant="12" id="1TN-ve-dQw"/>
                     <constraint firstItem="Gxf-Ee-e4w" firstAttribute="leading" secondItem="4jC-4E-Bhe" secondAttribute="leading" constant="12" id="CoI-4e-GRV"/>
+                    <constraint firstAttribute="bottom" secondItem="Gxf-Ee-e4w" secondAttribute="bottom" constant="12" id="FDl-pl-aZr"/>
                 </constraints>
             </view>
             <connections>
