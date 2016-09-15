@@ -2355,9 +2355,10 @@ UIGestureRecognizerDelegate
 //                
 //            }];
         } else {
-            [self benchListLoadData];
+
             MAIN ( ^{
                 [self clearBTDetail];
+                [self benchListLoadData];
             });
         }
     }];
@@ -2381,9 +2382,10 @@ UIGestureRecognizerDelegate
                 
             }];
         } else {
-            [self benchListLoadData];
+
             MAIN ( ^{
                 [self clearBTDetail];
+                [self benchListLoadData];
             });
         }
         

@@ -390,8 +390,16 @@ UISearchBarDelegate
 }
 
 - (void)mySearchTaskMethod:(id)Info {
-	for (NSDictionary *order in[Info objectForKey:@"List"]) {
-		if ( ([[order valueForKeyWithNullToNil:@"Machine_Number__c"] rangeOfString:[Info objectForKey:@"String"] options:NSCaseInsensitiveSearch].location != NSNotFound) || ([[order valueForKeyWithNullToNil:@"SerialNumber"] rangeOfString:[Info objectForKey:@"String"] options:NSCaseInsensitiveSearch].location != NSNotFound) || ([[order valueForKeyWithNullToNil:@"Id"] rangeOfString:[Info objectForKey:@"String"] options:NSCaseInsensitiveSearch].location != NSNotFound) ) {//modify Id part in last one to also factor in the Machine Type
+
+    NSString *machineTypeName;
+	for (NSDictionary *order in [Info objectForKey:@"List"]) {
+        machineTypeName = [[((NSArray *)[[order valueForKey:@"Work_Orders__r"] objectForKey:@"records"])[0] valueForKeyWithNullToNil:@"Machine_Type__r"] valueForKeyWithNullToNil:@"Name"];
+        
+		if ( ([[order valueForKeyWithNullToNil:@"Machine_Number__c"] rangeOfString:[Info objectForKey:@"String"] options:NSCaseInsensitiveSearch].location != NSNotFound)
+            || ([[order valueForKeyWithNullToNil:@"SerialNumber"] rangeOfString:[Info objectForKey:@"String"] options:NSCaseInsensitiveSearch].location != NSNotFound)
+            || ((![machineTypeName isEqualToString:@"Machine Type"]) && [machineTypeName rangeOfString:_labelMachineType.text options:NSCaseInsensitiveSearch].location != NSNotFound ))
+        {//modify Id part in last one to also factor in the Machine Type
+            
 			[searchResultList addObject:order];
 		}
 	}
@@ -616,6 +624,10 @@ UISearchBarDelegate
 {
     [self.pickerMachineType reloadAllComponents];
     self.viewPickerPanel.hidden = !self.viewPickerPanel.isHidden;
+    if (self.viewPickerPanel.hidden)
+    {
+        [self searchItemWithString:_labelMachineType.text inList:self.localWorkOrders];
+    }
     [self.pickerMachineType setUserInteractionEnabled:!self.viewPickerPanel.isHidden];
 }
 
@@ -630,11 +642,8 @@ UISearchBarDelegate
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     NSString *strPickerSelection;
-    NSDictionary *selectedItem = [NSDictionary dictionaryWithDictionary:((NSDictionary *)self.machineTypesArray[row])];
-    NSArray *recordsArray = [NSArray arrayWithArray:    [[selectedItem valueForKeyWithNullToNil: @"Work_Orders__r"]valueForKeyWithNullToNil:@"records"]];
     
-    
-    strPickerSelection = [[((NSDictionary *)recordsArray[0]) valueForKeyWithNullToNil:@"Machine_Type__r"] valueForKeyWithNullToNil:@"Name"];
+    strPickerSelection = self.machineTypesArray[row];
     _labelMachineType.text = strPickerSelection;
     return strPickerSelection;
 }

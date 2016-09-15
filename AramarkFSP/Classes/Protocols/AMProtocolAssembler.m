@@ -264,7 +264,7 @@
                     [assetReqDict setObject:assetReq.moveToWarehouse forKey:@"Condition__c"];
                     if([assetReq.status isEqualToString: @"Found"]  && ([assetReq.moveToWarehouse isEqualToString:@"Working"] || [assetReq.moveToWarehouse isEqualToString:@"Not Working"]))
                     {
-                        [assetReqDict setObject:@1 forKey:@"Return_to_Warehouse__c"];//Flag for Shobha - unnecessary
+                        [assetReqDict setObject:@"True" forKey:@"Return_to_Warehouse__c"];//Flag for Shobha - unnecessary
                     }
                 }
             }

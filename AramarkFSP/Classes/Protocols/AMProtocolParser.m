@@ -890,9 +890,10 @@
         if([tempDict objectForKey:[machineTypeR valueForKeyWithNullToNil:@"Name"]] == nil)
         {
             [tempDict setObject:[machineTypeR valueForKeyWithNullToNil:@"Name"] forKey:[machineTypeR valueForKeyWithNullToNil:@"Name"]];
-            [machineTypeArray addObject:item];
+            [machineTypeArray addObject:[machineTypeR valueForKeyWithNullToNil:@"Name"]];
         }
     }
+    [machineTypeArray insertObject:@"Machine Type" atIndex:0];
     
     [actualDict setObject:array forKey:@"BTWorkOrders"];
     [actualDict setObject:machineTypeArray forKey:@"BTMachineTypesList"];
