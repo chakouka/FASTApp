@@ -237,7 +237,7 @@ UISearchBarDelegate
     cell.label_AssetNumber.text = [workOrder valueForKeyWithNullToNil: @"Machine_Number__c"];
     cell.label_SerialNumber.text = [workOrder valueForKeyWithNullToNil: @"SerialNumber"];
 	cell.label_MachineGroup.text = [workOrder valueForKeyWithNullToNil:@"Machine_Number__c"];
-    cell.label_MachineType.text = [[[workOrder valueForKeyWithNullToNil: @"Work_Orders__r"]valueForKeyWithNullToNil:@"Machine_Type__r"] valueForKeyWithNullToNil:@"Name"];
+    cell.label_MachineType.text = [[((NSArray *)[[workOrder valueForKey:@"Work_Orders__r"] objectForKey:@"records"])[0] valueForKeyWithNullToNil:@"Machine_Type__r"] valueForKeyWithNullToNil:@"Name"];
     
 	if (selectedWorkOrderId) {
 		if ([[workOrder valueForKey:@"Id"] isEqual:selectedWorkOrderId]) {
@@ -394,13 +394,23 @@ UISearchBarDelegate
     NSString *machineTypeName;
 	for (NSDictionary *order in [Info objectForKey:@"List"]) {
         machineTypeName = [[((NSArray *)[[order valueForKey:@"Work_Orders__r"] objectForKey:@"records"])[0] valueForKeyWithNullToNil:@"Machine_Type__r"] valueForKeyWithNullToNil:@"Name"];
-        
 		if ( ([[order valueForKeyWithNullToNil:@"Machine_Number__c"] rangeOfString:[Info objectForKey:@"String"] options:NSCaseInsensitiveSearch].location != NSNotFound)
             || ([[order valueForKeyWithNullToNil:@"SerialNumber"] rangeOfString:[Info objectForKey:@"String"] options:NSCaseInsensitiveSearch].location != NSNotFound)
-            || ((![machineTypeName isEqualToString:@"Machine Type"]) && [machineTypeName rangeOfString:_labelMachineType.text options:NSCaseInsensitiveSearch].location != NSNotFound ))
-        {//modify Id part in last one to also factor in the Machine Type
             
-			[searchResultList addObject:order];
+            )
+        {
+            //modify Id part in last one to also factor in the Machine Type
+            if ([_labelMachineType.text isEqualToString:@"Machine Type"])
+            {
+                //just add it.  don't factor in the machine type
+                [searchResultList addObject:order];
+            } else {
+                if ([machineTypeName rangeOfString:_labelMachineType.text options:NSCaseInsensitiveSearch].location != NSNotFound)
+                {
+                    //in this case, only add it if the machine type is found.
+                    [searchResultList addObject:order];
+                }
+            }
 		}
 	}
     
@@ -622,13 +632,23 @@ UISearchBarDelegate
 
 - (IBAction)btnMachineType:(id)sender
 {
-    [self.pickerMachineType reloadAllComponents];
     self.viewPickerPanel.hidden = !self.viewPickerPanel.isHidden;
+
     if (self.viewPickerPanel.hidden)
     {
-        [self searchItemWithString:_labelMachineType.text inList:self.localWorkOrders];
+        _labelMachineType.text = self.machineTypesArray[[self.pickerMachineType selectedRowInComponent:0]];
+
+        if([_labelMachineType.text isEqualToString:@"Machine Type"])
+        {
+            [self searchEnable: NO];
+        } else {
+            [self searchEnable: YES];
+            [self searchItemWithString:_labelMachineType.text inList:self.localWorkOrders];
+        }
     }
     [self.pickerMachineType setUserInteractionEnabled:!self.viewPickerPanel.isHidden];
+    [self.pickerMachineType reloadAllComponents];
+
 }
 
 #pragma mark - Picker Delegate
@@ -644,9 +664,9 @@ UISearchBarDelegate
     NSString *strPickerSelection;
     
     strPickerSelection = self.machineTypesArray[row];
-    _labelMachineType.text = strPickerSelection;
+//    _labelMachineType.text = strPickerSelection;
+    
     return strPickerSelection;
 }
-
 
 @end
