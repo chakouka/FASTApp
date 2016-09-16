@@ -398,7 +398,7 @@ AMVerificationAddSectionViewDelegate
 	AMPopoverSelectTableViewController *popView = [[AMPopoverSelectTableViewController alloc] initWithNibName:@"AMPopoverSelectTableViewController" bundle:nil];
 	popView.delegate = self;
 	popView.tag = PopViewType_Select_VerificationStatus;
-	popView.aIndexPath = [AMUtilities indexPathForView:sender inTableView:self.mainTableView];
+    popView.aIndexPath = [AMUtilities indexPathForView:sender inTableView:self.mainTableView];
 	popView.arrInfos = arrVerificationStatus;
 	aPopoverVC = [[UIPopoverController alloc] initWithContentViewController:popView];
 	[aPopoverVC setPopoverContentSize:CGSizeMake(CGRectGetWidth(popView.view.frame), CGRectGetHeight(popView.view.frame))];
@@ -411,34 +411,40 @@ AMVerificationAddSectionViewDelegate
 - (void)btnMoveToWarehouseTapped:(UIButton *)sender {
     UIButton *button = ((UIButton*) sender);
     
-    AMVerificationAddTableViewCell *cell = [self.mainTableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow:button.tag inSection:[self.mainTableView numberOfSections]-1]];
-
-    cell.imgCheckmark.hidden = !cell.imgCheckmark.isHidden;
+    //get the last section on the screen
+    AMVerificationAddSectionView *aSection = self.arrSections[self.arrSections.count-1];
     
-    NSMutableDictionary *dicInfos = [self.arrVerificationInfos objectAtIndex:sender.tag];
-    //AMAsset *aAsset = [dicInfos objectForKey:KEY_OF_ASSET_INFO];
-    AMAssetRequest *aAsset = [dicInfos objectForKey:KEY_OF_ASSETREQUEST_INFO];
-    
-    if(!cell.imgCheckmark.hidden)
+    //only allow tap for found status.
+    if([aSection.labelStatus.text isEqualToString:@"Found"])
     {
-        [UIAlertView showWithTitle:@"Working/Not Working" message:MyLocal(@"Is equipment being returned in working condition?") style:UIAlertViewStyleDefault cancelButtonTitle:MyLocal(@"NO") otherButtonTitles:@[MyLocal(@"YES")] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-            
-            if(buttonIndex == 0)
-            {
-                //YES
-                aAsset.moveToWarehouse = MyLocal(@"Not Working");
+        AMVerificationAddTableViewCell *cell = [self.mainTableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow:button.tag inSection:[self.mainTableView numberOfSections]-1]];
+
+        cell.imgCheckmark.hidden = !cell.imgCheckmark.isHidden;
+        
+        NSMutableDictionary *dicInfos = [self.arrVerificationInfos objectAtIndex:sender.tag];
+        //AMAsset *aAsset = [dicInfos objectForKey:KEY_OF_ASSET_INFO];
+        AMAssetRequest *aAsset = [dicInfos objectForKey:KEY_OF_ASSETREQUEST_INFO];
+        
+        if(!cell.imgCheckmark.hidden)
+        {
+            [UIAlertView showWithTitle:@"Working/Not Working" message:MyLocal(@"Is equipment being returned in working condition?") style:UIAlertViewStyleDefault cancelButtonTitle:MyLocal(@"NO") otherButtonTitles:@[MyLocal(@"YES")] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 
-            } else if (buttonIndex == 1) {
-                //NO
-                aAsset.moveToWarehouse = MyLocal(@"Working");
-            }
-            [dicAddInfo setObject:aAsset.moveToWarehouse forKey:KEY_OF_MOVE_TO_WAREHOUSE];
-            
-        }];
-    } else {
-        [dicAddInfo setObject:@"" forKey:KEY_OF_MOVE_TO_WAREHOUSE];
+                if(buttonIndex == 0)
+                {
+                    //YES
+                    aAsset.moveToWarehouse = MyLocal(@"Not Working");
+                    
+                } else if (buttonIndex == 1) {
+                    //NO
+                    aAsset.moveToWarehouse = MyLocal(@"Working");
+                }
+                [dicAddInfo setObject:aAsset.moveToWarehouse forKey:KEY_OF_MOVE_TO_WAREHOUSE];
+                
+            }];
+        } else {
+            [dicAddInfo setObject:@"" forKey:KEY_OF_MOVE_TO_WAREHOUSE];
+        }
     }
-    
 }
 
 - (void)clickAddStatusBtn:(UIButton *)sender {
@@ -1239,12 +1245,7 @@ AMVerificationAddSectionViewDelegate
 		[aPopoverVC dismissPopoverAnimated:YES];
 	}
 	else if (aVerificationStatusTableViewController.tag == PopViewType_Select_AddStatus) {
-        
-        //TODO: figure out a way to get a handle to the cell to make the checkbox visible on after found is tapped
-        if ([[aInfo valueForKeyWithNullToNil:@"INFO"] isEqualToString:@"Found"])
-        {
-            
-        }
+
 		AMAssetRequest *aAsset = [dicAddInfo objectForKey:KEY_OF_ADD_ASSETREQUEST_INFO];
 		aAsset.status = [aInfo objectForKey:kAMPOPOVER_DICTIONARY_KEY_DATA];
         
