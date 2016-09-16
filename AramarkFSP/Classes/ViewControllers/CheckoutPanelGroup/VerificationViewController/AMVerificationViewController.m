@@ -421,7 +421,7 @@ AMVerificationAddSectionViewDelegate
     
     if(!cell.imgCheckmark.hidden)
     {
-        [UIAlertView showWithTitle:@"Working/Not Working" message:MyLocal(@"Is equipment being returned in working condition?") style:UIAlertViewStyleDefault cancelButtonTitle:MyLocal(@"NO") otherButtonTitles:@[MyLocal(@"YES"), MyLocal(@"MISSING")] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        [UIAlertView showWithTitle:@"Working/Not Working" message:MyLocal(@"Is equipment being returned in working condition?") style:UIAlertViewStyleDefault cancelButtonTitle:MyLocal(@"NO") otherButtonTitles:@[MyLocal(@"YES")] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
             
             if(buttonIndex == 0)
             {
@@ -431,8 +431,6 @@ AMVerificationAddSectionViewDelegate
             } else if (buttonIndex == 1) {
                 //NO
                 aAsset.moveToWarehouse = MyLocal(@"Working");
-            } else {
-                aAsset.moveToWarehouse = MyLocal(@"Missing");
             }
             [dicAddInfo setObject:aAsset.moveToWarehouse forKey:KEY_OF_MOVE_TO_WAREHOUSE];
             
@@ -1161,20 +1159,24 @@ AMVerificationAddSectionViewDelegate
 		aAsset.verificationStatus = strNewStatus;
         
 		[aPopoverVC dismissPopoverAnimated:YES];
+        if([[aInfo valueForKeyWithNullToNil:@"INFO"] isEqualToString:@"Move to Warehouse"])
+        {
+            [UIAlertView showWithTitle:@"Asset Condition" message:MyLocal(@"What is the asset's condition?") style:UIAlertViewStyleDefault cancelButtonTitle:MyLocal(@"Working") otherButtonTitles:@[MyLocal(@"Not Working"), MyLocal(@"Missing")] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                
+                if(buttonIndex == 1)
+                {
+                    //YES
+                    aAsset.moveToWarehouse = @"Not Working";
+                } else if (buttonIndex == 2) {
+                    //NO
+                    aAsset.moveToWarehouse = @"Missing";
+                } else {
+                    aAsset.moveToWarehouse = @"Working";
+                }
+            }];
+        }
         
-        [UIAlertView showWithTitle:@"Working/Not Working" message:MyLocal(@"Is equipment being returned in working condition?") style:UIAlertViewStyleDefault cancelButtonTitle:MyLocal(@"NO") otherButtonTitles:@[MyLocal(@"YES")] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-            
-            if(buttonIndex > 0)
-            {
-                //YES
-                aAsset.moveToWarehouse = @"Working";
-            } else {
-                //NO
-                aAsset.moveToWarehouse = @"Not Working";
-            }
-            
-            [self.mainTableView reloadSections:[NSIndexSet indexSetWithIndex:aVerificationStatusTableViewController.aIndexPath.section] withRowAnimation:UITableViewRowAnimationNone];
-        }];
+        [self.mainTableView reloadSections:[NSIndexSet indexSetWithIndex:aVerificationStatusTableViewController.aIndexPath.section] withRowAnimation:UITableViewRowAnimationNone];
 	}
 	else if (aVerificationStatusTableViewController.tag == PopViewType_Select_NormalLocation) {
         
@@ -1237,6 +1239,12 @@ AMVerificationAddSectionViewDelegate
 		[aPopoverVC dismissPopoverAnimated:YES];
 	}
 	else if (aVerificationStatusTableViewController.tag == PopViewType_Select_AddStatus) {
+        
+        //TODO: figure out a way to get a handle to the cell to make the checkbox visible on after found is tapped
+        if ([[aInfo valueForKeyWithNullToNil:@"INFO"] isEqualToString:@"Found"])
+        {
+            
+        }
 		AMAssetRequest *aAsset = [dicAddInfo objectForKey:KEY_OF_ADD_ASSETREQUEST_INFO];
 		aAsset.status = [aInfo objectForKey:kAMPOPOVER_DICTIONARY_KEY_DATA];
         
