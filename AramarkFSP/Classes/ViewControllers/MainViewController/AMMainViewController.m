@@ -1364,8 +1364,8 @@ UIGestureRecognizerDelegate
         NSArray *records = [[workOrderInfo valueForKeyWithNullToNil:@"Work_Orders__r"] objectForKey:@"records"];
         NSArray *assetRequestRecords = [[workOrderInfo valueForKeyWithNullToNil:@"Asset_Requests__r"] objectForKey:@"records"];
         
-        self.labelBenchAssetNumber.text = [workOrderInfo valueForKeyWithNullToNil:@"Machine_Number__c"]; //[workOrderInfo valueForKeyWithNullToNil: @"Id"];
-        self.labelBenchSerialNumber.text = [workOrderInfo valueForKeyWithNullToNil: @"SerialNumber"];
+        self.labelBenchAssetNumber.text = [workOrderInfo valueForKeyWithNullToNil:@"Machine_Number__c"] == nil ? @"" :  [workOrderInfo valueForKeyWithNullToNil:@"Machine_Number__c"];
+        self.labelBenchSerialNumber.text = [workOrderInfo valueForKeyWithNullToNil: @"SerialNumber"] == nil ? @"" : [workOrderInfo valueForKeyWithNullToNil: @"SerialNumber"];
         self.labelBenchMachineType.text = [[records[0] valueForKeyWithNullToNil:@"Machine_Type__r"] valueForKeyWithNullToNil:@"Name"];
         self.labelBenchPOSName.text = [[records[0] valueForKeyWithNullToNil:@"Owner"] valueForKeyWithNullToNil:@"Name"];
         self.labelBenchAVNotes.text = [assetRequestRecords[0] valueForKeyWithNullToNil:@"Verification_Note__c"];
@@ -1680,9 +1680,9 @@ UIGestureRecognizerDelegate
                 if(fullAssetDict)
                 {
                     self.lblDtlName.text = [fullAssetDict valueForKeyWithNullToNil:@"Name"];
-                    self.lblDtlSerialNumber.text = [fullAssetDict valueForKeyWithNullToNil:@"SerialNumber"];
+                    self.lblDtlSerialNumber.text = [fullAssetDict valueForKeyWithNullToNil:@"SerialNumber"] == nil ? @"" : [fullAssetDict valueForKeyWithNullToNil:@"SerialNumber"];
                     self.lblDtlInstallDate.text = [fullAssetDict valueForKeyWithNullToNil:@"InstallDate"];
-                    self.lblDtlAssetNumber.text = [fullAssetDict valueForKeyWithNullToNil:@"Machine_Number__c"];
+                    self.lblDtlAssetNumber.text = [fullAssetDict valueForKeyWithNullToNil:@"Machine_Number__c"] == nil ? @"" : [fullAssetDict valueForKeyWithNullToNil:@"Machine_Number__c"];
                     self.lblDtlMachineType.text = [fullAssetDict valueForKeyWithNullToNil:@""];
                     self.lblDtlManufacturerWebsite.text = [fullAssetDict valueForKeyWithNullToNil:@""];
                     self.lblDtlVendKey.text = [fullAssetDict valueForKeyWithNullToNil:@""];
