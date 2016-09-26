@@ -916,11 +916,11 @@
         [innerDict setObject:value forKey:@"Id"];
         value = [item valueForKey: @"InstallDate"];
         [innerDict setObject:value forKey:@"InstallDate"];
-        value = [item valueForKey: @"Machine_Number__c"];
+        value = [item valueForKey: @"Machine_Number__c"]  == nil ? @"" : [item valueForKey: @"Machine_Number__c"];
         [innerDict setObject:value forKey:@"Machine_Number__c"];
         value = [item valueForKey: @"Name"];
         [innerDict setObject:value forKey:@"Name"];
-        value = [item valueForKey: @"SerialNumber"];
+        value = [item valueForKey: @"SerialNumber"] == nil ? @"" : [item valueForKey: @"SerialNumber"];
         [innerDict setObject:value forKey:@"SerialNumber"];
         woDict = [item objectForKey:@"Work_Orders__r"];
         [innerDict setObject:woDict forKey:@"WODict"];
