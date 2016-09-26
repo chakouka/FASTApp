@@ -1369,6 +1369,8 @@ UIGestureRecognizerDelegate
         self.labelBenchMachineType.text = [[records[0] valueForKeyWithNullToNil:@"Machine_Type__r"] valueForKeyWithNullToNil:@"Name"];
         self.labelBenchPOSName.text = [[records[0] valueForKeyWithNullToNil:@"Owner"] valueForKeyWithNullToNil:@"Name"];
         self.labelBenchAVNotes.text = [assetRequestRecords[0] valueForKeyWithNullToNil:@"Verification_Note__c"];
+        
+        self.labelBenchAssetCondition.text = [assetRequestRecords[0] valueForKeyWithNullToNil:@"Condition__c"];
         self.labelBenchTechName.text = self.labelName.text;
         
         self.labelBenchRepairMatrixNTE.text = [workOrderInfo valueForKeyWithNullToNil: @"Repair_Matrix__c"];

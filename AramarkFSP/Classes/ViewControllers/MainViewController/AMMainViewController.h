@@ -42,6 +42,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelBenchTechName;
 @property (weak, nonatomic) IBOutlet UILabel *labelBenchAVNotes;
 @property (weak, nonatomic) IBOutlet UILabel *labelBenchRepairMatrixNTE;
+@property (weak, nonatomic) IBOutlet UILabel *labelBenchAssetCondition;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblDtlName;
 @property (weak, nonatomic) IBOutlet UILabel *lblDtlSerialNumber;
