@@ -1690,6 +1690,7 @@ UIGestureRecognizerDelegate
                     self.lblDtlVendKey.text = [fullAssetDict valueForKeyWithNullToNil:@""];
                     self.lblDtlNextPMDate.text = [fullAssetDict valueForKeyWithNullToNil:@""];
                     self.lblDtlLocation.text = [fullAssetDict valueForKeyWithNullToNil:@""];
+                    self.lblDtlRepairMatrix.text = [fullAssetDict valueForKeyWithNullToNil:@"Repair_Matrix__c"];
                     
                     NSDictionary *historyDict = [fullAssetDict valueForKeyWithNullToNil:@"WODict"];
                     NSArray *historyArray = [NSArray arrayWithArray:[historyDict objectForKey:@"records"]];

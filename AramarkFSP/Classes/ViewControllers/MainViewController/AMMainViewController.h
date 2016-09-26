@@ -53,6 +53,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblDtlVendKey;
 @property (weak, nonatomic) IBOutlet UILabel *lblDtlNextPMDate;
 @property (weak, nonatomic) IBOutlet UILabel *lblDtlLocation;
+@property (weak, nonatomic) IBOutlet UILabel *lblDtlRepairMatrix;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrHistoryScroller;
 
