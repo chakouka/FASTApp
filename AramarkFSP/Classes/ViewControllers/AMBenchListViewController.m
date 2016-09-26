@@ -394,8 +394,8 @@ UISearchBarDelegate
     NSString *machineTypeName;
 	for (NSDictionary *order in [Info objectForKey:@"List"]) {
         machineTypeName = [[((NSArray *)[[order valueForKey:@"Work_Orders__r"] objectForKey:@"records"])[0] valueForKeyWithNullToNil:@"Machine_Type__r"] valueForKeyWithNullToNil:@"Name"];
-		if ( ([[order valueForKeyWithNullToNil:@"Machine_Number__c"] rangeOfString:[Info objectForKey:@"String"] options:NSCaseInsensitiveSearch].location != NSNotFound)
-            || ([[order valueForKeyWithNullToNil:@"SerialNumber"] rangeOfString:[Info objectForKey:@"String"] options:NSCaseInsensitiveSearch].location != NSNotFound)
+		if ( ( [order valueForKeyWithNullToNil:@"Machine_Number__c"] != nil && ([[order valueForKeyWithNullToNil:@"Machine_Number__c"] rangeOfString:[Info objectForKey:@"String"] options:NSCaseInsensitiveSearch].location != NSNotFound)
+            ) || ( ([order valueForKeyWithNullToNil:@"SerialNumber"] != nil && [[order valueForKeyWithNullToNil:@"SerialNumber"] rangeOfString:[Info objectForKey:@"String"] options:NSCaseInsensitiveSearch].location != NSNotFound) )
             
             )
         {
