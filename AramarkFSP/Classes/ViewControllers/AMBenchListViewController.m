@@ -397,20 +397,11 @@ UISearchBarDelegate
 		if ( ( [order valueForKeyWithNullToNil:@"Machine_Number__c"] != nil && ([[order valueForKeyWithNullToNil:@"Machine_Number__c"] rangeOfString:[Info objectForKey:@"String"] options:NSCaseInsensitiveSearch].location != NSNotFound)
             ) || ( ([order valueForKeyWithNullToNil:@"SerialNumber"] != nil && [[order valueForKeyWithNullToNil:@"SerialNumber"] rangeOfString:[Info objectForKey:@"String"] options:NSCaseInsensitiveSearch].location != NSNotFound) )
             
+              || ( (![_labelMachineType.text isEqualToString:@"Machine Type"] && ([machineTypeName rangeOfString:_labelMachineType.text options:NSCaseInsensitiveSearch].location != NSNotFound)) )
             )
         {
-            //modify Id part in last one to also factor in the Machine Type
-            if ([_labelMachineType.text isEqualToString:@"Machine Type"])
-            {
-                //just add it.  don't factor in the machine type
-                [searchResultList addObject:order];
-            } else {
-                if ([machineTypeName rangeOfString:_labelMachineType.text options:NSCaseInsensitiveSearch].location != NSNotFound)
-                {
-                    //in this case, only add it if the machine type is found.
-                    [searchResultList addObject:order];
-                }
-            }
+            //add the item to the list
+            [searchResultList addObject: order];
 		}
 	}
     
@@ -479,6 +470,9 @@ UISearchBarDelegate
     if (searchText.length > 0) {
         [self searchEnable:YES];
         [self searchItemWithString:searchText inList:localWorkOrders];
+        _labelMachineType.text = @"Machine Type";
+        [pickerMachineType selectRow:0 inComponent:0 animated:NO];
+        
     } else {
         [self searchEnable:NO];
         [self reloadData];
