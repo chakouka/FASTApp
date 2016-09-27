@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btn5;
 @property (weak, nonatomic) IBOutlet UIButton *btn6;
 @property (weak, nonatomic) IBOutlet UIButton *btn7;
+@property (weak, nonatomic) IBOutlet UIImageView *benchLineImageView;
 
 @property (strong, nonatomic) UIButton *selectedButtn;
 @end
@@ -117,6 +118,17 @@
 
     [self.btn7 setBackgroundImage:nil forState:UIControlStateNormal];
     [self.btn7 setBackgroundImage:[UIImage imageNamed:@"clicked-sate-button"] forState:UIControlStateSelected];
+    
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    bool isBenchTech = [[prefs valueForKey:@"isBenchTechActive"] boolValue];
+    
+    if(isBenchTech) {
+        [self.btn7 setHidden:NO];
+        [self.benchLineImageView setHidden:NO];
+    } else {
+        [self.btn7 setHidden:YES];
+        [self.benchLineImageView setHidden:YES];
+    }
 
 }
 
