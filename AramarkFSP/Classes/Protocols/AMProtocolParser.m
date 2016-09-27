@@ -160,6 +160,9 @@
             {
                NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
                 [prefs setInteger: [[tempdict valueForKey:@"Beta_Enabled__c"] integerValue] forKey:@"isBenchTechActive"];
+                
+                //Notification to show or hide bench button.
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SHOULD_SHOW_BENCH object:nil];
             }
             
         }

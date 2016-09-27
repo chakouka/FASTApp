@@ -113,7 +113,7 @@
                     <frame key="frameInset" minY="320" width="94" height="2"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YVL-88-eIA" userLabel="Btn7">
+                <button hidden="YES" opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YVL-88-eIA" userLabel="Btn7">
                     <frame key="frameInset" minY="322" width="94" height="52"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal">
@@ -123,7 +123,7 @@
                         <action selector="clickItemBtn:" destination="-1" eventType="touchUpInside" id="F0D-zq-QIB"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="div-line.png" id="eqc-jT-bfd">
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="div-line.png" id="eqc-jT-bfd">
                     <frame key="frameInset" minY="374" width="94" height="2"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>

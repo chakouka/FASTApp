@@ -38,6 +38,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_SYNCING_START object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_SYNCING_DONE object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_DID_SWITCH_LANGUAGE object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_SHOULD_SHOW_BENCH object:nil];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -55,6 +57,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startSyncCloud) name:NOTIFICATION_SYNCING_START object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopSyncCloud) name:NOTIFICATION_SYNCING_DONE object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSwitchLanguage) name:NOTIFICATION_DID_SWITCH_LANGUAGE object:nil];
+    //bench tech
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showHideBench) name:NOTIFICATION_SHOULD_SHOW_BENCH object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,6 +71,23 @@
     [self setupLeftMenuImage];
 }
 
+- (void)showHideBench
+{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    bool isBenchTech = [[prefs valueForKey:@"isBenchTechActive"] boolValue];
+    
+    if(isBenchTech) {
+        MAIN ( ^{
+            [self.btn7 setHidden:NO];
+            [self.benchLineImageView setHidden:NO];
+        });
+    } else {
+        MAIN ( ^{
+            [self.btn7 setHidden:YES];
+            [self.benchLineImageView setHidden:YES];
+        });
+    }
+}
 - (void)setupLeftMenuImage
 {
     [self.btn1 setImage:[UIImage imageNamed:MyImage(@"home-icon")] forState:UIControlStateNormal];
@@ -118,17 +139,6 @@
 
     [self.btn7 setBackgroundImage:nil forState:UIControlStateNormal];
     [self.btn7 setBackgroundImage:[UIImage imageNamed:@"clicked-sate-button"] forState:UIControlStateSelected];
-    
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    bool isBenchTech = [[prefs valueForKey:@"isBenchTechActive"] boolValue];
-    
-    if(isBenchTech) {
-        [self.btn7 setHidden:NO];
-        [self.benchLineImageView setHidden:NO];
-    } else {
-        [self.btn7 setHidden:YES];
-        [self.benchLineImageView setHidden:YES];
-    }
 
 }
 
