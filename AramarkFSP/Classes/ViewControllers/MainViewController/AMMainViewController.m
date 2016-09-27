@@ -2381,9 +2381,15 @@ UIGestureRecognizerDelegate
 
         if(error)
         {
-            [UIAlertView showWithTitle:@"Scrap Error" message:[NSString stringWithFormat: @"Error:%@",error] cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            MAIN ( (^{
                 
-            }];
+                [UIAlertView showWithTitle:@"Scrap Error"
+                                   message: [NSString stringWithFormat: @"Error:%@" ,error] cancelButtonTitle:@"OK"
+                                    otherButtonTitles:nil
+                                    tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                             
+                         }];
+            }) );
         } else {
 
             MAIN ( ^{
