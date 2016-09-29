@@ -932,6 +932,8 @@
         records = [NSArray arrayWithArray:[woDict objectForKey:@"records"]];
         [innerDict setObject:records[0] forKey:@"Item"];
         [innerDict setObject:[item valueForKeyWithNullToNil:@"Product2Id"] forKey:@"Product2Id"];
+        [innerDict setObject:[item valueForKeyWithNullToNil:@"Product2"] forKey:@"Product2"];
+        [innerDict setObject:[item valueForKeyWithNullToNil:@"Vend_Key__c"] forKey:@"Vend_Key__c"];
         [arrayBTActiveData addObject:innerDict];        
     }
     [outerDict setObject:arrayBTActiveData forKey:@"BTActiveArray"];

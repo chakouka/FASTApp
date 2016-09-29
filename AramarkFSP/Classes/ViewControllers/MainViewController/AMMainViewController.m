@@ -1686,8 +1686,8 @@ UIGestureRecognizerDelegate
                     self.lblDtlInstallDate.text = [fullAssetDict valueForKeyWithNullToNil:@"InstallDate"];
                     self.lblDtlAssetNumber.text = [fullAssetDict valueForKeyWithNullToNil:@"Machine_Number__c"] == nil ? @"" : [fullAssetDict valueForKeyWithNullToNil:@"Machine_Number__c"];
                     self.lblDtlMachineType.text = [fullAssetDict valueForKeyWithNullToNil:@"Name"];
-                    self.lblDtlManufacturerWebsite.text = [fullAssetDict valueForKeyWithNullToNil:@""];
-                    self.lblDtlVendKey.text = [fullAssetDict valueForKeyWithNullToNil:@""];
+                    self.lblDtlManufacturerWebsite.text = [[fullAssetDict valueForKeyWithNullToNil:@"Product2"] valueForKeyWithNullToNil:@"Manufacturer_Website__c"];
+                    self.lblDtlVendKey.text = [fullAssetDict valueForKeyWithNullToNil:@"Vend_Key__c"];
                     self.lblDtlNextPMDate.text = [fullAssetDict valueForKeyWithNullToNil:@""];
                     self.lblDtlLocation.text = [fullAssetDict valueForKeyWithNullToNil:@""];
                     self.lblDtlRepairMatrix.text = [fullAssetDict valueForKeyWithNullToNil:@"Repair_Matrix__c"];
