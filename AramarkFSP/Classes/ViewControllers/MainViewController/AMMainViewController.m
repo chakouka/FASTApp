@@ -1373,7 +1373,7 @@ UIGestureRecognizerDelegate
         self.labelBenchAssetCondition.text = [assetRequestRecords[0] valueForKeyWithNullToNil:@"Condition__c"];
         self.labelBenchTechName.text = self.labelName.text;
         
-        self.labelBenchRepairMatrixNTE.text = [workOrderInfo valueForKeyWithNullToNil: @"Repair_Matrix__c"];
+        self.labelBenchRepairMatrixNTE.text = [NSString stringWithFormat:@"$%@", [workOrderInfo valueForKeyWithNullToNil: @"Repair_Matrix__c"]];
         self.selectedAssetID = [workOrderInfo valueForKeyWithNullToNil:@"Id"];
         self.selectedWorkorderID = [records[0] valueForKeyWithNullToNil:@"Id"];
         
@@ -1690,7 +1690,7 @@ UIGestureRecognizerDelegate
                     self.lblDtlVendKey.text = [fullAssetDict valueForKeyWithNullToNil:@"Vend_Key__c"];
                     self.lblDtlNextPMDate.text = [fullAssetDict valueForKeyWithNullToNil:@""];
                     self.lblDtlLocation.text = [fullAssetDict valueForKeyWithNullToNil:@""];
-                    self.lblDtlRepairMatrix.text = [fullAssetDict valueForKeyWithNullToNil:@"Repair_Matrix__c"];
+                    self.lblDtlRepairMatrix.text = [NSString stringWithFormat:@"$%@", [fullAssetDict valueForKeyWithNullToNil:@"Repair_Matrix__c"]];
                     
                     NSDictionary *historyDict = [fullAssetDict valueForKeyWithNullToNil:@"WODict"];
                     NSArray *historyArray = [NSArray arrayWithArray:[historyDict objectForKey:@"records"]];
@@ -2376,28 +2376,34 @@ UIGestureRecognizerDelegate
 }
 
 - (IBAction)tapScrapBenchButtn:(UIButton *)sender {
-    
-    [[AMProtocolManager sharedInstance] scrapBenchAsset: self.selectedAssetID completion:^(NSInteger type, NSError *error, id userData, id responseData) {
 
-        if(error)
+    [UIAlertView showWithTitle:@"Scrap" message:@"Are you sure you want to scrap?" cancelButtonTitle:@"No" otherButtonTitles:@[@"Yes"] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        if (buttonIndex != 0)
         {
-            MAIN ( (^{
+           //OK
+            [[AMProtocolManager sharedInstance] scrapBenchAsset: self.selectedAssetID completion:^(NSInteger type, NSError *error, id userData, id responseData) {
                 
-                [UIAlertView showWithTitle:@"Scrap Error"
-                                   message: [NSString stringWithFormat: @"Error:%@" ,error] cancelButtonTitle:@"OK"
-                                    otherButtonTitles:nil
-                                    tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                             
-                         }];
-            }) );
-        } else {
-
-            MAIN ( ^{
-                [self clearBTDetail];
-                [self benchListLoadData];
-            });
+                if(error)
+                {
+                    MAIN ( (^{
+                        
+                        [UIAlertView showWithTitle:@"Scrap Error"
+                                           message: [NSString stringWithFormat: @"Error:%@" ,error] cancelButtonTitle:@"OK"
+                                 otherButtonTitles:nil
+                                          tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                              
+                                          }];
+                    }) );
+                } else {
+                    
+                    MAIN ( ^{
+                        [self clearBTDetail];
+                        [self benchListLoadData];
+                    });
+                }
+                
+            }]; 
         }
-        
     }];
 }
 

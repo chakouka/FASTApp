@@ -67,12 +67,12 @@
                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nmq-lx-e30" userLabel="GetAssetInfoBtn">
-                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.12450066953897476" green="0.71407932043075562" blue="0.94324904680252075" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="1Ub-8F-6rI"/>
                             <constraint firstAttribute="width" constant="121" id="8qQ-cE-HZM"/>
                         </constraints>
-                        <state key="normal" title="Get Asset Info"/>
+                        <state key="normal" title="GET ASSET INFO"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RM7-R6-HL0">
                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -80,22 +80,22 @@
                             <constraint firstAttribute="height" constant="35" id="lhk-e8-gal"/>
                             <constraint firstAttribute="width" constant="78" id="q3a-Up-Cjr"/>
                         </constraints>
-                        <state key="normal" title="Start"/>
+                        <state key="normal" title="START"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCE-Ad-Dam">
                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="MVA-at-jQL"/>
                         </constraints>
-                        <state key="normal" title="Check Out"/>
+                        <state key="normal" title="CHECK OUT"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="72x-ns-DmX">
-                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="9Rm-Yy-Kdg"/>
                             <constraint firstAttribute="width" constant="78" id="kO6-EY-s2h"/>
                         </constraints>
-                        <state key="normal" title="Stop"/>
+                        <state key="normal" title="STOP"/>
                     </button>
                 </subviews>
                 <constraints>
