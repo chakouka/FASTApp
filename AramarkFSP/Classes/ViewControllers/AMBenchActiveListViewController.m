@@ -171,7 +171,7 @@ UISearchBarDelegate
 #pragma mark - TableView List
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	return 102;
+	return 90;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

@@ -11,11 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="85" id="sdW-5g-qBn" customClass="AMBenchActiveListCell">
-            <rect key="frame" x="0.0" y="0.0" width="847" height="102"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="74" id="sdW-5g-qBn" customClass="AMBenchActiveListCell">
+            <rect key="frame" x="0.0" y="0.0" width="847" height="90"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sdW-5g-qBn" id="lOp-yF-7Ab">
-                <frame key="frameInset" width="847" height="101"/>
+                <frame key="frameInset" width="847" height="89"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="241" verticalHuggingPriority="251" text="Asset #:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="paL-Us-67g" userLabel="Asset Number Title">
@@ -107,12 +107,12 @@
                     <constraint firstItem="3Ga-2f-q8f" firstAttribute="top" secondItem="DHM-13-Ucg" secondAttribute="bottom" constant="8" symbolic="YES" id="Dma-4J-kUx"/>
                     <constraint firstItem="VgA-6z-SiN" firstAttribute="leading" secondItem="DHM-13-Ucg" secondAttribute="trailing" constant="78" id="GPN-Bi-k8Z"/>
                     <constraint firstItem="3Ga-2f-q8f" firstAttribute="leading" secondItem="KS6-v8-INu" secondAttribute="trailing" constant="-7" id="H0V-uO-dnv"/>
-                    <constraint firstItem="Lrm-o5-Rm5" firstAttribute="top" secondItem="3Ga-2f-q8f" secondAttribute="bottom" constant="31" id="Hn9-zB-R4q"/>
+                    <constraint firstItem="Lrm-o5-Rm5" firstAttribute="top" secondItem="3Ga-2f-q8f" secondAttribute="bottom" constant="19" id="Hn9-zB-R4q"/>
                     <constraint firstItem="72x-ns-DmX" firstAttribute="leading" secondItem="RM7-R6-HL0" secondAttribute="trailing" constant="13" id="Imo-Pz-qwL"/>
                     <constraint firstAttribute="bottom" secondItem="D6G-3y-BPL" secondAttribute="bottom" constant="88.5" id="Iuv-pp-Lzf"/>
                     <constraint firstItem="paL-Us-67g" firstAttribute="baseline" secondItem="DHM-13-Ucg" secondAttribute="baseline" id="Lwj-kj-ncp"/>
                     <constraint firstItem="3Ga-2f-q8f" firstAttribute="centerY" secondItem="KS6-v8-INu" secondAttribute="centerY" id="MFR-9F-ktd"/>
-                    <constraint firstAttribute="bottom" secondItem="Lrm-o5-Rm5" secondAttribute="bottom" constant="-1" id="MwQ-iA-yeA"/>
+                    <constraint firstAttribute="bottom" secondItem="Lrm-o5-Rm5" secondAttribute="bottom" id="MwQ-iA-yeA"/>
                     <constraint firstItem="fCE-Ad-Dam" firstAttribute="trailing" secondItem="Lrm-o5-Rm5" secondAttribute="trailing" constant="-4" id="P9z-0k-MJT"/>
                     <constraint firstItem="Lcm-dh-uLx" firstAttribute="leading" secondItem="lOp-yF-7Ab" secondAttribute="leading" constant="209" id="R1B-zF-J6S"/>
                     <constraint firstAttribute="trailing" secondItem="D6G-3y-BPL" secondAttribute="trailing" constant="443" id="S5P-Yq-FRS"/>
@@ -130,7 +130,7 @@
                     <constraint firstItem="paL-Us-67g" firstAttribute="firstBaseline" secondItem="VgA-6z-SiN" secondAttribute="firstBaseline" id="keO-s1-kal"/>
                     <constraint firstItem="RM7-R6-HL0" firstAttribute="baseline" secondItem="fCE-Ad-Dam" secondAttribute="baseline" id="lJD-qV-MIq"/>
                     <constraint firstItem="fCE-Ad-Dam" firstAttribute="baseline" secondItem="72x-ns-DmX" secondAttribute="firstBaseline" id="pho-Ll-3fm"/>
-                    <constraint firstItem="Lrm-o5-Rm5" firstAttribute="top" secondItem="Lcm-dh-uLx" secondAttribute="bottom" constant="49" id="qjO-AG-Ifu"/>
+                    <constraint firstItem="Lrm-o5-Rm5" firstAttribute="top" secondItem="Lcm-dh-uLx" secondAttribute="bottom" constant="37" id="qjO-AG-Ifu"/>
                     <constraint firstItem="fCE-Ad-Dam" firstAttribute="leading" secondItem="72x-ns-DmX" secondAttribute="trailing" constant="29" id="sgx-L4-zna"/>
                     <constraint firstItem="fCE-Ad-Dam" firstAttribute="baseline" secondItem="72x-ns-DmX" secondAttribute="baseline" id="tFN-30-Ayl"/>
                     <constraint firstItem="72x-ns-DmX" firstAttribute="baseline" secondItem="Nmq-lx-e30" secondAttribute="firstBaseline" id="u8V-2V-KV0"/>
@@ -152,7 +152,7 @@
                 <outlet property="label_SerialNumber" destination="VgA-6z-SiN" id="Bfx-UM-iqz"/>
                 <outlet property="viewShade" destination="D6G-3y-BPL" id="sxk-Iq-Pjm"/>
             </connections>
-            <point key="canvasLocation" x="665.5" y="356"/>
+            <point key="canvasLocation" x="665.5" y="350.5"/>
         </tableViewCell>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
