@@ -773,7 +773,7 @@
         return;
     }
     
-    if ([wo.status isEqualToLocalizedString:@"In Progress"])
+    if ([wo.status isEqualToLocalizedString:@"In Progress"] || [wo.status isEqualToLocalizedString:@"Checked Out"])
     {
         if ([_checkInWO.woID isEqualToString: wo.woID]) {
             _checkInWO = nil;
