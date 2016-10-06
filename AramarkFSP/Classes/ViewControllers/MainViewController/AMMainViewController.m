@@ -1367,7 +1367,7 @@ UIGestureRecognizerDelegate
         self.labelBenchAssetNumber.text = [workOrderInfo valueForKeyWithNullToNil:@"Machine_Number__c"] == nil ? @"" :  [workOrderInfo valueForKeyWithNullToNil:@"Machine_Number__c"];
         self.labelBenchSerialNumber.text = [workOrderInfo valueForKeyWithNullToNil: @"SerialNumber"] == nil ? @"" : [workOrderInfo valueForKeyWithNullToNil: @"SerialNumber"];
         self.labelBenchMachineType.text = [[records[0] valueForKeyWithNullToNil:@"Machine_Type__r"] valueForKeyWithNullToNil:@"Name"];
-        self.labelBenchPOSName.text = [[records[0] valueForKeyWithNullToNil:@"Owner"] valueForKeyWithNullToNil:@"Name"];
+        self.labelBenchPOSName.text = [[assetRequestRecords[0] valueForKeyWithNullToNil:@"Point_of_Service__r"] valueForKeyWithNullToNil:@"Name"];
         self.labelBenchAVNotes.text = [assetRequestRecords[0] valueForKeyWithNullToNil:@"Verification_Note__c"];
         
         self.labelBenchAssetCondition.text = [assetRequestRecords[0] valueForKeyWithNullToNil:@"Condition__c"];
