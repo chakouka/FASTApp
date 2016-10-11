@@ -31,11 +31,12 @@
                     <frame key="frameInset" maxX="-83" maxY="629"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ykE-t7-z6t">
-                            <frame key="frameInset" minX="121" minY="29" maxX="120" maxY="28"/>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ykE-t7-z6t">
+                            <frame key="frameInset" minY="29" maxX="83" maxY="18"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" title="Back to Bench"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                            <state key="normal" title="BACK TO BENCH"/>
                             <connections>
                                 <action selector="btnBackToBench:" destination="-1" eventType="touchUpInside" id="jUe-Ek-PTO"/>
                             </connections>
