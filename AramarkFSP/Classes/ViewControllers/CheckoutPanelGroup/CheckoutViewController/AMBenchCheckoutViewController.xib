@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -42,12 +43,23 @@
                             <action selector="clickSubmitBtn:" destination="-1" eventType="touchUpInside" id="gQN-wS-6Bc"/>
                         </connections>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="waB-Gi-3zW">
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <state key="normal" title="CANCEL AND SCRAP"/>
+                        <connections>
+                            <action selector="clickScrapCancelBtn:" destination="-1" eventType="touchUpInside" id="lMa-QW-ksl"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="Gxf-Ee-e4w" secondAttribute="trailing" constant="12" id="1TN-ve-dQw"/>
+                    <constraint firstItem="waB-Gi-3zW" firstAttribute="top" secondItem="Gxf-Ee-e4w" secondAttribute="bottom" constant="46" id="C2G-rz-Bv1"/>
                     <constraint firstItem="Gxf-Ee-e4w" firstAttribute="leading" secondItem="4jC-4E-Bhe" secondAttribute="leading" constant="12" id="CoI-4e-GRV"/>
-                    <constraint firstAttribute="bottom" secondItem="Gxf-Ee-e4w" secondAttribute="bottom" constant="12" id="FDl-pl-aZr"/>
+                    <constraint firstAttribute="trailing" secondItem="waB-Gi-3zW" secondAttribute="trailing" constant="12" id="Oho-3K-3Xj"/>
+                    <constraint firstItem="waB-Gi-3zW" firstAttribute="leading" secondItem="4jC-4E-Bhe" secondAttribute="leading" constant="425" id="aqf-1r-Ob6"/>
+                    <constraint firstItem="waB-Gi-3zW" firstAttribute="bottom" secondItem="4jC-4E-Bhe" secondAttribute="bottomMargin" id="sHc-lp-QEy"/>
+                    <constraint firstItem="Gxf-Ee-e4w" firstAttribute="top" secondItem="4jC-4E-Bhe" secondAttribute="top" constant="64" id="uXH-LE-d1U"/>
                 </constraints>
             </view>
             <connections>

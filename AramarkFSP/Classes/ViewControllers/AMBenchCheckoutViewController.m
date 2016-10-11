@@ -354,6 +354,31 @@ AMPopoverSelectTableViewControllerDelegate
 
 #pragma mark - Click
 
+- (IBAction)clickScrapCancelBtn:(UIButton *)sender {
+    [UIAlertView showWithTitle:@"Scrap" message:@"Are you sure you want to scrap?" cancelButtonTitle:@"No" otherButtonTitles:@[@"Yes"] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        if (buttonIndex != 0)
+        {
+            //OK
+            [[AMProtocolManager sharedInstance] scrapBenchAsset: [self.workorderDict valueForKeyWithNullToNil:@"Id"] completion:^(NSInteger type, NSError *error, id userData, id responseData) {
+                
+                if(error)
+                {
+                    MAIN ( (^{
+                        
+                        [UIAlertView showWithTitle:@"Scrap Error"
+                                           message: [NSString stringWithFormat: @"Error:%@" ,error] cancelButtonTitle:@"OK"
+                                 otherButtonTitles:nil
+                                          tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                              
+                                          }];
+                    }) );
+                }
+                
+            }];
+        }
+    }];
+}
+
 //TODO::Enhancement140929
 - (IBAction)clickSubmitBtn:(UIButton *)sender {
     DLog(@"clickSubmitBtn");
