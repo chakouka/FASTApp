@@ -516,18 +516,21 @@ UISearchBarDelegate
 
 
 - (void)reloadData {
-	MAIN ( ^{
-	    if (isSearching) {
-	        if (searchResultList) {
-	            [self.tableViewList reloadData];
-			}
-		}
-	    else {
-	        if (localWorkOrders) {
-	            [self.tableViewList reloadData];
-			}
-		}
-	});
+	
+    if (isSearching) {
+        if (searchResultList) {
+            MAIN ( ^{
+                [self.tableViewList reloadData];
+            });
+        }
+    }
+    else {
+        if (localWorkOrders) {
+            MAIN ( ^{
+                [self.tableViewList reloadData];
+            });
+        }
+    }
 }
 
 
