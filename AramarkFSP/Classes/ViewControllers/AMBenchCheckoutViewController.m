@@ -372,6 +372,15 @@ AMPopoverSelectTableViewControllerDelegate
                                               
                                           }];
                     }) );
+                } else {
+                    //dismiss the screen after successful scrap
+                    NSDictionary *dicInfo = @{
+                                              KEY_OF_TYPE:TYPE_OF_BTN_ITEM_CLICKED,
+                                              KEY_OF_INFO:[NSNumber numberWithInteger:7],
+                                              };
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMLEFTBARVIEWCONTROLLER object:dicInfo];
+                    });
                 }
                 
             }];
