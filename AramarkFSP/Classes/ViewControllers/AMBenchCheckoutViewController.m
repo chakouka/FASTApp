@@ -355,82 +355,89 @@ AMPopoverSelectTableViewControllerDelegate
 #pragma mark - Click
 
 - (IBAction)clickScrapCancelBtn:(UIButton *)sender {
-    [UIAlertView showWithTitle:@"Scrap" message:@"Are you sure you want to scrap?" cancelButtonTitle:@"No" otherButtonTitles:@[@"Yes"] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-        if (buttonIndex != 0)
-        {
-            //OK
-            [[AMProtocolManager sharedInstance] scrapBenchAsset: [self.workorderDict valueForKeyWithNullToNil:@"Id"] completion:^(NSInteger type, NSError *error, id userData, id responseData) {
-                
-                if(error)
-                {
-                    MAIN ( (^{
-                        
-                        [UIAlertView showWithTitle:@"Scrap Error"
-                                           message: [NSString stringWithFormat: @"Error:%@" ,error] cancelButtonTitle:@"OK"
-                                 otherButtonTitles:nil
-                                          tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                                              
-                                          }];
-                    }) );
-                } else {
-                    //dismiss the screen after successful scrap
-                    NSDictionary *dicInfo = @{
-                                              KEY_OF_TYPE:TYPE_OF_BTN_ITEM_CLICKED,
-                                              KEY_OF_INFO:[NSNumber numberWithInteger:7],
-                                              };
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMLEFTBARVIEWCONTROLLER object:dicInfo];
-                    });
-                }
-                
-            }];
-        }
-    }];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIAlertView showWithTitle:@"Scrap" message:@"Are you sure you want to scrap?" cancelButtonTitle:@"No" otherButtonTitles:@[@"Yes"] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            if (buttonIndex != 0)
+            {
+                //OK
+                [[AMProtocolManager sharedInstance] scrapBenchAsset: [self.workorderDict valueForKeyWithNullToNil:@"Id"] completion:^(NSInteger type, NSError *error, id userData, id responseData) {
+                    
+                    if(error)
+                    {
+                        MAIN ( (^{
+                            
+                            [UIAlertView showWithTitle:@"Scrap Error"
+                                               message: [NSString stringWithFormat: @"Error:%@" ,error] cancelButtonTitle:@"OK"
+                                     otherButtonTitles:nil
+                                              tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                                  
+                                              }];
+                        }) );
+                    } else {
+                        //dismiss the screen after successful scrap
+                        NSDictionary *dicInfo = @{
+                                                  KEY_OF_TYPE:TYPE_OF_BTN_ITEM_CLICKED,
+                                                  KEY_OF_INFO:[NSNumber numberWithInteger:7],
+                                                  };
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMLEFTBARVIEWCONTROLLER object:dicInfo];
+                        });
+                    }
+                    
+                }];
+            }
+        }];
+    });
 }
 
 //TODO::Enhancement140929
 - (IBAction)clickSubmitBtn:(UIButton *)sender {
     DLog(@"clickSubmitBtn");
-    
-    
-    NSMutableDictionary *dicRepairCode = [[self dataWithType:AMCheckoutCellType_Checkout_RepairCode] objectForKey:KEY_OF_CELL_DATA];
-    
-    if ([[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] length] == 0) {
-        [AMUtilities showAlertWithInfo:MyLocal(@"Please Input Repair Code")];
-        return;
-    }
-    NSString *WOID = [[self.workorderDict valueForKeyWithNullToNil:@"Item"] valueForKeyWithNullToNil:@"Id"];
-    NSString *repairCode = [dicRepairCode valueForKeyWithNullToNil:@"REPAIR_CODE"];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIAlertView showWithTitle:@"Check Out" message:@"Are you sure you want to Check Out?" cancelButtonTitle:@"No" otherButtonTitles:@[@"Yes"] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            if (buttonIndex != 0)
+            {
+                NSMutableDictionary *dicRepairCode = [[self dataWithType:AMCheckoutCellType_Checkout_RepairCode] objectForKey:KEY_OF_CELL_DATA];
+                
+                if ([[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] length] == 0) {
+                    [AMUtilities showAlertWithInfo:MyLocal(@"Please Input Repair Code")];
+                    return;
+                }
+                NSString *WOID = [[self.workorderDict valueForKeyWithNullToNil:@"Item"] valueForKeyWithNullToNil:@"Id"];
+                NSString *repairCode = [dicRepairCode valueForKeyWithNullToNil:@"REPAIR_CODE"];
 
 
 
-    AMWorkOrderNotesTableViewCell *cell = (AMWorkOrderNotesTableViewCell *)[(UITableView *)self.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
-    
-    if ((cell.textViewWorkOrderNotes.text.length == 0 || [cell.textViewWorkOrderNotes.text isEqualToString:@"Write note"])) {
-        [AMUtilities showAlertWithInfo:MyLocal(@"Please Input Work Order Notes")];
-        return;
-    }
-    
-    NSDictionary *benchWODict = @{
-                                 @"workOrderId" : WOID,
-                                 @"repairCode" : repairCode,
-                                 @"notes" : cell.textViewWorkOrderNotes.text
-                                 };
-    
-    [[AMProtocolManager sharedInstance] setBenchWOCheckout:benchWODict completion:^(NSInteger type, NSError *error, id userData, id responseData) {
-        //
-        if (!error)
-        {
-            NSDictionary *dicInfo = @{
-                                      KEY_OF_TYPE:TYPE_OF_BTN_ITEM_CLICKED,
-                                      KEY_OF_INFO:[NSNumber numberWithInteger:7],
-                                      };
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMLEFTBARVIEWCONTROLLER object:dicInfo];
-            });
-        }
-        
-    }];
+                AMWorkOrderNotesTableViewCell *cell = (AMWorkOrderNotesTableViewCell *)[(UITableView *)self.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+                
+                if ((cell.textViewWorkOrderNotes.text.length == 0 || [cell.textViewWorkOrderNotes.text isEqualToString:@"Write note"])) {
+                    [AMUtilities showAlertWithInfo:MyLocal(@"Please Input Work Order Notes")];
+                    return;
+                }
+                
+                NSDictionary *benchWODict = @{
+                                             @"workOrderId" : WOID,
+                                             @"repairCode" : repairCode,
+                                             @"notes" : cell.textViewWorkOrderNotes.text
+                                             };
+                
+                [[AMProtocolManager sharedInstance] setBenchWOCheckout:benchWODict completion:^(NSInteger type, NSError *error, id userData, id responseData) {
+                    //
+                    if (!error)
+                    {
+                        NSDictionary *dicInfo = @{
+                                                  KEY_OF_TYPE:TYPE_OF_BTN_ITEM_CLICKED,
+                                                  KEY_OF_INFO:[NSNumber numberWithInteger:7],
+                                                  };
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMLEFTBARVIEWCONTROLLER object:dicInfo];
+                        });
+                    }
+                    
+                }];
+            }
+        }];
+    });
 }
 
 - (void)clickAddPartBtn:(UIButton *)sender {

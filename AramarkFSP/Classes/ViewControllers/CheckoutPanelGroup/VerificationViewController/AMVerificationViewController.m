@@ -414,7 +414,7 @@ AMVerificationAddSectionViewDelegate
     //get the last section on the screen
     AMVerificationAddSectionView *aSection = self.arrSections[self.arrSections.count-1];
     
-    //only allow tap for found status.
+    //found status.
     if([aSection.labelStatus.text isEqualToString:@"Found"])
     {
         AMVerificationAddTableViewCell *cell = [self.mainTableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow:button.tag inSection:[self.mainTableView numberOfSections]-1]];
@@ -427,23 +427,28 @@ AMVerificationAddSectionViewDelegate
         
         if(!cell.imgCheckmark.hidden)
         {
-            [UIAlertView showWithTitle:@"Working/Not Working" message:MyLocal(@"Is equipment being returned in working condition?") style:UIAlertViewStyleDefault cancelButtonTitle:MyLocal(@"NO") otherButtonTitles:@[MyLocal(@"YES")] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                
-                if(buttonIndex == 0)
-                {
-                    //YES
-                    aAsset.moveToWarehouse = MyLocal(@"Not Working");
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [UIAlertView showWithTitle:@"Working/Not Working" message:MyLocal(@"Is equipment being returned in working condition?") style:UIAlertViewStyleDefault cancelButtonTitle:MyLocal(@"NO") otherButtonTitles:@[MyLocal(@"YES")] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                     
-                } else if (buttonIndex == 1) {
-                    //NO
-                    aAsset.moveToWarehouse = MyLocal(@"Working");
-                }
-                [dicAddInfo setObject:aAsset.moveToWarehouse forKey:KEY_OF_MOVE_TO_WAREHOUSE];
-                
-            }];
+                    if(buttonIndex == 0)
+                    {
+                        //YES
+                        aAsset.moveToWarehouse = MyLocal(@"Not Working");
+                        
+                    } else if (buttonIndex == 1) {
+                        //NO
+                        aAsset.moveToWarehouse = MyLocal(@"Working");
+                    }
+                    [dicAddInfo setObject:aAsset.moveToWarehouse forKey:KEY_OF_MOVE_TO_WAREHOUSE];
+                    
+                }];
+            });
         } else {
             [dicAddInfo setObject:@"" forKey:KEY_OF_MOVE_TO_WAREHOUSE];
         }
+    } else {
+        //New status so erase this one
+        [dicAddInfo setObject:@"" forKey:KEY_OF_MOVE_TO_WAREHOUSE];
     }
 }
 
@@ -607,6 +612,8 @@ AMVerificationAddSectionViewDelegate
             cell.imgCheckmarkBackground.hidden = NO;
             cell.lblMoveToWarehouse.hidden = NO;
         } else {
+            
+            [cell.btnMoveToWarehouse addTarget:self action:@selector(btnMoveToWarehouseTapped:) forControlEvents:UIControlEventTouchUpInside];
             cell.btnMoveToWarehouse.hidden = YES;
             cell.imgCheckmark.hidden = YES;
             cell.imgCheckmarkBackground.hidden = YES;
@@ -701,23 +708,7 @@ AMVerificationAddSectionViewDelegate
             cell.textFieldUpdateSerial.text = [aAssetRequest.updatedSNumber length] == 0 ? TEXT_OF_NULL : aAssetRequest.updatedSNumber;
             
             [cell enableEdit:[[dicInfos objectForKey:KEY_OF_EDITABLE] boolValue]];
-//            //bkk 9/2/2016 - added Move to WarehouseFunctionality
-//            NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-//            bool isBenchTech = [[prefs valueForKey:@"isBenchTechActive"] boolValue];
-//            if(isBenchTech)
-//            {
-//                cell.btnMoveToWarehouse.tag = indexPath.row;
-//            
-//                [cell.btnMoveToWarehouse addTarget:self action:@selector(btnMoveToWarehouseTapped:) forControlEvents:UIControlEventTouchUpInside];
-//                cell.btnMoveToWarehouse.hidden = NO;
-//                cell.imgCheckmarkBackground.hidden = NO;
-//                cell.lblMoveToWarehouse.hidden = NO;
-//            } else {
-//                cell.btnMoveToWarehouse.hidden = YES;
-//                cell.imgCheckmark.hidden = YES;
-//                cell.imgCheckmarkBackground.hidden = YES;
-//                cell.lblMoveToWarehouse.hidden = YES;
-//            }
+
          
 			return cell;
 		}
@@ -744,7 +735,7 @@ AMVerificationAddSectionViewDelegate
 			cell.textViewNote.tag = (indexPath.section * 1000 + VerificationTextInputType_AddNotes);
             cell.textViewNote.text = [aAssetRequest.verifyNotes length] == 0 ? TEXT_OF_WRITE_NOTE : aAssetRequest.verifyNotes;
             cell.textViewNote.editable = NO;
-            cell.imgCheckmark.hidden = ([dicInfos objectForKey:KEY_OF_MOVE_TO_WAREHOUSE] != nil && ![[dicInfos objectForKey:KEY_OF_MOVE_TO_WAREHOUSE] isEqualToString: @""]);//bkk 9/6/2016
+            cell.imgCheckmark.hidden =  (aAssetRequest.moveToWarehouse != nil && ![aAssetRequest.moveToWarehouse isEqualToString: @""]) ? NO : YES;//bkk 9/6/2016
 			return cell;
 		}
 	}
@@ -1245,7 +1236,9 @@ AMVerificationAddSectionViewDelegate
 		[aPopoverVC dismissPopoverAnimated:YES];
 	}
 	else if (aVerificationStatusTableViewController.tag == PopViewType_Select_AddStatus) {
-
+        //Any time the status changes ie. New or Found is tapped, we need to update.
+        [dicAddInfo setObject:@"" forKey:KEY_OF_MOVE_TO_WAREHOUSE];
+        
 		AMAssetRequest *aAsset = [dicAddInfo objectForKey:KEY_OF_ADD_ASSETREQUEST_INFO];
 		aAsset.status = [aInfo objectForKey:kAMPOPOVER_DICTIONARY_KEY_DATA];
         

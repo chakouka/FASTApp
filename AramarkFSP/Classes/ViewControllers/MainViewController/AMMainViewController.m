@@ -1714,8 +1714,8 @@ UIGestureRecognizerDelegate
 
                             woNum.text = [dict valueForKeyWithNullToNil:@"Name"];
                             woType.text = [[dict valueForKeyWithNullToNil: @"RecordType"] valueForKeyWithNullToNil:@"Name"];
-                            woRepairCode.text = @"RepairCode BKK";
-                            woAssignedTo.text = @"AssignedTo BKK";
+                            woRepairCode.text = [dict valueForKeyWithNullToNil:@"Repair_Code__c"];
+                            woAssignedTo.text = [[dict valueForKeyWithNullToNil:@"Owner"] valueForKeyWithNullToNil:@"Name"];
                             woDate.text = [dict valueForKeyWithNullToNil: @"Estimated_Work_Date__c"];
                             [self.scrHistoryScroller addSubview:woNum];
                             [self.scrHistoryScroller addSubview:woType];
