@@ -333,9 +333,10 @@ UISearchBarDelegate
 - (void)refreshBenchMachineTypeList:(NSMutableArray *)aMachineTypes
 {
     self.machineTypesArray = aMachineTypes;
-    
-    [self myRefreshBenchMachineTypeMethod:aMachineTypes];
-    [self.pickerMachineType reloadAllComponents];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self myRefreshBenchMachineTypeMethod:aMachineTypes];
+        [self.pickerMachineType reloadAllComponents];
+    });
 }
 - (void)refreshBenchList:(NSMutableArray *)aLocalBenchWorkOrders;
 {
@@ -348,8 +349,9 @@ UISearchBarDelegate
     if (isSearching) {
         [self searchItemWithString:self.searchbarTitle.text inList:localWorkOrders];
     }
-    
-    [self reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self reloadData];
+    });
 }
 
 - (void)myRefreshBenchMachineTypeMethod:(NSMutableArray *)array {
