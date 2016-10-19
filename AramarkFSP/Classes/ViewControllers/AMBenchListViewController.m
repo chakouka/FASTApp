@@ -236,7 +236,7 @@ UISearchBarDelegate
     
     cell.label_AssetNumber.text = [workOrder valueForKeyWithNullToNil: @"Machine_Number__c"] == nil ? @"" : [workOrder valueForKeyWithNullToNil: @"Machine_Number__c"];
     cell.label_SerialNumber.text = [workOrder valueForKeyWithNullToNil: @"SerialNumber"] == nil ? @"" : [workOrder valueForKeyWithNullToNil: @"SerialNumber"];
-	cell.label_MachineGroup.text = [workOrder valueForKeyWithNullToNil:@"Machine_Number__c"];
+	cell.label_MachineGroup.text = [workOrder valueForKeyWithNullToNil:@"Machine_Group_Name__c"];
     cell.label_MachineType.text = [[((NSArray *)[[workOrder valueForKey:@"Work_Orders__r"] objectForKey:@"records"])[0] valueForKeyWithNullToNil:@"Machine_Type__r"] valueForKeyWithNullToNil:@"Name"];
     
 	if (selectedWorkOrderId) {
