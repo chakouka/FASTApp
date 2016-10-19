@@ -38,6 +38,7 @@ typedef NS_ENUM (NSInteger, SortType) {
 };
 
 bool isTimerStarted;
+int  timerStartedCellRow;
 
 @interface AMBenchActiveListViewController ()
 <
@@ -482,7 +483,7 @@ UISearchBarDelegate
                         
                         cell.isTimerRunning = YES;
                         isTimerStarted = YES;
-
+                        timerStartedCellRow = button.tag;
                     }];
                 });
             } else {
@@ -510,7 +511,7 @@ UISearchBarDelegate
     
     AMBenchActiveListCell *cell = [self.tableViewList cellForRowAtIndexPath: [NSIndexPath indexPathForRow:button.tag inSection:[self.tableViewList numberOfSections]-1]];
     
-    if(cell.isTimerRunning)
+    if(isTimerStarted && (timerStartedCellRow == button.tag))
     {
 
         //toggleTimer on Server
@@ -527,6 +528,7 @@ UISearchBarDelegate
                         [cell.btnStart setUserInteractionEnabled:YES];
                         cell.isTimerRunning = NO;
                         isTimerStarted = NO;
+                        timerStartedCellRow = -999;
                     }];
                 });
 
