@@ -489,7 +489,16 @@ UISearchBarDelegate
             } else {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [UIAlertView showWithTitle:@"Error" message:@"Already in progress" style:UIAlertViewStyleDefault cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                        //for scenario when the app has crashed or we quit, we need to reestablish the state of the button so that we can stop the timer...
+                        //disable Start button
+                        [button setUserInteractionEnabled:NO];
                         
+                        //Enable Stop button
+                        [cell.btnStop setUserInteractionEnabled:YES];
+                        
+                        cell.isTimerRunning = YES;
+                        isTimerStarted = YES;
+                        timerStartedCellRow = button.tag;
                     }];
                 });
             }
