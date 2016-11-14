@@ -72,6 +72,7 @@
 
 #define TEXT_OF_VERIFED                 @"Verified"
 #define TEXT_OF_MISSING                 @"Missing"
+#define TEXT_OF_NOTWORKING              @"Not Working"
 #define TEXT_OF_WRONG_MACHINE_TYPE      @"Wrong Machine Type"
 #define TEXT_OF_WRONG_SERIAL_NUMBER     @"Wrong Serial Number"
 #define TEXT_OF_WRONG_ASSET_NUMBER      @"Wrong Asset Number"

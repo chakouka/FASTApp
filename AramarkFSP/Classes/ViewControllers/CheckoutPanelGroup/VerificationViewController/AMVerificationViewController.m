@@ -322,6 +322,13 @@ AMVerificationAddSectionViewDelegate
                 [AMUtilities showAlertWithInfo:MyLocal(@"Selected 'Missing' Should input Verification Note")];
                 return;
             }
+            else if(([aAsset.verificationStatus isEqualToString:MyLocal(TEXT_OF_MOVE_TO_WAREHOUSE)] && [aAsset.moveToWarehouse isEqualToString:MyLocal(TEXT_OF_NOT_WORKING)])
+                    && [aRequest.verifyNotes length] == 0
+                    && [[dicInfo objectForKey:KEY_OF_EDITABLE] boolValue])
+            {
+                [AMUtilities showAlertWithInfo:MyLocal(@"Selected 'Not Working' Should input Verification Note")];
+                return;
+            }
             else if(([aAsset.verificationStatus isEqualToString:MyLocal(TEXT_OF_WRONG_MACHINE_TYPE)] || [aAsset.verificationStatus isEqualToString:TEXT_OF_WRONG_MACHINE_TYPE])
                     && [aRequest.verifyNotes length] == 0
                     && [[dicInfo objectForKey:KEY_OF_EDITABLE] boolValue])

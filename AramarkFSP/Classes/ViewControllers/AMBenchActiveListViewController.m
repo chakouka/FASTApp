@@ -246,6 +246,13 @@ UISearchBarDelegate
         cell.viewRight.hidden = YES;
     }
     
+    if (isTimerStarted && timerStartedCellRow == indexPath.row)
+    {
+        [cell setBackgroundColor:[UIColor lightGrayColor]];
+    } else {
+        [cell setBackgroundColor:[UIColor lightTextColor]];
+    }
+    
 	return cell;
 }
 
@@ -484,6 +491,8 @@ UISearchBarDelegate
                         cell.isTimerRunning = YES;
                         isTimerStarted = YES;
                         timerStartedCellRow = button.tag;
+                        [cell setBackgroundColor:[UIColor lightGrayColor]];
+                        
                     }];
                 });
             } else {
@@ -538,6 +547,8 @@ UISearchBarDelegate
                         cell.isTimerRunning = NO;
                         isTimerStarted = NO;
                         timerStartedCellRow = -999;
+                        [cell setBackgroundColor:[UIColor lightTextColor]];
+                        
                     }];
                 });
 
