@@ -38,8 +38,8 @@ typedef NS_ENUM (NSInteger, SortType) {
 };
 
 bool isTimerStarted;
-int  timerStartedCellRow;
-
+//int  timerStartedCellRow;
+NSString *timerStartedCellAssetID;
 @interface AMBenchActiveListViewController ()
 <
 UISearchBarDelegate
@@ -246,7 +246,7 @@ UISearchBarDelegate
         cell.viewRight.hidden = YES;
     }
     
-    if (isTimerStarted && timerStartedCellRow == indexPath.row)
+    if (isTimerStarted && [timerStartedCellAssetID isEqualToString:cell.label_AssetNumber.text])
     {
         [cell setBackgroundColor:[UIColor lightGrayColor]];
     } else {
@@ -490,7 +490,8 @@ UISearchBarDelegate
                         
                         cell.isTimerRunning = YES;
                         isTimerStarted = YES;
-                        timerStartedCellRow = button.tag;
+                        //timerStartedCellRow = button.tag;
+                        timerStartedCellAssetID = [NSString stringWithString:cell.label_AssetNumber.text];
                         [cell setBackgroundColor:[UIColor lightGrayColor]];
                         
                     }];
@@ -507,7 +508,8 @@ UISearchBarDelegate
                         
                         cell.isTimerRunning = YES;
                         isTimerStarted = YES;
-                        timerStartedCellRow = button.tag;
+                        //timerStartedCellRow = button.tag;
+                        timerStartedCellAssetID = [NSString stringWithString:cell.label_AssetNumber.text];
                     }];
                 });
             }
@@ -529,7 +531,7 @@ UISearchBarDelegate
     
     AMBenchActiveListCell *cell = [self.tableViewList cellForRowAtIndexPath: [NSIndexPath indexPathForRow:button.tag inSection:[self.tableViewList numberOfSections]-1]];
     
-    if(isTimerStarted && (timerStartedCellRow == button.tag))
+    if(isTimerStarted && ([timerStartedCellAssetID isEqualToString:cell.label_AssetNumber.text]))
     {
 
         //toggleTimer on Server
@@ -546,7 +548,8 @@ UISearchBarDelegate
                         [cell.btnStart setUserInteractionEnabled:YES];
                         cell.isTimerRunning = NO;
                         isTimerStarted = NO;
-                        timerStartedCellRow = -999;
+                        //timerStartedCellRow = -999;
+                        timerStartedCellAssetID = @"";
                         [cell setBackgroundColor:[UIColor lightTextColor]];
                         
                     }];
