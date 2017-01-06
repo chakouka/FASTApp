@@ -2363,6 +2363,13 @@ UIGestureRecognizerDelegate
                 [self clearBTDetail];
                 [self benchListLoadData];
             });
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [UIAlertView showWithTitle:@"Success" message:@"Equipment has been added to the Active Bench" style:UIAlertViewStyleDefault cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                    
+                    
+                }];
+            });
+
         }
     }];
 }
