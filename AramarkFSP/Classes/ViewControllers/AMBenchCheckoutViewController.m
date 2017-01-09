@@ -326,25 +326,8 @@ AMPopoverSelectTableViewControllerDelegate
 -(NSMutableArray *)repairCodes
 {
     return       [NSMutableArray arrayWithObjects:
-      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Administrative Work Done"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Administrative Work Done"},
-      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Called Machine Manufacturer"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Called Machine Manufacturer"},
-      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Delivered Product"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Delivered Product"},
-      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Exchanged Equipment"), kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Exchanged Equipment"},
-      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(TEXT_OF_REFUSED_FILTER_EXCHANGE),kAMPOPOVER_DICTIONARY_KEY_VALUE : TEXT_OF_REFUSED_FILTER_EXCHANGE},
-      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Installed Equipment"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Installed Equipment"},
-      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Kiosk On-Line"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Kiosk On-Line"},
-      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Moved Equipment"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Moved Equipment"},
-      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"No Problem"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"No Problem"},
-      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Preventative Maintenance"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Preventative Maintenance"},
-      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Removed Equipment"),kAMPOPOVER_DICTIONARY_KEY_VALUE :@"Removed Equipment"},
-      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Repaired Brewer"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Repaired Brewer"},
-      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Repaired Leak"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Repaired Leak"},
-      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Repaired Money/Product Jam"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Repaired Money/Product Jam"},
-      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Replaced Filter"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Replaced Filter"},
       @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Shop Work Completed"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Shop Work Completed"},
-      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Site Survey Complete"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Site Survey Complete"},
-      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(TEXT_OF_CREATE),kAMPOPOVER_DICTIONARY_KEY_VALUE : TEXT_OF_CREATE},
-      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Vending"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Vending"},
+      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Equipment Cleaned"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Equipment Cleaned"},
       nil];
 }
 #pragma mark -
