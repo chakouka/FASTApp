@@ -1374,6 +1374,10 @@ UIGestureRecognizerDelegate
         self.labelBenchTechName.text = [[assetRequestRecords[0] valueForKeyWithNullToNil:@"CreatedBy"] valueForKeyWithNullToNil:@"Name"];
         
         self.labelBenchRepairMatrixNTE.text = [NSString stringWithFormat:@"$%@", [workOrderInfo valueForKeyWithNullToNil: @"Repair_Matrix__c"]];
+        if ([self.labelBenchRepairMatrixNTE.text  rangeOfString: @"null"].location != NSNotFound)
+        {
+            self.labelBenchRepairMatrixNTE.text = @"Unknown";
+        }
         self.selectedAssetID = [workOrderInfo valueForKeyWithNullToNil:@"Id"];
         self.selectedWorkorderID = [records[0] valueForKeyWithNullToNil:@"Id"];
         
@@ -1691,7 +1695,10 @@ UIGestureRecognizerDelegate
                     self.lblDtlNextPMDate.text = [fullAssetDict valueForKeyWithNullToNil:@""];
                     self.lblDtlLocation.text = [fullAssetDict valueForKeyWithNullToNil:@""];
                     self.lblDtlRepairMatrix.text = [NSString stringWithFormat:@"$%@", [fullAssetDict valueForKeyWithNullToNil:@"Repair_Matrix__c"]];
-                    
+                    if ([self.lblDtlRepairMatrix.text rangeOfString:@"Unknown"].location != NSNotFound)
+                    {
+                        self.lblDtlRepairMatrix.text = @"Unknown";
+                    }
                     NSDictionary *historyDict = [fullAssetDict valueForKeyWithNullToNil:@"WODict"];
                     NSArray *historyArray = [NSArray arrayWithArray:[historyDict objectForKey:@"records"]];
                     

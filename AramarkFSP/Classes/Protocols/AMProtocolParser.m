@@ -917,7 +917,7 @@
                                    
         NSString *value = [item valueForKey:@"Id"];
         [innerDict setObject:value forKey:@"Id"];
-        value = [item valueForKeyWithNullToNil:@"Repair_Matrix__c"];
+        value = [item valueForKeyWithNullToNil:@"Repair_Matrix__c"] == nil ? @"Unknown" : [item valueForKeyWithNullToNil:@"Repair_Matrix__c"];
         [innerDict setObject:value forKey:@"Repair_Matrix__c"];
         value = [item valueForKey: @"InstallDate"];
         [innerDict setObject:value forKey:@"InstallDate"];
