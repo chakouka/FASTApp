@@ -40,7 +40,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelBenchMachineType;
 @property (weak, nonatomic) IBOutlet UILabel *labelBenchPOSName;
 @property (weak, nonatomic) IBOutlet UILabel *labelBenchTechName;
-@property (weak, nonatomic) IBOutlet UILabel *labelBenchAVNotes;
+@property (weak, nonatomic) IBOutlet UITextView *labelBenchAVNotes;
 @property (weak, nonatomic) IBOutlet UILabel *labelBenchRepairMatrixNTE;
 @property (weak, nonatomic) IBOutlet UILabel *labelBenchAssetCondition;
 
