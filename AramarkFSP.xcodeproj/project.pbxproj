@@ -5161,6 +5161,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Donnelly (S8VY87Y5FK)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Donnelly (S8VY87Y5FK)";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -5197,6 +5198,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Michael Donnelly (P69V6N6P8G)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Michael Donnelly (P69V6N6P8G)";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
