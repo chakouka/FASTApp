@@ -428,9 +428,16 @@ AMVerificationAddSectionViewDelegate
 
         cell.imgCheckmark.hidden = !cell.imgCheckmark.isHidden;
         
-        NSMutableDictionary *dicInfos = [self.arrVerificationInfos objectAtIndex:sender.tag];
+        NSMutableDictionary *dicInfos;
+        dicInfos = self.arrVerificationInfos.count > 0 ? [self.arrVerificationInfos objectAtIndex:sender.tag] : nil;
         //AMAsset *aAsset = [dicInfos objectForKey:KEY_OF_ASSET_INFO];
-        AMAssetRequest *aAsset = [dicInfos objectForKey:KEY_OF_ASSETREQUEST_INFO];
+        //AMAssetRequest *aAsset;
+        AMAssetRequest *aAsset;
+        if (dicInfos == nil) {
+            aAsset = [dicAddInfo objectForKey:KEY_OF_ADD_ASSETREQUEST_INFO];
+        } else {
+            aAsset = [dicInfos objectForKey:KEY_OF_ASSETREQUEST_INFO];
+        }
         
         if(!cell.imgCheckmark.hidden)
         {
@@ -1165,19 +1172,36 @@ AMVerificationAddSectionViewDelegate
 		[aPopoverVC dismissPopoverAnimated:YES];
         if([[aInfo valueForKeyWithNullToNil:@"INFO"] isEqualToString:@"Move to Warehouse"])
         {
-            [UIAlertView showWithTitle:@"Asset Condition" message:MyLocal(@"What is the asset's condition?") style:UIAlertViewStyleDefault cancelButtonTitle:MyLocal(@"Working") otherButtonTitles:@[MyLocal(@"Not Working"), MyLocal(@"Missing")] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                
-                if(buttonIndex == 1)
-                {
-                    //YES
-                    aAsset.moveToWarehouse = @"Not Working";
-                } else if (buttonIndex == 2) {
-                    //NO
-                    aAsset.moveToWarehouse = @"Missing";
-                } else {
-                    aAsset.moveToWarehouse = @"Working";
-                }
-            }];
+            NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+            bool isBenchTech = [[prefs valueForKey:@"isBenchTechActive"] boolValue];
+            
+            if (isBenchTech)
+            {
+                [UIAlertView showWithTitle:@"Asset Condition" message:MyLocal(@"What is the asset's condition?") style:UIAlertViewStyleDefault cancelButtonTitle:MyLocal(@"Working") otherButtonTitles:@[MyLocal(@"Not Working"), MyLocal(@"Missing")] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                    
+                    if(buttonIndex == 1)
+                    {
+                        //YES
+                        aAsset.moveToWarehouse = @"Not Working";
+                    } else if (buttonIndex == 2) {
+                        //NO
+                        aAsset.moveToWarehouse = @"Missing";
+                    } else {
+                        aAsset.moveToWarehouse = @"Working";
+                    }
+                }];
+            } else {
+                [UIAlertView showWithTitle:@"Asset Condition" message:MyLocal(@"What is the asset's condition?") style:UIAlertViewStyleDefault cancelButtonTitle:MyLocal(@"Working") otherButtonTitles:@[MyLocal(@"Not Working")] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                    
+                    if(buttonIndex == 1)
+                    {
+                        //YES
+                        aAsset.moveToWarehouse = @"Not Working";
+                    } else {
+                        aAsset.moveToWarehouse = @"Working";
+                    }
+                }];
+            }
         }
         
         [self.mainTableView reloadSections:[NSIndexSet indexSetWithIndex:aVerificationStatusTableViewController.aIndexPath.section] withRowAnimation:UITableViewRowAnimationNone];
