@@ -321,10 +321,12 @@ typedef NS_ENUM (NSInteger, AMCheckoutCellType) {
     AMCheckoutCellType_Checkout_InvoiceCode_Title,
 	AMCheckoutCellType_Checkout_Filter_Title,
 	AMCheckoutCellType_Checkout_Part_Title,
-
+    AMCheckoutCellType_Checkout_PM_Title,
+    
     AMCheckoutCellType_Checkout_InvoiceCode_Item,
 	AMCheckoutCellType_Checkout_Filter_Item,
 	AMCheckoutCellType_Checkout_Part_Item,
+    AMCheckoutCellType_Checkout_PM_Item,
 };
 
 //Type for Detail View and Checkout View Frame

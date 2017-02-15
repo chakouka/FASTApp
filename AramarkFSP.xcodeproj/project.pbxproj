@@ -162,6 +162,8 @@
 		62EC4C56197F9FBE0025343E /* AMSummaryFutureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62EC4C54197F9FBE0025343E /* AMSummaryFutureCell.m */; };
 		62EC4C57197F9FBE0025343E /* AMSummaryFutureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62EC4C55197F9FBE0025343E /* AMSummaryFutureCell.xib */; };
 		7C4043D11AE56C390079FC8E /* AMNewContactTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4043D01AE56C390079FC8E /* AMNewContactTest.m */; };
+		7C515EE21E43CF2D00FBD6DE /* AMPMNameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C515EE11E43CF2D00FBD6DE /* AMPMNameTableViewCell.m */; };
+		7C515EE41E43CF9800FBD6DE /* AMPMNameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C515EE31E43CF9800FBD6DE /* AMPMNameTableViewCell.xib */; };
 		7C55F26D1A83CAC60081A4B0 /* KLCPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C55F26C1A83CAC60081A4B0 /* KLCPopup.m */; };
 		7C55F2861A8954DA0081A4B0 /* down.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C55F2821A8954DA0081A4B0 /* down.png */; };
 		7C55F2871A8954DA0081A4B0 /* up.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C55F2831A8954DA0081A4B0 /* up.png */; };
@@ -989,6 +991,9 @@
 		62EC4C54197F9FBE0025343E /* AMSummaryFutureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMSummaryFutureCell.m; path = SummaryViewController/AMSummaryFutureCell.m; sourceTree = "<group>"; };
 		62EC4C55197F9FBE0025343E /* AMSummaryFutureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AMSummaryFutureCell.xib; path = SummaryViewController/AMSummaryFutureCell.xib; sourceTree = "<group>"; };
 		7C4043D01AE56C390079FC8E /* AMNewContactTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMNewContactTest.m; sourceTree = "<group>"; };
+		7C515EE01E43CF1700FBD6DE /* AMPMNameTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMPMNameTableViewCell.h; path = CheckoutPanelGroup/CheckoutTableViewCell/AMPMNameTableViewCell/AMPMNameTableViewCell.h; sourceTree = "<group>"; };
+		7C515EE11E43CF2D00FBD6DE /* AMPMNameTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMPMNameTableViewCell.m; path = CheckoutPanelGroup/CheckoutTableViewCell/AMPMNameTableViewCell/AMPMNameTableViewCell.m; sourceTree = "<group>"; };
+		7C515EE31E43CF9800FBD6DE /* AMPMNameTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AMPMNameTableViewCell.xib; path = CheckoutPanelGroup/CheckoutTableViewCell/AMPMNameTableViewCell/AMPMNameTableViewCell.xib; sourceTree = "<group>"; };
 		7C55F26B1A83CAC60081A4B0 /* KLCPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLCPopup.h; sourceTree = "<group>"; };
 		7C55F26C1A83CAC60081A4B0 /* KLCPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLCPopup.m; sourceTree = "<group>"; };
 		7C55F2821A8954DA0081A4B0 /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down.png; sourceTree = "<group>"; };
@@ -2118,6 +2123,16 @@
 				62AD8AC01961057E00E5FBAB /* AMPieChart.m */,
 			);
 			name = AMPieChart;
+			sourceTree = "<group>";
+		};
+		7C515EDF1E43CE7B00FBD6DE /* AMPMNameTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				7C515EE01E43CF1700FBD6DE /* AMPMNameTableViewCell.h */,
+				7C515EE11E43CF2D00FBD6DE /* AMPMNameTableViewCell.m */,
+				7C515EE31E43CF9800FBD6DE /* AMPMNameTableViewCell.xib */,
+			);
+			name = AMPMNameTableViewCell;
 			sourceTree = "<group>";
 		};
 		7C55F26A1A83CAC60081A4B0 /* KLCPopup */ = {
@@ -3453,6 +3468,7 @@
 		D06806D2192B000600EA3440 /* CheckoutTableViewCell&Section */ = {
 			isa = PBXGroup;
 			children = (
+				7C515EDF1E43CE7B00FBD6DE /* AMPMNameTableViewCell */,
 				D0139C20199E0687000F04EE /* AMInvoiceWorkorderTitleView */,
 				D0E25979198639570090A323 /* AMInvoiceCaseTableViewSection */,
 				D0E259731986287F0090A323 /* AMInvoiceCodeTableViewSection */,
@@ -4568,6 +4584,7 @@
 				D0912E5A19D54F0E00E5F6FA /* workOrder_selected-fr@2x.png in Resources */,
 				D0B79E95191A228D00FD1152 /* type-drop-down.png in Resources */,
 				D0912E5619D54F0E00E5F6FA /* summary_gray-fr@2x.png in Resources */,
+				7C515EE41E43CF9800FBD6DE /* AMPMNameTableViewCell.xib in Resources */,
 				D0912E6F19D54F0E00E5F6FA /* iconmonstr-multi-files-2-icon-256-fr.png in Resources */,
 				D0480C6D1A5F8741002F235E /* Virginia copy.gpx in Resources */,
 				D00B5D7F19E5434700FC3103 /* near-me-fr.png in Resources */,
@@ -4861,6 +4878,7 @@
 				D0572802195D6D5400721641 /* AMVerificationTableViewCell2.m in Sources */,
 				D0344565192C452D00C3E18C /* AMFilterNameTableViewCell.m in Sources */,
 				02B5A7471921E958008D06A6 /* AMConfiguredCell.m in Sources */,
+				7C515EE21E43CF2D00FBD6DE /* AMPMNameTableViewCell.m in Sources */,
 				02E3E7E8192F468C00064919 /* AMWOTabBaseViewController.m in Sources */,
 				022C69131962A8B700301361 /* AMAttachmentCollViewAddCell.m in Sources */,
 				D02D4227194E9D4900372334 /* AMNewLeadViewController.m in Sources */,
