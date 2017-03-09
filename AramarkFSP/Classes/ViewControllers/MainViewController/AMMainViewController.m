@@ -79,7 +79,7 @@ typedef NS_ENUM (NSInteger, PanelType) {
     PanelType_ActiveDetailBench,
     PanelType_ActiveBenchCheckout,
 };
-
+NSMutableArray *notesArray;
 
 //#define TESTMODEL   1   //Use for test
 
@@ -1711,7 +1711,15 @@ UIGestureRecognizerDelegate
                     {
                         int yPos = 15;
                         int xPos = 0;
+                        
+                        int noteItemCount=0;
+                        notesArray = nil;
+                        notesArray = [NSMutableArray array];
                         for (NSDictionary *dict in historyArray) {
+                            UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showNotes:)];
+                            
+                            [tgr setNumberOfTapsRequired:2];
+
                             //loop through all of them and add labels for each to the scrollview
                             UILabel *woNum = [[UILabel alloc] initWithFrame:CGRectMake(xPos, yPos, 130, 50)];
                             UILabel *woType = [[UILabel alloc] initWithFrame:CGRectMake(woNum.frame.origin.x + woNum.frame.size.width + 10, yPos, 100, 50)];
@@ -1720,6 +1728,10 @@ UIGestureRecognizerDelegate
                             UILabel *woDate = [[UILabel alloc] initWithFrame:CGRectMake(woAssignedTo.frame.origin.x + woAssignedTo.frame.size.width + 5, yPos, 100, 50)];
 
                             woNum.text = [dict valueForKeyWithNullToNil:@"Name"];
+                            woNum.tag = noteItemCount;
+                            [woNum addGestureRecognizer:tgr];
+                            [woNum setUserInteractionEnabled:YES];
+                            
                             woType.text = [[dict valueForKeyWithNullToNil: @"RecordType"] valueForKeyWithNullToNil:@"Name"];
                             woRepairCode.text = [dict valueForKeyWithNullToNil:@"Repair_Code__c"];
                             woAssignedTo.text = [[dict valueForKeyWithNullToNil:@"Owner"] valueForKeyWithNullToNil:@"Name"];
@@ -1730,7 +1742,9 @@ UIGestureRecognizerDelegate
                             [self.scrHistoryScroller addSubview:woAssignedTo];
                             [self.scrHistoryScroller addSubview:woDate];
                             yPos = yPos + 60;
-
+                            
+                            [notesArray addObject: [dict valueForKeyWithNullToNil:@"Work_Order_Notes__c"] == nil ? @"No Notes" : [dict valueForKeyWithNullToNil:@"Work_Order_Notes__c"]];
+                            noteItemCount++;
                         }
                     }
                 }
@@ -2447,5 +2461,13 @@ UIGestureRecognizerDelegate
     self.selectedAssetID = @"";
     self.selectedWorkorderID = @"";
 }
-
+#pragma - mark Gesture recognizer
+- (void)showNotes:(UITapGestureRecognizer *)sender
+{
+    UILabel *tappedLabel = (UILabel *)sender.view;
+    
+    [UIAlertView showWithTitle:@"Notes" message:[notesArray objectAtIndex: tappedLabel.tag] cancelButtonTitle:@"Done" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        
+    }];
+}
 @end

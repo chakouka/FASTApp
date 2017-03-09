@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GAITrackedViewController.h"
 
-@interface AMMainViewController : GAITrackedViewController
+@interface AMMainViewController : GAITrackedViewController <UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *viewLogin;
 @property (weak, nonatomic) IBOutlet UIView *viewTitle;
 @property (weak, nonatomic) IBOutlet UIView *viewLeftPanel;
