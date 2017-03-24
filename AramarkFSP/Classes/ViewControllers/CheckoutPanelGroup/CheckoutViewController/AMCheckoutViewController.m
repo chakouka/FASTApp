@@ -1379,7 +1379,7 @@ AMWorkOrderViewControllerDelegate
             
             cell.textFieldPartsName.text = @"PM1";
             cell.textFieldQuantity.text = @"1";
-            
+            [cell.textFieldQuantity setUserInteractionEnabled:NO];
             //[cell.btnPMName addTarget:self action:@selector(clickPMNameBtn:) forControlEvents:UIControlEventTouchUpInside];
             //cell.btnPMName.tag =  (indexPath.section * 1000 + indexPath.row);
             //cell.btnPMName.tag = indexPath.row;
