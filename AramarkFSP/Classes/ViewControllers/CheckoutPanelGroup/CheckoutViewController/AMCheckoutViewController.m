@@ -36,6 +36,7 @@
 
 #import "KLCPopup.h"
 #import "TBView.h"
+#import "TBViewPM.h"
 
 #define MAX_FILTER_COUNT    5
 #define MAX_PART_COUNT      5
@@ -52,6 +53,7 @@
 #define TEXT_OF_REPAIR @"Repair"
 #define TEXT_OF_INSTALL @"Install"
 #define TEXT_OF_SWAP @"Swap"
+#define TEXT_OF_PM         @"Preventative Maintenence"  //TODO::Enhancement140929
 
 typedef NS_ENUM (NSInteger, TextInputType) {
 	TextInputType_WorkOrderNotes = 0,
@@ -395,8 +397,23 @@ AMWorkOrderViewControllerDelegate
     TBView *contentView = [[TBView alloc] initWithFrame:CGRectMake(0, 0, 300, 500)];
     contentView.parentVC = self;
     
+
     // Show in popup
     KLCPopup* popup = [KLCPopup popupWithContentView:contentView
+                                            showType:KLCPopupShowTypeSlideInFromTop
+                                         dismissType:KLCPopupDismissTypeSlideOutToTop
+                                            maskType:(KLCPopupMaskType)[self valueForRow:_selectedRowInMaskField inFieldWithTag:FieldTagMaskType]
+                            dismissOnBackgroundTouch:_shouldDismissOnBackgroundTouch
+                               dismissOnContentTouch:_shouldDismissOnContentTouch];
+    [popup show];
+}
+-(void)showPopupPM {
+    // Generate content view to present
+   TBViewPM *contentViewPM = [[TBViewPM alloc] initWithFrame:CGRectMake(0, 0, 300, 500)];
+    contentViewPM.parentVC = self;
+
+    // Show in popup
+    KLCPopup* popup = [KLCPopup popupWithContentView:contentViewPM
                                             showType:KLCPopupShowTypeSlideInFromTop
                                          dismissType:KLCPopupDismissTypeSlideOutToTop
                                             maskType:(KLCPopupMaskType)[self valueForRow:_selectedRowInMaskField inFieldWithTag:FieldTagMaskType]
@@ -444,9 +461,12 @@ AMWorkOrderViewControllerDelegate
         }
         
     }
-    
+    if (![self.workOrder.woType isEqualToString:TEXT_OF_PM] && [[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:TEXT_OF_PM]) {
+        //todo: i&e000462 20170305
+        [self showPopupPM];
+        
     //bkk 1/29/2015
-    if (![self.workOrder.woType isEqualToString:TEXT_OF_FILTER_EXCHANGE] && [[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:TEXT_OF_REPLACED_FILTER])
+    } else if (![self.workOrder.woType isEqualToString:TEXT_OF_FILTER_EXCHANGE] && [[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:TEXT_OF_REPLACED_FILTER])
     {
         //bkk - popup shows
         [self showPopup];
