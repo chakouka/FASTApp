@@ -1742,7 +1742,7 @@ UIGestureRecognizerDelegate
                             [self.scrHistoryScroller addSubview:woAssignedTo];
                             [self.scrHistoryScroller addSubview:woDate];
                             yPos = yPos + 60;
-                            
+                            [self.scrHistoryScroller setContentSize:CGSizeMake(self.scrHistoryScroller.frame.size.width, self.scrHistoryScroller.frame.size.height + 120)];
                             [notesArray addObject: [dict valueForKeyWithNullToNil:@"Work_Order_Notes__c"] == nil ? @"No Notes" : [dict valueForKeyWithNullToNil:@"Work_Order_Notes__c"]];
                             noteItemCount++;
                         }

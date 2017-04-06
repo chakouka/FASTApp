@@ -366,7 +366,14 @@ AMWorkOrderViewControllerDelegate
           @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Refused-Customer Refused"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Refused-Customer Refused"},
           @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Refused-No Filter"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Refused-No Filter"},
           nil];
-    }else {
+    } else if ([self.workOrder.woType isEqualToString:MyLocal(@"Preventative Maintenence")]) {
+        //new i&e 
+        return       [NSMutableArray arrayWithObjects:
+                      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Ice Machine PM"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Ice Machine PM"},
+                      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"PM Completed"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"PM Completed"},
+                      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"PM Not Completed"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"PM Not Completed"},
+                      nil];
+    } else {
         return       [NSMutableArray arrayWithObjects:
           @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Administrative Work Done"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Administrative Work Done"},
           @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Called Machine Manufacturer"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Called Machine Manufacturer"},
