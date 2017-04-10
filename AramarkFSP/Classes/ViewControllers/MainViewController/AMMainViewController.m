@@ -1715,6 +1715,9 @@ UIGestureRecognizerDelegate
                         int noteItemCount=0;
                         notesArray = nil;
                         notesArray = [NSMutableArray array];
+                        
+                        [self.scrHistoryScroller setContentSize:CGSizeMake(self.scrHistoryScroller.frame.size.width, 153)];
+                        
                         for (NSDictionary *dict in historyArray) {
                             UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showNotes:)];
                             
