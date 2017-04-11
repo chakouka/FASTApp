@@ -992,7 +992,19 @@
     
     return array;
 }
-
+-(NSArray *)getPMListByWOID:(NSString *)woID
+{
+    AMWorkOrder *workOrder = [self getWorkOrderByWOID:woID];
+    
+    NSPredicate * filter = [NSPredicate predicateWithFormat:@"posID = %@ AND productType = %@", workOrder.posID, @"Invoice Codes"];
+    
+    NSArray *array = [self fetchDataArrayForEntity:NSStringFromClass([AMDBCustomerPrice class])
+                                      byPredicates:filter
+                                   sortDescriptors:nil
+                            inManagedObjectContext:__mainManagedObjectContext];
+    
+    return array;
+}
 -(NSArray *)getInvoiceCodeListByWOID:(NSString *)woID
 {
     AMWorkOrder *workOrder = [self getWorkOrderByWOID:woID];
