@@ -742,7 +742,12 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
 				}
                 
 				cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                
+                if ([[dicInfo objectForKey:@"FILTER_NAME"] isEqualToString:@"PM1"])
+                {
+                    cell.labelTFilterName.text = MyLocal(@"PM Code:");
+                    cell.labelTFilterPrice.text = MyLocal(@"PM Price:");
+                    cell.labelTFilterQuantity.text = MyLocal(@"PM Quantity:");
+                }
 				cell.labelTitle.text = [NSString stringWithFormat:@"%@", [[dicInfo objectForKey:KEY_OF_WORKORDER_TITLE] length] == 0 ? @"":[dicInfo objectForKey:KEY_OF_WORKORDER_TITLE]];
 				cell.labelTitlePrice.text =  isHiddenMoney ? @"XXX" : ([NSString stringWithFormat:@"%.2f", ([dicInfo objectForKey:KEY_OF_WORKORDER_TOTAL_PRICE] ? [[dicInfo objectForKey:KEY_OF_WORKORDER_TOTAL_PRICE] floatValue]:0.00)]);
                 //                cell.labelTitlePrice.hidden = isHiddenMoney;

@@ -720,9 +720,23 @@ AMWorkOrderViewControllerDelegate
     
     if (arrPMItems &&[arrPMItems count] > 0) {
         for (AMInvoice *invoice in arrPMItems) {
-            if ([invoice.invoiceCodeName length] != 0 && [invoice.quantity intValue] !=0)
+            if ([invoice.filterName length] != 0 && [invoice.quantity intValue] !=0)
             {
-                [arrInvoiceItems addObject:invoice];
+                
+                
+                
+                if (![arrInvoiceItems containsObject:invoice]) {
+                    invoice.price = [NSNumber numberWithFloat:[invoice.unitPrice floatValue] * [invoice.quantity floatValue]];
+                    invoice.unitPrice = invoice.unitPrice;
+                    if (invoice.quantity && [invoice.quantity intValue] != 0) {
+                        [arrInvoiceItems addObject:invoice];
+                    }
+                } else {
+                    int index = [arrInvoiceItems indexOfObject:invoice];
+                    NSInteger qtySum = [((AMInvoice *)[arrInvoiceItems objectAtIndex:index]).quantity integerValue] + [invoice.quantity integerValue];
+                    [(AMInvoice *)[arrInvoiceItems objectAtIndex:index] setQuantity: [NSNumber numberWithInteger: qtySum]];
+                }
+                
             }
         }
     }
