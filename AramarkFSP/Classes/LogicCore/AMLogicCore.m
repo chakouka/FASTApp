@@ -1357,6 +1357,11 @@
 
 }
 
+-(NSArray *)getPMListByWOID:(NSString *)woID;
+{
+    return [[AMDBManager sharedInstance] getPMListByWOID:woID];
+    
+}
 #pragma mark - Creation
 -(AMDBNewCase *)createNewCaseInDB
 {

@@ -29,7 +29,7 @@
 
 @class AMPopoverSelectTableViewController;
 
-#define loadView() \
+#define loadViewPM() \
 NSBundle *mainBundle = [NSBundle mainBundle]; \
 NSArray *views = [mainBundle loadNibNamed:NSStringFromClass([self class]) owner:self options:nil]; \
 [self addSubview:views[0]];

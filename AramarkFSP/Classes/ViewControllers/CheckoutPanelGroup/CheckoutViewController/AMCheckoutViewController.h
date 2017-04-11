@@ -27,6 +27,7 @@ UIPopoverControllerDelegate
         NSMutableArray *arrInvoiceItems;
         NSMutableArray *arrResultAssetRequest;
         NSString *strSelectedFilters;
+        NSString *strSelectedPMs;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
@@ -41,6 +42,7 @@ UIPopoverControllerDelegate
 @property (strong, nonatomic) NSString *strRepairCode;
 @property (strong, nonatomic) NSString *strPMCode;
 @property (strong, nonatomic) NSString *strSelectedFilters;
+@property (strong, nonatomic) NSString *strSelectedPMs;
 @property (strong, nonatomic) NSMutableArray *arrResultAssetRequest;
 
 - (id)initWithWorkOrder:(AMWorkOrder *)aWorkOrder;

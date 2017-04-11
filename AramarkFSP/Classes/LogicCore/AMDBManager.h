@@ -95,6 +95,7 @@
 - (NSArray *)getContactListByPoSID:(NSString *)posID;
 //- (NSArray *)getFilterListByPoSID:(NSString *)posID;
 -(NSArray *)getFilterListByWOID:(NSString *)woID;
+-(NSArray *)getPMListByWOID:(NSString *)woID;//bkk added for i&e000462 20170411
 -(NSArray *)getInvoiceCodeListByWOID:(NSString *)woID;
 
 - (NSArray *)getPartsListByProductID:(NSString *)productID;

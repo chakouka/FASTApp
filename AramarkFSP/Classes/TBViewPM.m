@@ -48,7 +48,12 @@ typedef NS_ENUM (NSInteger, PopViewType) {
     if(!self){
         return nil;
     }
-    loadView()
+    //loadViewPM()
+    
+    NSBundle *mainBundle = [NSBundle mainBundle];
+    NSArray *views = [mainBundle loadNibNamed:NSStringFromClass([self class]) owner:self options:nil];
+    [self addSubview:views[0]];
+    
     [self.confirmAndCreateButton setTitle: MyLocal(@"Confirm and create case") forState:UIControlStateNormal];
     txtLabel.text = @"You have just created a PM on an Ice Machine.  There was no PM code selected, please click on 'Confirm and Create Case'";
     
@@ -62,7 +67,11 @@ return self;
         return nil;
     }
 
-    loadView()
+    //loadViewPM()
+
+    NSBundle *mainBundle = [NSBundle mainBundle];
+    NSArray *views = [mainBundle loadNibNamed:NSStringFromClass([self class]) owner:self options:nil];
+    [self addSubview:views[0]];
 
 return self;
 }
