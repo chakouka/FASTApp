@@ -455,7 +455,7 @@ AMWorkOrderViewControllerDelegate
     
     NSMutableDictionary *dicRepairCode = [[self dataWithType:AMCheckoutCellType_Checkout_RepairCode] objectForKey:KEY_OF_CELL_DATA];
     
-    if ([self.workOrder.woType isEqualToString:TEXT_OF_PM] && [[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:MyLocal(@"Ice Machine PM")] && self.arrPMItems.count == 0) {
+    if (![self.workOrder.woType isEqualToString:TEXT_OF_PM] && [[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:MyLocal(@"Ice Machine PM")] && self.arrPMItems.count == 0) {
         [AMUtilities showAlertWithInfo:MyLocal(@"Please add a Preventative Maintenance Item")];
         return;
     }
@@ -481,7 +481,7 @@ AMWorkOrderViewControllerDelegate
         }
         
     }
-    if (![self.workOrder.woType isEqualToString:TEXT_OF_PM] && [[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:TEXT_OF_PM]) {
+    if ([self.workOrder.woType isEqualToString:TEXT_OF_PM] && [[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:@"Ice Machine PM"] && self.arrPMItems.count == 0) {
         //todo: i&e000462 20170305
         [self showPopupPM];
         
@@ -2192,23 +2192,46 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
         newCase.accountID = self.workOrder.accountID;
         newCase.assetID = self.workOrder.assetID;
         
-        //All filters this trip
-        NSMutableArray *myArray = [NSMutableArray arrayWithArray:[notification.userInfo objectForKey:@"POST_PMS_AND_QUANTITIES"]];
-        NSMutableString *tempString = [NSMutableString string];
-        for (int i = 0; i < myArray.count; i++) {
-            NSString *str = [NSString stringWithFormat:@"PMS: %@ Qty: %@\n", [myArray[i] objectForKey:@"NAME"], [myArray[i] objectForKey:@"QTY"]];
-            [tempString appendString: str];
-        }
-        self.strSelectedPMs = [NSString stringWithString:tempString];
+        //self.strSelectedPMs = [NSString stringWithFormat:@"Filter: PM1 Qty: %@\n", [notification.userInfo objectForKey:@"POST_PMS_AND_QUANTITIES"]];
+        self.strSelectedFilters = [NSString stringWithFormat:@"PMS: PM1 Qty: %@\n", [notification.userInfo objectForKey:@"POST_PMS_AND_QUANTITIES"]];
         
-        newCase.caseDescription = [NSString stringWithFormat:@"WO-%@\n\nPlease invoice the customer for the Preventative Maintenance that was done on the Ice Machine at the Point of Service.\n\n%@", self.workOrder.woNumber, self.workOrder.assetID];
-        
+        newCase.caseDescription = [NSString stringWithFormat:@"%@\n\nPlease invoice the customer for the Preventative Maintenance that was done on the Ice Machine at the Point of Service.\n\n%@", self.workOrder.woNumber, self.workOrder.assetID];
+
+
+/*Case from above START*/
+        newCase.contactEmail = [arrContact count] > 0 ? ((AMContact *)arrContact[0]).email : @"";
         newCase.contactID = @"";
+        NSArray *strFirstAndLastNames = [self.workOrder.ownerName componentsSeparatedByString:@" "];
+        
+        newCase.firstName = [arrContact count] > 0 ? ((AMContact *)arrContact[0]).firstName : strFirstAndLastNames[0] != nil ? strFirstAndLastNames[0] : @"Change";
+        newCase.lastName = [arrContact count] > 0 ? ((AMContact *)arrContact[0]).lastName : strFirstAndLastNames[1] != nil ? strFirstAndLastNames[1] : @"Me";
+        newCase.mEI_Customer = [pos.meiNumber length] == 0 ? 0 : pos.meiNumber;
+        newCase.point_of_Service = self.workOrder.posID;
+        newCase.priority = @"Medium";
         newCase.recordTypeID = [[AMLogicCore sharedInstance] getRecordTypeIdByName:@"AR and Invoice" forObject:RECORD_TYPE_OF_CASE];
         newCase.recordTypeName = MyLocal(@"AR and Invoice");
         newCase.serialNumber = @"";
         newCase.subject = @"Need to Invoice and Update Service Schedule";
-        newCase.type = MyLocal(@"Preventative Maintenance");
+        newCase.type = MyLocal(@"InvoiceFilter");
+        newCase.accountName = self.workOrder.accountName;
+        newCase.posID = self.workOrder.posID;
+        newCase.posName = [pos.name length] == 0 ? @"" : pos.name;
+        newCase.assetNumber = @"";
+        newCase.id = @"";
+/*Case from above END*/
+        
+        
+        
+        
+        
+        
+        
+//        newCase.contactID = @"";
+//        newCase.recordTypeID = [[AMLogicCore sharedInstance] getRecordTypeIdByName:@"AR and Invoice" forObject:RECORD_TYPE_OF_CASE];
+//        newCase.recordTypeName = MyLocal(@"AR and Invoice");
+//        newCase.serialNumber = @"";
+//        newCase.subject = @"Need to Invoice and Update Service Schedule";
+//        newCase.type = MyLocal(@"Preventative Maintenance");
 
     } completion:^(NSInteger type, NSError *error) {
         MAIN(^{
