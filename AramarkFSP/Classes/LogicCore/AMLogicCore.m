@@ -705,7 +705,8 @@
 
 - (NSArray *)getAssetListByPoSID:(NSString *)posID AccountID:(NSString *)accountID
 {
-    NSArray * assetList = [[AMDBManager sharedInstance] getAssetListByPoSID:posID];
+    NSArray * assetListOLD = [[AMDBManager sharedInstance] getAssetListByPoSID:posID];
+    NSArray * assetList = [[AMDBManager sharedInstance] getAssetListByAccountID:accountID];
     
     if (assetList && assetList.count) {
         NSArray * locationList = [[AMDBManager sharedInstance] getLocationListByAccountID:accountID];

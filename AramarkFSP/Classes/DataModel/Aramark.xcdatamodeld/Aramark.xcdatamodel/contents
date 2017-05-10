@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Xcode 4.3">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16C67" minimumToolsVersion="Xcode 4.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="AMDBAccount" representedClassName="AMDBAccount" syncable="YES">
         <attribute name="accountID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="atRisk" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="atRisk" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="atRiskReason" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fspSalesConsultant" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="isNationalAccount" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isNationalAccount" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="kam" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="keyAccount" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="keyAccount" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="nam" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="naNumber" optional="YES" attributeType="String" syncable="YES"/>
@@ -16,12 +16,13 @@
         <attribute name="salesConsultant" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="AMDBAsset" representedClassName="AMDBAsset" syncable="YES">
+        <attribute name="accountID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="assetID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="assetName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="installDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="installDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lastModifiedBy" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lastModifiedDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="lastVerifiedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="lastModifiedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lastVerifiedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="locationID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="locationName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="machineNumber" optional="YES" attributeType="String" syncable="YES"/>
@@ -29,7 +30,7 @@
         <attribute name="manufacturerWebsite" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mMachineNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mSerialNumber" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="nextPMDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="nextPMDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="posID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="productID" optional="YES" attributeType="String" syncable="YES"/>
@@ -42,7 +43,7 @@
     <entity name="AMDBAssetRequest" representedClassName="AMDBAssetRequest" syncable="YES">
         <attribute name="assetID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createdBy" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="locationID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="machineNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="machineType" optional="YES" attributeType="String" syncable="YES"/>
@@ -54,15 +55,15 @@
         <attribute name="statusID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updatedMNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updatedSNumber" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="verifiedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="verifiedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="verifyNotes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="woID" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="AMDBAttachment" representedClassName="AMDBAttachment" syncable="YES">
-        <attribute name="bodyLength" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="bodyLength" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="contentType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createdById" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="dataStatus" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="dataStatus" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="errorMessage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fakeID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
@@ -72,9 +73,9 @@
         <attribute name="remoteURL" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="AMDBBest" representedClassName="AMDBBest" syncable="YES">
-        <attribute name="point1" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="point2" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="point3" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="point1" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="point2" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="point3" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="woID" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="AMDBCase" representedClassName="AMDBCase" syncable="YES">
@@ -83,13 +84,13 @@
         <attribute name="caseID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="caseNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="closedBy" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="closedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="closedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="contactId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="contactName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="estimatedTotalPrice" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="estimatedTotalPrice" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lastModifiedBy" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lastModifiedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="lastModifiedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="meiCustomer" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="owner" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="priority" optional="YES" attributeType="String" syncable="YES"/>
@@ -111,28 +112,28 @@
         <attribute name="errorMessage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastModifiedBy" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lastModifiedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="lastModifiedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="posID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="role" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="shouldDelete" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="shouldDelete" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="AMDBCustomerPrice" representedClassName="AMDBCustomerPrice" syncable="YES">
         <attribute name="customerPriceID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="posID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="productID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="productName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="productType" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="AMDBEvent" representedClassName="AMDBEvent" syncable="YES">
-        <attribute name="actualTimeEnd" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="actualTimeStart" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="estimatedTimeEnd" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="estimatedTimeStart" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="actualTimeEnd" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="actualTimeStart" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="estimatedTimeEnd" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="estimatedTimeStart" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="eventID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ownerID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="woID" optional="YES" attributeType="String" syncable="YES"/>
@@ -141,11 +142,11 @@
         <attribute name="filterID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="filterName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="posID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="price" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
     </entity>
     <entity name="AMDBFilterUsed" representedClassName="AMDBFilterUsed" syncable="YES">
         <attribute name="createdBy" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="fcount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="fcount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="filterID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fuID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="invoiceID" optional="YES" attributeType="String" syncable="YES"/>
@@ -157,24 +158,24 @@
         <attribute name="createdBy" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="filterID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="filterName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="hoursRate" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="hoursWorked" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
+        <attribute name="hoursRate" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="hoursWorked" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="invoiceCodeId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="invoiceCodeName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="invoiceID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="invoiceNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastModifiedBy" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lastModifiedDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="maintenanceFee" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="lastModifiedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="maintenanceFee" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="partsID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="partsName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="posID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="posName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="price" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="quantity" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="quantity" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="recordTypeID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="recordTypeName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="unitPrice" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="unitPrice" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="woID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="workPerformed" optional="YES" attributeType="String" syncable="YES"/>
@@ -182,40 +183,40 @@
     <entity name="AMDBLocation" representedClassName="AMDBLocation" syncable="YES">
         <attribute name="accountID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="addtionalNotes" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="badgeNeeded" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="cabinetHeight" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="badgeNeeded" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="cabinetHeight" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createdBy" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="dataStatus" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="dockAvailable" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="doorsRemoved" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="doorwayWidth" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="electricalInPlace" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="electricity3ft" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="dataStatus" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="dockAvailable" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="doorsRemoved" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="doorwayWidth" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="electricalInPlace" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="electricity3ft" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="electricOutlet" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="elevatorSize" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="elevatorSize" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="elevatorStairs" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fakeID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="freightElevator" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="freightElevator" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lastModifiedBy" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lastModifiedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="lastModifiedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="locationID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="personalProtection" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="roomMeasurement" optional="YES" attributeType="Float" syncable="YES"/>
-        <attribute name="safetyTraining" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="siteLevel" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="siteSurveyDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="personalProtection" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="roomMeasurement" optional="YES" attributeType="Float" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="safetyTraining" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="siteLevel" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="siteSurveyDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="specialNotes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="typeFlooring" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="visitByServiceDep" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="waterSource" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="visitByServiceDep" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="waterSource" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
     </entity>
     <entity name="AMDBNewCase" representedClassName="AMDBNewCase" syncable="YES">
         <attribute name="accountID" optional="YES" attributeType="String" syncable="YES"/>
@@ -227,8 +228,8 @@
         <attribute name="complaintCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="contactEmail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="contactID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="dataStatus" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="dataStatus" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="errorMessage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fakeID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
@@ -248,8 +249,8 @@
     <entity name="AMDBNewContact" representedClassName="AMDBNewContact" syncable="YES">
         <attribute name="accountID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="contactID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="dataStatus" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="dataStatus" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="errorMessage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fakeID" optional="YES" attributeType="String" syncable="YES"/>
@@ -267,18 +268,18 @@
         <attribute name="companyName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="companySize" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="currentProvider" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="dataStatus" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="dataStatus" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="emailAddress" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="errorMessage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fakeID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="hasCoffee" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="hasIce" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="hasPrivateLabel" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="hasSingleCup" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="hasWater" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="hasCoffee" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="hasIce" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="hasPrivateLabel" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="hasSingleCup" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="hasWater" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="referingEmployee" optional="YES" attributeType="String" syncable="YES"/>
@@ -293,20 +294,20 @@
     </entity>
     <entity name="AMDBNewWorkOrder" representedClassName="AMDBNewWorkOrder" syncable="YES">
         <attribute name="assetID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="assignToMyself" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="callAhead" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="assignToMyself" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="callAhead" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="caseDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="caseID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="complaintCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="contactID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="currentLocation" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="dataStatus" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="endDateTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="dataStatus" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="endDateTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="errorMessage" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="estimatedWorkDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="estimatedWorkDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="fakeID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="filterCount" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="filterCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="filterType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="locationNew" optional="YES" attributeType="String" syncable="YES"/>
@@ -318,10 +319,10 @@
         <attribute name="priority" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="recordTypeID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="recordTypeName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="startDateTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="startDateTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="subject" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="underWarranty" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="underWarranty" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="vendKey" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="workOrderDescription" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
@@ -335,7 +336,7 @@
         <attribute name="createdBy" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="invoiceID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="partID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="pcount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="pcount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="puID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="woID" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
@@ -357,7 +358,7 @@
         <attribute name="posID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="routeLookupID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="routeLookupName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="routeNumber" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="routeNumber" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="segment" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="AMDBRecordType" representedClassName="AMDBRecordType" syncable="YES">
@@ -366,23 +367,23 @@
         <attribute name="objectType" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="AMDBReport" representedClassName="AMDBReport" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="mcCompletedCount" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="mcCompletedMinutes" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="myCompletedCount" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="myCompletedMinutes" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="mcCompletedCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="mcCompletedMinutes" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="myCompletedCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="myCompletedMinutes" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="recordType" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="AMDBUser" representedClassName="AMDBUser" syncable="YES">
         <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="latitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lunchBreakFrom" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lunchBreakTo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="marketCenterEmail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoUrl" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="positionTimestamp" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="timeStamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="positionTimestamp" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="timeStamp" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="workingHourFrom" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="workingHourTo" optional="YES" attributeType="String" syncable="YES"/>
@@ -391,11 +392,11 @@
         <attribute name="accessoriesRequired" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="accountID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="accountName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="actualTimeEnd" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="actualTimeStart" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="age" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="actualTimeEnd" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="actualTimeStart" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="age" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="assetID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="callAhead" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="callAhead" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="caseDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="caseID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="caseNumber" optional="YES" attributeType="String" syncable="YES"/>
@@ -404,21 +405,21 @@
         <attribute name="contactID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createdBy" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createdByName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="estimatedTimeEnd" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="estimatedTimeStart" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="estimatedWorkDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="filterCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="estimatedTimeEnd" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="estimatedTimeStart" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="estimatedWorkDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="filterCount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="filterType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="filterTypeName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fromLocation" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="inspectedTubing" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="inspectedTubing" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lastModifiedBy" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lastModifiedDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="lastServiceDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="latitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="leftInOrderlyManner" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="lastModifiedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lastServiceDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="leftInOrderlyManner" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="machineType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="machineTypeName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
@@ -435,24 +436,24 @@
         <attribute name="repairCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="subject" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="testedAll" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="testedAll" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="toLocationID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="toLocationName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="toWorkLocation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="vendKey" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="warranty" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="warranty" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="woID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="woNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="workLocation" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="workOrderCheckinTime" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="workOrderCheckoutTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="workOrderCheckinTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="workOrderCheckoutTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="workOrderDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="woType" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="AMDBAccount" positionX="-209" positionY="362" width="128" height="238"/>
-        <element name="AMDBAsset" positionX="-126" positionY="9" width="128" height="375"/>
+        <element name="AMDBAsset" positionX="-126" positionY="9" width="128" height="390"/>
         <element name="AMDBAssetRequest" positionX="-378" positionY="126" width="128" height="300"/>
         <element name="AMDBAttachment" positionX="-569" positionY="54" width="128" height="210"/>
         <element name="AMDBBest" positionX="-360" positionY="144" width="128" height="103"/>

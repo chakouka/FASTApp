@@ -27,6 +27,7 @@
     AMDBAsset * dbAsset = (AMDBAsset *)dbObject;
     
     dbAsset.assetID = asset.assetID;
+    dbAsset.accountID = asset.accountID;
     dbAsset.installDate = asset.installDate;
     dbAsset.lastModifiedBy = asset.lastModifiedBy;
     dbAsset.lastModifiedDate = asset.lastModifiedDate;
@@ -56,6 +57,7 @@
     AMDBAsset * dbAsset = (AMDBAsset *)dbObject;
     
     asset.assetID = dbAsset.assetID;
+    asset.accountID = dbAsset.accountID;
     asset.installDate = dbAsset.installDate;
     asset.lastModifiedBy = dbAsset.lastModifiedBy;
     asset.lastModifiedDate = dbAsset.lastModifiedDate;

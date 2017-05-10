@@ -301,6 +301,7 @@
     
     parsedAsset.assetName = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Name"];
     parsedAsset.assetID = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Id"];
+    parsedAsset.accountID = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"AccountId"];
     parsedAsset.serialNumber = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"SerialNumber"];
     parsedAsset.lastModifiedDate = [self dateFromSalesforceDateString:[dict objectForKey:@"LastModifiedDate"]];
     parsedAsset.locationID = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Asset_Location__c"];

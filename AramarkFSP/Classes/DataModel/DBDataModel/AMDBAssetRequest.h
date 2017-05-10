@@ -13,6 +13,7 @@
 @interface AMDBAssetRequest : NSManagedObject
 
 @property (nonatomic, retain) NSString * assetID;
+@property (nonatomic, retain) NSString * accountID;
 @property (nonatomic, retain) NSString * createdBy;
 @property (nonatomic, retain) NSDate * createdDate;
 @property (nonatomic, retain) NSString * locationID;

@@ -101,6 +101,7 @@
 - (NSArray *)getPartsListByProductID:(NSString *)productID;
 - (NSArray *)getInvoiceListByWOIDList:(NSArray *)woIDList;
 - (NSArray *)getAssetListByPoSID:(NSString *)posID;
+- (NSArray *)getAssetListByAccountID:(NSString *)accountID;
 - (NSArray *)getAssetRequestListByPoSID:(NSString *)posID;
 
 - (NSArray *)getFilterUsedListByInvoiceID:(NSString *)invoiceID;

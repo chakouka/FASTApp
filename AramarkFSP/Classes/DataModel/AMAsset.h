@@ -12,6 +12,7 @@
 @interface AMAsset : NSObject
 
 @property (nonatomic, strong) NSString * assetID;
+@property (nonatomic, strong) NSString * accountID;
 @property (nonatomic, strong) NSDate * installDate;
 @property (nonatomic, strong) NSString * lastModifiedBy;
 @property (nonatomic, strong) NSDate * lastModifiedDate;

@@ -13,6 +13,7 @@
 @interface AMDBAsset : NSManagedObject
 
 @property (nonatomic, retain) NSString * assetID;
+@property (nonatomic, retain) NSString * accountID;
 @property (nonatomic, retain) NSString * assetName;
 @property (nonatomic, retain) NSDate * installDate;
 @property (nonatomic, retain) NSString * lastModifiedBy;

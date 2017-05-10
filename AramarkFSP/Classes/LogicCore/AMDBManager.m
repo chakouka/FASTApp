@@ -793,6 +793,12 @@
     return [[AMAssetDBManager sharedInstance] getDataListByFilter:filter fromDB:__mainManagedObjectContext];
 }
 
+- (NSArray *)getAssetListByAccountID:(NSString *)accountID
+{
+    NSPredicate * filter = [NSPredicate predicateWithFormat:@"accountID = %@",accountID];
+    return [[AMAssetDBManager sharedInstance] getDataListByFilter:filter fromDB:__mainManagedObjectContext];
+}
+
 - (NSArray *)getAssetRequestListByPoSID:(NSString *)posID
 {
     NSPredicate * filter = [NSPredicate predicateWithFormat:@"posID = %@",posID];

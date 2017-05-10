@@ -12,6 +12,7 @@
 @implementation AMDBAssetRequest
 
 @dynamic assetID;
+@dynamic accountID;
 @dynamic createdBy;
 @dynamic createdDate;
 @dynamic locationID;

@@ -12,6 +12,7 @@
 @implementation AMDBAsset
 
 @dynamic assetID;
+@dynamic accountID;
 @dynamic assetName;
 @dynamic installDate;
 @dynamic lastModifiedBy;

@@ -12,6 +12,7 @@
 @implementation AMAsset
 
 @synthesize assetID;
+@synthesize accountID;
 @synthesize installDate;
 @synthesize lastModifiedBy;
 @synthesize lastModifiedDate;
