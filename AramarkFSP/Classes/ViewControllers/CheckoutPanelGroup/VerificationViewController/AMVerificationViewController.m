@@ -59,7 +59,8 @@ AMPopoverSelectTableViewControllerDelegate,
 UIPopoverControllerDelegate,
 UITextFieldDelegate,
 UITextViewDelegate,
-AMVerificationAddSectionViewDelegate
+AMVerificationAddSectionViewDelegate,
+UISearchBarDelegate
 >
 {
 	NSMutableArray *arrSections;
@@ -68,6 +69,10 @@ AMVerificationAddSectionViewDelegate
 	NSMutableDictionary *dicAddInfo;
 	AMWorkOrder *workOrder;
     AMAsset *woAsset;
+    BOOL isSearching;
+    NSOperationQueue *searchOperationQueue;
+    NSOperationQueue *refreshOperationQueue;
+    NSMutableArray *searchResultList;
 }
 
 @property (nonatomic, strong) NSMutableDictionary *dicAddInfo;
@@ -93,13 +98,20 @@ AMVerificationAddSectionViewDelegate
 	if (self) {
         arrVerificationStatus = [NSMutableArray array];
         arrSections = [NSMutableArray array];
+        searchOperationQueue = [[NSOperationQueue alloc] init];
+        [searchOperationQueue setMaxConcurrentOperationCount:1];
+        
+        refreshOperationQueue = [[NSOperationQueue alloc] init];
+        [refreshOperationQueue setMaxConcurrentOperationCount:1];
+        
+        searchResultList = [NSMutableArray array];
 	}
 	return self;
 }
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-    
+    self.searchBar.delegate = self;
 	dicAddInfo = [NSMutableDictionary dictionary];
 	[dicAddInfo setObject:[NSNumber numberWithBool:NO] forKey:KEY_OF_NEEDSHOW];
     [dicAddInfo setObject:@"" forKey:KEY_OF_LOCATION];
@@ -109,6 +121,7 @@ AMVerificationAddSectionViewDelegate
     
     [self.btnNext setTitle:MyLocal(@"NEXT") forState:UIControlStateNormal];
     [self.btnNext setTitle:MyLocal(@"NEXT") forState:UIControlStateHighlighted];
+    self.searchBar.placeholder = MyLocal(@"SEARCH ASSET or Serial No.");
 }
 
 - (void)didReceiveMemoryWarning {
@@ -428,8 +441,8 @@ AMVerificationAddSectionViewDelegate
 
         cell.imgCheckmark.hidden = !cell.imgCheckmark.isHidden;
         
-        NSMutableDictionary *dicInfos;
-        dicInfos = self.arrVerificationInfos.count > 0 ? [self.arrVerificationInfos objectAtIndex:sender.tag] : nil;
+        NSMutableDictionary *dicInfos = self.arrVerificationInfos.count > 0 ? [self.arrVerificationInfos objectAtIndex:sender.tag] : nil;
+        
         //AMAsset *aAsset = [dicInfos objectForKey:KEY_OF_ASSET_INFO];
         //AMAssetRequest *aAsset;
         AMAssetRequest *aAsset;
@@ -487,6 +500,7 @@ AMVerificationAddSectionViewDelegate
 
 - (void)clickUpdateBtn:(UIButton *)sender {
     NSMutableDictionary *dicInfos = [self.arrVerificationInfos objectAtIndex:sender.tag];
+    
     AMAsset *aAsset = [dicInfos objectForKey:KEY_OF_ASSET_INFO];
     sender.selected = !sender.selected;
     [dicInfos setObject:[NSNumber numberWithBool:sender.selected] forKey:KEY_OF_UPDATE];
@@ -638,7 +652,7 @@ AMVerificationAddSectionViewDelegate
 	else {
         
         //This section is for existing verification, ie. NOT NEW
-		NSMutableDictionary *dicInfos = [self.arrVerificationInfos objectAtIndex:indexPath.section];
+        NSMutableDictionary *dicInfos = [self.arrVerificationInfos objectAtIndex:indexPath.section];
         
 		NSInteger iInfoType = [[dicInfos objectForKey:KEY_OF_INFOTYPE] intValue];
         
@@ -767,7 +781,8 @@ AMVerificationAddSectionViewDelegate
 	}
 	else {
         
-		NSMutableDictionary *dicInfo = [self.arrVerificationInfos objectAtIndex:section];
+        NSMutableDictionary *dicInfo = [self.arrVerificationInfos objectAtIndex:section];
+    
 		NSNumber *needShow = [dicInfo objectForKey:KEY_OF_NEEDSHOW];
 		if ([needShow boolValue]) {
 			return 1;
@@ -779,7 +794,11 @@ AMVerificationAddSectionViewDelegate
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return [self.arrVerificationInfos count] + 1;
+    if (isSearching) {
+        return [searchResultList count];
+    } else {
+        return [self.arrVerificationInfos count] + 1;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -791,7 +810,8 @@ AMVerificationAddSectionViewDelegate
 		return 325.0;
 	}
 	else {
-		NSMutableDictionary *dicInfos = [self.arrVerificationInfos objectAtIndex:indexPath.section];
+        NSMutableDictionary *dicInfos = [self.arrVerificationInfos objectAtIndex:indexPath.section];
+        
 		NSInteger iInfoType = [[dicInfos objectForKey:KEY_OF_INFOTYPE] intValue];
         
 		if (iInfoType == InfoType_NormalAsset) {
@@ -804,7 +824,7 @@ AMVerificationAddSectionViewDelegate
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	if (section == [self.arrVerificationInfos count]) {
+    if (section == [self.arrVerificationInfos count]) {
 		NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AMVerificationAddSectionView" owner:[AMVerificationAddSectionView class] options:nil];
 		AMVerificationAddSectionView *aVerificationTitle = (AMVerificationAddSectionView *)[nib objectAtIndex:0];
 		aVerificationTitle.delegate = self;
@@ -824,7 +844,8 @@ AMVerificationAddSectionViewDelegate
 		return aVerificationTitle;
 	}
 	else {
-		NSMutableDictionary *dicInfo = [self.arrVerificationInfos objectAtIndex:section];
+        NSMutableDictionary *dicInfo = [self.arrVerificationInfos objectAtIndex:section];
+        
 		NSInteger iType = [[dicInfo objectForKey:KEY_OF_INFOTYPE] integerValue];
         
 		NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AMVerificationSectionView" owner:[AMVerificationSectionView class] options:nil];
@@ -892,6 +913,7 @@ AMVerificationAddSectionViewDelegate
 		case VerificationTextInputType_Notes:
 		{
             NSMutableDictionary *dicInfos = [self.arrVerificationInfos objectAtIndex:iSection];
+            
             AMAssetRequest *aAsset = [dicInfos objectForKey:KEY_OF_ASSETREQUEST_INFO];
             aAsset.verifyNotes = ([AMUtilities isEmpty:textView.text] || [textView.text isEqualToString:TEXT_OF_WRITE_NOTE]) ? @"" : textView.text;
             [self.mainTableView reloadSections:[NSIndexSet indexSetWithIndex:iSection] withRowAnimation:UITableViewRowAnimationNone];
@@ -1015,7 +1037,8 @@ AMVerificationAddSectionViewDelegate
 	}
 	else {
 		NSIndexPath *indexPath = [AMUtilities indexPathForView:textField inTableView:self.mainTableView];
-		NSMutableDictionary *dicInfos = [self.arrVerificationInfos objectAtIndex:indexPath.section];
+        NSMutableDictionary *dicInfos = [self.arrVerificationInfos objectAtIndex:indexPath.section];
+        
 		AMAssetRequest *aAsset = [dicInfos objectForKey:KEY_OF_ASSETREQUEST_INFO];
         
 		switch (iType) {
@@ -1155,7 +1178,9 @@ AMVerificationAddSectionViewDelegate
 
 - (void)verificationStatusTableViewController:(AMPopoverSelectTableViewController *)aVerificationStatusTableViewController didSelected:(NSMutableDictionary *)aInfo {
 	if (aVerificationStatusTableViewController.tag == PopViewType_Select_VerificationStatus) {
-		NSMutableDictionary *dicInfos = [self.arrVerificationInfos objectAtIndex:aVerificationStatusTableViewController.aIndexPath.section];
+        NSMutableDictionary *dicInfos = [self.arrVerificationInfos objectAtIndex:aVerificationStatusTableViewController.
+           aIndexPath.section];
+        
 		AMAsset *aAsset = [dicInfos objectForKey:KEY_OF_ASSET_INFO];
         
 		NSString *strNewStatus = [aInfo objectForKey:kAMPOPOVER_DICTIONARY_KEY_VALUE];
@@ -1212,6 +1237,7 @@ AMVerificationAddSectionViewDelegate
         {
             //Existing location
             NSMutableDictionary *dicInfos = [self.arrVerificationInfos objectAtIndex:aVerificationStatusTableViewController.aIndexPath.section];
+            
             AMAsset *aAsset = [dicInfos objectForKey:KEY_OF_ASSET_INFO];
             AMLocation *aLocation = [aInfo objectForKey:kAMPOPOVER_DICTIONARY_KEY_DATA];
             aAsset.locationID = aLocation.locationID;
@@ -1329,4 +1355,93 @@ AMVerificationAddSectionViewDelegate
     }];
 }
 
+- (void)searchItemWithString:(NSString *)aString inList:(NSMutableArray *)aList {
+    if (!aList || [aList count] == 0) {
+        
+        if (searchResultList && [searchResultList count] > 0) {
+            [searchResultList removeAllObjects];
+        }
+        
+        return;
+    }
+    
+    if (!aString) {
+        aString = @"";
+    }
+    
+    [searchOperationQueue cancelAllOperations];
+    
+    if (searchResultList && [searchResultList count] > 0) {
+        [searchResultList removeAllObjects];
+    }
+    
+    NSInvocationOperation *theOp = [[NSInvocationOperation alloc]
+                                    initWithTarget:self
+                                    selector:@selector(mySearchTaskMethod:)
+                                    object:@{ @"String":aString, @"List":aList }];
+    
+    [searchOperationQueue addOperation:theOp];
+}
+
+- (void)mySearchTaskMethod:(id)Info {
+    
+    NSMutableString *searchString = [Info objectForKey:@"String"];
+    
+    for (NSDictionary *order in [Info objectForKey:@"List"]) {
+        AMAsset *assetInfo = [order valueForKeyWithNullToNil:@"ASSET_INFO"];
+        NSString *assetMachineNumber = assetInfo.machineNumber;
+        
+        NSString *assetSerialNumber = assetInfo.serialNumber;
+        NSString *assetLocation = assetInfo.assetName;
+        
+        if ( assetInfo != nil && ( ([assetMachineNumber rangeOfString:searchString options:NSCaseInsensitiveSearch].location != NSNotFound)
+              
+                || ( (assetSerialNumber != nil && [assetSerialNumber rangeOfString:searchString options:NSCaseInsensitiveSearch].location != NSNotFound) )
+                || ( (assetLocation != nil && [assetLocation rangeOfString:searchString options:NSCaseInsensitiveSearch].location != NSNotFound) )
+            )
+        )
+        {
+            //add the item to the list
+            [searchResultList addObject: order];
+        }
+    }
+    
+    [self reloadData];
+}
+
+- (void)searchEnable:(BOOL)isEnable {
+    isSearching = isEnable;
+    if (!isEnable) {
+        [self reloadData];
+    }
+}
+
+#pragma - Search Delegate
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if (searchText.length > 0) {
+        [self searchEnable:YES];
+        [self searchItemWithString:searchText inList:self.arrVerificationInfos];
+    } else {
+        [self searchEnable:NO];
+        [self reloadData];
+    }
+}
+
+- (void)reloadData {
+    
+    if (isSearching) {
+        if (searchResultList) {
+            MAIN ( ^{
+                [self.mainTableView reloadData];
+            });
+        }
+    }
+    else {
+        if (self.arrVerificationInfos) {
+            MAIN ( ^{
+                [self.mainTableView reloadData];
+            });
+        }
+    }
+}
 @end

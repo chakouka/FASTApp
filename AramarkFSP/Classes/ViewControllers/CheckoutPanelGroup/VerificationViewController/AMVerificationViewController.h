@@ -20,6 +20,7 @@ UITableViewDelegate
 }
 
 @property (strong, nonatomic) NSMutableArray *arrVerificationInfos;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) IBOutlet UITableView *mainTableView;
 @property (nonatomic, weak) id<AMVerificationViewControllerDelegate> delegate;
 @property (strong, nonatomic) NSMutableArray *arrResultAsset;
