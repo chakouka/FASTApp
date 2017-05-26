@@ -1142,13 +1142,16 @@ AMWorkOrderViewControllerDelegate
             invoce.recordTypeName = INVOICE_TYPE_FILTER;
             
             for (AMDBCustomerPrice *customerPrice in arrTemp0) {
-                invoce.filterID = customerPrice.productID;
-                invoce.filterName = customerPrice.productName;
-                invoce.unitPrice = customerPrice.price;
-                invoce.quantity = @1;
-                
-                [arrPMItems addObject:invoce];
-                break;
+                if ([customerPrice.productName isEqualToString: @"PM1"])
+                {
+                    invoce.filterID = customerPrice.productID;
+                    invoce.filterName = customerPrice.productName;
+                    invoce.unitPrice = customerPrice.price;
+                    invoce.quantity = @1;
+                    
+                    [arrPMItems addObject:invoce];
+                    break;
+                }
             }
             
         }
