@@ -201,6 +201,8 @@ UIGestureRecognizerDelegate
 @synthesize benchActiveListVC;
 @synthesize benchCheckoutVC;
 @synthesize scrHistoryScroller;
+@synthesize btnActiveBench;
+@synthesize btnStartBench;
 
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_FROM_AMLEFTBARVIEWCONTROLLER object:nil];
@@ -266,6 +268,14 @@ UIGestureRecognizerDelegate
 //    [USER_DEFAULT addObserver:self forKeyPath:kAMAPPLICATION_CURRENT_LANGUAGE_KEY options:NSKeyValueObservingOptionNew context:NULL];
     
     [AMUtilities refreshFontInView:self.viewLogOut];
+    [btnActiveBench setTitle:MyLocal(@"ACTIVE BENCH") forState:UIControlStateNormal];
+    [btnStartBench setTitle:MyLocal(@"START BENCH") forState:UIControlStateNormal];
+    [_lblDtlRepairMatrix setText:MyLocal(@"REPAIR NTE:")];
+    [_labelBenchRepairMatrixNTE setText:MyLocal(@"REPAIR NTE:")];
+    [_labelBenchAVNotes setText:MyLocal(@"Pick Up Notes:")];
+    [_lblPickUpStatus setText:MyLocal(@"Picked Up Status:")];
+    [_lblPickUpBy setText:MyLocal(@"Picked Up By:")];
+    [_lblPickUpFrom setText:MyLocal(@"Picked Up From:")];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -1376,7 +1386,7 @@ UIGestureRecognizerDelegate
         self.labelBenchRepairMatrixNTE.text = [NSString stringWithFormat:@"$%@", [workOrderInfo valueForKeyWithNullToNil: @"Repair_Matrix__c"]];
         if ([self.labelBenchRepairMatrixNTE.text  rangeOfString: @"null"].location != NSNotFound)
         {
-            self.labelBenchRepairMatrixNTE.text = @"Unknown";
+            self.labelBenchRepairMatrixNTE.text = MyLocal(@"Unknown");
         }
         self.selectedAssetID = [workOrderInfo valueForKeyWithNullToNil:@"Id"];
         self.selectedWorkorderID = [records[0] valueForKeyWithNullToNil:@"Id"];
@@ -1695,9 +1705,9 @@ UIGestureRecognizerDelegate
                     self.lblDtlNextPMDate.text = [fullAssetDict valueForKeyWithNullToNil:@""];
                     self.lblDtlLocation.text = [fullAssetDict valueForKeyWithNullToNil:@""];
                     self.lblDtlRepairMatrix.text = [NSString stringWithFormat:@"$%@", [fullAssetDict valueForKeyWithNullToNil:@"Repair_Matrix__c"]];
-                    if ([self.lblDtlRepairMatrix.text rangeOfString:@"Unknown"].location != NSNotFound)
+                    if ([self.lblDtlRepairMatrix.text rangeOfString:MyLocal(@"Unknown")].location != NSNotFound)
                     {
-                        self.lblDtlRepairMatrix.text = @"Unknown";
+                        self.lblDtlRepairMatrix.text = MyLocal(@"Unknown");
                     }
                     NSDictionary *historyDict = [fullAssetDict valueForKeyWithNullToNil:@"WODict"];
                     NSArray *historyArray = [NSArray arrayWithArray:[historyDict objectForKey:@"records"]];
@@ -2388,7 +2398,7 @@ UIGestureRecognizerDelegate
                 [self benchListLoadData];
             });
             dispatch_async(dispatch_get_main_queue(), ^{
-                [UIAlertView showWithTitle:@"Success" message:@"Equipment has been added to the Active Bench" style:UIAlertViewStyleDefault cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                [UIAlertView showWithTitle:MyLocal(@"Success") message:MyLocal(@"Equipment has been added to the Active Bench") style:UIAlertViewStyleDefault cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                     
                     
                 }];
@@ -2469,7 +2479,7 @@ UIGestureRecognizerDelegate
 {
     UILabel *tappedLabel = (UILabel *)sender.view;
     
-    [UIAlertView showWithTitle:@"Notes" message:[notesArray objectAtIndex: tappedLabel.tag] cancelButtonTitle:@"Done" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+    [UIAlertView showWithTitle:@"Notes" message:[notesArray objectAtIndex: tappedLabel.tag] cancelButtonTitle:MyLocal(@"Done") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
         
     }];
 }

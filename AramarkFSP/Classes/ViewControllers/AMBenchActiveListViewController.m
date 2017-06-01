@@ -76,7 +76,7 @@ UISearchBarDelegate
 @synthesize refreshOperationQueue;
 @synthesize searchResultList;
 @synthesize arrMoveList;
-
+@synthesize btnBackToBench;
 #pragma mark - TEST
 
 #pragma mark -
@@ -124,6 +124,7 @@ UISearchBarDelegate
     lpgr.minimumPressDuration = 2.0; //seconds
     lpgr.delegate = self;
     [self.tableViewList addGestureRecognizer:lpgr];
+    [btnBackToBench setTitle:MyLocal(@"BACK TO BENCH") forState:UIControlStateNormal];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -481,7 +482,7 @@ UISearchBarDelegate
             if([[responseData valueForKeyWithNullToNil:@"success"] isEqualToString:@"true"])
             {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [UIAlertView showWithTitle:@"Success" message:@"Started Successfully" style:UIAlertViewStyleDefault cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                    [UIAlertView showWithTitle:MyLocal(@"Success") message:MyLocal(@"Started Successfully") style:UIAlertViewStyleDefault cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                         //disable Start button
                         [button setUserInteractionEnabled:NO];
                         
@@ -540,7 +541,7 @@ UISearchBarDelegate
             if([[responseData valueForKeyWithNullToNil:@"success"] isEqualToString:@"true"])
             {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [UIAlertView showWithTitle:@"Success" message:@"Stopped Successfully" style:UIAlertViewStyleDefault cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                    [UIAlertView showWithTitle:MyLocal(@"Success") message:MyLocal(@"Stopped Successfully") style:UIAlertViewStyleDefault cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                         //Disable Stop button
                         [button setUserInteractionEnabled:NO];
                         

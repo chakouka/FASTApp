@@ -35,7 +35,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *viewMainPanel;
 @property (weak, nonatomic) IBOutlet UIView *viewLeftListPanel;
-
+@property (weak, nonatomic) IBOutlet UIButton *btnBackToBench;
 
 
 

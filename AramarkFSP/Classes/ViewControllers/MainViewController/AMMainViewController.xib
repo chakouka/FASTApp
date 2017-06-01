@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="12120" systemVersion="16C67" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" colorMatched="YES">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AMMainViewController">
             <connections>
+                <outlet property="btnActiveBench" destination="Ugd-cO-N7J" id="cMf-fc-FMp"/>
                 <outlet property="btnClearCache" destination="Dlk-jI-Bwy" id="ID1-oy-o1y"/>
                 <outlet property="btnLogin" destination="Xpd-FH-5cX" id="vLY-PK-VOb"/>
                 <outlet property="btnLogout" destination="3s6-Ue-k6U" id="COZ-W3-y06"/>
+                <outlet property="btnStartBench" destination="ZRN-kO-aP5" id="UUf-VP-dT5"/>
                 <outlet property="imageHead" destination="pHH-rE-Bp2" id="mQN-V6-Uy7"/>
                 <outlet property="labelAlertTip" destination="KJ2-hm-RgY" id="wHu-NA-igS"/>
                 <outlet property="labelBenchAVNotes" destination="9w4-gQ-iBs" id="KzH-Ck-wyZ"/>
@@ -37,6 +38,9 @@
                 <outlet property="lblDtlRepairMatrix" destination="gOY-U7-8ak" id="A29-Ji-BnD"/>
                 <outlet property="lblDtlSerialNumber" destination="17p-o7-Aye" id="2f0-K7-CR0"/>
                 <outlet property="lblDtlVendKey" destination="GMF-J2-aSO" id="ett-yA-egW"/>
+                <outlet property="lblPickUpBy" destination="VyU-bC-UlK" id="Ej0-hq-t01"/>
+                <outlet property="lblPickUpFrom" destination="Ig1-jb-k6x" id="XRP-pS-ydv"/>
+                <outlet property="lblPickUpStatus" destination="QTe-Ka-m5o" id="952-r5-Mmk"/>
                 <outlet property="scrHistoryScroller" destination="ZFw-as-uye" id="RhX-OT-7Fa"/>
                 <outlet property="view" destination="aOG-v4-Xn9" id="noe-yT-oc7"/>
                 <outlet property="viewActiveBenchPanel" destination="ZQj-n8-BVQ" id="XaX-Fx-br2"/>

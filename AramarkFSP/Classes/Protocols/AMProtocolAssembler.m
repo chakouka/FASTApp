@@ -262,7 +262,7 @@
                 //bkk 9/2/2016 - Move to Warehouse
                 if (assetReq.moveToWarehouse) {
                     [assetReqDict setObject:assetReq.moveToWarehouse forKey:@"Condition__c"];
-                    if([assetReq.status isEqualToString: @"Found"]  && ([assetReq.moveToWarehouse isEqualToString:@"Working"] || [assetReq.moveToWarehouse isEqualToString:@"Not Working"]))
+                    if([assetReq.status isEqualToString: MyLocal(@"Found")]  && ([assetReq.moveToWarehouse isEqualToString:MyLocal(@"Working")] || [assetReq.moveToWarehouse isEqualToString:MyLocal(@"Not Working")]))
                     {
                         [assetReqDict setObject:@"True" forKey:@"Return_to_Warehouse__c"];//Flag for Shobha - unnecessary
                     }

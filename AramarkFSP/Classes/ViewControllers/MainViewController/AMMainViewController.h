@@ -56,7 +56,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblDtlRepairMatrix;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrHistoryScroller;
-
+@property (weak, nonatomic) IBOutlet UIButton *btnActiveBench;
+@property (weak, nonatomic) IBOutlet UIButton *btnStartBench;
+@property (weak, nonatomic) IBOutlet UILabel *lblPickUpStatus;
+@property (weak, nonatomic) IBOutlet UILabel *lblPickUpBy;
+@property (weak, nonatomic) IBOutlet UILabel *lblPickUpFrom;
 
 @property (weak, nonatomic) NSString *selectedAssetID;
 @property (weak, nonatomic) NSString *selectedWorkorderID;

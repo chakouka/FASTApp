@@ -1202,28 +1202,28 @@ UISearchBarDelegate
             
             if (isBenchTech)
             {
-                [UIAlertView showWithTitle:@"Asset Condition" message:MyLocal(@"What is the asset's condition?") style:UIAlertViewStyleDefault cancelButtonTitle:MyLocal(@"Working") otherButtonTitles:@[MyLocal(@"Not Working"), MyLocal(@"Missing")] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                [UIAlertView showWithTitle:MyLocal(@"Asset Condition") message:MyLocal(@"What is the asset's condition?") style:UIAlertViewStyleDefault cancelButtonTitle:MyLocal(@"Working") otherButtonTitles:@[MyLocal(@"Not Working"), MyLocal(@"Missing")] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                     
                     if(buttonIndex == 1)
                     {
                         //YES
-                        aAsset.moveToWarehouse = @"Not Working";
+                        aAsset.moveToWarehouse = MyLocal(@"Not Working");
                     } else if (buttonIndex == 2) {
                         //NO
-                        aAsset.moveToWarehouse = @"Missing";
+                        aAsset.moveToWarehouse = MyLocal(@"Missing");
                     } else {
-                        aAsset.moveToWarehouse = @"Working";
+                        aAsset.moveToWarehouse = MyLocal(@"Working");
                     }
                 }];
             } else {
-                [UIAlertView showWithTitle:@"Asset Condition" message:MyLocal(@"What is the asset's condition?") style:UIAlertViewStyleDefault cancelButtonTitle:MyLocal(@"Working") otherButtonTitles:@[MyLocal(@"Not Working")] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                [UIAlertView showWithTitle:MyLocal(@"Asset Condition") message:MyLocal(@"What is the asset's condition?") style:UIAlertViewStyleDefault cancelButtonTitle:MyLocal(@"Working") otherButtonTitles:@[MyLocal(@"Not Working")] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                     
                     if(buttonIndex == 1)
                     {
                         //YES
-                        aAsset.moveToWarehouse = @"Not Working";
+                        aAsset.moveToWarehouse = MyLocal(@"Not Working");
                     } else {
-                        aAsset.moveToWarehouse = @"Working";
+                        aAsset.moveToWarehouse = MyLocal(@"Working");
                     }
                 }];
             }
@@ -1319,10 +1319,10 @@ UISearchBarDelegate
             if(buttonIndex > 0)
             {
                 //YES
-                aAsset.moveToWarehouse = @"Working";
+                aAsset.moveToWarehouse = MyLocal(@"Working");
             } else {
                 //NO
-                aAsset.moveToWarehouse = @"Not Working";
+                aAsset.moveToWarehouse = MyLocal(@"Not Working");
             }
         }];
     }
