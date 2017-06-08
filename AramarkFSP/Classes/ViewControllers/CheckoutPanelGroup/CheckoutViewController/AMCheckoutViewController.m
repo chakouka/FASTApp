@@ -1144,6 +1144,8 @@ AMWorkOrderViewControllerDelegate
             for (AMDBCustomerPrice *customerPrice in arrTemp0) {
                 if ([customerPrice.productName isEqualToString: @"PM1"])
                 {
+                    invoce.recordTypeID = [[AMLogicCore sharedInstance] getRecordTypeIdByName:INVOICE_TYPE_INVOICECODE forObject:RECORD_TYPE_OF_INVOICE];
+                    invoce.recordTypeName = INVOICE_TYPE_INVOICECODE;
                     invoce.filterID = customerPrice.productID;
                     invoce.filterName = customerPrice.productName;
                     invoce.unitPrice = customerPrice.price;
