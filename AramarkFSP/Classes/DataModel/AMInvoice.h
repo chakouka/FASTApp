@@ -13,6 +13,7 @@
 #define INVOICE_TYPE_PART           @"Part" //No asset id
 #define INVOICE_TYPE_INVOICECODE    @"Invoice Code"
 #define INVOICE_TYPE_LABORCHARGE    @"Labor Charge"
+#define INVOICE_TYPE_PREVMAINT      @"Preventative Maintenance"
 
 
 @interface AMInvoice : NSObject
