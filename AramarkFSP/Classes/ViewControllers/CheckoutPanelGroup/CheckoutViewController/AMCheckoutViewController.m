@@ -1138,14 +1138,12 @@ AMWorkOrderViewControllerDelegate
             invoce.assetID = nil;
             invoce.posID = self.workOrder.posID;
             invoce.woID = self.workOrder.woID;
-//            invoce.recordTypeID = [[AMLogicCore sharedInstance] getRecordTypeIdByName:INVOICE_TYPE_FILTER forObject:RECORD_TYPE_OF_INVOICE];
-//            invoce.recordTypeName = INVOICE_TYPE_FILTER;
+            invoce.recordTypeID = [[AMLogicCore sharedInstance] getRecordTypeIdByName:INVOICE_TYPE_FILTER forObject:RECORD_TYPE_OF_INVOICE];
+            invoce.recordTypeName = INVOICE_TYPE_FILTER;
             
             for (AMDBCustomerPrice *customerPrice in arrTemp0) {
                 if ([customerPrice.productName isEqualToString: @"PM1"])
                 {
-                    invoce.recordTypeID = [[AMLogicCore sharedInstance] getRecordTypeIdByName:INVOICE_TYPE_PREVMAINT forObject:RECORD_TYPE_OF_WORK_ORDER];
-                    invoce.recordTypeName = INVOICE_TYPE_PREVMAINT;
                     invoce.filterID = customerPrice.productID;
                     invoce.filterName = customerPrice.productName;
                     invoce.unitPrice = customerPrice.price;
