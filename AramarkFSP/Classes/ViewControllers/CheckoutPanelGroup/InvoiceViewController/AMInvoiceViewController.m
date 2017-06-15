@@ -293,8 +293,12 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 			[dic0 setObject:[NSNumber numberWithInteger:AMCheckoutCellType_Invoice_WorkOrder_Work_Performed] forKey:KEY_OF_CELL_TYPE];
 		}
         else if ([aInvoice.recordTypeName isEqualToLocalizedString:INVOICE_TYPE_INVOICECODE]) {
-            //TODO:: Need add Invoice code
-            continue;
+            //TODO:: Need add Invoice code  //bkk added 6/13/2017
+            if (aInvoice.price) {
+                [dic0 setObject:aInvoice.price forKey:KEY_OF_WORKORDER_TOTAL_PRICE];
+            }
+            [dic0 setObject:[NSNumber numberWithInteger:AMCheckoutCellType_Invoice_WorkOrder_Filter_Name] forKey:KEY_OF_CELL_TYPE];
+            
 		}
         else
         {
