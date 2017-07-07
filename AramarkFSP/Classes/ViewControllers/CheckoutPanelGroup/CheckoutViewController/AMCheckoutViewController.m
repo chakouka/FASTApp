@@ -325,10 +325,10 @@ AMWorkOrderViewControllerDelegate
                                                  name:@"POST_FILTERS_AND_QUANTITIES"
                                                object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(saveButtonPressedPM:)
-                                                 name:@"POST_PMS_AND_QUANTITIES"
-                                               object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(saveButtonPressedPM:)
+//                                                 name:@"POST_PMS_AND_QUANTITIES"
+//                                               object:nil]; //000462
     
     self.strSelectedFilters = [NSMutableString string];
     self.strSelectedPMs = [NSMutableString string];
@@ -374,13 +374,14 @@ AMWorkOrderViewControllerDelegate
           @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Refused-Customer Refused"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Refused-Customer Refused"},
           @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Refused-No Filter"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Refused-No Filter"},
           nil];
-    } else if ([self.workOrder.woType isEqualToString:MyLocal(@"Preventative Maintenance")]) {
-        //new i&e 000462
-        return       [NSMutableArray arrayWithObjects:
-                      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Ice Machine PM"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Ice Machine PM"},
-                      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"PM Completed"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"PM Completed"},
-                      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"PM Not Completed"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"PM Not Completed"},
-                      nil];
+//    }
+//    else if ([self.workOrder.woType isEqualToString:MyLocal(@"Preventative Maintenance")]) {
+//        //new i&e 000462
+//        return       [NSMutableArray arrayWithObjects:
+//                      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Ice Machine PM"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Ice Machine PM"},
+//                      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"PM Completed"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"PM Completed"},
+//                      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"PM Not Completed"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"PM Not Completed"},
+//                      nil];
     } else {
         return       [NSMutableArray arrayWithObjects:
           @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Administrative Work Done"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Administrative Work Done"},
@@ -455,10 +456,10 @@ AMWorkOrderViewControllerDelegate
     
     NSMutableDictionary *dicRepairCode = [[self dataWithType:AMCheckoutCellType_Checkout_RepairCode] objectForKey:KEY_OF_CELL_DATA];
     
-    if (![self.workOrder.woType isEqualToString:TEXT_OF_PM] && [[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:MyLocal(@"Ice Machine PM")] && self.arrPMItems.count == 0) {
-        [AMUtilities showAlertWithInfo:MyLocal(@"Please add a Preventative Maintenance Item")];
-        return;
-    }
+//    if (![self.workOrder.woType isEqualToString:TEXT_OF_PM] && [[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:MyLocal(@"Ice Machine PM")] && self.arrPMItems.count == 0) {
+//        [AMUtilities showAlertWithInfo:MyLocal(@"Please add a Preventative Maintenance Item")];
+//        return;
+//    }
     
     if ([[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] length] == 0) {
         [AMUtilities showAlertWithInfo:MyLocal(@"Please Input Repair Code")];
@@ -481,12 +482,13 @@ AMWorkOrderViewControllerDelegate
         }
         
     }
-    if ([self.workOrder.woType isEqualToString:TEXT_OF_PM] && [[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:@"Ice Machine PM"] && self.arrPMItems.count == 0) {
-        //todo: i&e000462 20170305
-        [self showPopupPM];
-        
-    //bkk 1/29/2015
-    } else if (![self.workOrder.woType isEqualToString:TEXT_OF_FILTER_EXCHANGE] && [[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:TEXT_OF_REPLACED_FILTER])
+//    if ([self.workOrder.woType isEqualToString:TEXT_OF_PM] && [[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:@"Ice Machine PM"] && self.arrPMItems.count == 0) {
+//        //todo: i&e000462 20170305
+//        [self showPopupPM];
+//        
+//    //bkk 1/29/2015
+//    } else
+        if (![self.workOrder.woType isEqualToString:TEXT_OF_FILTER_EXCHANGE] && [[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:TEXT_OF_REPLACED_FILTER])
     {
         //bkk - popup shows
         [self showPopup];
@@ -806,32 +808,32 @@ AMWorkOrderViewControllerDelegate
         return;
     }
     
-    if ([arrPMItems count] == 0 && [self.workOrder.woType isEqualToString:TEXT_OF_PM]) {
-        
-        NSArray *arrTemp0 = [[AMLogicCore sharedInstance] getPMListByWOID:self.workOrder.woID];
-        
-        
-        if ([arrTemp0 count] > 0)
-        {
-            AMInvoice *invoce = [[AMInvoice alloc] init];
-            invoce.assetID = nil;
-            invoce.posID = self.workOrder.posID;
-            invoce.woID = self.workOrder.woID;
-            invoce.recordTypeID = [[AMLogicCore sharedInstance] getRecordTypeIdByName:INVOICE_TYPE_FILTER forObject:RECORD_TYPE_OF_INVOICE];
-            invoce.recordTypeName = INVOICE_TYPE_FILTER;
-            
-            for (AMDBCustomerPrice *customerPrice in arrTemp0) {
-                invoce.filterID = customerPrice.productID;
-                invoce.filterName = customerPrice.productName;
-                invoce.unitPrice = customerPrice.price;
-                invoce.quantity = @1;
-                
-                [arrPMItems addObject:invoce];
-                break;
-            }
-            
-        }
-    }
+//    if ([arrPMItems count] == 0 && [self.workOrder.woType isEqualToString:TEXT_OF_PM]) {
+//        //000462
+//        NSArray *arrTemp0 = [[AMLogicCore sharedInstance] getPMListByWOID:self.workOrder.woID];
+//        
+//        
+//        if ([arrTemp0 count] > 0)
+//        {
+//            AMInvoice *invoce = [[AMInvoice alloc] init];
+//            invoce.assetID = nil;
+//            invoce.posID = self.workOrder.posID;
+//            invoce.woID = self.workOrder.woID;
+//            invoce.recordTypeID = [[AMLogicCore sharedInstance] getRecordTypeIdByName:INVOICE_TYPE_FILTER forObject:RECORD_TYPE_OF_INVOICE];
+//            invoce.recordTypeName = INVOICE_TYPE_FILTER;
+//            
+//            for (AMDBCustomerPrice *customerPrice in arrTemp0) {
+//                invoce.filterID = customerPrice.productID;
+//                invoce.filterName = customerPrice.productName;
+//                invoce.unitPrice = customerPrice.price;
+//                invoce.quantity = @1;
+//                
+//                [arrPMItems addObject:invoce];
+//                break;
+//            }
+//            
+//        }
+//    }
 
 
     [self.mainTableView reloadSections:[NSIndexSet indexSetWithIndex:[arrCheckoutInfos indexOfObject:dicInfo]] withRowAnimation:UITableViewRowAnimationNone];
@@ -1126,36 +1128,36 @@ AMWorkOrderViewControllerDelegate
         }
     }
     
-    //bkk test for PMs to get customer Price Objects
-    if ([arrPMItems count] == 0 && [self.workOrder.woType isEqualToString:TEXT_OF_PM]) {
-        
-        NSArray *arrTemp0 = [[AMLogicCore sharedInstance] getPMListByWOID:self.workOrder.woID];
-        
-        
-        if ([arrTemp0 count] > 0)
-        {
-            AMInvoice *invoce = [[AMInvoice alloc] init];
-            invoce.assetID = nil;
-            invoce.posID = self.workOrder.posID;
-            invoce.woID = self.workOrder.woID;
-            invoce.recordTypeID = [[AMLogicCore sharedInstance] getRecordTypeIdByName:INVOICE_TYPE_FILTER forObject:RECORD_TYPE_OF_INVOICE];
-            invoce.recordTypeName = INVOICE_TYPE_FILTER;
-            
-            for (AMDBCustomerPrice *customerPrice in arrTemp0) {
-                if ([customerPrice.productName isEqualToString: @"PM1"])
-                {
-                    invoce.filterID = customerPrice.productID;
-                    invoce.filterName = customerPrice.productName;
-                    invoce.unitPrice = customerPrice.price;
-                    invoce.quantity = @1;
-                    
-                    [arrPMItems addObject:invoce];
-                    break;
-                }
-            }
-            
-        }
-    }
+    //bkk test for PMs to get customer Price Objects 000462
+//    if ([arrPMItems count] == 0 && [self.workOrder.woType isEqualToString:TEXT_OF_PM]) {
+//        
+//        NSArray *arrTemp0 = [[AMLogicCore sharedInstance] getPMListByWOID:self.workOrder.woID];
+//        
+//        
+//        if ([arrTemp0 count] > 0)
+//        {
+//            AMInvoice *invoce = [[AMInvoice alloc] init];
+//            invoce.assetID = nil;
+//            invoce.posID = self.workOrder.posID;
+//            invoce.woID = self.workOrder.woID;
+//            invoce.recordTypeID = [[AMLogicCore sharedInstance] getRecordTypeIdByName:INVOICE_TYPE_FILTER forObject:RECORD_TYPE_OF_INVOICE];
+//            invoce.recordTypeName = INVOICE_TYPE_FILTER;
+//            
+//            for (AMDBCustomerPrice *customerPrice in arrTemp0) {
+//                if ([customerPrice.productName isEqualToString: @"PM1"])
+//                {
+//                    invoce.filterID = customerPrice.productID;
+//                    invoce.filterName = customerPrice.productName;
+//                    invoce.unitPrice = customerPrice.price;
+//                    invoce.quantity = @1;
+//                    
+//                    [arrPMItems addObject:invoce];
+//                    break;
+//                }
+//            }
+//            
+//        }
+//    }
 
 	NSMutableDictionary *dicWO = [NSMutableDictionary dictionary];
 	[dicWO setObject:[NSNumber numberWithInteger:AMCheckoutCellType_Checkout_RepairCode] forKey:KEY_OF_CELL_TYPE];
@@ -1238,25 +1240,25 @@ AMWorkOrderViewControllerDelegate
     
 	[self.arrCheckoutInfos addObject:dicPartItemT];
     
-    //BKK 20170203 - added below for I&E for PMs
+    //BKK 20170203 - added below for I&E for PMs 000462
     //
-    NSMutableDictionary *dicPMs = [NSMutableDictionary dictionary];
-    [dicPMs setObject:[NSNumber numberWithInteger:AMCheckoutCellType_Checkout_PM_Title] forKey:KEY_OF_CELL_TYPE];
-    [dicPMs setObject:[NSString stringWithFormat:@"%@:",MyLocal(@"Preventative Maintenance")] forKey:KEY_OF_ADD_HEAD_TITLE];
-    [dicPMs setObject:MyLocal(@"PMs") forKey:KEY_OF_ADD_HEAD_INFO];
-    
-    NSMutableDictionary *dicPMsT = [NSMutableDictionary dictionary];
-    [dicPMsT setObject:[NSNumber numberWithInteger:AMCheckoutCellType_Checkout_PM_Title] forKey:KEY_OF_CELL_TYPE];
-    [dicPMsT setObject:dicPMs forKey:KEY_OF_CELL_DATA];
-    
-    [self.arrCheckoutInfos addObject:dicPMsT];
+//    NSMutableDictionary *dicPMs = [NSMutableDictionary dictionary];
+//    [dicPMs setObject:[NSNumber numberWithInteger:AMCheckoutCellType_Checkout_PM_Title] forKey:KEY_OF_CELL_TYPE];
+//    [dicPMs setObject:[NSString stringWithFormat:@"%@:",MyLocal(@"Preventative Maintenance")] forKey:KEY_OF_ADD_HEAD_TITLE];
+//    [dicPMs setObject:MyLocal(@"PMs") forKey:KEY_OF_ADD_HEAD_INFO];
+//    
+//    NSMutableDictionary *dicPMsT = [NSMutableDictionary dictionary];
+//    [dicPMsT setObject:[NSNumber numberWithInteger:AMCheckoutCellType_Checkout_PM_Title] forKey:KEY_OF_CELL_TYPE];
+//    [dicPMsT setObject:dicPMs forKey:KEY_OF_CELL_DATA];
+//    
+//    [self.arrCheckoutInfos addObject:dicPMsT];
     
     //
-    NSMutableDictionary *dicPMItemT = [NSMutableDictionary dictionary];
-    [dicPMItemT setObject:[NSNumber numberWithInteger:AMCheckoutCellType_Checkout_PM_Item] forKey:KEY_OF_CELL_TYPE];
-    [dicPMItemT setObject:arrPMItems forKey:KEY_OF_CELL_DATA];
-    
-    [self.arrCheckoutInfos addObject:dicPMItemT];
+//    NSMutableDictionary *dicPMItemT = [NSMutableDictionary dictionary];
+//    [dicPMItemT setObject:[NSNumber numberWithInteger:AMCheckoutCellType_Checkout_PM_Item] forKey:KEY_OF_CELL_TYPE];
+//    [dicPMItemT setObject:arrPMItems forKey:KEY_OF_CELL_DATA];
+//    
+//    [self.arrCheckoutInfos addObject:dicPMItemT];
     
     
     
@@ -1465,32 +1467,32 @@ AMWorkOrderViewControllerDelegate
         }
         
         //BKKITEM-000462 - 20170202 - Add Preventative Mantenance section
-        case AMCheckoutCellType_Checkout_PM_Item:
-        {
-            AMPMNameTableViewCell *cell = (AMPMNameTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"AMPMNameTableViewCell"];
-            if (cell == nil) {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AMPMNameTableViewCell" owner:[AMPMNameTableViewCell class] options:nil];
-                cell = (AMPMNameTableViewCell *)[nib objectAtIndex:0];
-            }
-            
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-            AMInvoice *invoice = [arrPMItems objectAtIndex:indexPath.row];
-            
-            
-            cell.textFieldPMPrice.text = invoice.unitPrice ? [NSString stringWithFormat:@"$%.02f", [invoice.unitPrice floatValue]] : TEXT_OF_NULL;
-            [cell.textFieldPMPrice setUserInteractionEnabled:NO];
-            
-            cell.textFieldPartsName.text = invoice.filterName;
-            
-            cell.textFieldQuantity.text = @"1";
-            [cell.textFieldQuantity setUserInteractionEnabled:NO];
-            
-            //cell.btnPMName.tag =  (indexPath.section * 1000 + indexPath.row);
-            //cell.btnPMName.tag = indexPath.row;
-            
-            return cell;
-        }
+//        case AMCheckoutCellType_Checkout_PM_Item:
+//        {
+//            AMPMNameTableViewCell *cell = (AMPMNameTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"AMPMNameTableViewCell"];
+//            if (cell == nil) {
+//                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AMPMNameTableViewCell" owner:[AMPMNameTableViewCell class] options:nil];
+//                cell = (AMPMNameTableViewCell *)[nib objectAtIndex:0];
+//            }
+//            
+//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//            
+//            AMInvoice *invoice = [arrPMItems objectAtIndex:indexPath.row];
+//            
+//            
+//            cell.textFieldPMPrice.text = invoice.unitPrice ? [NSString stringWithFormat:@"$%.02f", [invoice.unitPrice floatValue]] : TEXT_OF_NULL;
+//            [cell.textFieldPMPrice setUserInteractionEnabled:NO];
+//            
+//            cell.textFieldPartsName.text = invoice.filterName;
+//            
+//            cell.textFieldQuantity.text = @"1";
+//            [cell.textFieldQuantity setUserInteractionEnabled:NO];
+//            
+//            //cell.btnPMName.tag =  (indexPath.section * 1000 + indexPath.row);
+//            //cell.btnPMName.tag = indexPath.row;
+//            
+//            return cell;
+//        }
             
             
             
@@ -1622,14 +1624,14 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
                 [self refreshTotalPrice];
             });
         }
-        else if(indexPath.section == [arrCheckoutInfos indexOfObject:dicCodesPMInfo])
-        {
-            //BKK 20170202- TODO: PM change 000462
-            [arrPMItems removeAllObjects];
-            MAIN(^{
-                [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-            });
-        }
+//        else if(indexPath.section == [arrCheckoutInfos indexOfObject:dicCodesPMInfo])
+//        {
+//            //BKK 20170202- TODO: PM change 000462
+//            [arrPMItems removeAllObjects];
+//            MAIN(^{
+//                [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+//            });
+//        }
     }
 }
 
@@ -1644,7 +1646,7 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
         case AMCheckoutCellType_Checkout_Filter_Title:
         case AMCheckoutCellType_Checkout_Part_Title:
         case AMCheckoutCellType_Checkout_InvoiceCode_Title:
-        case AMCheckoutCellType_Checkout_PM_Title:
+        //case AMCheckoutCellType_Checkout_PM_Title:
 		{
 			return 1;
 		}
@@ -1664,11 +1666,11 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
 			return [arrPartItems count];
 		}
             break;
-        case AMCheckoutCellType_Checkout_PM_Item:
-        {
-            return [arrPMItems count];
-        }
-            break;
+//        case AMCheckoutCellType_Checkout_PM_Item:
+//        {
+//            return [arrPMItems count];
+//        }
+//            break;
 	}
     
     return 0;
@@ -2172,92 +2174,92 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
     }];
 }
 
-- (void)saveButtonPressedPM:(NSNotification *) notification {
-    
-    
-    [KLCPopup dismissAllPopups];
-    [[AMLogicCore sharedInstance] createNewCaseInDBWithSetupBlock:^(AMDBNewCase *newCase) {
-        
-        AMPoS *pos = [[AMLogicCore sharedInstance] getPoSInfoByID:self.workOrder.posID];
-        
-        if (self.workOrder.accountID && self.workOrder.posID) {
-            NSArray *arrAsset = [[AMLogicCore sharedInstance] getAssetListByPoSID:self.workOrder.posID AccountID:self.workOrder.accountID];
-            
-            for (AMAsset *aAsset in arrAsset) {
-                NSMutableDictionary *dicInfo = [NSMutableDictionary dictionary];
-                [dicInfo setObject:[NSString stringWithFormat:@"%@%@%@", aAsset.machineNumber ? aAsset.machineNumber : @"", aAsset.machineNumber && aAsset.productName ? @"-" : @"", aAsset.productName ? aAsset.productName : @""] forKey:kAMPOPOVER_DICTIONARY_KEY_INFO];
-                [dicInfo setObject:aAsset forKey:kAMPOPOVER_DICTIONARY_KEY_DATA];
-            }
-        }
-        
-        NSArray *arrContact = [[AMLogicCore sharedInstance] getContactListByPoSID:self.workOrder.posID];
-        
-        newCase.accountID = self.workOrder.accountID;
-        newCase.assetID = self.workOrder.assetID;
-        
-        //self.strSelectedPMs = [NSString stringWithFormat:@"Filter: PM1 Qty: %@\n", [notification.userInfo objectForKey:@"POST_PMS_AND_QUANTITIES"]];
-        self.strSelectedFilters = [NSString stringWithFormat:@"PMS: PM1 Qty: %@\n", [notification.userInfo objectForKey:@"POST_PMS_AND_QUANTITIES"]];
-        
-        newCase.caseDescription = [NSString stringWithFormat:@"%@\n\nPlease invoice the customer for the Preventative Maintenance that was done on the Ice Machine at the Point of Service.\n\n%@", self.workOrder.woNumber, self.workOrder.assetID];
-
-
-/*Case from above START*/
-        newCase.contactEmail = [arrContact count] > 0 ? ((AMContact *)arrContact[0]).email : @"";
-        newCase.contactID = @"";
-        NSArray *strFirstAndLastNames = [self.workOrder.ownerName componentsSeparatedByString:@" "];
-        
-        newCase.firstName = [arrContact count] > 0 ? ((AMContact *)arrContact[0]).firstName : strFirstAndLastNames[0] != nil ? strFirstAndLastNames[0] : @"Change";
-        newCase.lastName = [arrContact count] > 0 ? ((AMContact *)arrContact[0]).lastName : strFirstAndLastNames[1] != nil ? strFirstAndLastNames[1] : @"Me";
-        newCase.mEI_Customer = [pos.meiNumber length] == 0 ? 0 : pos.meiNumber;
-        newCase.point_of_Service = self.workOrder.posID;
-        newCase.priority = @"Medium";
-        newCase.recordTypeID = [[AMLogicCore sharedInstance] getRecordTypeIdByName:@"AR and Invoice" forObject:RECORD_TYPE_OF_CASE];
-        newCase.recordTypeName = MyLocal(@"AR and Invoice");
-        newCase.serialNumber = @"";
-        newCase.subject = @"Need to Invoice and Update Service Schedule";
-        newCase.type = MyLocal(@"InvoiceFilter");
-        newCase.accountName = self.workOrder.accountName;
-        newCase.posID = self.workOrder.posID;
-        newCase.posName = [pos.name length] == 0 ? @"" : pos.name;
-        newCase.assetNumber = @"";
-        newCase.id = @"";
-/*Case from above END*/
-        
-        
-        
-        
-        
-        
-        
+//- (void)saveButtonPressedPM:(NSNotification *) notification {
+//    000462
+//    
+//    [KLCPopup dismissAllPopups];
+//    [[AMLogicCore sharedInstance] createNewCaseInDBWithSetupBlock:^(AMDBNewCase *newCase) {
+//        
+//        AMPoS *pos = [[AMLogicCore sharedInstance] getPoSInfoByID:self.workOrder.posID];
+//        
+//        if (self.workOrder.accountID && self.workOrder.posID) {
+//            NSArray *arrAsset = [[AMLogicCore sharedInstance] getAssetListByPoSID:self.workOrder.posID AccountID:self.workOrder.accountID];
+//            
+//            for (AMAsset *aAsset in arrAsset) {
+//                NSMutableDictionary *dicInfo = [NSMutableDictionary dictionary];
+//                [dicInfo setObject:[NSString stringWithFormat:@"%@%@%@", aAsset.machineNumber ? aAsset.machineNumber : @"", aAsset.machineNumber && aAsset.productName ? @"-" : @"", aAsset.productName ? aAsset.productName : @""] forKey:kAMPOPOVER_DICTIONARY_KEY_INFO];
+//                [dicInfo setObject:aAsset forKey:kAMPOPOVER_DICTIONARY_KEY_DATA];
+//            }
+//        }
+//        
+//        NSArray *arrContact = [[AMLogicCore sharedInstance] getContactListByPoSID:self.workOrder.posID];
+//        
+//        newCase.accountID = self.workOrder.accountID;
+//        newCase.assetID = self.workOrder.assetID;
+//        
+//        //self.strSelectedPMs = [NSString stringWithFormat:@"Filter: PM1 Qty: %@\n", [notification.userInfo objectForKey:@"POST_PMS_AND_QUANTITIES"]];
+//        self.strSelectedFilters = [NSString stringWithFormat:@"PMS: PM1 Qty: %@\n", [notification.userInfo objectForKey:@"POST_PMS_AND_QUANTITIES"]];
+//        
+//        newCase.caseDescription = [NSString stringWithFormat:@"%@\n\nPlease invoice the customer for the Preventative Maintenance that was done on the Ice Machine at the Point of Service.\n\n%@", self.workOrder.woNumber, self.workOrder.assetID];
+//
+//
+///*Case from above START*/
+//        newCase.contactEmail = [arrContact count] > 0 ? ((AMContact *)arrContact[0]).email : @"";
 //        newCase.contactID = @"";
+//        NSArray *strFirstAndLastNames = [self.workOrder.ownerName componentsSeparatedByString:@" "];
+//        
+//        newCase.firstName = [arrContact count] > 0 ? ((AMContact *)arrContact[0]).firstName : strFirstAndLastNames[0] != nil ? strFirstAndLastNames[0] : @"Change";
+//        newCase.lastName = [arrContact count] > 0 ? ((AMContact *)arrContact[0]).lastName : strFirstAndLastNames[1] != nil ? strFirstAndLastNames[1] : @"Me";
+//        newCase.mEI_Customer = [pos.meiNumber length] == 0 ? 0 : pos.meiNumber;
+//        newCase.point_of_Service = self.workOrder.posID;
+//        newCase.priority = @"Medium";
 //        newCase.recordTypeID = [[AMLogicCore sharedInstance] getRecordTypeIdByName:@"AR and Invoice" forObject:RECORD_TYPE_OF_CASE];
 //        newCase.recordTypeName = MyLocal(@"AR and Invoice");
 //        newCase.serialNumber = @"";
 //        newCase.subject = @"Need to Invoice and Update Service Schedule";
-//        newCase.type = MyLocal(@"Preventative Maintenance");
-
-    } completion:^(NSInteger type, NSError *error) {
-        MAIN(^{
-            if (error) {
-                [AMUtilities showAlertWithInfo:[error localizedDescription]];
-                return ;
-            }
-            else{
-                
-                [UIAlertView showWithTitle:@""
-                                   message:MyLocal(@"New Case is created successfully but not synced.")
-                         cancelButtonTitle:MyLocal(@"OK")
-                         otherButtonTitles:nil
-                                  tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
-                                      if (buttonIndex == [alertView cancelButtonIndex]) {
-                                          [self showSubmit];
-                                      }
-                                  }];
-            }
-            
-        });
-    }];
-}
+//        newCase.type = MyLocal(@"InvoiceFilter");
+//        newCase.accountName = self.workOrder.accountName;
+//        newCase.posID = self.workOrder.posID;
+//        newCase.posName = [pos.name length] == 0 ? @"" : pos.name;
+//        newCase.assetNumber = @"";
+//        newCase.id = @"";
+///*Case from above END*/
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+////        newCase.contactID = @"";
+////        newCase.recordTypeID = [[AMLogicCore sharedInstance] getRecordTypeIdByName:@"AR and Invoice" forObject:RECORD_TYPE_OF_CASE];
+////        newCase.recordTypeName = MyLocal(@"AR and Invoice");
+////        newCase.serialNumber = @"";
+////        newCase.subject = @"Need to Invoice and Update Service Schedule";
+////        newCase.type = MyLocal(@"Preventative Maintenance");
+//
+//    } completion:^(NSInteger type, NSError *error) {
+//        MAIN(^{
+//            if (error) {
+//                [AMUtilities showAlertWithInfo:[error localizedDescription]];
+//                return ;
+//            }
+//            else{
+//                
+//                [UIAlertView showWithTitle:@""
+//                                   message:MyLocal(@"New Case is created successfully but not synced.")
+//                         cancelButtonTitle:MyLocal(@"OK")
+//                         otherButtonTitles:nil
+//                                  tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
+//                                      if (buttonIndex == [alertView cancelButtonIndex]) {
+//                                          [self showSubmit];
+//                                      }
+//                                  }];
+//            }
+//            
+//        });
+//    }];
+//}
 - (IBAction)valueChanged:(UIStepper *)sender {
     double value = ((UIStepper *)sender).value;
     

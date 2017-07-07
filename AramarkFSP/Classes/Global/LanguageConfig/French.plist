@@ -1166,5 +1166,47 @@
 	<string>Un Technicien ou plus on été assignés à un Bon de Travail, veuillez considérer convenablement.</string>
 	<key>Reorder</key>
 	<string>Changer l&apos;ordre</string>
+	<key>Picked Up From</key>
+	<string>Ramassé de</string>
+	<key>Picked Up By</key>
+	<string>Ramassé par</string>
+	<key>Picked Up Status</key>
+	<string>Le statut du fait de rammasser</string>
+	<key>Pick Up Notes</key>
+	<string>Notes sur le fait de rammasser</string>
+	<key>Repair NTE</key>
+	<string>Réparation NDPE</string>
+	<key>Start Bench</key>
+	<string>Commencez Banc de travail</string>
+	<key>Active Bench</key>
+	<string>Banc de travail actif</string>
+	<key>Unknown</key>
+	<string>Inconnu</string>
+	<key>Equipment has been added to the Active Bench</key>
+	<string>L’équipement a été ajouté au banc de travail actif</string>
+	<key>Back to Bench</key>
+	<string>Revenez au banc de travail</string>
+	<key>Get Asset Info</key>
+	<string>Info Immobilisation</string>
+	<key>Start</key>
+	<string>Commencer</string>
+	<key>Stop</key>
+	<string>Arrêter</string>
+	<key>Started Successfully</key>
+	<string>Commencé avec succès</string>
+	<key>Stopped Successfully</key>
+	<string>Arrêté avec succès</string>
+	<key>Bench</key>
+	<string>Banc</string>
+	<key>Asset Condition</key>
+	<string>État de l&apos;immobilisation</string>
+	<key>What is the asset’s condition?</key>
+	<string>Quel est l’état de l&apos;immobilisation?</string>
+	<key>Not Working</key>
+	<string>Ne fonctionne pas</string>
+	<key>Working</key>
+	<string>En fonctionne</string>
+	<key>Selected &apos;Not Working&apos; Should input Verification Note</key>
+	<string>Sélectionné &apos;Ne fonctionne pas&apos; Devez entrer une note de vérification</string>
 </dict>
 </plist>
