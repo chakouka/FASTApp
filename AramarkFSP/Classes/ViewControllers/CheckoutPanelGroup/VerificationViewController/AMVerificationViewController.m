@@ -1394,13 +1394,16 @@ UISearchBarDelegate
         NSString *assetSerialNumber = assetInfo.serialNumber;
         NSString *assetLocation = assetInfo.assetName;
         
-        if ( assetInfo != nil && ( ([assetMachineNumber rangeOfString:searchString options:NSCaseInsensitiveSearch].location != NSNotFound)
+        if ( assetMachineNumber != nil && ( ([assetMachineNumber rangeOfString:searchString options:NSCaseInsensitiveSearch].location != NSNotFound)
               
                 || ( (assetSerialNumber != nil && [assetSerialNumber rangeOfString:searchString options:NSCaseInsensitiveSearch].location != NSNotFound) )
                 || ( (assetLocation != nil && [assetLocation rangeOfString:searchString options:NSCaseInsensitiveSearch].location != NSNotFound) )
             )
         )
         {
+            DLog(@"assetMachineNumber : %@", assetMachineNumber);
+            DLog(@"assetSerialNumber : %@", assetSerialNumber);
+            DLog(@"assetLocation : %@", assetLocation);
             //add the item to the list
             [searchResultList addObject: order];
         }
