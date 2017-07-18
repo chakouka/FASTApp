@@ -652,8 +652,13 @@ UISearchBarDelegate
 	else {
         
         //This section is for existing verification, ie. NOT NEW
-        NSMutableDictionary *dicInfos = [self.arrVerificationInfos objectAtIndex:indexPath.section];
-        
+        NSMutableDictionary *dicInfos;
+        if(isSearching)
+        {
+            dicInfos = [searchResultList objectAtIndex: indexPath.section];
+        } else {
+            dicInfos = [self.arrVerificationInfos objectAtIndex:indexPath.section];
+        }
 		NSInteger iInfoType = [[dicInfos objectForKey:KEY_OF_INFOTYPE] intValue];
         
 		if (iInfoType == InfoType_NormalAsset) {
