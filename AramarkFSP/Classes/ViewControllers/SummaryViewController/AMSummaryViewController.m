@@ -9,7 +9,8 @@
 #import "AMSummaryViewController.h"
 #import "TestManage.h"
 #import "SFRestAPI.h"
-#import "SFAccountManager.h"
+//#import "SFAccountManager.h"
+#import "SFAuthenticationManager.h"
 #import "SFIdentityData.h"
 #import "AMProtocolParser.h"
 

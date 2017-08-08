@@ -25,7 +25,7 @@
 #import "AppDelegate.h"
 #import "InitialViewController.h"
 #import "RootViewController.h"
-#import "SFAccountManager.h"
+//#import "SFAccountManager.h"
 #import "SFAuthenticationManager.h"
 #import "SFPushNotificationManager.h"
 #import "SFOAuthInfo.h"
@@ -106,11 +106,16 @@ static NSString * const OAuthRedirectURI        = @"sfdc://success";
 //        [SFAccountManager setClientId:RemoteAccessConsumerKey];
 //        [SFAccountManager setRedirectUri:OAuthRedirectURI];
         
-        [SFAccountManager setClientId:kSF_CONNECTED_APP_CONSUMER_KEY];
-        [SFAccountManager setRedirectUri:kSF_CONNECTED_APP_SUCCESS_CALLBACK];
-        [SFAccountManager setScopes:[NSSet setWithObjects:@"api", nil]];
+//        [SFAccountManager setClientId:kSF_CONNECTED_APP_CONSUMER_KEY];
+//        [SFAccountManager setRedirectUri:kSF_CONNECTED_APP_SUCCESS_CALLBACK];
+//        [SFAccountManager setScopes:[NSSet setWithObjects:@"api", nil]];
         
+        [SFUserAccountManager sharedInstance].oauthClientId = kSF_CONNECTED_APP_CONSUMER_KEY;
+        [SFUserAccountManager sharedInstance].oauthCompletionUrl = kSF_CONNECTED_APP_SUCCESS_CALLBACK;
+        [SFUserAccountManager sharedInstance].scopes = [NSSet setWithObjects:@"api", nil];
         // Logout and login host change handlers.
+        
+        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logoutInitiated:) name:kSFUserLogoutNotification object:[SFAuthenticationManager sharedManager]];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginHostChanged:) name:kSFLoginHostChangedNotification object:[SFAuthenticationManager sharedManager]];
         
@@ -380,4 +385,13 @@ static NSString * const OAuthRedirectURI        = @"sfdc://success";
     }
 }
 
+- (void)authManagerDidLogout:(SFAuthenticationManager *)manager
+{
+    
+}
+
+- (void)userAccountManager:(SFUserAccountManager *)userAccountManager didSwitchFromUser:(SFUserAccount *)fromUser toUser:(nullable SFUserAccount *)toUser
+{
+    
+}
 @end

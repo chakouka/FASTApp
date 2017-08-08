@@ -40,7 +40,7 @@
     NSNumber *_currentPageIndex;
     NSNumber *_pageSize;
     NSNumber *_totalPages;
-    
+    NSNumber *_totalEntries;
 }
 
 /**
@@ -64,9 +64,14 @@
 @property (nonatomic, readonly, strong) NSNumber *pageSize;
 
 /** 
- * The total number of pages of results available .
+ * The total number of pages of results available.
  */
 @property (nonatomic, readonly, strong) NSNumber *totalPages;
+
+/**
+ * The total number of entries.
+ */
+@property (nonatomic, readonly, strong) NSNumber *totalEntries;
 
 /**
  * The current page index among totalPages available: writing this value
@@ -79,8 +84,9 @@
  * @param store The store where the soup is contained.
  * @param querySpec The query used to retrieve the data.
  * @param totalEntries The total number of entries retrieved from the query.
+ * @param firstPageEntries The entries of the first page
  */
-- (id)initWithStore:(SFSmartStore*)store querySpec:(SFQuerySpec*)querySpec totalEntries:(NSUInteger)totalEntries;
+- (id)initWithStore:(SFSmartStore*)store querySpec:(SFQuerySpec*)querySpec totalEntries:(NSUInteger)totalEntries firstPageEntries:(NSArray*)firstPageEntries;
 
 /**
  * The NSDictionary representation of this object.

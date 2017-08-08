@@ -23,8 +23,8 @@
  */
 
 #import <UIKit/UIKit.h>
-
-@interface AppDelegate : UIResponder <UIApplicationDelegate> {
+#import "SFAuthenticationManager.h"
+@interface AppDelegate : UIResponder <UIApplicationDelegate, SFAuthenticationManagerDelegate, SFUserAccountManagerDelegate> {
     
     int woCount;
 }

@@ -37,9 +37,61 @@ extern NSString *const kDefaultSmartStoreName;
  */
 extern NSString * const kSFSmartStoreErrorDomain;
 
-@class FMDatabase;
-@class SFStoreCursor;
+/**
+ The label used to interact with the encryption key.
+ */
+extern NSString * const kSFSmartStoreEncryptionKeyLabel;
+
+/**
+ Block typedef for generating an encryption key.
+ */
+typedef NSString* (^SFSmartStoreEncryptionKeyBlock)(void);
+
+/**
+ The columns of a soup table
+ */
+extern NSString *const ID_COL;
+extern NSString *const CREATED_COL;
+extern NSString *const LAST_MODIFIED_COL;
+extern NSString *const SOUP_COL;
+
+/**
+ Soup index map table
+ */
+extern NSString *const SOUP_INDEX_MAP_TABLE;
+
+/**
+ Table to keep track of status of long operations in flight
+*/
+extern NSString *const LONG_OPERATIONS_STATUS_TABLE;
+
+
+/*
+ Columns of the soup index map table
+ */
+extern NSString *const SOUP_NAME_COL;
+extern NSString *const PATH_COL;
+extern NSString *const COLUMN_NAME_COL;
+extern NSString *const COLUMN_TYPE_COL;
+
+/*
+ Columns of the long operations status table
+ */
+extern NSString *const TYPE_COL;
+extern NSString *const DETAILS_COL;
+extern NSString *const STATUS_COL;
+
+/*
+ JSON fields added to soup element on insert/update
+*/
+extern NSString *const SOUP_ENTRY_ID;
+extern NSString *const SOUP_LAST_MODIFIED_DATE;
+
+
+@class FMDatabaseQueue;
 @class SFQuerySpec;
+@class SFUserAccount;
+
 
 @interface SFSmartStore : NSObject {
 
@@ -48,9 +100,10 @@ extern NSString * const kSFSmartStoreErrorDomain;
     id      _dataProtectAvailObserverToken;
     id      _dataProtectUnavailObserverToken;
     
-    FMDatabase *_storeDb;
+    FMDatabaseQueue *_storeQueue;
     NSString *_storeName;
-    
+
+    NSMutableDictionary *_soupNameToTableName;
     NSMutableDictionary *_indexSpecsBySoup;
     NSMutableDictionary *_smartSqlToSql;
 }
@@ -60,52 +113,69 @@ extern NSString * const kSFSmartStoreErrorDomain;
  */
 @property (nonatomic, readonly, strong) NSString *storeName;
 
-/**
- The db access object for this store.
- */
-@property (nonatomic, readonly, strong) FMDatabase *storeDb;
-
-
 
 /**
- Use this method to obtain a shared store instance with a particular name.
+ Use this method to obtain a shared store instance with a particular name for the current user.
  
  @param storeName The name of the store.  If in doubt, use kDefaultSmartStoreName.
  @return A shared instance of a store with the given name.
  */
 + (id)sharedStoreWithName:(NSString*)storeName;
 
+/**
+ Use this method to obtain a shared store instance with the given name for the given user.
+ @param storeName The name of the store.  If in doubt, use kDefaultSmartStoreName.
+ @param user The user associated with the store.
+ */
++ (id)sharedStoreWithName:(NSString*)storeName user:(SFUserAccount *)user;
 
 /**
- 
  You may use this method to completely remove a persistent shared store with
- the given name.
+ the given name for the current user.
  
  @param storeName The name of the store. 
  */
-+ (void)removeSharedStoreWithName:(NSString*)storeName;
++ (void)removeSharedStoreWithName:(NSString *)storeName;
 
 /**
- Removes all of the stores from this app.
+ You may use this method to completely remove a persisted shared store with the given name
+ for the given user.
+ @param storeName The name of the store to remove.
+ @param user The user associated with the store.
+ */
++ (void)removeSharedStoreWithName:(NSString *)storeName forUser:(SFUserAccount *)user;
+
+/**
+ Removes all of the stores for the current user from this app.
  */
 + (void)removeAllStores;
 
 /**
- @param storeName The name of the store (excluding paths)
- @return Does this store already exist in persistent storage (ignoring cache) ?
+ Removes all of the store for the given user from this app.
+ @param user The user associated with the stores to remove.
  */
-+ (BOOL)persistentStoreExists:(NSString*)storeName;
++ (void)removeAllStoresForUser:(SFUserAccount *)user;
 
 /**
- Changes the encryption key for all of the stores associated with the app.
- @param oldKey The original encryption key.
- @param newKey The new encryption key.
+ @return The block used to generate the encryption key.  Sticking with the default encryption
+ key derivation is recommended.
  */
-+ (void)changeKeyForStores:(NSString *)oldKey newKey:(NSString *)newKey;
++ (SFSmartStoreEncryptionKeyBlock)encryptionKeyBlock;
+
+/**
+ Sets a custom block for deriving the encryption key used to encrypt stores.
+ 
+ ** WARNING: **
+ If you choose to override the encryption key derivation, you must set
+ this value before opening any stores.  Setting the value after stores have been opened
+ will result in the corruption and loss of existing data.
+ ** WARNING: **
+ 
+ @param newEncryptionKeyBlock The new encryption key derivation block to use with SmartStore.
+ */
++ (void)setEncryptionKeyBlock:(SFSmartStoreEncryptionKeyBlock)newEncryptionKeyBlock;
 
 #pragma mark - Soup manipulation methods
-
-
 
 /**
  @param soupName the name of the soup
@@ -124,7 +194,7 @@ extern NSString * const kSFSmartStoreErrorDomain;
  Either creates a new soup or returns an existing soup.
  
  @param soupName The name of the soup to register
- @param indexSpecs Array of one ore more IndexSpec objects as dictionaries
+ @param indexSpecs Array of one ore more SFSoupIndex objects
  @return YES if the soup registered OK
  */
 - (BOOL)registerSoup:(NSString*)soupName withIndexSpecs:(NSArray*)indexSpecs;
@@ -134,29 +204,20 @@ extern NSString * const kSFSmartStoreErrorDomain;
  Get the number of entries that would be returned with the given query spec
  
  @param querySpec a native query spec
+ @param error Sets/returns any error generated as part of the process.
  */
-- (NSUInteger)countWithQuerySpec:(SFQuerySpec*)querySpec;
-
-/**
- Search for entries matching the querySpec
-
- @param querySpec A querySpec as a dictionary
- @param targetSoupName the soup name targeted (not nil for exact/like/range queries)
-
- @return A cursor
- */
-- (SFStoreCursor*)queryWithQuerySpec:(NSDictionary *)querySpec withSoupName:(NSString*) targetSoupName;
-
+- (NSUInteger)countWithQuerySpec:(SFQuerySpec*)querySpec error:(NSError **)error;
 
 /**
  Search for entries matching the querySpec
  
  @param querySpec A native SFSoupQuerySpec
  @param pageIndex The page index to start the entries at (this supports paging)
+ @param error Sets/returns any error generated as part of the process.
  
  @return A set of entries given the pageSize provided in the querySpec
  */
-- (NSArray *)queryWithQuerySpec:(SFQuerySpec *)querySpec pageIndex:(NSUInteger)pageIndex;
+- (NSArray *)queryWithQuerySpec:(SFQuerySpec *)querySpec pageIndex:(NSUInteger)pageIndex error:(NSError **)error;
 
 /**
  Search soup for entries exactly matching the soup entry IDs
@@ -202,6 +263,12 @@ extern NSString * const kSFSmartStoreErrorDomain;
  */
 - (void)removeEntries:(NSArray*)entryIds fromSoup:(NSString*)soupName;
 
+/**
+ Remove all elements from soup.
+ 
+ @param soupName The name of the soup to clear.
+ */
+- (void)clearSoup:(NSString*)soupName;
 
 /**
  Remove soup completely from the store.
@@ -215,6 +282,39 @@ extern NSString * const kSFSmartStoreErrorDomain;
  */
 - (void)removeAllSoups;
 
+/**
+ Return database file size
+ */
+- (long)getDatabaseSize;
+
+/**
+ Alter soup indexes
+
+ @param soupName The name of the soup to alter
+ @param indexSpecs Array of one ore more SFSoupIndex objects to replace existing index specs
+ @param reIndexData pass true if you want existing records to be re-indexed for new index specs
+ @return YES if the soup got altered OK
+ */
+- (BOOL) alterSoup:(NSString*)soupName withIndexSpecs:(NSArray*)indexSpecs reIndexData:(BOOL)reIndexData;
+
+
+/**
+ Re-index soup
+ 
+ @param soupName The name of the soup to alter
+ @param indexPaths Array of one ore more paths that should be re-indexed
+ @param handleTx TRUE if you want re-index to be done within a transaction, FALSE if you caller wants to manage transaction
+ @return YES if the soup got re-indexed OK
+ */
+- (BOOL) reIndexSoup:(NSString*)soupName withIndexPaths:(NSArray*)indexPaths;
+
+#pragma mark - Long operations recovery methods
+
+/**
+ Complete long operations that were interrupted
+ */
+- (void) resumeLongOperations;
+
 
 #pragma mark - Utility methods
 
@@ -227,5 +327,10 @@ extern NSString * const kSFSmartStoreErrorDomain;
  */
 - (BOOL)isFileDataProtectionActive;
 
+
+/**
+ Return all soup names
+ */
+- (NSArray*) allSoupNames;
 
 @end

@@ -849,7 +849,13 @@ UISearchBarDelegate
 		return aVerificationTitle;
 	}
 	else {
-        NSMutableDictionary *dicInfo = [self.arrVerificationInfos objectAtIndex:section];
+        NSMutableDictionary *dicInfo;
+        
+        if(isSearching) {
+           dicInfo = [searchResultList objectAtIndex:section];
+        } else {
+           dicInfo = [self.arrVerificationInfos objectAtIndex:section];
+        }
         
 		NSInteger iType = [[dicInfo objectForKey:KEY_OF_INFOTYPE] integerValue];
         
@@ -1183,8 +1189,12 @@ UISearchBarDelegate
 
 - (void)verificationStatusTableViewController:(AMPopoverSelectTableViewController *)aVerificationStatusTableViewController didSelected:(NSMutableDictionary *)aInfo {
 	if (aVerificationStatusTableViewController.tag == PopViewType_Select_VerificationStatus) {
-        NSMutableDictionary *dicInfos = [self.arrVerificationInfos objectAtIndex:aVerificationStatusTableViewController.
-           aIndexPath.section];
+        NSMutableDictionary *dicInfos;
+        if(isSearching) {
+            dicInfos = [searchResultList objectAtIndex:aVerificationStatusTableViewController.aIndexPath.section];
+        } else {
+            dicInfos = [self.arrVerificationInfos objectAtIndex:aVerificationStatusTableViewController.aIndexPath.section];
+        }
         
 		AMAsset *aAsset = [dicInfos objectForKey:KEY_OF_ASSET_INFO];
         
@@ -1233,7 +1243,7 @@ UISearchBarDelegate
                 }];
             }
         }
-        
+
         [self.mainTableView reloadSections:[NSIndexSet indexSetWithIndex:aVerificationStatusTableViewController.aIndexPath.section] withRowAnimation:UITableViewRowAnimationNone];
 	}
 	else if (aVerificationStatusTableViewController.tag == PopViewType_Select_NormalLocation) {
@@ -1406,9 +1416,9 @@ UISearchBarDelegate
             )
         )
         {
-            DLog(@"assetMachineNumber : %@", assetMachineNumber);
-            DLog(@"assetSerialNumber : %@", assetSerialNumber);
-            DLog(@"assetLocation : %@", assetLocation);
+//            DLog(@"assetMachineNumber : %@", assetMachineNumber);
+//            DLog(@"assetSerialNumber : %@", assetSerialNumber);
+//            DLog(@"assetLocation : %@", assetLocation);
             //add the item to the list
             [searchResultList addObject: order];
         }

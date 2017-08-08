@@ -39,7 +39,7 @@ extern NSInteger const kSFRestErrorCode;
 
 
 /*
- * Default API version (currently "v28.0")
+ * Default API version (currently "v31.0")
  * You can override this by using setApiVersion:
  */
 extern NSString* const kSFRestDefaultAPIVersion;
@@ -154,7 +154,7 @@ extern NSString * const kSFMobileSDKNativeDesignator;
 
 /**
  * The REST API version used for all the calls. This could be "v21.0", "v22.0"...
- * The default value is `kSFRestDefaultAPIVersion` (currently "v23.0")
+ * The default value is `kSFRestDefaultAPIVersion` (currently "v31.0")
  */
 @property (nonatomic, strong) NSString *apiVersion;
 
@@ -296,6 +296,15 @@ extern NSString * const kSFMobileSDKNativeDesignator;
  * @see http://www.salesforce.com/us/developer/docs/api_rest/Content/resources_query.htm
  */
 - (SFRestRequest *)requestForQuery:(NSString *)soql;
+
+/**
+ * Returns an `SFRestRequest` which executes the specified SOQL query.
+ * The result contains the deleted objects.
+ * @param soql a string containing the query to execute - for example, "SELECT Id,
+ *             Name from Account ORDER BY Name LIMIT 20"
+ * @see http://www.salesforce.com/us/developer/docs/api_rest/Content/resources_queryall.htm
+ */
+- (SFRestRequest *)requestForQueryAll:(NSString *)soql;
 
 /**
  * Returns an `SFRestRequest` which executes the specified SOSL search.

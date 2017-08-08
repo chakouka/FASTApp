@@ -18,7 +18,8 @@
 #import "AMProtocolAssembler.h"
 #import "AMDBNewCase+AddOn.h"
 #import "AMDBNewWorkOrder.h"
-#import "SFAccountManager.h"
+//#import "SFAccountManager.h"
+#import "SFAuthenticationManager.h"
 #import "SFIdentityData.h"
 #import "AMDBNewLead+Addition.h"
 
@@ -1485,7 +1486,7 @@
 
 -(NSURL *)getAttachmentEndpoint
 {
-    NSURL *pictureUrl = [SFAccountManager sharedInstance].idData.pictureUrl;
+    NSURL *pictureUrl = [SFUserAccountManager sharedInstance].currentUser.apiUrl;
     NSURL *endPoint = [[NSURL alloc] initWithScheme:pictureUrl.scheme host:pictureUrl.host path:@"/servlet/servlet.FileDownload?file="];
     return endPoint;
 }
