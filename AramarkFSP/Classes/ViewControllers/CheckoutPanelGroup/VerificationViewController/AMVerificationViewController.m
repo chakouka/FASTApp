@@ -1210,7 +1210,7 @@ UISearchBarDelegate
 		aAsset.verificationStatus = strNewStatus;
         
 		[aPopoverVC dismissPopoverAnimated:YES];
-        if([[aInfo valueForKeyWithNullToNil:@"INFO"] isEqualToString:@"Move to Warehouse"])
+        if([[aInfo valueForKeyWithNullToNil:@"INFO"] isEqualToString:MyLocal(@"Move to Warehouse"]))
         {
             NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
             bool isBenchTech = [[prefs valueForKey:@"isBenchTechActive"] boolValue];

@@ -223,12 +223,21 @@ UISearchBarDelegate
     cell.label_MachineType.text = [[workOrder valueForKeyWithNullToNil:@"Product2"] valueForKeyWithNullToNil:@"Name"];
     cell.strAssetID = [[workOrder valueForKeyWithNullToNil:@"Item"] valueForKeyWithNullToNil:@"Asset__c"];
 
+    cell.label_MachineTypeTitle.text = MyLocal(@"Machine Type:");
+    cell.label_SerialNumberTitle.text = MyLocal(@"Serial #:");
+    cell.label_AssetNumberTitle.text = MyLocal(@"Asset #:");
+    
     cell.btnGetAssetInfo.tag = indexPath.row;
 
     cell.btnStart.tag = indexPath.row;
     cell.btnStop.tag = indexPath.row;
     cell.btnCheckout.tag = indexPath.row;
 
+    cell.btnStart.titleLabel.text = MyLocal(@"START");
+    cell.btnStop.titleLabel.text = MyLocal(@"STOP");
+    cell.btnCheckout.titleLabel.text = MyLocal(@"CHECK OUT");
+    cell.btnGetAssetInfo.titleLabel.text = MyLocal(@"GET ASSET INFO");
+    
     [cell.btnGetAssetInfo addTarget:self action:@selector(clickGetAssetInfoBtn:) forControlEvents:UIControlEventTouchUpInside];
     [cell.btnStart addTarget:self action:@selector(clickStartBtn:) forControlEvents:UIControlEventTouchUpInside];
     [cell.btnStop addTarget:self action:@selector(clickStopBtn:) forControlEvents:UIControlEventTouchUpInside];

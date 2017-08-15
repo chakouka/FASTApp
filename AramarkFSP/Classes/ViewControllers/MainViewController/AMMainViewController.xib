@@ -12,22 +12,33 @@
             <connections>
                 <outlet property="btnActiveBench" destination="Ugd-cO-N7J" id="cMf-fc-FMp"/>
                 <outlet property="btnClearCache" destination="Dlk-jI-Bwy" id="ID1-oy-o1y"/>
+                <outlet property="btnDone" destination="CVi-AM-2np" id="9MN-u8-hws"/>
                 <outlet property="btnLogin" destination="Xpd-FH-5cX" id="vLY-PK-VOb"/>
                 <outlet property="btnLogout" destination="3s6-Ue-k6U" id="COZ-W3-y06"/>
+                <outlet property="btnScrapBench" destination="jv5-iP-eCz" id="obn-Ht-RsI"/>
                 <outlet property="btnStartBench" destination="ZRN-kO-aP5" id="UUf-VP-dT5"/>
                 <outlet property="imageHead" destination="pHH-rE-Bp2" id="mQN-V6-Uy7"/>
                 <outlet property="labelAlertTip" destination="KJ2-hm-RgY" id="wHu-NA-igS"/>
-                <outlet property="labelBenchAVNotes" destination="9w4-gQ-iBs" id="KzH-Ck-wyZ"/>
                 <outlet property="labelBenchAssetCondition" destination="ZCf-Ip-GBh" id="qx7-e2-aXQ"/>
-                <outlet property="labelBenchAssetNumber" destination="F6z-YC-ggs" id="4cI-i3-Q1P"/>
-                <outlet property="labelBenchMachineType" destination="iJx-e5-62k" id="26U-BR-v6g"/>
+                <outlet property="labelBenchAssetNumber" destination="pkv-F9-nLs" id="k75-Gp-t5u"/>
+                <outlet property="labelBenchAssetNumberText" destination="F6z-YC-ggs" id="xZ7-Zr-BCb"/>
+                <outlet property="labelBenchDetailLabel" destination="zyN-sm-g1m" id="Zg1-uz-DTC"/>
+                <outlet property="labelBenchMachineType" destination="duO-qu-41I" id="67K-kq-puN"/>
+                <outlet property="labelBenchMachineTypeText" destination="iJx-e5-62k" id="fiB-S5-DSi"/>
                 <outlet property="labelBenchPOSName" destination="m9K-hL-XJ5" id="oUN-3t-cHy"/>
-                <outlet property="labelBenchRepairMatrixNTE" destination="hLt-aP-KOr" id="N08-f9-MaN"/>
-                <outlet property="labelBenchSerialNumber" destination="osV-Lb-aD4" id="cAN-Xh-qZ6"/>
+                <outlet property="labelBenchPickUpNotes" destination="Rh3-MY-cvY" id="3gN-U1-yvp"/>
+                <outlet property="labelBenchRepairMatrixNTE" destination="7qb-Te-SaP" id="PH5-4k-B3l"/>
+                <outlet property="labelBenchRepairMatrixNTEText" destination="hLt-aP-KOr" id="RFz-n2-JWr"/>
+                <outlet property="labelBenchSerialNumber" destination="LJ3-pa-s17" id="ecf-nq-3gY"/>
+                <outlet property="labelBenchSerialNumberText" destination="osV-Lb-aD4" id="PGv-dR-8OP"/>
                 <outlet property="labelBenchTechName" destination="PYp-uX-ECW" id="ZFR-8E-dp7"/>
+                <outlet property="labelBenchWarranty" destination="lEt-9J-J8W" id="YJT-NO-P9R"/>
                 <outlet property="labelName" destination="G1T-9H-hT0" id="ZVZ-hj-QdK"/>
                 <outlet property="labelTHello" destination="OVa-cQ-qnI" id="GpZ-rB-rIw"/>
                 <outlet property="labelWelcome" destination="ihg-CJ-IPA" id="eLi-EE-TN5"/>
+                <outlet property="lblAssetInfoTitle" destination="kFm-uc-ugZ" id="S1f-Eu-aoU"/>
+                <outlet property="lblAssetNameTitle" destination="VnD-zW-9rj" id="Ub7-Ca-Bm7"/>
+                <outlet property="lblAssetNumberTitle" destination="0Tx-yD-7Gg" id="cRd-PM-5hO"/>
                 <outlet property="lblDtlAssetNumber" destination="ih6-Kk-cbC" id="d0z-8D-aPb"/>
                 <outlet property="lblDtlInstallDate" destination="PQS-6b-d1N" id="aov-tP-61u"/>
                 <outlet property="lblDtlLocation" destination="hdW-dG-y9f" id="OQS-LU-TZF"/>
@@ -38,9 +49,18 @@
                 <outlet property="lblDtlRepairMatrix" destination="gOY-U7-8ak" id="A29-Ji-BnD"/>
                 <outlet property="lblDtlSerialNumber" destination="17p-o7-Aye" id="2f0-K7-CR0"/>
                 <outlet property="lblDtlVendKey" destination="GMF-J2-aSO" id="ett-yA-egW"/>
+                <outlet property="lblInstallDateTitle" destination="wHw-1u-wMo" id="7zs-cz-0f9"/>
+                <outlet property="lblLocationTitle" destination="Oe2-I6-3wS" id="2qp-oF-uSM"/>
+                <outlet property="lblMachineTypeTitle" destination="XpC-xC-C43" id="CXC-Pr-JTf"/>
+                <outlet property="lblManufacturerWebsiteTitle" destination="MU7-pB-AAG" id="WFt-qr-Bxe"/>
+                <outlet property="lblNextPMDateTitle" destination="Nd4-6C-xwd" id="nnp-aF-u2W"/>
                 <outlet property="lblPickUpBy" destination="VyU-bC-UlK" id="Ej0-hq-t01"/>
                 <outlet property="lblPickUpFrom" destination="Ig1-jb-k6x" id="XRP-pS-ydv"/>
                 <outlet property="lblPickUpStatus" destination="QTe-Ka-m5o" id="952-r5-Mmk"/>
+                <outlet property="lblRepairNTETitle" destination="5aD-DQ-yIr" id="UsM-bs-pn0"/>
+                <outlet property="lblSerialNumberTitle" destination="1Xk-nX-WYc" id="f3n-EX-t5C"/>
+                <outlet property="lblVendKeyTitle" destination="esk-da-U8c" id="hgd-hd-UPk"/>
+                <outlet property="lblWarrantyTitle" destination="Oxm-wq-aiC" id="Z78-C6-2k2"/>
                 <outlet property="scrHistoryScroller" destination="ZFw-as-uye" id="RhX-OT-7Fa"/>
                 <outlet property="view" destination="aOG-v4-Xn9" id="noe-yT-oc7"/>
                 <outlet property="viewActiveBenchPanel" destination="ZQj-n8-BVQ" id="XaX-Fx-br2"/>
@@ -216,15 +236,15 @@
                                     <rect key="frame" x="0.0" y="0.0" width="930" height="43"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Asset Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kFm-uc-ugZ">
-                                            <rect key="frame" x="32" y="11" width="89" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Asset Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kFm-uc-ugZ">
+                                            <rect key="frame" x="32" y="11" width="479" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="CVi-AM-2np">
-                                            <rect key="frame" x="842" y="7" width="61" height="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="CVi-AM-2np">
+                                            <rect key="frame" x="802" y="7" width="101" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <state key="normal" title="DONE"/>
@@ -611,7 +631,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Pick Up Notes:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rh3-MY-cvY">
-                                    <rect key="frame" x="359" y="341" width="135" height="38"/>
+                                    <rect key="frame" x="359" y="341" width="236" height="38"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="highlightedColor"/>
@@ -631,7 +651,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Picked Up Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QTe-Ka-m5o" userLabel="Asset Condition">
-                                    <rect key="frame" x="359" y="311" width="149" height="38"/>
+                                    <rect key="frame" x="359" y="311" width="236" height="38"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="highlightedColor"/>
@@ -657,13 +677,6 @@
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="m9K-hL-XJ5">
-                                    <rect key="frame" x="526" y="257" width="277" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PYp-uX-ECW">
                                     <rect key="frame" x="526" y="290" width="264" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -679,7 +692,7 @@
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hLt-aP-KOr">
-                                    <rect key="frame" x="475" y="511" width="100" height="38"/>
+                                    <rect key="frame" x="537" y="511" width="111" height="38"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -717,6 +730,13 @@
                                         <action selector="tapScrapBenchButtn:" destination="-1" eventType="touchUpInside" id="5QD-th-jOn"/>
                                     </connections>
                                 </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="m9K-hL-XJ5">
+                                    <rect key="frame" x="526" y="258" width="277" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>

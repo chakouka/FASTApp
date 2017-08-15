@@ -239,6 +239,11 @@ UISearchBarDelegate
 	cell.label_MachineGroup.text = [workOrder valueForKeyWithNullToNil:@"Machine_Group_Name__c"];
     cell.label_MachineType.text = [[((NSArray *)[[workOrder valueForKey:@"Work_Orders__r"] objectForKey:@"records"])[0] valueForKeyWithNullToNil:@"Machine_Type__r"] valueForKeyWithNullToNil:@"Name"];
     
+    cell.label_AssetNumberTitle.text = MyLocal(@"Asset #:");
+    cell.label_SerialNumberTitle.text = MyLocal(@"Serial #:");
+    cell.label_MachineGroupTitle.text = MyLocal(@"Machine Group:");
+    cell.label_MachineTypeTitle.text = MyLocal(@"Machine Type:");
+    
 	if (selectedWorkOrderId) {
 		if ([[workOrder valueForKey:@"Id"] isEqual:selectedWorkOrderId]) {
 			[cell showShadeStatus:NO];

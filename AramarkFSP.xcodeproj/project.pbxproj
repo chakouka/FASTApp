@@ -191,6 +191,7 @@
 		7C5A57421D82EB1E00E634A8 /* AMBenchCheckoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C5A57411D82EB1E00E634A8 /* AMBenchCheckoutViewController.xib */; };
 		7C7A4F951BCD3F73001903F4 /* AMNearOrderListAdminCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A4F941BCD3F73001903F4 /* AMNearOrderListAdminCell.m */; };
 		7C7A4F971BCD3F86001903F4 /* AMNearOrderListAdminCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7A4F961BCD3F86001903F4 /* AMNearOrderListAdminCell.xib */; };
+		7C99AB9E1F3BA7CC0062D83C /* bench-fr@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C99AB9D1F3BA7CC0062D83C /* bench-fr@2x.png */; };
 		7CC2F76E1D6B7AD300B71107 /* AMBenchActiveListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC2F76D1D6B7AD300B71107 /* AMBenchActiveListViewController.m */; };
 		7CC2F7701D6B7AE500B71107 /* AMBenchActiveListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC2F76F1D6B7AE500B71107 /* AMBenchActiveListViewController.xib */; };
 		7CCD7E6E1AB749FF006FED08 /* AMDBNewContact.h in Resources */ = {isa = PBXBuildFile; fileRef = 7CCD7E6D1AB749FF006FED08 /* AMDBNewContact.h */; };
@@ -1190,6 +1191,7 @@
 		7C7A4F931BCD3F59001903F4 /* AMNearOrderListAdminCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMNearOrderListAdminCell.h; path = NearOrderListViewController/NearOrderListCell/AMNearOrderListAdminCell.h; sourceTree = "<group>"; };
 		7C7A4F941BCD3F73001903F4 /* AMNearOrderListAdminCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMNearOrderListAdminCell.m; path = NearOrderListViewController/NearOrderListCell/AMNearOrderListAdminCell.m; sourceTree = "<group>"; };
 		7C7A4F961BCD3F86001903F4 /* AMNearOrderListAdminCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AMNearOrderListAdminCell.xib; path = NearOrderListViewController/NearOrderListCell/AMNearOrderListAdminCell.xib; sourceTree = "<group>"; };
+		7C99AB9D1F3BA7CC0062D83C /* bench-fr@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bench-fr@2x.png"; path = "French Icons 2x/bench-fr@2x.png"; sourceTree = "<group>"; };
 		7CC2F76C1D6B7ABB00B71107 /* AMBenchActiveListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMBenchActiveListViewController.h; path = OrderListViewController/AMBenchActiveListViewController.h; sourceTree = "<group>"; };
 		7CC2F76D1D6B7AD300B71107 /* AMBenchActiveListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMBenchActiveListViewController.m; sourceTree = "<group>"; };
 		7CC2F76F1D6B7AE500B71107 /* AMBenchActiveListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AMBenchActiveListViewController.xib; path = OrderListViewController/AMBenchActiveListViewController.xib; sourceTree = "<group>"; };
@@ -3913,6 +3915,7 @@
 		D07827A51918BDDE0065A28F /* images */ = {
 			isa = PBXGroup;
 			children = (
+				7C99AB9D1F3BA7CC0062D83C /* bench-fr@2x.png */,
 				7CD320641D48033600AF15F1 /* bench@2x.png */,
 				7C55F2821A8954DA0081A4B0 /* down.png */,
 				7C55F2831A8954DA0081A4B0 /* up.png */,
@@ -4948,6 +4951,7 @@
 				D0B79E82191A228D00FD1152 /* hamburger_red.png in Resources */,
 				D04FB69B195AAE6500AB08F9 /* survey@2x.jpg in Resources */,
 				D02D4223194E9D3700372334 /* AMNewCaseViewController.xib in Resources */,
+				7C99AB9E1F3BA7CC0062D83C /* bench-fr@2x.png in Resources */,
 				D03DA53719752CA2002D9562 /* orange_priority@2x.png in Resources */,
 				D0B79E6A191A228D00FD1152 /* ADD.png in Resources */,
 				02E3E7B31929B3CA00064919 /* AMCasesViewController.xib in Resources */,

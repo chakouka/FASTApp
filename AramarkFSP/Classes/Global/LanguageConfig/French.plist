@@ -116,12 +116,16 @@
 	<string>Immobilisation</string>
 	<key>Machine Type</key>
 	<string>Type de Machine</string>
+	<key>Machine Type:</key>
+	<string>Type de Machine:</string>
 	<key>MACHINE TYPE</key>
 	<string>Type de Machine</string>
 	<key>Compliant Code</key>
 	<string>Code de Plainte</string>
 	<key>Under Warranty</key>
 	<string>Sous Garantie</string>
+	<key>Warranty:</key>
+	<string>Sous Garantie:</string>
 	<key>Call Ahead</key>
 	<string>Appeler a l&apos;avance</string>
 	<key>Preferred Scheduled Time</key>
@@ -138,6 +142,8 @@
 	<string>Description du Bon de Travail</string>
 	<key>Parking Detail</key>
 	<string>Détail de Stationnement </string>
+	<key>Detail</key>
+	<string>Détail</string>
 	<key>Created Date</key>
 	<string>Date Créé</string>
 	<key>Age[hours]</key>
@@ -410,6 +416,8 @@
 	<string>Type de Dossier Requête</string>
 	<key>Check out </key>
 	<string>Départ</string>
+	<key>CHECK OUT</key>
+	<string>Départ</string>
 	<key>Check Points</key>
 	<string>3 Contrôles</string>
 	<key>3 CHECK POINTS</key>
@@ -542,8 +550,12 @@
 	<string>OU</string>
 	<key>Asset #</key>
 	<string>Immobilisation</string>
+	<key>Asset #:</key>
+	<string>Immobilisation:</string>
 	<key>Serial #</key>
 	<string>Numéro de Série</string>
+	<key>Serial #:</key>
+	<string>Numéro de Série:</string>
 	<key>1 ft</key>
 	<string>1 pd</string>
 	<key>1 min</key>
@@ -964,6 +976,8 @@
 	<string>Veuillez essayer d&apos;ouvrir la session à nouveau pour obtenir l&apos;information reliée a ce bon de travail</string>
 	<key>Done</key>
 	<string>Accompli</string>
+	<key>DONE</key>
+	<string>Accompli</string>
 	<key>You are not the primary person of this work order</key>
 	<string>Vous n&apos;êtes pas la première personne de ce bon de travail</string>
 	<key>Filter Name</key>
@@ -1126,8 +1140,6 @@
 	<string>Prévu</string>
 	<key>In Progress</key>
 	<string>En Cours</string>
-	<key>Closed</key>
-	<string>Fermé</string>
 	<key>Bad Taste</key>
 	<string>Mauvais Goût</string>
 	<key>Brewing Problem</key>
@@ -1166,19 +1178,21 @@
 	<string>Un Technicien ou plus on été assignés à un Bon de Travail, veuillez considérer convenablement.</string>
 	<key>Reorder</key>
 	<string>Changer l&apos;ordre</string>
-	<key>Picked Up From</key>
-	<string>Ramassé de</string>
-	<key>Picked Up By</key>
-	<string>Ramassé par</string>
-	<key>Picked Up Status</key>
-	<string>Le statut du fait de rammasser</string>
-	<key>Pick Up Notes</key>
-	<string>Notes sur le fait de rammasser</string>
-	<key>Repair NTE</key>
-	<string>Réparation NDPE</string>
-	<key>Start Bench</key>
+	<key>Picked Up From:</key>
+	<string>Ramassé de:</string>
+	<key>Picked Up By:</key>
+	<string>Ramassé par:</string>
+	<key>Picked Up Status:</key>
+	<string>Le statut du fait de rammasser:</string>
+	<key>Pick Up Notes:</key>
+	<string>Notes sur le fait de rammasser:</string>
+	<key>REPAIR NTE:</key>
+	<string>Réparation NDPE:</string>
+	<key>Repair NTE:</key>
+	<string>Réparation NDPE:</string>
+	<key>START BENCH</key>
 	<string>Commencez Banc de travail</string>
-	<key>Active Bench</key>
+	<key>ACTIVE BENCH</key>
 	<string>Banc de travail actif</string>
 	<key>Unknown</key>
 	<string>Inconnu</string>
@@ -1186,11 +1200,19 @@
 	<string>L’équipement a été ajouté au banc de travail actif</string>
 	<key>Back to Bench</key>
 	<string>Revenez au banc de travail</string>
+	<key>BACK TO BENCH</key>
+	<string>Revenez au banc de travail</string>
 	<key>Get Asset Info</key>
+	<string>Info Immobilisation</string>
+	<key>GET ASSET INFO</key>
 	<string>Info Immobilisation</string>
 	<key>Start</key>
 	<string>Commencer</string>
+	<key>START</key>
+	<string>Commencer</string>
 	<key>Stop</key>
+	<string>Arrêter</string>
+	<key>STOP</key>
 	<string>Arrêter</string>
 	<key>Started Successfully</key>
 	<string>Commencé avec succès</string>
@@ -1208,5 +1230,7 @@
 	<string>En fonctionne</string>
 	<key>Selected &apos;Not Working&apos; Should input Verification Note</key>
 	<string>Sélectionné &apos;Ne fonctionne pas&apos; Devez entrer une note de vérification</string>
+	<key>SCRAP</key>
+	<string>FERRAILLE</string>
 </dict>
 </plist>

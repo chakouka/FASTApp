@@ -15,8 +15,14 @@
 @property (assign, nonatomic) BOOL isTimerRunning;
 @property (strong, nonatomic) NSString *strPriority;
 @property (weak, nonatomic) IBOutlet UILabel *label_AssetNumber;
+@property (weak, nonatomic) IBOutlet UILabel *label_AssetNumberTitle;
+
 @property (weak, nonatomic) IBOutlet UILabel *label_SerialNumber;
+@property (weak, nonatomic) IBOutlet UILabel *label_SerialNumberTitle;
+
 @property (weak, nonatomic) IBOutlet UILabel *label_MachineType;
+@property (weak, nonatomic) IBOutlet UILabel *label_MachineTypeTitle;
+
 @property (weak, nonatomic) IBOutlet UIButton *btnGetAssetInfo;
 @property (weak, nonatomic) IBOutlet UIButton *btnStart;
 @property (weak, nonatomic) IBOutlet UIButton *btnStop;

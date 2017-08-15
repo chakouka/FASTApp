@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="12120" systemVersion="16C67" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -18,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="847" height="90"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sdW-5g-qBn" id="lOp-yF-7Ab">
-                <rect key="frame" x="0.0" y="0.0" width="847" height="89"/>
+                <rect key="frame" x="0.0" y="0.0" width="847" height="89.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="241" verticalHuggingPriority="251" text="Asset #:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="paL-Us-67g" userLabel="Asset Number Title">
@@ -78,7 +77,7 @@
                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nmq-lx-e30" userLabel="GetAssetInfoBtn">
-                        <rect key="frame" x="404" y="13" width="121" height="35"/>
+                        <rect key="frame" x="404" y="13.5" width="121" height="35"/>
                         <color key="backgroundColor" red="0.12450066953897476" green="0.71407932043075562" blue="0.94324904680252075" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="1Ub-8F-6rI"/>
@@ -87,7 +86,7 @@
                         <state key="normal" title="GET ASSET INFO"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RM7-R6-HL0">
-                        <rect key="frame" x="559" y="13" width="78" height="35"/>
+                        <rect key="frame" x="559" y="13.5" width="78" height="35"/>
                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="lhk-e8-gal"/>
@@ -96,7 +95,7 @@
                         <state key="normal" title="START"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCE-Ad-Dam">
-                        <rect key="frame" x="757" y="13" width="86" height="35"/>
+                        <rect key="frame" x="757" y="13.5" width="86" height="35"/>
                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="MVA-at-jQL"/>
@@ -104,7 +103,7 @@
                         <state key="normal" title="CHECK OUT"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="72x-ns-DmX">
-                        <rect key="frame" x="650" y="13" width="78" height="35"/>
+                        <rect key="frame" x="650" y="13.5" width="78" height="35"/>
                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="9Rm-Yy-Kdg"/>
@@ -163,8 +162,11 @@
                 <outlet property="btnStart" destination="RM7-R6-HL0" id="FjC-ji-lPQ"/>
                 <outlet property="btnStop" destination="72x-ns-DmX" id="zro-su-aoI"/>
                 <outlet property="label_AssetNumber" destination="DHM-13-Ucg" id="JZ2-ma-Zx0"/>
+                <outlet property="label_AssetNumberTitle" destination="paL-Us-67g" id="ETP-1I-zsj"/>
                 <outlet property="label_MachineType" destination="3Ga-2f-q8f" id="qXL-Be-Pj7"/>
+                <outlet property="label_MachineTypeTitle" destination="KS6-v8-INu" id="ozX-em-VFq"/>
                 <outlet property="label_SerialNumber" destination="VgA-6z-SiN" id="Bfx-UM-iqz"/>
+                <outlet property="label_SerialNumberTitle" destination="Lcm-dh-uLx" id="K56-Ze-eaC"/>
                 <outlet property="viewShade" destination="D6G-3y-BPL" id="sxk-Iq-Pjm"/>
             </connections>
             <point key="canvasLocation" x="665.5" y="350.5"/>

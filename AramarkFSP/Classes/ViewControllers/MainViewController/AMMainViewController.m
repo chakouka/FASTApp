@@ -270,12 +270,50 @@ UIGestureRecognizerDelegate
     [AMUtilities refreshFontInView:self.viewLogOut];
     [btnActiveBench setTitle:MyLocal(@"ACTIVE BENCH") forState:UIControlStateNormal];
     [btnStartBench setTitle:MyLocal(@"START BENCH") forState:UIControlStateNormal];
+    [_btnScrapBench setTitle:MyLocal(@"SCRAP") forState:UIControlStateNormal];
+    
     [_lblDtlRepairMatrix setText:MyLocal(@"REPAIR NTE:")];
     [_labelBenchRepairMatrixNTE setText:MyLocal(@"REPAIR NTE:")];
-    [_labelBenchAVNotes setText:MyLocal(@"Pick Up Notes:")];
+    [_labelBenchPickUpNotes setText:MyLocal(@"Pick Up Notes:")];
     [_lblPickUpStatus setText:MyLocal(@"Picked Up Status:")];
     [_lblPickUpBy setText:MyLocal(@"Picked Up By:")];
     [_lblPickUpFrom setText:MyLocal(@"Picked Up From:")];
+    [_labelBenchAssetNumber setText:MyLocal(@"Asset #:")];
+    [_labelBenchSerialNumber setText:MyLocal(@"Serial #:")];
+    [_labelBenchRepairMatrixNTE setText:MyLocal(@"REPAIR NTE:")];
+    [_labelBenchMachineType setText:MyLocal(@"Machine Type:")];
+    [_labelBenchWarranty setText:MyLocal(@"Warranty:")];
+    [_labelBenchDetailLabel setText:MyLocal(@"Detail")];
+    
+    _lblAssetInfoTitle.text = MyLocal(@"Asset Info");
+    _lblAssetNameTitle.text = MyLocal(@"Asset Name");
+    _lblSerialNumberTitle.text = MyLocal(@"Serial #:");
+    _lblInstallDateTitle.text = MyLocal(@"Install Date");
+    _lblAssetNumberTitle.text = MyLocal(@"Asset #:");
+    _lblMachineTypeTitle.text = MyLocal(@"Machine Type");
+    _lblManufacturerWebsiteTitle.text = MyLocal(@"Manufacturer Website");
+    _lblVendKeyTitle.text = MyLocal(@"Vend Key");
+    _lblNextPMDateTitle.text = MyLocal(@"Next PM Date");
+    _lblLocationTitle.text = MyLocal(@"Location");
+    _lblRepairNTETitle.text = MyLocal(@"Repair NTE:");
+    _lblWarrantyTitle.text = MyLocal(@"Warranty:");
+    [_btnDone setTitle:MyLocal(@"DONE") forState:UIControlStateNormal];
+    
+    
+    
+    /*
+     @property (weak, nonatomic) IBOutlet UILabel *;
+     @property (weak, nonatomic) IBOutlet UILabel *;
+     @property (weak, nonatomic) IBOutlet UILabel *;
+     @property (weak, nonatomic) IBOutlet UILabel *;
+     @property (weak, nonatomic) IBOutlet UILabel *;
+     @property (weak, nonatomic) IBOutlet UILabel *;
+     @property (weak, nonatomic) IBOutlet UILabel *;
+     @property (weak, nonatomic) IBOutlet UILabel *;
+     @property (weak, nonatomic) IBOutlet UILabel *;
+     @property (weak, nonatomic) IBOutlet UILabel *;
+     @property (weak, nonatomic) IBOutlet UILabel *;
+     */
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -1374,19 +1412,19 @@ UIGestureRecognizerDelegate
         NSArray *records = [[workOrderInfo valueForKeyWithNullToNil:@"Work_Orders__r"] objectForKey:@"records"];
         NSArray *assetRequestRecords = [[workOrderInfo valueForKeyWithNullToNil:@"Asset_Requests__r"] objectForKey:@"records"];
         
-        self.labelBenchAssetNumber.text = [workOrderInfo valueForKeyWithNullToNil:@"Machine_Number__c"] == nil ? @"" :  [workOrderInfo valueForKeyWithNullToNil:@"Machine_Number__c"];
-        self.labelBenchSerialNumber.text = [workOrderInfo valueForKeyWithNullToNil: @"SerialNumber"] == nil ? @"" : [workOrderInfo valueForKeyWithNullToNil: @"SerialNumber"];
-        self.labelBenchMachineType.text = [[records[0] valueForKeyWithNullToNil:@"Machine_Type__r"] valueForKeyWithNullToNil:@"Name"];
+        self.labelBenchAssetNumberText.text = [workOrderInfo valueForKeyWithNullToNil:@"Machine_Number__c"] == nil ? @"" :  [workOrderInfo valueForKeyWithNullToNil:@"Machine_Number__c"];
+        self.labelBenchSerialNumberText.text = [workOrderInfo valueForKeyWithNullToNil: @"SerialNumber"] == nil ? @"" : [workOrderInfo valueForKeyWithNullToNil: @"SerialNumber"];
+        self.labelBenchMachineTypeText.text = [[records[0] valueForKeyWithNullToNil:@"Machine_Type__r"] valueForKeyWithNullToNil:@"Name"];
         self.labelBenchPOSName.text = [[assetRequestRecords[0] valueForKeyWithNullToNil:@"Point_of_Service__r"] valueForKeyWithNullToNil:@"Name"];
         self.labelBenchAVNotes.text = [assetRequestRecords[0] valueForKeyWithNullToNil:@"Verification_Note__c"];
         
         self.labelBenchAssetCondition.text = [assetRequestRecords[0] valueForKeyWithNullToNil:@"Condition__c"];
         self.labelBenchTechName.text = [[assetRequestRecords[0] valueForKeyWithNullToNil:@"CreatedBy"] valueForKeyWithNullToNil:@"Name"];
         
-        self.labelBenchRepairMatrixNTE.text = [NSString stringWithFormat:@"$%@", [workOrderInfo valueForKeyWithNullToNil: @"Repair_Matrix__c"]];
-        if ([self.labelBenchRepairMatrixNTE.text  rangeOfString: @"null"].location != NSNotFound)
+        self.labelBenchRepairMatrixNTEText.text = [NSString stringWithFormat:@"$%@", [workOrderInfo valueForKeyWithNullToNil: @"Repair_Matrix__c"]];
+        if ([self.labelBenchRepairMatrixNTEText.text  rangeOfString: @"null"].location != NSNotFound)
         {
-            self.labelBenchRepairMatrixNTE.text = MyLocal(@"Unknown");
+            self.labelBenchRepairMatrixNTEText.text = MyLocal(@"Unknown");
         }
         self.selectedAssetID = [workOrderInfo valueForKeyWithNullToNil:@"Id"];
         self.selectedWorkorderID = [records[0] valueForKeyWithNullToNil:@"Id"];
