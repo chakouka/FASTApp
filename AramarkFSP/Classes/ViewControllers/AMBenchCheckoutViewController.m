@@ -301,6 +301,8 @@ AMPopoverSelectTableViewControllerDelegate
     
     [self.btnNext setTitle:MyLocal(@"SUBMIT") forState:UIControlStateNormal];
     [self.btnNext setTitle:MyLocal(@"SUBMIT") forState:UIControlStateHighlighted];
+    [self.btnCancelScrap setTitle:MyLocal(@"CANCEL AND SCRAP") forState:UIControlStateNormal];
+    
 }
 -(void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -326,8 +328,8 @@ AMPopoverSelectTableViewControllerDelegate
 -(NSMutableArray *)repairCodes
 {
     return       [NSMutableArray arrayWithObjects:
-      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Shop Work Completed"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Shop Work Completed"},
-      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Equipment Cleaned"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Equipment Cleaned"},
+      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Shop Work Completed"),kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"Shop Work Completed")},
+      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Equipment Cleaned"),kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"Equipment Cleaned")},
       nil];
 }
 #pragma mark -

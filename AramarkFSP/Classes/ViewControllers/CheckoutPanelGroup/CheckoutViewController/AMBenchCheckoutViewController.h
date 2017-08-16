@@ -37,6 +37,7 @@ UIPopoverControllerDelegate
 @property (strong, nonatomic) NSString *strNotes;
 @property (strong, nonatomic) NSString *strRepairCode;
 @property (strong, nonatomic) NSMutableArray *arrResultAssetRequest;
+@property (strong, nonatomic) IBOutlet UIButton *btnCancelScrap;
 
 - (id)initWithWorkOrder:(NSDictionary *)aWorkOrder;
 - (IBAction)clickSubmitBtn:(UIButton *)sender;
