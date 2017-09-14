@@ -189,8 +189,7 @@ UISearchBarDelegate
     }
     
 	self.arrVerificationInfos = [NSMutableArray array];
-    
-	NSArray *assetList = [[AMLogicCore sharedInstance] getAssetListByPoSID:aWorkOrder.posID AccountID:aWorkOrder.accountID];
+    NSArray *assetList = [[AMLogicCore sharedInstance] getAssetListByPoSIDForAssetVerifications:aWorkOrder.posID AccountID:aWorkOrder.accountID WorkorderType:aWorkOrder.woType];
     
     woAsset = [[AMLogicCore sharedInstance] getAssetInfoByID:self.workOrder.assetID];
     

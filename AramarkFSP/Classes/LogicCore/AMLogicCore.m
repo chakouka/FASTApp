@@ -705,8 +705,7 @@
 
 - (NSArray *)getAssetListByPoSID:(NSString *)posID AccountID:(NSString *)accountID
 {
-    NSArray * assetListOLD = [[AMDBManager sharedInstance] getAssetListByPoSID:posID];
-    NSArray * assetList = [[AMDBManager sharedInstance] getAssetListByAccountID:accountID];
+    NSArray * assetList = [[AMDBManager sharedInstance] getAssetListByPoSID:posID];
     
     if (assetList && assetList.count) {
         NSArray * locationList = [[AMDBManager sharedInstance] getLocationListByAccountID:accountID];
@@ -721,7 +720,29 @@
     }
     return assetList;
 }
-
+- (NSArray *)getAssetListByPoSIDForAssetVerifications:(NSString *)posID AccountID:(NSString *)accountID WorkorderType:(NSString *)woType
+{
+    NSArray * assetList;
+    
+    if([woType isEqualToString:MyLocal(@"Filter Exchange")]) {
+        assetList = [[AMDBManager sharedInstance] getAssetListByAccountID:accountID];
+    } else {
+        assetList = [[AMDBManager sharedInstance] getAssetListByPoSID:posID];
+    }
+    
+    if (assetList && assetList.count) {
+        NSArray * locationList = [[AMDBManager sharedInstance] getLocationListByAccountID:accountID];
+        for (AMAsset * asset in assetList) {
+            for (AMLocation * location in locationList) {
+                if (asset.locationID && [asset.locationID isEqualToString:location.locationID]) {
+                    asset.assetLocation = location;
+                    break;
+                }
+            }
+        }
+    }
+    return assetList;
+}
 - (NSArray *)getAssetRequestListByPoSID:(NSString *)posID
 {
     return  [[AMDBManager sharedInstance] getAssetRequestListByPoSID:posID];

@@ -314,6 +314,8 @@
  * @return               asset list, each element is AMAsset object
  */
 - (NSArray *)getAssetListByPoSID:(NSString *)posID AccountID:(NSString *)accountID;
+- (NSArray *)getAssetListByPoSIDForAssetVerifications:(NSString *)posID AccountID:(NSString *)accountID WorkorderType:(NSString *)woType;
+
 
 - (NSArray *)getAssetRequestListByPoSID:(NSString *)posID;
 
