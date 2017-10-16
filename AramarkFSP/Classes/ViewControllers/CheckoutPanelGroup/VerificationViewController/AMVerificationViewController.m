@@ -944,6 +944,24 @@ UISearchBarDelegate
 	}
 }
 
+- (void)textViewDidChange:(UITextView *)textView {
+    
+    NSInteger iType = textView.tag % 1000;
+    
+    switch (iType) {
+        case VerificationTextInputType_Notes:
+        {
+            
+            if([textView.text length] > 254)
+            {
+                UIAlertView *alert  = ([UIAlertView showWithTitle:@"Maximum Note Length Exceeded" message:@"Maximum of 255 characters for verification notes!" cancelButtonTitle:@"Ok" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                    textView.text = [textView.text substringToIndex: MIN(254, [textView.text length])];
+                }]);
+            }
+        }
+    }
+}
+
 #pragma mark -
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
