@@ -29,7 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnCheckout;
 @property (strong, nonatomic) NSDictionary *fullAssetInfoDict;
 @property (strong, nonatomic) NSString *strAssetID;
-@property (strong, nonatomic) NSString *strWOID;
+@property (strong, nonatomic) NSString *strWOID; //bkk I&E 001231 20180322
 @property (weak, nonatomic) IBOutlet UIView *viewShade;
 @property (weak, nonatomic) IBOutlet UIView *viewRight;
 
