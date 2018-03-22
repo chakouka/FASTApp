@@ -222,7 +222,7 @@ UISearchBarDelegate
     cell.label_SerialNumber.text = [workOrder valueForKeyWithNullToNil:@"SerialNumber"] == nil ? @"" : [workOrder valueForKeyWithNullToNil:@"SerialNumber"];
     cell.label_MachineType.text = [[workOrder valueForKeyWithNullToNil:@"Product2"] valueForKeyWithNullToNil:@"Name"];
     cell.strAssetID = [[workOrder valueForKeyWithNullToNil:@"Item"] valueForKeyWithNullToNil:@"Asset__c"];
-
+    cell.strWOID = [[workOrder valueForKeyWithNullToNil:@"Item"] valueForKeyWithNullToNil:@"Id"];//bkk I&E 001231 20180322
     cell.label_MachineTypeTitle.text = MyLocal(@"Machine Type:");
     cell.label_SerialNumberTitle.text = MyLocal(@"Serial #:");
     cell.label_AssetNumberTitle.text = MyLocal(@"Asset #:");
@@ -485,7 +485,8 @@ UISearchBarDelegate
     if(!isTimerStarted)
     {
         //toggleTimer on Server
-        [[AMProtocolManager sharedInstance] toggleTimerForAssetStart:cell.strAssetID completion:^(NSInteger type, NSError *error, id userData, id responseData) {
+        //bkk I&E 001231 20180322
+        [[AMProtocolManager sharedInstance] toggleTimerForAssetStart:cell.strWOID completion:^(NSInteger type, NSError *error, id userData, id responseData) {
             
             
             if([[responseData valueForKeyWithNullToNil:@"success"] isEqualToString:@"true"])
@@ -544,7 +545,8 @@ UISearchBarDelegate
     if(isTimerStarted && ([timerStartedCellAssetID isEqualToString:cell.label_AssetNumber.text]))
     {
         //toggleTimer on Server
-        [[AMProtocolManager sharedInstance] toggleTimerForAssetStop: cell.strAssetID completion:^(NSInteger type, NSError *error, id userData, id responseData) {
+        //bkk I&E 001231 20180322
+        [[AMProtocolManager sharedInstance] toggleTimerForAssetStop: cell.strWOID completion:^(NSInteger type, NSError *error, id userData, id responseData) {
             
             if([[responseData valueForKeyWithNullToNil:@"success"] isEqualToString:@"true"])
             {
@@ -583,8 +585,8 @@ UISearchBarDelegate
     
     AMBenchActiveListCell *cell = [self.tableViewList cellForRowAtIndexPath: [NSIndexPath indexPathForRow:button.tag inSection:[self.tableViewList numberOfSections]-1]];
     
-
-    [[AMProtocolManager sharedInstance] toggleTimerForAssetStop:cell.strAssetID completion:^(NSInteger type, NSError *error, id userData, id responseData) {
+    //bkk I&E 001231 20180322
+    [[AMProtocolManager sharedInstance] toggleTimerForAssetStop:cell.strWOID completion:^(NSInteger type, NSError *error, id userData, id responseData) {
         
         if([[responseData valueForKeyWithNullToNil:@"success"] isEqualToString:@"true"])
         {
