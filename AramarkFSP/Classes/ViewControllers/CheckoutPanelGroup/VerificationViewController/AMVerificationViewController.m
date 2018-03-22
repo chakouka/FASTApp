@@ -434,7 +434,7 @@ UISearchBarDelegate
     AMVerificationAddSectionView *aSection = self.arrSections[self.arrSections.count-1];
     
     //found status.
-    if([aSection.labelStatus.text isEqualToString:@"Found"])
+    if([aSection.labelStatus.text isEqualToString:MyLocal(@"Found"]))
     {
         AMVerificationAddTableViewCell *cell = [self.mainTableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow:button.tag inSection:[self.mainTableView numberOfSections]-1]];
 
