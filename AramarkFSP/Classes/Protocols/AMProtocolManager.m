@@ -1496,7 +1496,7 @@
     
     NSArray *array = [[AMDBManager sharedInstance] getUnfetchedAttachments];
     
-    DLog(@"start download %d attachments", array.count);
+    DLog(@"start download %d attachments", (int)array.count);
 
     if (array.count) {
         for (AMDBAttachment *attachment in array) {

@@ -192,7 +192,7 @@ AMNewCaseViewControllerDelegate
     }else if (daysFromToday == 0){
         daysFromTodayString = [NSString stringWithFormat:@"   %@",MyLocal(@"Today")];
     }else{
-        daysFromTodayString = [NSString stringWithFormat:@"   %d %@ %@",daysFromToday,daysFromToday==1?MyLocal(@"day"):MyLocal(@"days"),MyLocal(@"later")];
+        daysFromTodayString = [NSString stringWithFormat:@"   %ld %@ %@",(long)daysFromToday,daysFromToday==1?MyLocal(@"day"):MyLocal(@"days"),MyLocal(@"later")];
     }
     titleString = [titleString stringByAppendingString:daysFromTodayString];
     headerView.lbl_title.text = titleString;

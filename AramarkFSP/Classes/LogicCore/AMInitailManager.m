@@ -63,7 +63,7 @@ typedef enum AM_Initial_Step_t {
 - (void)handleInitialDBProcess:(NSInteger) type
 {
     _initialSteps ++;
-    DLog(@"handleInitialDBProcess steps %d of total %d, cur %d, hasError %d", _initialSteps,AM_Initial_Step_Total,type,_hasInitialNetError);
+    DLog(@"handleInitialDBProcess steps %d of total %d, cur %d, hasError %d", (int)_initialSteps,AM_Initial_Step_Total,type,_hasInitialNetError);
     if (_initialSteps >= AM_Initial_Step_Total || _hasInitialNetError) {
 //        if (!_hasInitialNetError) {
 //            [[AMDBManager sharedInstance] updateUser:_selfUId timeStamp:_timeStamp];

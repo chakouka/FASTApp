@@ -474,7 +474,7 @@ AMPopoverSelectTableViewControllerDelegate
 	popView.delegate = self;
 	popView.tag = PopViewType_Select_PartName;
     
-	DLog(@"sender.tag : %d", sender.tag);
+    DLog(@"sender.tag : %ld", (long)sender.tag);
     
 	popView.aIndexPath = [NSIndexPath indexPathForRow:iRow inSection:iSection];
     

@@ -106,8 +106,8 @@ static NSString *TableIdentifier_Cell = @"ContactTableCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Section = %d", indexPath.section);
-    NSLog(@"self.contactArr.count = %d", self.contactArr.count);
+    NSLog(@"Section = %d", ((int)indexPath.section));
+    NSLog(@"self.contactArr.count = %d", (int)self.contactArr.count);
     if (!(indexPath.section >= [self.contactArr count])) {
         AMContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TableIdentifier_Cell forIndexPath:indexPath];
         cell.assignedContact = [self.contactArr objectAtIndex:indexPath.section];

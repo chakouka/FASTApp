@@ -226,7 +226,7 @@
     }
     
     if (arrangedArray.count < numberOfPastDays+numberOfFutureDays) {
-        int lack = numberOfPastDays + numberOfFutureDays - arrangedArray.count;
+        int lack = (int)(numberOfPastDays + numberOfFutureDays - arrangedArray.count);
         for (int i=0; i<lack; i++) {
             startDate = [startDate dateByAddingTimeInterval: 24*60*60];
             NSMutableArray *array = [NSMutableArray array];
@@ -285,7 +285,7 @@
     }
     
     if (arrangedArray.count < numberOfPastDays+numberOfFutureDays) {
-        int lack = numberOfPastDays + numberOfFutureDays - arrangedArray.count;
+        int lack = (int)(numberOfPastDays + numberOfFutureDays - arrangedArray.count);
         for (int i=0; i<lack; i++) {
             startDate = [startDate dateByAddingTimeInterval: 24*60*60];
             NSMutableArray *array = [NSMutableArray array];
@@ -536,7 +536,7 @@
     }
     
     if (summaryHistory.count < numberOfDays) {
-        int lack = numberOfDays - summaryHistory.count;
+        int lack = (int)(numberOfDays - summaryHistory.count);
         for (int i=0; i<lack; i++) {
             NSMutableArray *array = [NSMutableArray array];
             [summaryHistory addObject:array];
@@ -1216,7 +1216,7 @@
     
     for (AMInvoice * invoice in invoiceList) {
         if (!invoice.invoiceID) {
-            invoice.invoiceID = [NSString stringWithFormat:@"Create%d%@",index,[format stringFromDate:[NSDate date]]];
+            invoice.invoiceID = [NSString stringWithFormat:@"Create%ld%@",(long)index,[format stringFromDate:[NSDate date]]];
             invoice.createdBy = _selfUId;
         }
         index ++;
@@ -1237,7 +1237,7 @@
     
     for (AMAssetRequest * assetReq in assetReqList) {
         if (!assetReq.requestID) {
-            assetReq.requestID = [NSString stringWithFormat:@"Create%d%@",index,[format stringFromDate:[NSDate date]]];
+            assetReq.requestID = [NSString stringWithFormat:@"Create%ld%@",(long)index,[format stringFromDate:[NSDate date]]];
             assetReq.createdBy = _selfUId;
         }
         index ++;
@@ -1258,7 +1258,7 @@
     
     for (AMFilterUsed * filter in totalFilters) {
         if (!filter.fuID) {
-            filter.fuID = [NSString stringWithFormat:@"Create%d%@",index,[format stringFromDate:[NSDate date]]];
+            filter.fuID = [NSString stringWithFormat:@"Create%ld%@",(long)index,[format stringFromDate:[NSDate date]]];
             filter.createdBy = _selfUId;
             index ++;
         }
@@ -1285,7 +1285,7 @@
     
     for (AMPartsUsed * parts in totalParts) {
         if (!parts.puID) {
-            parts.puID = [NSString stringWithFormat:@"Create%d%@",index,[format stringFromDate:[NSDate date]]];
+            parts.puID = [NSString stringWithFormat:@"Create%ld%@",(long)index,[format stringFromDate:[NSDate date]]];
             parts.createdBy = _selfUId;
             index ++;
         }

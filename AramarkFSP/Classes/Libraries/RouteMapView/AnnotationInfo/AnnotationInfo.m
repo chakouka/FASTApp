@@ -21,7 +21,7 @@
 
 - (NSString *)description {
     NSString *saddr = [NSString stringWithFormat:@"%@ : %@ : %f,%f",NSStringFromClass([self class]),woID, location.coordinate.latitude, location.coordinate.longitude];
-    return [NSString stringWithFormat:@"\n %d -- %@ : %@",index, saddr, subtitle];
+    return [NSString stringWithFormat:@"\n %d -- %@ : %@",(int)index, saddr, subtitle];
 }
 
 - (CLLocationCoordinate2D)coordinate

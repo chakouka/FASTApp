@@ -179,7 +179,7 @@ AMNewCaseViewControllerDelegate
         cell.btnModify.tag = indexPath.row;
         [cell.btnModify addTarget:self action:@selector(clickModifyBtn:) forControlEvents:UIControlEventTouchUpInside];
         
-        NSString *strInfo = [self strWithEntityStatus:[newCase.dataStatus integerValue]];
+        NSString *strInfo = [self strWithEntityStatus:(int)[newCase.dataStatus integerValue]];
         
         if ([newCase.errorMessage length] != 0) {
             strInfo = [strInfo stringByAppendingString:[NSString stringWithFormat:@" - %@",newCase.errorMessage]];
@@ -190,7 +190,7 @@ AMNewCaseViewControllerDelegate
     }
     else
     {
-        cell.labelStatus.text = [self strWithEntityStatus:[newCase.dataStatus integerValue]];
+        cell.labelStatus.text = [self strWithEntityStatus:(int)[newCase.dataStatus integerValue]];
         cell.labelStatus.textColor = [UIColor blackColor];
         cell.btnModify.hidden = YES;
     }

@@ -44,7 +44,7 @@
 	if ([self.annotations count] < 2) {
 		return;
 	}
-
+	
 	[self centerWithPoints:self.annotations];
 }
 

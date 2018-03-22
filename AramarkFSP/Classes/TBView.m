@@ -141,7 +141,7 @@ return self;
         return;
     }
     
-    int qty = [self.qtyLabel.text integerValue];
+    int qty = (int)[self.qtyLabel.text integerValue];
     if ([self.otherFiltersText.text length] > 0)
     {
       //  NSNumber *qty = [self.qtyLabel.text integerValue];

@@ -702,7 +702,7 @@ AMWorkOrderViewControllerDelegate
                         [arrInvoiceItems addObject:invoice];
                     }
                 } else {
-                    int index = [arrInvoiceItems indexOfObject:invoice];
+                    int index = (int)[arrInvoiceItems indexOfObject:invoice];
                     NSInteger qtySum = [((AMInvoice *)[arrInvoiceItems objectAtIndex:index]).quantity integerValue] + [invoice.quantity integerValue];
                     [(AMInvoice *)[arrInvoiceItems objectAtIndex:index] setQuantity: [NSNumber numberWithInteger: qtySum]];
                 }
@@ -734,7 +734,7 @@ AMWorkOrderViewControllerDelegate
                         [arrInvoiceItems addObject:invoice];
                     }
                 } else {
-                    int index = [arrInvoiceItems indexOfObject:invoice];
+                    int index = (int)[arrInvoiceItems indexOfObject:invoice];
                     NSInteger qtySum = [((AMInvoice *)[arrInvoiceItems objectAtIndex:index]).quantity integerValue] + [invoice.quantity integerValue];
                     [(AMInvoice *)[arrInvoiceItems objectAtIndex:index] setQuantity: [NSNumber numberWithInteger: qtySum]];
                 }
@@ -757,7 +757,7 @@ AMWorkOrderViewControllerDelegate
 	NSMutableArray *arrInfos = [NSMutableArray array];
     
 	for (NSInteger i = 0; i <= 8; i++) {
-		[arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : [NSString stringWithFormat:@"%d", i] }];
+        [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : [NSString stringWithFormat:@"%ld", (long)i] }];
         [arrInfos addObject:@{ kAMPOPOVER_DICTIONARY_KEY_INFO : [NSString stringWithFormat:@"%.1f", i + 0.5] }];
 	}
     
@@ -893,7 +893,7 @@ AMWorkOrderViewControllerDelegate
 	popView.delegate = self;
 	popView.tag = PopViewType_Select_InvoiceCode;
     
-	DLog(@"sender.tag : %d", sender.tag);
+    DLog(@"sender.tag : %ld", (long)sender.tag);
     
 	popView.aIndexPath = [NSIndexPath indexPathForRow:iRow inSection:iSection];
     
@@ -931,7 +931,7 @@ AMWorkOrderViewControllerDelegate
 	popView.delegate = self;
 	popView.tag = PopViewType_Select_FilterName;
     
-	DLog(@"sender.tag : %d", sender.tag);
+    DLog(@"sender.tag : %ld", (long)sender.tag);
     
 	popView.aIndexPath = [NSIndexPath indexPathForRow:iRow inSection:iSection];
     
@@ -976,7 +976,7 @@ AMWorkOrderViewControllerDelegate
 	popView.delegate = self;
 	popView.tag = PopViewType_Select_PartName;
     
-	DLog(@"sender.tag : %d", sender.tag);
+    DLog(@"sender.tag : %ld", (long)sender.tag);
     
 	popView.aIndexPath = [NSIndexPath indexPathForRow:iRow inSection:iSection];
     

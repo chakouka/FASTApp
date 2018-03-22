@@ -65,8 +65,8 @@
     
     NSInteger iTag = arc4random() % 1000;
     info.partType = MapLocationType_TargetPoint;
-    info.title = [NSString stringWithFormat:@"Title_%d", iTag];
-    info.subtitle = [NSString stringWithFormat:@"SubTitle_%d", iTag];
+    info.title = [NSString stringWithFormat:@"Title_%ld", (long)iTag];
+    info.subtitle = [NSString stringWithFormat:@"SubTitle_%ld", (long)iTag];
     
     float ilant = (((arc4random() % 100) >= 50) ? (INITLatitude + ((arc4random() % 1000) / 1000.0)) : (INITLatitude - ((arc4random() % 1000) / 1000.0)));
     float ilong = (((arc4random() % 100) >= 50) ? (INITLongitude + ((arc4random() % 1000) / 1000.0)) : (INITLongitude - ((arc4random() % 1000) / 1000.0)));
@@ -148,48 +148,48 @@
     NSDate *estimatedTimeStart = [AMUtilities dateWithTimeSecond:[AMUtilities daysBefore:(arc4random() % 5) from:[AMUtilities timeBySecondWithDate:createDate]]];
     
     AMWorkOrder *order = [[AMWorkOrder alloc] init];
-    order.accessoriesRequired = [NSString stringWithFormat:@"accessoriesRequired_%d", iTag];
-    order.assetID = [NSString stringWithFormat:@"assetID_%d", iTag];
+    order.accessoriesRequired = [NSString stringWithFormat:@"accessoriesRequired_%ld", (long)iTag];
+    order.assetID = [NSString stringWithFormat:@"assetID_%ld", (long)iTag];
     order.callAhead = [NSNumber numberWithInt:(arc4random() % 10)];
-    order.caseID = [NSString stringWithFormat:@"caseID_%d", iTag];
-    order.complaintCode = [NSString stringWithFormat:@"complaintCode_%d", iTag];
-    order.contact = [NSString stringWithFormat:@"contact_%d", iTag];
-    order.createdBy = [NSString stringWithFormat:@"createdBy_%d", iTag];
+    order.caseID = [NSString stringWithFormat:@"caseID_%ld", (long)iTag];
+    order.complaintCode = [NSString stringWithFormat:@"complaintCode_%ld", (long)iTag];
+    order.contact = [NSString stringWithFormat:@"contact_%ld", (long)iTag];
+    order.createdBy = [NSString stringWithFormat:@"createdBy_%ld", (long)iTag];
     order.createdDate = createDate;
     order.estimatedTimeEnd = estimatedTimeEnd;
     order.estimatedTimeStart = estimatedTimeStart;
     order.filterCount = [NSNumber numberWithInt:(arc4random() % 10)];
-    order.filterType = [NSString stringWithFormat:@"filterType_%d", iTag];
-    order.fromLocation = [NSString stringWithFormat:@"fromLocation_%d", iTag];
-    order.lastModifiedBy = [NSString stringWithFormat:@"lastModifiedBy_%d", iTag];
+    order.filterType = [NSString stringWithFormat:@"filterType_%ld", (long)iTag];
+    order.fromLocation = [NSString stringWithFormat:@"fromLocation_%ld", (long)iTag];
+    order.lastModifiedBy = [NSString stringWithFormat:@"lastModifiedBy_%ld", (long)iTag];
     order.lastModifiedDate = modifiedDate;
     order.latitude = [NSNumber numberWithFloat:ilant];
     order.longitude = [NSNumber numberWithFloat:ilong];
-    order.machineType = [NSString stringWithFormat:@"machineType_%d", iTag];
-    order.notes = [NSString stringWithFormat:@"notes_%d", iTag];
-    order.parkingDetail = [NSString stringWithFormat:@"parkingDetail_%d", iTag];
-    order.posID = [NSString stringWithFormat:@"aposID_%d", iTag];
-    order.preferrTimeFrom = [NSString stringWithFormat:@"%d:00", iTag];
-    order.preferrTimeTo = [NSString stringWithFormat:@"%d:00", iTag];
-    order.priority = [NSString stringWithFormat:@"priority_%d", iTag];
-    order.repairCode = [NSString stringWithFormat:@"repairCode_%d", iTag];
-    order.status = [NSString stringWithFormat:@"status_%d", iTag];
-    order.toLocationID = [NSString stringWithFormat:@"toLocation_%d", iTag];
-    order.vendKey = [NSString stringWithFormat:@"vendKey_%d", iTag];
+    order.machineType = [NSString stringWithFormat:@"machineType_%ld", (long)iTag];
+    order.notes = [NSString stringWithFormat:@"notes_%ld", (long)iTag];
+    order.parkingDetail = [NSString stringWithFormat:@"parkingDetail_%ld", (long)iTag];
+    order.posID = [NSString stringWithFormat:@"aposID_%ld", (long)iTag];
+    order.preferrTimeFrom = [NSString stringWithFormat:@"%ld:00", (long)iTag];
+    order.preferrTimeTo = [NSString stringWithFormat:@"%ld:00", (long)iTag];
+    order.priority = [NSString stringWithFormat:@"priority_%ld", (long)iTag];
+    order.repairCode = [NSString stringWithFormat:@"repairCode_%ld", (long)iTag];
+    order.status = [NSString stringWithFormat:@"status_%ld", (long)iTag];
+    order.toLocationID = [NSString stringWithFormat:@"toLocation_%ld", (long)iTag];
+    order.vendKey = [NSString stringWithFormat:@"vendKey_%ld", (long)iTag];
     order.warranty = [NSNumber numberWithInt:(arc4random() % 10)];
-    order.woID = [NSString stringWithFormat:@"woID_%d", iTag];
-    order.woNumber = [NSString stringWithFormat:@"woNumber_%d", iTag];
-    order.workLocation = [NSString stringWithFormat:@"workLocation_%d", iTag];
-    order.woType = [NSString stringWithFormat:@"woType_%d", iTag];
-    order.ownerID = [NSString stringWithFormat:@"ownerID_%d", iTag];
+    order.woID = [NSString stringWithFormat:@"woID_%ld", (long)iTag];
+    order.woNumber = [NSString stringWithFormat:@"woNumber_%ld", (long)iTag];
+    order.workLocation = [NSString stringWithFormat:@"workLocation_%ld", (long)iTag];
+    order.woType = [NSString stringWithFormat:@"woType_%ld", (long)iTag];
+    order.ownerID = [NSString stringWithFormat:@"ownerID_%ld", (long)iTag];
     order.status = @"Scheduled";
     order.actualTimeStart = order.estimatedTimeStart;
     order.actualTimeEnd = order.estimatedTimeEnd;
     
     NSInteger shortTag = arc4random() % 100;
     //	order.accountName = [self strWithCharacterNumbers:shortTag];
-    order.accountName = [NSString stringWithFormat:@"wo_%d", shortTag];
-    order.woType = [NSString stringWithFormat:@"woType_%d", shortTag];
+    order.accountName = [NSString stringWithFormat:@"wo_%ld", (long)shortTag];
+    order.woType = [NSString stringWithFormat:@"woType_%ld", (long)shortTag];
     
     
     return order;
@@ -215,48 +215,48 @@
     NSDate *modifiedDate = [AMUtilities dateWithTimeSecond:[AMUtilities daysLater:(arc4random() % 5) after:[AMUtilities timeBySecondWithDate:estimatedTimeEnd]]];
     
     AMWorkOrder *order = [[AMWorkOrder alloc] init];
-    order.accessoriesRequired = [NSString stringWithFormat:@"accessoriesRequired_%d", iTag];
-    order.assetID = [NSString stringWithFormat:@"assetID_%d", iTag];
+    order.accessoriesRequired = [NSString stringWithFormat:@"accessoriesRequired_%ld", (long)iTag];
+    order.assetID = [NSString stringWithFormat:@"assetID_%ld", (long)iTag];
     order.callAhead = [NSNumber numberWithInt:(arc4random() % 10)];
-    order.caseID = [NSString stringWithFormat:@"caseID_%d", iTag];
-    order.complaintCode = [NSString stringWithFormat:@"complaintCode_%d", iTag];
-    order.contact = [NSString stringWithFormat:@"contact_%d", iTag];
-    order.createdBy = [NSString stringWithFormat:@"createdBy_%d", iTag];
+    order.caseID = [NSString stringWithFormat:@"caseID_%ld", (long)iTag];
+    order.complaintCode = [NSString stringWithFormat:@"complaintCode_%ld", (long)iTag];
+    order.contact = [NSString stringWithFormat:@"contact_%ld", (long)iTag];
+    order.createdBy = [NSString stringWithFormat:@"createdBy_%ld", (long)iTag];
     order.createdDate = createDate;
     order.estimatedTimeEnd = estimatedTimeEnd;
     order.estimatedTimeStart = estimatedTimeStart;
     order.filterCount = [NSNumber numberWithInt:(arc4random() % 10)];
-    order.filterType = [NSString stringWithFormat:@"filterType_%d", iTag];
-    order.fromLocation = [NSString stringWithFormat:@"fromLocation_%d", iTag];
-    order.lastModifiedBy = [NSString stringWithFormat:@"lastModifiedBy_%d", iTag];
+    order.filterType = [NSString stringWithFormat:@"filterType_%ld", (long)iTag];
+    order.fromLocation = [NSString stringWithFormat:@"fromLocation_%ld", (long)iTag];
+    order.lastModifiedBy = [NSString stringWithFormat:@"lastModifiedBy_%ld", (long)iTag];
     order.lastModifiedDate = modifiedDate;
     order.latitude = [NSNumber numberWithFloat:ilant];
     order.longitude = [NSNumber numberWithFloat:ilong];
-    order.machineType = [NSString stringWithFormat:@"machineType_%d", iTag];
-    order.notes = [NSString stringWithFormat:@"notes_%d", iTag];
-    order.parkingDetail = [NSString stringWithFormat:@"parkingDetail_%d", iTag];
-    order.posID = [NSString stringWithFormat:@"aposID_%d", iTag];
-    order.preferrTimeFrom = [NSString stringWithFormat:@"%d:00", iTag];
-    order.preferrTimeTo = [NSString stringWithFormat:@"%d:00", iTag];;
-    order.priority = [NSString stringWithFormat:@"priority_%d", iTag];
-    order.repairCode = [NSString stringWithFormat:@"repairCode_%d", iTag];
-    order.status = [NSString stringWithFormat:@"status_%d", iTag];
-    order.toLocationID = [NSString stringWithFormat:@"toLocation_%d", iTag];
-    order.vendKey = [NSString stringWithFormat:@"vendKey_%d", iTag];
+    order.machineType = [NSString stringWithFormat:@"machineType_%ld", (long)iTag];
+    order.notes = [NSString stringWithFormat:@"notes_%ld", (long)iTag];
+    order.parkingDetail = [NSString stringWithFormat:@"parkingDetail_%ld", (long)iTag];
+    order.posID = [NSString stringWithFormat:@"aposID_%ld", (long)iTag];
+    order.preferrTimeFrom = [NSString stringWithFormat:@"%ld:00", (long)iTag];
+    order.preferrTimeTo = [NSString stringWithFormat:@"%ld:00", (long)iTag];;
+    order.priority = [NSString stringWithFormat:@"priority_%ld", (long)iTag];
+    order.repairCode = [NSString stringWithFormat:@"repairCode_%ld", (long)iTag];
+    order.status = [NSString stringWithFormat:@"status_%ld", (long)iTag];
+    order.toLocationID = [NSString stringWithFormat:@"toLocation_%ld", (long)iTag];
+    order.vendKey = [NSString stringWithFormat:@"vendKey_%ld", (long)iTag];
     order.warranty = [NSNumber numberWithInt:(arc4random() % 10)];
-    order.woID = [NSString stringWithFormat:@"woID_%d", iTag];
-    order.woNumber = [NSString stringWithFormat:@"woNumber_%d", iTag];
-    order.workLocation = [NSString stringWithFormat:@"workLocation_%d", iTag];
-    order.woType = [NSString stringWithFormat:@"woType_%d", iTag];
-    order.ownerID = [NSString stringWithFormat:@"ownerID_%d", iTag];
+    order.woID = [NSString stringWithFormat:@"woID_%ld", (long)iTag];
+    order.woNumber = [NSString stringWithFormat:@"woNumber_%ld", (long)iTag];
+    order.workLocation = [NSString stringWithFormat:@"workLocation_%ld", (long)iTag];
+    order.woType = [NSString stringWithFormat:@"woType_%ld", (long)iTag];
+    order.ownerID = [NSString stringWithFormat:@"ownerID_%ld", (long)iTag];
     order.actualTimeStart = order.estimatedTimeStart;
     order.actualTimeEnd = order.estimatedTimeEnd;
     
     NSInteger shortTag = arc4random() % 100;
     //	order.accountName = [self strWithCharacterNumbers:shortTag];
-    order.accountName = [NSString stringWithFormat:@"wo_%d", shortTag];
+    order.accountName = [NSString stringWithFormat:@"wo_%ld", (long)shortTag];
     
-    order.woType = [NSString stringWithFormat:@"woType_%d", shortTag];
+    order.woType = [NSString stringWithFormat:@"woType_%ld", (long)shortTag];
     
     
     return order;
@@ -326,7 +326,7 @@
     for (NSInteger i = 0; i < (NSInteger)aRadius/1000; i ++) {
         CLLocationCoordinate2D coor = [self coordinateFromCoord:location.coordinate atDistanceKm:random()%(NSInteger)aRadius/1000.0 atBearingDegrees:random()%360];
         AMWorkOrder *workOrder = [aWorkOrder mutableCopy];
-        workOrder.woID = [NSString stringWithFormat:@"woID_%d",i];
+        workOrder.woID = [NSString stringWithFormat:@"woID_%ld",(long)i];
         workOrder.longitude = [NSNumber numberWithFloat:coor.longitude];
         workOrder.latitude = [NSNumber numberWithFloat:coor.latitude];
         

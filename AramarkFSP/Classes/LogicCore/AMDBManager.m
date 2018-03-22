@@ -602,7 +602,7 @@
     NSPredicate * filter = [NSPredicate predicateWithFormat:@"(actualTimeEnd >= %@) AND (actualTimeEnd <= %@) AND (posID = %@) AND (woType = 'Repair')", startDate, endDate, posID];
     
     woList = [[AMWODBManager sharedInstance] getDataListByFilter:filter fromDB:__mainManagedObjectContext];
-    return [NSNumber numberWithInt:woList.count];
+    return [NSNumber numberWithInt:(int)woList.count];
     
 }
 

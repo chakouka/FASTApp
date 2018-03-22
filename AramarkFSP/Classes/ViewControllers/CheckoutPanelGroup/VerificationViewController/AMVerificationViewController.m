@@ -867,7 +867,7 @@ UISearchBarDelegate
 		if (iType == InfoType_NormalAsset) {
 			AMAsset *Info = [dicInfo objectForKey:KEY_OF_ASSET_INFO];
 			aVerificationTitle.labelTitle.text = Info.assetName;
-			aVerificationTitle.strFlag = [NSString stringWithFormat:@"%d",section];
+            aVerificationTitle.strFlag = [NSString stringWithFormat:@"%ld",(long)section];
             [aVerificationTitle setVerified:([Info.verificationStatus isEqualToString:MyLocal(TEXT_OF_VERIFED)] || [Info.verificationStatus isEqualToString:TEXT_OF_VERIFED])];
 			aVerificationTitle.labelStatus.text = [Info.verificationStatus length] == 0 ? MyLocal(TEXT_OF_NEED_TO_VERIFY) : MyLocal(Info.verificationStatus);
             
@@ -888,7 +888,7 @@ UISearchBarDelegate
             aVerificationTitle.labelStatusTitle.hidden = NO;
             
 			AMAssetRequest *Info = [dicInfo objectForKey:KEY_OF_ASSETREQUEST_INFO];
-            aVerificationTitle.strFlag = [NSString stringWithFormat:@"%d",section];
+            aVerificationTitle.strFlag = [NSString stringWithFormat:@"%ld",(long)section];
 			aVerificationTitle.labelTitle.text = Info.machineNumber;
 			aVerificationTitle.labelStatus.textColor = COLOR_BLUE;
 			aVerificationTitle.labelStatus.text = [Info.status length] == 0 ? MyLocal(TEXT_OF_NEED_TO_VERIFY) : MyLocal(Info.status);

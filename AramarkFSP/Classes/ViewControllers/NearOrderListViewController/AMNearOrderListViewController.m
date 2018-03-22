@@ -295,7 +295,7 @@ AMPopoverSelectTableViewControllerDelegate
             image = [UIImage imageNamed:@"green_priority.png"];
         }
         
-        cell.label_Index.text = [NSString stringWithFormat:@"%d", indexPath.row + 1];
+        cell.label_Index.text = [NSString stringWithFormat:@"%d", ((int)indexPath.row + 1)];
         cell.imageIndex.image = image;
         
         if (([workOrder.eventList count] > 1)) {
@@ -370,7 +370,7 @@ AMPopoverSelectTableViewControllerDelegate
             image = [UIImage imageNamed:@"green_priority.png"];
         }
         
-        cell.label_Index.text = [NSString stringWithFormat:@"%d", indexPath.row + 1];
+        cell.label_Index.text = [NSString stringWithFormat:@"%d", ((int)indexPath.row + 1)];
         cell.imageIndex.image = image;
         
         if (([workOrder.eventList count] > 1)) {
@@ -443,7 +443,7 @@ AMPopoverSelectTableViewControllerDelegate
             image = [UIImage imageNamed:@"green_priority.png"];
         }
         
-        cell.label_Index.text = [NSString stringWithFormat:@"%d", indexPath.row + 1];
+        cell.label_Index.text = [NSString stringWithFormat:@"%d", (int)(indexPath.row + 1)];
         cell.imageIndex.image = image;
         
         if (([workOrder.eventList count] > 1)) {

@@ -321,7 +321,7 @@
 -(void)parseMyCompletedWOThisWeek:(NSArray *)array{
     self.arr_MyCompletedWOThisWeek = [NSMutableArray array];
     if (array != nil && [array count] > 0) {
-        int numDayOfWeek = [self.today weekdayWithCalendar:self.calendar];
+        int numDayOfWeek = (int)[self.today weekdayWithCalendar:self.calendar];
         if (numDayOfWeek == 1) {
             numDayOfWeek = 8;
         }
@@ -334,7 +334,7 @@
 -(void)parseMcWorkOrdersThisWeek:(NSArray *)array{
     NSString *currentRecordType = [self.arr_WoRecordType objectAtIndex:self.currentWorkOrderRecordType];
     self.arr_McWOThisWeek = [[NSMutableArray alloc]initWithCapacity:WORK_DAY_OF_WEEK];
-    int numDayOfWeek = [self.today weekdayWithCalendar:self.calendar];
+    int numDayOfWeek = (int)[self.today weekdayWithCalendar:self.calendar];
     if (numDayOfWeek == 1) {
         numDayOfWeek = 8;
     }
@@ -531,7 +531,7 @@
         aveHourInt = aveTime/60;
         aveMinInt = aveTime%60;
     }
-    NSString *hourString = [NSString stringWithFormat:@"%02d:%02d HR",aveHourInt,aveMinInt];
+    NSString *hourString = [NSString stringWithFormat:@"%02d:%02ld HR",(int)aveHourInt,(long)aveMinInt];
     NSMutableAttributedString *hourAttrString = [[NSMutableAttributedString alloc]initWithString:hourString];
     
     NSRange hourRange = [hourString rangeOfString:@"HR"];
@@ -734,7 +734,7 @@
     }
     NSMutableArray *yData = [NSMutableArray array];
     for (int i = 0; i<=10; i++) {
-        [yData addObject:[NSString stringWithFormat:@"%d", yMax/10 * i]];
+        [yData addObject:[NSString stringWithFormat:@"%d", (int)(yMax/10 * i)]];
     }
     barChart.arr_text_y = yData;
     

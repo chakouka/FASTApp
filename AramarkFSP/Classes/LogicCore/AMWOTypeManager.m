@@ -38,7 +38,7 @@ typedef enum AM_WOType_Step_t {
 {
 
         _woTypeSteps ++;
-        DLog(@"handleWOTypeDBProcess steps %d of total %d, cur %d", _woTypeSteps,AM_WOType_Step_Total,type);
+    DLog(@"handleWOTypeDBProcess steps %ld of total %d, cur %ld", (long)_woTypeSteps,AM_WOType_Step_Total,(long)type);
         if (_woTypeSteps >= AM_WOType_Step_Total) {
             
             //TODO:notify user the error, and logout

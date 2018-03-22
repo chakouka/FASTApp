@@ -20,7 +20,7 @@
 
 -(NSString *)description
 {
-    return [NSString stringWithFormat:@"%d - %@ - %@ - %@ - %@",gType,gId,gDistance.text,gDuration.text,gLocation];
+    return [NSString stringWithFormat:@"%d - %@ - %@ - %@ - %@",(int)gType,gId,gDistance.text,gDuration.text,gLocation];
 }
 
 @end

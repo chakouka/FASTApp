@@ -68,7 +68,7 @@
 
 - (void)request:(SFRestRequest *)request didLoadResponse:(id)jsonResponse {
     NSArray *records = [jsonResponse objectForKey:@"records"];
-    NSLog(@"request:didLoadResponse: #records: %d %@", records.count,[jsonResponse description]);
+    NSLog(@"request:didLoadResponse: #records: %d %@", (int)records.count,[jsonResponse description]);
     self.dataRows = records;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];

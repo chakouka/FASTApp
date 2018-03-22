@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="12120" systemVersion="16C67" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" colorMatched="YES">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AMMainViewController">
             <connections>
@@ -19,6 +25,7 @@
                 <outlet property="btnStartBench" destination="ZRN-kO-aP5" id="UUf-VP-dT5"/>
                 <outlet property="imageHead" destination="pHH-rE-Bp2" id="mQN-V6-Uy7"/>
                 <outlet property="labelAlertTip" destination="KJ2-hm-RgY" id="wHu-NA-igS"/>
+                <outlet property="labelBenchAVNotes" destination="9w4-gQ-iBs" id="Pv9-bH-ejF"/>
                 <outlet property="labelBenchAssetCondition" destination="ZCf-Ip-GBh" id="qx7-e2-aXQ"/>
                 <outlet property="labelBenchAssetNumber" destination="pkv-F9-nLs" id="k75-Gp-t5u"/>
                 <outlet property="labelBenchAssetNumberText" destination="F6z-YC-ggs" id="xZ7-Zr-BCb"/>
@@ -803,9 +810,4 @@
         <image name="aramark_logo.png" width="134" height="34"/>
         <image name="hamburger_red.png" width="94" height="59"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination"/>
-    </simulatedMetricsContainer>
 </document>

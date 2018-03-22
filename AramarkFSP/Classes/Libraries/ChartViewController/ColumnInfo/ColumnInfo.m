@@ -15,7 +15,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@ : %@ : %d",self.strIndex,self.strBottomInfo,self.iHeight];
+    return [NSString stringWithFormat:@"%@ : %@ : %ld",self.strIndex,self.strBottomInfo,(long)self.iHeight];
 }
 
 @end

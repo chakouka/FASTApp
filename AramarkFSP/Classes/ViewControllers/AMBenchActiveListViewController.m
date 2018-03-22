@@ -185,7 +185,7 @@ UISearchBarDelegate
         if([localWorkOrders count] > appdelegate.woCount) {
             //CHANGE:ITEM-000118
             [self beep];
-            appdelegate.woCount = [localWorkOrders count];
+            appdelegate.woCount = (int)[localWorkOrders count];
         }
         return [localWorkOrders count];
 	}
@@ -383,9 +383,9 @@ UISearchBarDelegate
             [self tableView:self.tableViewList didSelectRowAtIndexPath:indexPath];
             [self showCheckInAlert:self.localWorkOrders[indexPath.row]];
         }
-        NSLog(@"long press on table view at row %d", indexPath.row);
+        NSLog(@"long press on table view at row %ld", (long)indexPath.row);
     } else {
-        NSLog(@"gestureRecognizer.state = %d", gestureRecognizer.state);
+        NSLog(@"gestureRecognizer.state = %ld", (long)gestureRecognizer.state);
     }
 }
 #pragma mark - CheckIn //bkk 2/2/15 - item 000124
@@ -543,7 +543,6 @@ UISearchBarDelegate
     
     if(isTimerStarted && ([timerStartedCellAssetID isEqualToString:cell.label_AssetNumber.text]))
     {
-
         //toggleTimer on Server
         [[AMProtocolManager sharedInstance] toggleTimerForAssetStop: cell.strAssetID completion:^(NSInteger type, NSError *error, id userData, id responseData) {
             

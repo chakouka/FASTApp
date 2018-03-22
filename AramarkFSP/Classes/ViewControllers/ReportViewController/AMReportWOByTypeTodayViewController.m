@@ -96,7 +96,7 @@
     int numberOfWO = 0;
     
     if (self.arr_workOrderToday) {
-        numberOfWO = [self.arr_workOrderToday count];
+        numberOfWO = (int)[self.arr_workOrderToday count];
     }
     [self.lbl_totalNum setText:[NSString stringWithFormat:@"%@ :  %02d",MyLocal(@"TOTAL # OF WO"),numberOfWO]];
     [self initData];
@@ -138,7 +138,7 @@
         UILabel *openLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, NUMBER_LABEL_WIDTH*view.frame.size.width, view.frame.size.height)];
         openLabel.center = CGPointMake(openLabel.frame.size.width/2, openLabel.frame.size.height/2);
         [openLabel setTextAlignment:NSTextAlignmentCenter];
-        [openLabel setText:[NSString stringWithFormat:@"%02d",singleType.openNumber]];
+        [openLabel setText:[NSString stringWithFormat:@"%02d", ((int)singleType.openNumber)]];
         [openLabel setTextColor:[UIColor redColor]];
         [openLabel setFont:[AMUtilities applicationFontWithOption:kFontOptionRegular andSize:15]];
         [view addSubview:openLabel];
@@ -147,7 +147,7 @@
         UILabel *closedLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, NUMBER_LABEL_WIDTH*view.frame.size.width, view.frame.size.height)];
         closedLabel.center = CGPointMake(view.frame.size.width-closedLabel.frame.size.width/2, closedLabel.frame.size.height/2);
         [closedLabel setTextAlignment:NSTextAlignmentCenter];
-        [closedLabel setText:[NSString stringWithFormat:@"%02d",singleType.closedNumber]];
+        [closedLabel setText:[NSString stringWithFormat:@"%02d",((int)singleType.closedNumber)]];
         [closedLabel setTextColor:[UIColor greenColor]];
         [closedLabel setFont:[AMUtilities applicationFontWithOption:kFontOptionRegular andSize:15]];
         [view addSubview:closedLabel];

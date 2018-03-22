@@ -733,7 +733,7 @@ CLLocationManagerDelegate
     if([mapAnnotations count] > appdelegate.woCount) {
         //CHANGE:ITEM-000118
         [self beep];
-        appdelegate.woCount = [mapAnnotations count];
+        appdelegate.woCount = (int)[mapAnnotations count];//bkk changed 20180305 - casting issue resolved as woCount is an int and mapAnnotations count is an Unsigned Integer
     }
 
     

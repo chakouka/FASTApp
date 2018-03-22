@@ -29,8 +29,8 @@
 - (void)setMapAnnotation:(AnnotationInfo *)aMapAnnotation
 {
     mapAnnotation = aMapAnnotation;
-    self.labelIndex.text = [NSString stringWithFormat:@"%d", mapAnnotation.index];
-    self.labelCount.text = mapAnnotation.count > 99 ? @"99" : [NSString stringWithFormat:@"%d", mapAnnotation.count];
+    self.labelIndex.text = [NSString stringWithFormat:@"%ld", (long)mapAnnotation.index];
+    self.labelCount.text = mapAnnotation.count > 99 ? @"99" : [NSString stringWithFormat:@"%ld", (long)mapAnnotation.count];
     [self resizeLabelInfoWith:mapAnnotation.accountName];
     [self changeType:(mapAnnotation.viewType ? mapAnnotation.viewType : AnnotationViewType_CheckIn) withInfo:nil];
 }

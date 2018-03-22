@@ -195,7 +195,7 @@ UISearchBarDelegate
         if([localWorkOrders count] > appdelegate.woCount) {
             //CHANGE:ITEM-000118
             [self beep];
-            appdelegate.woCount = [localWorkOrders count];
+            appdelegate.woCount = (int)[localWorkOrders count];
         }
         return [localWorkOrders count];
 	}

@@ -580,7 +580,7 @@ typedef NS_ENUM (NSInteger, PopViewType) {
 	popView.delegate = self;
     popView.tag = PopViewType_Select_InvoiceCode;
     
-	DLog(@"sender.tag : %d", sender.tag);
+	DLog(@"sender.tag : %d", (int)sender.tag);
     
 	popView.aIndexPath = [NSIndexPath indexPathForRow:iRow inSection:iSection];
     

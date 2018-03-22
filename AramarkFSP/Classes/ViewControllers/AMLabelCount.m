@@ -53,7 +53,7 @@
         if (countNumber >= 99) {
             countNumber = 99;
         }
-        [self setText:[NSString stringWithFormat:@"%i", countNumber]];
+        [self setText:[NSString stringWithFormat:@"%i", (int)countNumber]];
         [self setHidden:NO];
     }
 }

@@ -90,7 +90,7 @@ typedef enum AM_Update_Step_t {
         return;
     }
     _updateSteps ++;
-    DLog(@"handleUpdateDBProcess steps %d of total %d, cur %d, error %d", _updateSteps,AM_Update_Step_Total,type,_hasUpdateNetError);
+    DLog(@"handleUpdateDBProcess steps %d of total %d, cur %d, error %d", (int)_updateSteps,AM_Update_Step_Total,type,_hasUpdateNetError);
     if (_updateSteps >= AM_Update_Step_Total || _hasUpdateNetError) {
         if (!_hasUpdateNetError && _tempTimeStamp) {
             _timeStamp = _tempTimeStamp;
