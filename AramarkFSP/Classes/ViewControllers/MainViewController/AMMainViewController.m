@@ -2501,14 +2501,14 @@ UIGestureRecognizerDelegate
 
 - (void)clearBTDetail
 {
-    self.labelBenchAssetNumber.text = @"";
-    self.labelBenchSerialNumber.text = @"";
-    self.labelBenchMachineType.text = @"";
+    self.labelBenchAssetNumberText.text = @"";
+    self.labelBenchSerialNumberText.text = @"";
+    self.labelBenchMachineTypeText.text = @"";
     self.labelBenchPOSName.text = @"";
+    self.labelBenchAssetCondition.text = @"";
     self.labelBenchAVNotes.text = @"";
     self.labelBenchTechName.text = @"";
-    
-    self.labelBenchRepairMatrixNTE.text = @"";
+    self.labelBenchRepairMatrixNTEText.text = @"";
     self.selectedAssetID = @"";
     self.selectedWorkorderID = @"";
 }
