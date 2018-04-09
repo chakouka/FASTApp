@@ -133,6 +133,7 @@
  */
 - (void)hiddenTip;
 
+- (CLLocation *)calculateCoordinateFrom:(double)longitude latitude:(double)latitude onBearing:(double)bearingInRadians atDistance:(double)distanceInMetres;
 @end
 
 

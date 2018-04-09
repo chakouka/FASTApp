@@ -161,7 +161,7 @@
         
         NSString *strGoogleRouteAPI = [NSString stringWithFormat:@"/maps/api/directions/json?origin=%@&destination=%@&sensor=true", saddr, daddr];
         
-        NSString *encodedValue = [strGoogleRouteAPI stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *encodedValue = [strGoogleRouteAPI stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         NSURL *urlGoogleRouteAPI = [NSURL URLWithString:encodedValue];
         
         [self dataWithURL:urlGoogleRouteAPI completion:^(NSInteger type, id data, NSError *error) {
@@ -208,7 +208,7 @@
         
         NSString *strOpti = isOptimize ? @"true" : @"false";
         NSString *strGoogleRouteAPI = [NSString stringWithFormat:@"/maps/api/directions/json?origin=%@&destination=%@&waypoints=optimize:%@%@&sensor=true", saddr,saddr,strOpti, strWayPoints];
-        strGoogleRouteAPI = [strGoogleRouteAPI stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        strGoogleRouteAPI = [strGoogleRouteAPI stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         NSURL *urlGoogleRouteAPI = [NSURL URLWithString:strGoogleRouteAPI];
         
         [self dataWithURL:urlGoogleRouteAPI completion:^(NSInteger type, id data, NSError *error) {
@@ -294,7 +294,7 @@
         return;
     }
     
-    NSString *encodedValue = [strGoogleRouteAPI stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *encodedValue = [strGoogleRouteAPI stringByAddingPercentEncodingWithAllowedCharacters :[NSCharacterSet URLQueryAllowedCharacterSet]];
     NSURL *urlGoogleRouteAPI = [NSURL URLWithString:encodedValue];
     
     [self dataWithURL:urlGoogleRouteAPI completion:^(NSInteger type, id data, NSError *error) {

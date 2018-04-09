@@ -358,17 +358,17 @@ CLLocationManagerDelegate
     
     return nil;
 }
-
-- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay> )overlay {
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
     if ([overlay isKindOfClass:[MKPolyline class]]) {
-        MKPolylineView *lineview = [[MKPolylineView alloc] initWithOverlay:overlay];
+        
+        MKPolylineRenderer *lineview = [[MKPolylineRenderer alloc] initWithOverlay:overlay];
         lineview.strokeColor = RouteLineColor;
         lineview.lineWidth = RouteLineWidth;
         return lineview;
     }
     else if([overlay isKindOfClass:[MKCircle class]]) {
         // Create the view for the radius overlay.
-        MKCircleView *circleView = [[MKCircleView alloc] initWithOverlay:overlay];
+        MKCircleRenderer *circleView = [[MKCircleRenderer alloc] initWithOverlay:overlay];
         circleView.strokeColor = [UIColor redColor];
         circleView.fillColor = [UIColor clearColor];
         circleView.lineWidth = 3.0;
@@ -377,6 +377,25 @@ CLLocationManagerDelegate
     
     return nil;
 }
+//- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay> )overlay {
+//    if ([overlay isKindOfClass:[MKPolyline class]]) {
+//
+//        MKPolylineRenderer *lineview = [[MKPolylineRenderer alloc] initWithOverlay:overlay];
+//        lineview.strokeColor = RouteLineColor;
+//        lineview.lineWidth = RouteLineWidth;
+//        return lineview;
+//    }
+//    else if([overlay isKindOfClass:[MKCircle class]]) {
+//        // Create the view for the radius overlay.
+//        MKCircleRenderer *circleView = [[MKCircleRenderer alloc] initWithOverlay:overlay];
+//        circleView.strokeColor = [UIColor redColor];
+//        circleView.fillColor = [UIColor clearColor];
+//        circleView.lineWidth = 3.0;
+//        return circleView;
+//    }
+//
+//    return nil;
+//}
 
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
 {
@@ -838,6 +857,19 @@ CLLocationManagerDelegate
             [self.mapAnnotations addObject:info];
         }
         
+        double distance = 3 * self.mapAnnotations.count / 2.0;
+        double radiansBetweenAnnotations = (M_PI * 2) / self.mapAnnotations.count;
+        
+        for (int i = 0; i < self.mapAnnotations.count; i++) {
+            
+            double heading = radiansBetweenAnnotations * i;
+            CLLocation *location = ((AnnotationInfo *)self.mapAnnotations[i]).location;
+            CLLocation *newCoordinate = [self calculateCoordinateFrom:location.coordinate.longitude latitude: location.coordinate.latitude onBearing:heading atDistance:distance];
+            
+            AnnotationInfo  *annotation = self.mapAnnotations[i];
+            annotation.location = newCoordinate;
+        }
+       
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.arrAnnotationViews removeAllObjects];
             [self.mapShowView addAnnotations:mapAnnotations];
@@ -873,6 +905,19 @@ CLLocationManagerDelegate
         NSMutableArray *arrAnnotations = [aAnnotations mutableCopy];
         for (AnnotationInfo *info in arrAnnotations) {
             [self.mapAnnotations addObject:info];
+        }
+
+        double distance = 3 * self.mapAnnotations.count / 2.0;
+        double radiansBetweenAnnotations = (M_PI * 2) / self.mapAnnotations.count;
+        
+        for (int i = 0; i < self.mapAnnotations.count; i++) {
+            
+            double heading = radiansBetweenAnnotations * i;
+            CLLocation *location = ((AnnotationInfo *)self.mapAnnotations[i]).location;
+            CLLocation *newCoordinate = [self calculateCoordinateFrom:location.coordinate.longitude latitude: location.coordinate.latitude onBearing:heading atDistance:distance];
+            
+            AnnotationInfo  *annotation = self.mapAnnotations[i];
+            annotation.location = newCoordinate;
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -917,5 +962,19 @@ CLLocationManagerDelegate
         [lcoationRepeatTimer invalidate];
         lcoationRepeatTimer = nil;
     }
+}
+
+- (CLLocation *)calculateCoordinateFrom:(double)longitude latitude:(double)latitude onBearing:(double)bearingInRadians atDistance:(double)distanceInMetres {
+    
+    double coordinateLatitudeInRadians = latitude * M_PI / 180;
+    double coordinateLongitudeInRadians = longitude * M_PI / 180;
+    
+    double distanceComparedToEarth = distanceInMetres / 6378100;
+    
+    double resultLatitudeInRadians = asin(sin(coordinateLatitudeInRadians) * cos(distanceComparedToEarth) + cos(coordinateLatitudeInRadians) * sin(distanceComparedToEarth) * cos(bearingInRadians));
+    double resultLongitudeInRadians = coordinateLongitudeInRadians + atan2(sin(bearingInRadians) * sin(distanceComparedToEarth) * cos(coordinateLatitudeInRadians), cos(distanceComparedToEarth) - sin(coordinateLatitudeInRadians) * sin(resultLatitudeInRadians));
+    
+    CLLocation *result = [[CLLocation alloc] initWithLatitude:resultLatitudeInRadians * 180 / M_PI longitude:resultLongitudeInRadians * 180 / M_PI];
+    return result;
 }
 @end
