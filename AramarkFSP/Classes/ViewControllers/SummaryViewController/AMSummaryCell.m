@@ -90,6 +90,7 @@
     NSString *woNumber = order.woNumber;
     NSString *woMEI = @" ";
     NSString *woName = [@" " stringByAppendingString:order.accountName];
+    //NSString *woName = [@" " stringByAppendingString:order.accountName == nil ? @"Bench" : order.accountName];
     NSString *woType = [NSString stringWithFormat:@"  [%@]",MyLocal(order.woType)];
     
     woTitleString = [woTitleString stringByAppendingString:woNumber];

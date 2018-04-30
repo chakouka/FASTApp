@@ -260,8 +260,34 @@
             
             if(isBenchTech) {
                 //bkk 9/2/2016 - Move to Warehouse
+                
+                //bkk 20180413
+                //untranslate French back to English for sending Condition__c
+                NSString *unTranslated = @"";
+                
+                if ([assetReq.moveToWarehouse isEqualToString:@"En fonctionne"])
+                {
+                    unTranslated = @"Working";
+                }
+                
+                if ([assetReq.moveToWarehouse isEqualToString:@"Ne fonctionne pas"])
+                {
+                    unTranslated = @"Not Working";
+                }
+                
+                if ([assetReq.moveToWarehouse isEqualToString:@"Manquant"])
+                {
+                    unTranslated = @"Missing";
+                }
+                
+                if ([assetReq.moveToWarehouse isEqualToString:@"Trouvée"])
+                {
+                    unTranslated = @"Found";
+                }
+                
+                //If we've untranslated French to English, use the unTranslated string, else use assetReq.moveToWharehouse
                 if (assetReq.moveToWarehouse) {
-                    [assetReqDict setObject:assetReq.moveToWarehouse forKey:@"Condition__c"];
+                    [assetReqDict setObject: unTranslated.length > 0 ? unTranslated : assetReq.moveToWarehouse forKey:@"Condition__c"];
                     if([assetReq.status isEqualToString: MyLocal(@"Found")]  && ([assetReq.moveToWarehouse isEqualToString:MyLocal(@"Working")] || [assetReq.moveToWarehouse isEqualToString:MyLocal(@"Not Working")]))
                     {
                         [assetReqDict setObject:@"True" forKey:@"Return_to_Warehouse__c"];//Flag for Shobha - unnecessary
