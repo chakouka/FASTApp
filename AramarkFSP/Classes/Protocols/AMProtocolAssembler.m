@@ -288,7 +288,7 @@
                 //If we've untranslated French to English, use the unTranslated string, else use assetReq.moveToWharehouse
                 if (assetReq.moveToWarehouse) {
                     [assetReqDict setObject: unTranslated.length > 0 ? unTranslated : assetReq.moveToWarehouse forKey:@"Condition__c"];
-                    if([assetReq.status isEqualToString: MyLocal(@"Found")]  && ([assetReq.moveToWarehouse isEqualToString:MyLocal(@"Working")] || [assetReq.moveToWarehouse isEqualToString:MyLocal(@"Not Working")]))
+                    if([MyLocal(assetReq.status) isEqualToString: MyLocal(@"Found")]  && ([assetReq.moveToWarehouse isEqualToString:MyLocal(@"Working")] || [assetReq.moveToWarehouse isEqualToString:MyLocal(@"Not Working")]))
                     {
                         [assetReqDict setObject:@"True" forKey:@"Return_to_Warehouse__c"];//Flag for Shobha - unnecessary
                     }
