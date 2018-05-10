@@ -1183,7 +1183,7 @@
 	<key>Picked Up By:</key>
 	<string>Ramassé par:</string>
 	<key>Picked Up Status:</key>
-	<string>Le statut du fait de rammasser:</string>
+	<string>Statut Ramassé</string>
 	<key>Pick Up Notes:</key>
 	<string>Notes sur le fait de rammasser:</string>
 	<key>REPAIR NTE:</key>
@@ -1236,5 +1236,7 @@
 	<string>Annuler et ferrailler</string>
 	<key>Equipment Cleaned</key>
 	<string>Équipement nettoyé</string>
+	<key>Are you sure you want to scrap?</key>
+	<string>Êtes-vous sûr de vouloir supprimer?</string>
 </dict>
 </plist>
