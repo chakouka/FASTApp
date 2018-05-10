@@ -341,7 +341,7 @@ AMPopoverSelectTableViewControllerDelegate
 
 - (IBAction)clickScrapCancelBtn:(UIButton *)sender {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [UIAlertView showWithTitle:MyLocal(@"Scrap") message:MyLocal(@"Are you sure you want to scrap?") cancelButtonTitle:@"No" otherButtonTitles:@[@"Yes"] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        [UIAlertView showWithTitle:MyLocal(@"Scrap") message:MyLocal(@"Are you sure you want to scrap?") cancelButtonTitle:MyLocal(@"No") otherButtonTitles:@[MyLocal(@"Yes")] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
             if (buttonIndex != 0)
             {
                 //OK

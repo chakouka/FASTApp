@@ -1232,6 +1232,8 @@
 	<string>Sélectionné &apos;Ne fonctionne pas&apos; Devez entrer une note de vérification</string>
 	<key>SCRAP</key>
 	<string>FERRAILLE</string>
+	<key>Scrap</key>
+	<string>FERRAILLE</string>
 	<key>CANCEL AND SCRAP</key>
 	<string>Annuler et ferrailler</string>
 	<key>Equipment Cleaned</key>
