@@ -1240,5 +1240,9 @@
 	<string>Équipement nettoyé</string>
 	<key>Are you sure you want to scrap?</key>
 	<string>Êtes-vous sûr de vouloir supprimer?</string>
+	<key>Working/Not Working</key>
+	<string>En fonctionne/Ne fonctionne pas</string>
+	<key>Is equipment being returned in working condition?</key>
+	<string>L&apos;équipement est-il retourné en état de fonctionnement?</string>
 </dict>
 </plist>
