@@ -85,7 +85,7 @@
 
 	NSMutableDictionary *dic2 = [NSMutableDictionary dictionary];
 	[dic2 setObject:[NSNumber numberWithInteger:AMCheckoutCellType_Points_Check_2] forKey:KEY_OF_CELL_TYPE];
-	[dic2 setObject:MyLocal(@"Inspected tubing for any potential leaks ?") forKey:KEY_OF_QUESTION];
+	[dic2 setObject:MyLocal(@"Inspected waterline, tubing and waterblock for any potential leaks?") forKey:KEY_OF_QUESTION];
 	[dic2 setObject:[NSNumber numberWithBool:[aWorkOrder.inspectedTubing boolValue]] forKey:KEY_OF_CHECK_STATUS];
 	[self.arrPointsInfos addObject:dic2];
 

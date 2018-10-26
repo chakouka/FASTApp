@@ -496,8 +496,8 @@
 	<string>heures</string>
 	<key>Ice</key>
 	<string>Glace</string>
-	<key>Inspected tubing for any potential leaks ?</key>
-	<string>Tuyaux inspectés pour fuites potentielles ?</string>
+	<key>Inspected waterline, tubing and waterblock for any potential leaks?</key>
+	<string>Inspecter la filière, le tuyau et l’arrêt d’eau pour tout fuit potentiel?</string>
 	<key>Invoice</key>
 	<string>Facture</string>
 	<key>invoice Code</key>

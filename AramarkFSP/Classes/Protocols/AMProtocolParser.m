@@ -855,6 +855,13 @@
     parsedWO.toLocationName = [dict valueForKeyPathWithNullToNil:@"To_Location__r.Name"];
     parsedWO.productName = [dict valueForKeyPathWithNullToNil:@"Product__r.Name"];
     
+    //bkk added 20180912 PM 000462
+    subDict = [dict objectForKey:@"Service_Schedule__r"];
+    if(subDict)
+    {
+        parsedWO.pmPrice = [self objectByTransfingNullToNilWithDict:subDict allKeys:[subDict allKeys] andKey:@"PM_Price__c"];
+    }
+    
     NSString *estimatedWorkDateStr = [dict valueForKeyPathWithNullToNil:@"Estimated_Work_Date__c"];
     if ([estimatedWorkDateStr length] > 0) {
         parsedWO.estimatedDate = [_dateFormatter dateFromString:estimatedWorkDateStr];

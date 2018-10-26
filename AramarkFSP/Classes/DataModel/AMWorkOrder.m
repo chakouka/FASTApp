@@ -67,6 +67,7 @@
 @synthesize ownerName;
 @synthesize toWorkLocation;
 @synthesize lastServiceDate;
+@synthesize pmPrice;
 
 - (NSString *)description
 {
@@ -138,6 +139,7 @@
     newWordOrder.createdByName = self.createdByName;
     newWordOrder.ownerName = self.ownerName;
     newWordOrder.lastServiceDate = self.lastServiceDate;
+    newWordOrder.pmPrice = self.pmPrice;//bkk added 20180912 PM 000462
     return newWordOrder;
 }
 

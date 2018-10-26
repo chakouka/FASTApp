@@ -456,10 +456,10 @@ AMWorkOrderViewControllerDelegate
     
     NSMutableDictionary *dicRepairCode = [[self dataWithType:AMCheckoutCellType_Checkout_RepairCode] objectForKey:KEY_OF_CELL_DATA];
     
-//    if (![self.workOrder.woType isEqualToString:TEXT_OF_PM] && [[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:MyLocal(@"Ice Machine PM")] && self.arrPMItems.count == 0) {
-//        [AMUtilities showAlertWithInfo:MyLocal(@"Please add a Preventative Maintenance Item")];
-//        return;
-//    }
+    if (![self.workOrder.woType isEqualToString:TEXT_OF_PM] && [[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] isEqualToString:MyLocal(@"Ice Machine PM")] && self.arrPMItems.count == 0) {
+        [AMUtilities showAlertWithInfo:MyLocal(@"Please add a Preventative Maintenance Item")];
+        return;
+    }
     
     if ([[dicRepairCode objectForKey:KEY_OF_REPAIR_CODE] length] == 0) {
         [AMUtilities showAlertWithInfo:MyLocal(@"Please Input Repair Code")];
@@ -726,18 +726,22 @@ AMWorkOrderViewControllerDelegate
             {
                 
                 
-                
-                if (![arrInvoiceItems containsObject:invoice]) {
-                    invoice.price = [NSNumber numberWithFloat:[invoice.unitPrice floatValue] * [invoice.quantity floatValue]];
-                    invoice.unitPrice = invoice.unitPrice;
+                //BKK - TODO:2018  Here is the code that needs to be changed for PM
+                //000462 Change the logic below to add each PM at the given QTY
+                //and amount to the array below.  No need for the else part at all
+                //and the logic that is in the if part doesn't need to be in an if block at all.
+                //also change to make it use the WorkOrder's pmPrice
+//                if (![arrInvoiceItems containsObject:invoice]) {
+                    invoice.price = [NSNumber numberWithFloat:[workOrder.pmPrice floatValue] * [invoice.quantity floatValue]];
+                    invoice.unitPrice = workOrder.pmPrice;
                     if (invoice.quantity && [invoice.quantity intValue] != 0) {
                         [arrInvoiceItems addObject:invoice];
                     }
-                } else {
-                    int index = (int)[arrInvoiceItems indexOfObject:invoice];
-                    NSInteger qtySum = [((AMInvoice *)[arrInvoiceItems objectAtIndex:index]).quantity integerValue] + [invoice.quantity integerValue];
-                    [(AMInvoice *)[arrInvoiceItems objectAtIndex:index] setQuantity: [NSNumber numberWithInteger: qtySum]];
-                }
+//                } else {
+//                    int index = (int)[arrInvoiceItems indexOfObject:invoice];
+//                    NSInteger qtySum = [((AMInvoice *)[arrInvoiceItems objectAtIndex:index]).quantity integerValue] + [invoice.quantity integerValue];
+//                    [(AMInvoice *)[arrInvoiceItems objectAtIndex:index] setQuantity: [NSNumber numberWithInteger: qtySum]];
+//                }
                 
             }
         }
@@ -1148,7 +1152,7 @@ AMWorkOrderViewControllerDelegate
                 {
                     invoce.filterID = customerPrice.productID;
                     invoce.filterName = customerPrice.productName;
-                    invoce.unitPrice = customerPrice.price;
+                    invoce.unitPrice = workOrder.pmPrice;//BKK 20180912 000462 use the workorder.pmPrice instead now!!! customerPrice.price;
                     invoce.quantity = @1;
                     
                     [arrPMItems addObject:invoce];
@@ -1272,7 +1276,7 @@ AMWorkOrderViewControllerDelegate
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	id checkoutItem = [self.arrCheckoutInfos objectAtIndex:indexPath.section];
     
-	switch ([[checkoutItem objectForKey:KEY_OF_CELL_TYPE] integerValue]) {
+	switch  ([[checkoutItem objectForKey:KEY_OF_CELL_TYPE] integerValue]) {
 		case AMCheckoutCellType_Checkout_RepairCode :
         {
             AMRepairTableViewCell *cell = (AMRepairTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"AMRepairTableViewCell"];
@@ -1479,8 +1483,10 @@ AMWorkOrderViewControllerDelegate
             
             AMInvoice *invoice = [arrPMItems objectAtIndex:indexPath.row];
             
+            //bkk 20180912 000462 Change below to use the pmPrice that comes across on the Workorder
+            //cell.textFieldPMPrice.text = invoice.unitPrice ? [NSString stringWithFormat:@"$%.02f", [invoice.unitPrice floatValue]] : TEXT_OF_NULL;
             
-            cell.textFieldPMPrice.text = invoice.unitPrice ? [NSString stringWithFormat:@"$%.02f", [invoice.unitPrice floatValue]] : TEXT_OF_NULL;
+            cell.textFieldPMPrice.text = workOrder.pmPrice ? [NSString stringWithFormat:@"$%.02f", [workOrder.pmPrice floatValue]] : TEXT_OF_NULL;
             [cell.textFieldPMPrice setUserInteractionEnabled:NO];
             
             cell.textFieldPartsName.text = invoice.filterName;
@@ -1646,7 +1652,7 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
         case AMCheckoutCellType_Checkout_Filter_Title:
         case AMCheckoutCellType_Checkout_Part_Title:
         case AMCheckoutCellType_Checkout_InvoiceCode_Title:
-        //case AMCheckoutCellType_Checkout_PM_Title:
+        case AMCheckoutCellType_Checkout_PM_Title:
 		{
 			return 1;
 		}
@@ -1666,11 +1672,11 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
 			return [arrPartItems count];
 		}
             break;
-//        case AMCheckoutCellType_Checkout_PM_Item:
-//        {
-//            return [arrPMItems count];
-//        }
-//            break;
+        case AMCheckoutCellType_Checkout_PM_Item:
+        {
+            return [arrPMItems count];
+        }
+            break;
 	}
     
     return 0;

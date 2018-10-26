@@ -328,8 +328,8 @@ AMPopoverSelectTableViewControllerDelegate
 -(NSMutableArray *)repairCodes
 {
     return       [NSMutableArray arrayWithObjects:
-      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Shop Work Completed"),kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"Shop Work Completed")},
-      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Equipment Cleaned"),kAMPOPOVER_DICTIONARY_KEY_VALUE : MyLocal(@"Equipment Cleaned")},
+      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Shop Work Completed"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Shop Work Completed"},
+      @{ kAMPOPOVER_DICTIONARY_KEY_INFO : MyLocal(@"Equipment Cleaned"),kAMPOPOVER_DICTIONARY_KEY_VALUE : @"Equipment Cleaned"},
       nil];
 }
 #pragma mark -

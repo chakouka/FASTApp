@@ -72,5 +72,6 @@
 @dynamic workOrderDescription;
 @dynamic woType;
 @dynamic lastServiceDate;
+@dynamic pmPrice;//BKK 20180912 000462
 
 @end

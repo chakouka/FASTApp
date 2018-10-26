@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16C67" minimumToolsVersion="Xcode 4.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17F77" minimumToolsVersion="Xcode 4.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="AMDBAccount" representedClassName="AMDBAccount" syncable="YES">
         <attribute name="accountID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="atRisk" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -426,6 +426,7 @@
         <attribute name="ownerID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ownerName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parkingDetail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pmPrice" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="posID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="preferrTimeFrom" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="preferrTimeTo" optional="YES" attributeType="String" syncable="YES"/>
@@ -476,6 +477,6 @@
         <element name="AMDBRecordType" positionX="-369" positionY="135" width="128" height="88"/>
         <element name="AMDBReport" positionX="-369" positionY="135" width="128" height="135"/>
         <element name="AMDBUser" positionX="-405" positionY="347" width="128" height="225"/>
-        <element name="AMDBWorkOrder" positionX="-585" positionY="360" width="128" height="958"/>
+        <element name="AMDBWorkOrder" positionX="-585" positionY="360" width="128" height="975"/>
     </elements>
 </model>

@@ -98,6 +98,7 @@
     dbWO.productName = WO.productName;
     dbWO.estimatedWorkDate = WO.estimatedDate;
     dbWO.lastServiceDate = WO.lastServiceDate;
+    dbWO.pmPrice = WO.pmPrice;//BKK 20180912 000462
 }
 
 - (id)transferDBObjectToObject:(id)dbObject
@@ -166,6 +167,7 @@
     WO.productName = dbWO.productName;
     WO.estimatedDate = dbWO.estimatedWorkDate;
     WO.lastServiceDate = dbWO.lastServiceDate;
+    WO.pmPrice = dbWO.pmPrice;//BKK 20180912 000462
     
     return WO;
 }
