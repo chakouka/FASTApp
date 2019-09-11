@@ -77,13 +77,49 @@ static NSString *AttachmentCellIdentifier = @"AttachmentTableViewCell";
         newWO.createdByName = [USER_DEFAULT objectForKey:kAMLoggedUserNameKey];
         newWO.createdBy = [USER_DEFAULT objectForKey:USRDFTSELFUID];
         newWO.assignToMyself = [NSNumber numberWithBool:YES];
-        if (![newWO.woType isEqualToLocalizedString:kAMWORK_ORDER_TYPE_REPAIR]
+        
+		if (![newWO.woType isEqualToLocalizedString:kAMWORK_ORDER_TYPE_REPAIR]){
+            newWO.woType = kAMWORK_ORDER_TYPE_REPAIR;
+        }
+        else if (![newWO.woType isEqualToLocalizedString:kAMWORK_ORDER_TYPE_REMOVAL]){
+            newWO.woType = kAMWORK_ORDER_TYPE_REMOVAL;
+        }
+        else if (![newWO.woType isEqualToLocalizedString:kAMWORK_ORDER_TYPE_MOVE]){
+            newWO.woType = kAMWORK_ORDER_TYPE_MOVE;
+        }
+        else if (![newWO.woType isEqualToLocalizedString:kAMWORK_ORDER_TYPE_SWAP]){
+            newWO.woType = kAMWORK_ORDER_TYPE_SWAP;
+        }
+        else if (![newWO.woType isEqualToLocalizedString:kAMWORK_ORDER_TYPE_EXCHANGE]){
+            newWO.woType = kAMWORK_ORDER_TYPE_EXCHANGE;
+        }
+        else if (![newWO.woType isEqualToLocalizedString:kAMWORK_ORDER_TYPE_INSTALL]){
+            newWO.woType = kAMWORK_ORDER_TYPE_INSTALL;
+        }
+        else if (![newWO.woType isEqualToLocalizedString:kAMWORK_ORDER_TYPE_PM]){
+            newWO.woType = kAMWORK_ORDER_TYPE_PM;
+        }
+        else if (![newWO.woType isEqualToLocalizedString:kAMWORK_ORDER_TYPE_ASSETVERIFICATION]){
+            newWO.woType = kAMWORK_ORDER_TYPE_ASSETVERIFICATION;
+        }
+        else if (![newWO.woType isEqualToLocalizedString:kAMWORK_ORDER_TYPE_SITESURVEY]){
+            newWO.woType = kAMWORK_ORDER_TYPE_SITESURVEY;
+        }
+
+
+
+
+		/*
+		if (![newWO.woType isEqualToLocalizedString:kAMWORK_ORDER_TYPE_REPAIR]
             && ![newWO.woType isEqualToLocalizedString:kAMWORK_ORDER_TYPE_MOVE]
             && ![newWO.woType isEqualToLocalizedString:kAMWORK_ORDER_TYPE_REMOVAL]
             && ![newWO.woType isEqualToLocalizedString:kAMWORK_ORDER_TYPE_SWAP])
         {
             newWO.woType = kAMWORK_ORDER_TYPE_REPAIR;
         }
+		*/
+
+
         newWO.recordTypeID = [[AMLogicCore sharedInstance] getRecordTypeIdByName:newWO.woType forObject:RECORD_TYPE_OF_WORK_ORDER];
         [self setupWorkOrder:newWO];
     }
