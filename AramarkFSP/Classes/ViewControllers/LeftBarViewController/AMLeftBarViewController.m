@@ -8,6 +8,7 @@
 
 #import "AMLeftBarViewController.h"
 #import "AMLogicCore.h"
+#import <MessageUI/MessageUI.h>
 
 @interface AMLeftBarViewController ()
 {
@@ -24,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btn5;
 @property (weak, nonatomic) IBOutlet UIButton *btn6;
 @property (weak, nonatomic) IBOutlet UIButton *btn7;
+@property (weak, nonatomic) IBOutlet UIButton  *btn8;
 @property (weak, nonatomic) IBOutlet UIImageView *benchLineImageView;
 
 @property (strong, nonatomic) UIButton *selectedButtn;
@@ -353,7 +355,51 @@
     }];
 }
 
+-(IBAction)contactSupport:(UIButton *)button{
+    [self createTicket];
+}
+
 #pragma mark -
+
+-(void) createTicket {
+    if ([MFMailComposeViewController canSendMail]) {
+        NSArray *cachePaths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+        NSString * CachePath = [[cachePaths objectAtIndex:0] stringByAppendingPathComponent:@"Cache"];
+        
+        
+        if (![[NSFileManager defaultManager] fileExistsAtPath:CachePath]) {
+            [[NSFileManager defaultManager] createDirectoryAtPath:CachePath
+                                      withIntermediateDirectories:YES
+                                                       attributes:nil
+                                                            error:NULL];
+        }
+        
+        MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
+        
+        picker.mailComposeDelegate = self;
+        [picker setSubject:[NSString stringWithFormat:@"FAST App Support Ticket"]];
+
+        NSArray *supportEmail = [NSArray arrayWithObjects:@"rsgsalesforce@aramark.com",nil];
+        [picker setToRecipients:supportEmail];
+        
+        NSArray *ccAuto = [NSArray arrayWithObjects:@"",nil];
+        [picker setCcRecipients:ccAuto];
+        
+        
+        NSString *emailBody = [NSString stringWithFormat:@"<html><body><p>[PLEASE TYPE THE ISSUE HERE]</p></body></html>"];
+        [picker setMessageBody:emailBody isHTML:YES];
+        
+        [self presentModalViewController:picker animated:YES];
+        
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERROR" message:@"You don't have email set up on this tablet! Set up Aramark email first." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+}
+
+-(void)mailComposeController:(MFMailComposeViewController *) controller didFinishWithResult:(MFMailComposeResult)result error:(nullable NSError *)error{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void)userInteractionEnabled:(BOOL)enable
 {

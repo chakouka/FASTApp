@@ -160,6 +160,11 @@ typedef NS_ENUM (NSInteger, PopViewType) {
         return;
     }
     
+    if ([[self.dicContactInfo objectForKey:KEY_OF_CONTACT_EMAIL] length] == 0) {
+        [AMUtilities showAlertWithInfo:MyLocal(@"Please Input Email")];
+        return;
+    }
+    
     if ([[self.dicContactInfo objectForKey:KEY_OF_CONTACT_EMAIL] length] != 0 && ![AMUtilities isValidEmailValueTyped:[self.dicContactInfo objectForKey:KEY_OF_CONTACT_EMAIL]]) {
         [AMUtilities showAlertWithInfo:MyLocal(@"Please Input Valid Email Address")];
         return;

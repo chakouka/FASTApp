@@ -160,6 +160,8 @@
 		62EC4C56197F9FBE0025343E /* AMSummaryFutureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62EC4C54197F9FBE0025343E /* AMSummaryFutureCell.m */; };
 		62EC4C57197F9FBE0025343E /* AMSummaryFutureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62EC4C55197F9FBE0025343E /* AMSummaryFutureCell.xib */; };
 		7C4043D11AE56C390079FC8E /* AMNewContactTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4043D01AE56C390079FC8E /* AMNewContactTest.m */; };
+		7C4D614A2437AD6D0096274A /* contact support.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C4D61492437AD6C0096274A /* contact support.png */; };
+		7C4D614C2437B0840096274A /* EmailSupport in Resources */ = {isa = PBXBuildFile; fileRef = 7C4D614B2437B0830096274A /* EmailSupport */; };
 		7C50CE041F27D8A60008D932 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C50CE031F27D8A60008D932 /* libsqlite3.tbd */; };
 		7C50CFB01F2916470008D932 /* libMKNetworkKit-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C50CEEB1F2916470008D932 /* libMKNetworkKit-iOS.a */; };
 		7C50CFB11F2916470008D932 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C50CEED1F2916470008D932 /* libcrypto.a */; };
@@ -984,6 +986,8 @@
 		62EC4C54197F9FBE0025343E /* AMSummaryFutureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMSummaryFutureCell.m; path = SummaryViewController/AMSummaryFutureCell.m; sourceTree = "<group>"; };
 		62EC4C55197F9FBE0025343E /* AMSummaryFutureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AMSummaryFutureCell.xib; path = SummaryViewController/AMSummaryFutureCell.xib; sourceTree = "<group>"; };
 		7C4043D01AE56C390079FC8E /* AMNewContactTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMNewContactTest.m; sourceTree = "<group>"; };
+		7C4D61492437AD6C0096274A /* contact support.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contact support.png"; sourceTree = "<group>"; };
+		7C4D614B2437B0830096274A /* EmailSupport */ = {isa = PBXFileReference; lastKnownFileType = file; path = EmailSupport; sourceTree = "<group>"; };
 		7C50CE031F27D8A60008D932 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		7C50CEE51F2916470008D932 /* MKNetworkEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKNetworkEngine.h; sourceTree = "<group>"; };
 		7C50CEE61F2916470008D932 /* MKNetworkKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKNetworkKit.h; sourceTree = "<group>"; };
@@ -3916,6 +3920,8 @@
 			isa = PBXGroup;
 			children = (
 				7C99AB9D1F3BA7CC0062D83C /* bench-fr@2x.png */,
+				7C4D61492437AD6C0096274A /* contact support.png */,
+				7C4D614B2437B0830096274A /* EmailSupport */,
 				7CD320641D48033600AF15F1 /* bench@2x.png */,
 				7C55F2821A8954DA0081A4B0 /* down.png */,
 				7C55F2831A8954DA0081A4B0 /* up.png */,
@@ -4556,6 +4562,7 @@
 					};
 					824A9DD41724E16400C9BD79 = {
 						DevelopmentTeam = 2YZ2C5NN5S;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -4564,6 +4571,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				fr,
 			);
@@ -4801,6 +4809,7 @@
 				D0912E4919D54F0E00E5F6FA /* new-case-fr@2x.png in Resources */,
 				D0912E7119D54F0E00E5F6FA /* invoice_on-fr.png in Resources */,
 				D0B79E6E191A228D00FD1152 /* arrow-down.png in Resources */,
+				7C4D614C2437B0840096274A /* EmailSupport in Resources */,
 				D0912E6019D54F0E00E5F6FA /* account_1-fr.png in Resources */,
 				7C55F2FB1A8A582F0081A4B0 /* TBView.xib in Resources */,
 				D0B79E83191A228D00FD1152 /* home-icon.png in Resources */,
@@ -4814,6 +4823,7 @@
 				D0344577192C706F00C3E18C /* AMVerificationTableViewCell.xib in Resources */,
 				D02F3353191CC5F100CF9006 /* cloud-sync1@2x.png in Resources */,
 				D0B79E7C191A228D00FD1152 /* clicked-sate-button.png in Resources */,
+				7C4D614A2437AD6D0096274A /* contact support.png in Resources */,
 				02AC9EF319AD8EAD00527141 /* Aramark_Landscape_iPad@2x.png in Resources */,
 				D0912E5E19D54F0E00E5F6FA /* 10-point_ON-fr.png in Resources */,
 				D06E892A190F3DE20083D9B7 /* AMOrderHistoryViewController.xib in Resources */,
@@ -5484,7 +5494,9 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0.8;
+				DEVELOPMENT_TEAM = 2YZ2C5NN5S;
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AramarkFSP/AramarkFSP-Prefix.pch";
@@ -5527,6 +5539,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "net.aramark.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -5539,7 +5552,9 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0.8;
+				DEVELOPMENT_TEAM = 2YZ2C5NN5S;
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AramarkFSP/AramarkFSP-Prefix.pch";
@@ -5583,6 +5598,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "net.aramark.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				VERSIONING_SYSTEM = "apple-generic";

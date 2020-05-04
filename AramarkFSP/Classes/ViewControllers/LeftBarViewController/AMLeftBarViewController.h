@@ -44,5 +44,6 @@ typedef NS_ENUM(NSInteger, SYNCType) {
 
 - (void)userInteractionEnabled:(BOOL)enable;
 
+
 @end
 

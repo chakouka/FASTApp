@@ -474,6 +474,10 @@ UISearchBarDelegate
 		workOrder = [self.localWorkOrders objectAtIndex:indexPath.row];
 	}
     
+    if(workOrder){
+        workOrder.woCase = [[AMLogicCore sharedInstance] getCaseInfoByID:workOrder.caseID];
+    }
+    
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
 	CGSize titleSize = [workOrder.accountName boundingRectWithSize:CGSizeMake(MAXFLOAT, 20) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{ NSFontAttributeName: cell.label_Title.font } context:nil].size;
@@ -496,7 +500,7 @@ UISearchBarDelegate
 	cell.label_Title.text = workOrder.accountName;
 	cell.label_Type.text = strType;
 	cell.label_Contact.text = workOrder.contact;
-	cell.label_OpenSince.text = [AMUtilities daysFromDate:workOrder.createdDate ToDate:[NSDate date]];
+	cell.label_OpenSince.text = [AMUtilities daysFromDate:workOrder.woCase.createdDate ToDate:[NSDate date]];
 	cell.label_Location.text = workOrder.workLocation;
 	cell.label_Distance.text = [workOrder.nextDistance length] == 0 ? MyLocal(@"1 ft") : workOrder.nextDistance;
 	cell.label_Time.text = [workOrder.nextTime length] == 0 ?  MyLocal(@"1 min"): workOrder.nextTime;
