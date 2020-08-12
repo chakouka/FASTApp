@@ -2210,152 +2210,152 @@ UIGestureRecognizerDelegate
 
 - (void)requestRoutesTimeDistanceWithList:(NSMutableArray *)aList
 {
-    NSMutableArray *arrTemp = [aList mutableCopy];
-    NSMutableArray *arrInfos = [NSMutableArray array];
-    for (NSInteger i = 1; i < [arrTemp count]; i++) {
-        AMWorkOrder *workorderFrom = [arrTemp objectAtIndex:(i-1)];
-        AMWorkOrder *workorderTo = [arrTemp objectAtIndex:i];
-        GoogleRouteInfo *routeInfo = [[GoogleRouteInfo alloc] init];
-        routeInfo.gId = workorderTo.woID;
-        routeInfo.gFrom = [[CLLocation alloc] initWithLatitude:[workorderFrom.latitude floatValue] longitude:[workorderFrom.longitude floatValue]];
-        routeInfo.gTo = [[CLLocation alloc] initWithLatitude:[workorderTo.latitude floatValue] longitude:[workorderTo.longitude floatValue]];
-        routeInfo.gMode = @"driving";
-        [arrInfos addObject:routeInfo];
-    }
-    
-    if ([arrInfos count] == 0) {
-        return;
-    }
-    
-    AMWorkOrder *workorderFirst = [aList firstObject];
-    
-    GoogleRouteInfo *routeInfoFirst = [[GoogleRouteInfo alloc] init];
-    routeInfoFirst.gId = workorderFirst.woID;
-    routeInfoFirst.gFrom = self.routeView.currentLocation;
-    routeInfoFirst.gTo = [[CLLocation alloc] initWithLatitude:[workorderFirst.latitude floatValue] longitude:[workorderFirst.longitude floatValue]];
-    routeInfoFirst.gMode = @"driving";
-    
-    [arrInfos insertObject:routeInfoFirst atIndex:0];
-    
-    [[GoogleRouteManage sharedInstance] fetchRoutes:arrInfos completion:^(NSInteger type, id result, NSError *error) {
-        MAIN(^{
-            [self.orderListVC refreshTimeAndDistanceBySingleRequest:result];
-        });
-    }];
+//    NSMutableArray *arrTemp = [aList mutableCopy];
+//    NSMutableArray *arrInfos = [NSMutableArray array];
+//    for (NSInteger i = 1; i < [arrTemp count]; i++) {
+//        AMWorkOrder *workorderFrom = [arrTemp objectAtIndex:(i-1)];
+//        AMWorkOrder *workorderTo = [arrTemp objectAtIndex:i];
+//        GoogleRouteInfo *routeInfo = [[GoogleRouteInfo alloc] init];
+//        routeInfo.gId = workorderTo.woID;
+//        routeInfo.gFrom = [[CLLocation alloc] initWithLatitude:[workorderFrom.latitude floatValue] longitude:[workorderFrom.longitude floatValue]];
+//        routeInfo.gTo = [[CLLocation alloc] initWithLatitude:[workorderTo.latitude floatValue] longitude:[workorderTo.longitude floatValue]];
+//        routeInfo.gMode = @"driving";
+//        [arrInfos addObject:routeInfo];
+//    }
+//
+//    if ([arrInfos count] == 0) {
+//        return;
+//    }
+//
+//    AMWorkOrder *workorderFirst = [aList firstObject];
+//
+//    GoogleRouteInfo *routeInfoFirst = [[GoogleRouteInfo alloc] init];
+//    routeInfoFirst.gId = workorderFirst.woID;
+//    routeInfoFirst.gFrom = self.routeView.currentLocation;
+//    routeInfoFirst.gTo = [[CLLocation alloc] initWithLatitude:[workorderFirst.latitude floatValue] longitude:[workorderFirst.longitude floatValue]];
+//    routeInfoFirst.gMode = @"driving";
+//
+//    [arrInfos insertObject:routeInfoFirst atIndex:0];
+//
+//    [[GoogleRouteManage sharedInstance] fetchRoutes:arrInfos completion:^(NSInteger type, id result, NSError *error) {
+//        MAIN(^{
+//            [self.orderListVC refreshTimeAndDistanceBySingleRequest:result];
+//        });
+//    }];
 }
 
 - (void)requestRoutesWithList:(NSMutableArray *)aList Optimize:(BOOL)isOptimize
 {
-    if ([aList count] == 0) {
-        return;
-    }
-    
-     NSMutableArray *arrTemp = [aList mutableCopy];
-    
-    BACK(^{
-        
-        [requestQueue cancelAllOperations];
-
-        NSNumber *number = [NSNumber numberWithBool:isOptimize];
-        
-        NSMutableDictionary *dicInfo = [NSMutableDictionary dictionary];
-        [dicInfo setObject:arrTemp forKey:@"LIST"];
-        [dicInfo setObject:number forKey:@"OPTIMIZE"];
-        
-            NSInvocationOperation *theOp = [[NSInvocationOperation alloc]
-                                            initWithTarget:self
-                                            selector:@selector(myRequestTaskMethod:)
-                                            object:dicInfo];
-            
-        [requestQueue addOperation:theOp];
-    });
-}
-
-#pragma mark -
-
-- (void)myRequestTaskMethod:(id)Info {
-    
-    NSMutableArray *aList = [[Info objectForKey:@"LIST"] mutableCopy];
-    BOOL isOptimize = [[Info objectForKey:@"OPTIMIZE"] boolValue];
-    
-    NSMutableArray *arrInfos = [NSMutableArray array];
-    for (NSInteger i = 0; i < [aList count]; i++) {
-        AMWorkOrder *workorder = [aList objectAtIndex:i];
-        
-        GooglePointInfo *pointInfo = [[GooglePointInfo alloc] init];
-        pointInfo.gType = PointType_Noraml;
-        pointInfo.gId = workorder.woID;
-        pointInfo.gMode = @"driving";
-        pointInfo.gLocation = [[CLLocation alloc] initWithLatitude:[workorder.latitude floatValue] longitude:[workorder.longitude floatValue]];
-        
-        [arrInfos addObject:pointInfo];
-    }
-    
-    GooglePointInfo *pointInfo = [[GooglePointInfo alloc] init];
-    pointInfo.gType = PointType_Start;
-    pointInfo.gId = @"";
-    pointInfo.gMode = @"driving";
-    pointInfo.gLocation = self.routeView.currentLocation;
-    
-    [arrInfos insertObject:pointInfo atIndex:0];
-    
-    if ([arrInfos count] == 1) {
-        [self.routeView hiddenTip];
-        return;
-    }
-    
-    [[GoogleRouteManage sharedInstance] fetchPoints:arrInfos optimize:isOptimize completion:^(NSInteger type, id result, NSError *error) {
-        if (result) {
-            
-            NSMutableArray *arrPolyLine = [NSMutableArray array];
-            NSMutableArray *arrSort = [NSMutableArray array];
-            
-            for (GooglePointInfo *point in result) {
-                
-                if ([point.gPolyLine count] != 0) {
-                    [arrPolyLine addObjectsFromArray:point.gPolyLine];
-                }
-                
-                [arrSort addObject:point.gId];
-            }
-            
-            MAIN(^{
-                
-                if (isOptimize) {
-                    
-                    NSMutableArray *arrTemp = [[self.orderListVC sortWithMoveList:arrSort] mutableCopy];
-                    
-                    NSMutableArray *annotations = [NSMutableArray array];
-                    
-                    for (NSInteger i = 0; i < [arrTemp count]; i++) {
-                        [annotations addObject:[[AMInfoManage sharedInstance] covertAnnotationInfoFromLocalWorkOrderInfo:[arrTemp objectAtIndex:i] withIndex:(i + 1)]];
-                    }
-                    
-                    [self.orderListVC refreshOrderList:arrTemp];
-                    [self requestRoutesTimeDistanceWithList:arrTemp];
-                    [self.routeView refreshAnnotations:annotations];
-                }
-                
-                [self.orderListVC refreshTimeAndDistanceByRouteRequest:result];
-                
-                if ([arrPolyLine count] == 0) {
-                    [self.routeView showTip:MyLocal(@"Failed to get Google map route")];
-                }
-                else
-                {
-                    [self.routeView drawRoutesOnMap:arrPolyLine];
-                    [self.routeView hiddenTip];
-                }
-            });
-        }
-        else
-        {
-            MAIN(^{
-                [self.routeView showTip:MyLocal(@"Net Error, Failed to get Google map route")];
-            });
-
-        }
-    }];
+//    if ([aList count] == 0) {
+//        return;
+//    }
+//    
+//     NSMutableArray *arrTemp = [aList mutableCopy];
+//    
+//    BACK(^{
+//        
+//        [requestQueue cancelAllOperations];
+//
+//        NSNumber *number = [NSNumber numberWithBool:isOptimize];
+//        
+//        NSMutableDictionary *dicInfo = [NSMutableDictionary dictionary];
+//        [dicInfo setObject:arrTemp forKey:@"LIST"];
+//        [dicInfo setObject:number forKey:@"OPTIMIZE"];
+//        
+//            NSInvocationOperation *theOp = [[NSInvocationOperation alloc]
+//                                            initWithTarget:self
+//                                            selector:@selector(myRequestTaskMethod:)
+//                                            object:dicInfo];
+//            
+//        [requestQueue addOperation:theOp];
+//    });
+//}
+//
+//#pragma mark -
+//
+//- (void)myRequestTaskMethod:(id)Info {
+//    
+//    NSMutableArray *aList = [[Info objectForKey:@"LIST"] mutableCopy];
+//    BOOL isOptimize = [[Info objectForKey:@"OPTIMIZE"] boolValue];
+//    
+//    NSMutableArray *arrInfos = [NSMutableArray array];
+//    for (NSInteger i = 0; i < [aList count]; i++) {
+//        AMWorkOrder *workorder = [aList objectAtIndex:i];
+//        
+//        GooglePointInfo *pointInfo = [[GooglePointInfo alloc] init];
+//        pointInfo.gType = PointType_Noraml;
+//        pointInfo.gId = workorder.woID;
+//        pointInfo.gMode = @"driving";
+//        pointInfo.gLocation = [[CLLocation alloc] initWithLatitude:[workorder.latitude floatValue] longitude:[workorder.longitude floatValue]];
+//        
+//        [arrInfos addObject:pointInfo];
+//    }
+//    
+//    GooglePointInfo *pointInfo = [[GooglePointInfo alloc] init];
+//    pointInfo.gType = PointType_Start;
+//    pointInfo.gId = @"";
+//    pointInfo.gMode = @"driving";
+//    pointInfo.gLocation = self.routeView.currentLocation;
+//    
+//    [arrInfos insertObject:pointInfo atIndex:0];
+//    
+//    if ([arrInfos count] == 1) {
+//        [self.routeView hiddenTip];
+//        return;
+//    }
+//    
+//    [[GoogleRouteManage sharedInstance] fetchPoints:arrInfos optimize:isOptimize completion:^(NSInteger type, id result, NSError *error) {
+//        if (result) {
+//            
+//            NSMutableArray *arrPolyLine = [NSMutableArray array];
+//            NSMutableArray *arrSort = [NSMutableArray array];
+//            
+//            for (GooglePointInfo *point in result) {
+//                
+//                if ([point.gPolyLine count] != 0) {
+//                    [arrPolyLine addObjectsFromArray:point.gPolyLine];
+//                }
+//                
+//                [arrSort addObject:point.gId];
+//            }
+//            
+//            MAIN(^{
+//                
+//                if (isOptimize) {
+//                    
+//                    NSMutableArray *arrTemp = [[self.orderListVC sortWithMoveList:arrSort] mutableCopy];
+//                    
+//                    NSMutableArray *annotations = [NSMutableArray array];
+//                    
+//                    for (NSInteger i = 0; i < [arrTemp count]; i++) {
+//                        [annotations addObject:[[AMInfoManage sharedInstance] covertAnnotationInfoFromLocalWorkOrderInfo:[arrTemp objectAtIndex:i] withIndex:(i + 1)]];
+//                    }
+//                    
+//                    [self.orderListVC refreshOrderList:arrTemp];
+//                    [self requestRoutesTimeDistanceWithList:arrTemp];
+//                    [self.routeView refreshAnnotations:annotations];
+//                }
+//                
+//                [self.orderListVC refreshTimeAndDistanceByRouteRequest:result];
+//                
+//                if ([arrPolyLine count] == 0) {
+//                    [self.routeView showTip:MyLocal(@"Failed to get Google map route")];
+//                }
+//                else
+//                {
+//                    [self.routeView drawRoutesOnMap:arrPolyLine];
+//                    [self.routeView hiddenTip];
+//                }
+//            });
+//        }
+//        else
+//        {
+//            MAIN(^{
+//                [self.routeView showTip:MyLocal(@"Net Error, Failed to get Google map route")];
+//            });
+//
+//        }
+//    }];
 }
 
 - (void)userDefaultValueChanged:(NSNotification*)aNotification

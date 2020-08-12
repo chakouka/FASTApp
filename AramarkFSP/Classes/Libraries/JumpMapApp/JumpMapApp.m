@@ -21,7 +21,7 @@
     NSString *saddr = [NSString stringWithFormat:@"%f,%f", aOriginLocation.latitude, aOriginLocation.longitude];
     NSString *daddr = [NSString stringWithFormat:@"%f,%f", aDestinationLocation.latitude, aDestinationLocation.longitude];
     
-    NSString *urlStr = [NSString stringWithFormat:@"comgooglemaps://?saddr=%@&daddr=%@&directionsmode=driving",saddr,daddr];
+    NSString *urlStr = [NSString stringWithFormat:@"comgooglemaps://?saddr=%@&daddr=%@&directionsmode=driving&channel=jump_map_fast",saddr,daddr];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
 }
 
@@ -29,7 +29,7 @@
 {
     NSString *daddr = [NSString stringWithFormat:@"%f,%f", aDestinationLocation.latitude, aDestinationLocation.longitude];
     
-    NSString *urlStr = [NSString stringWithFormat:@"comgooglemaps://?daddr=%@&directionsmode=driving",daddr];
+    NSString *urlStr = [NSString stringWithFormat:@"comgooglemaps://?daddr=%@&directionsmode=driving&channel=jump_map_fast",daddr];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
 }
 

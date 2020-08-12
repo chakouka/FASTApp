@@ -159,7 +159,7 @@
         NSString *saddr = [NSString stringWithFormat:@"%f,%f", startPoint.gLocation.coordinate.latitude, startPoint.gLocation.coordinate.longitude];
         NSString *daddr = [NSString stringWithFormat:@"%f,%f", endPoint.gLocation.coordinate.latitude, endPoint.gLocation.coordinate.longitude];
         
-        NSString *strGoogleRouteAPI = [NSString stringWithFormat:@"/maps/api/directions/json?origin=%@&destination=%@&sensor=true", saddr, daddr];
+        NSString *strGoogleRouteAPI = [NSString stringWithFormat:@"/maps/api/directions/json?origin=%@&destination=%@&sensor=true&channel=fast_app", saddr, daddr];
         
         NSString *encodedValue = [strGoogleRouteAPI stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         NSURL *urlGoogleRouteAPI = [NSURL URLWithString:encodedValue];
@@ -207,7 +207,7 @@
         }
         
         NSString *strOpti = isOptimize ? @"true" : @"false";
-        NSString *strGoogleRouteAPI = [NSString stringWithFormat:@"/maps/api/directions/json?origin=%@&destination=%@&waypoints=optimize:%@%@&sensor=true", saddr,saddr,strOpti, strWayPoints];
+        NSString *strGoogleRouteAPI = [NSString stringWithFormat:@"/maps/api/directions/json?origin=%@&destination=%@&waypoints=optimize:%@%@&sensor=true&channel=fast_app", saddr,saddr,strOpti, strWayPoints];
         strGoogleRouteAPI = [strGoogleRouteAPI stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         NSURL *urlGoogleRouteAPI = [NSURL URLWithString:strGoogleRouteAPI];
         
@@ -287,7 +287,7 @@
     NSString *daddr = [NSString stringWithFormat:@"%f,%f", destination.coordinate.latitude, destination.coordinate.longitude];
     
     //组装路段请求链接
-    NSString *strGoogleRouteAPI = [NSString stringWithFormat:@"/maps/api/directions/json?origin=%@&destination=%@&sensor=true", saddr, daddr];
+    NSString *strGoogleRouteAPI = [NSString stringWithFormat:@"/maps/api/directions/json?origin=%@&destination=%@&sensor=true&channel=fast_app", saddr, daddr];
     
     if (!strGoogleRouteAPI) {
         completion(0,nil,nil);
