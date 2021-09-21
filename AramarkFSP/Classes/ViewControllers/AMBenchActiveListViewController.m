@@ -279,6 +279,65 @@ UISearchBarDelegate
 	return UITableViewCellEditingStyleNone;
 }
 
+-(NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    
+        AMBenchActiveListCell *cell = [self.tableViewList cellForRowAtIndexPath: [NSIndexPath indexPathForRow:indexPath.row inSection:[self.tableViewList numberOfSections]-1]];
+    
+       UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Waiting on Parts" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+          //insert your editAction here
+//           NSLog(@"HELLOWORLD");
+           
+           
+           
+           if(cell.label_MachineTypeTitle.highlighted == NO && cell.label_AssetNumberTitle.highlighted == NO && cell.label_SerialNumberTitle.highlighted == NO ){
+//               cell.contentView.backgroundColor = [UIColor yellowColor];
+               cell.label_SerialNumberTitle.highlighted = YES;
+               cell.label_SerialNumberTitle.highlightedTextColor = [UIColor redColor];
+               cell.label_AssetNumberTitle.highlighted = YES;
+               cell.label_AssetNumberTitle.highlightedTextColor = [UIColor redColor];
+               cell.label_MachineTypeTitle.highlighted = YES;
+               cell.label_MachineTypeTitle.highlightedTextColor = [UIColor redColor];
+               cell.label_SerialNumber.highlighted = YES;
+               cell.label_SerialNumber.highlightedTextColor = [UIColor redColor];
+               cell.label_AssetNumber.highlighted = YES;
+               cell.label_AssetNumber.highlightedTextColor = [UIColor redColor];
+               cell.label_MachineType.highlighted = YES;
+               cell.label_MachineType.highlightedTextColor = [UIColor redColor];
+           }
+           else{
+               cell.label_SerialNumberTitle.highlighted = NO;
+               cell.label_SerialNumberTitle.highlightedTextColor = [UIColor blackColor];
+               cell.label_AssetNumberTitle.highlighted = NO;
+               cell.label_AssetNumberTitle.highlightedTextColor = [UIColor blackColor];
+               cell.label_MachineTypeTitle.highlighted = NO;
+               cell.label_MachineTypeTitle.highlightedTextColor = [UIColor blackColor];
+               cell.label_SerialNumber.highlighted = NO;
+               cell.label_SerialNumber.highlightedTextColor = [UIColor blackColor];
+               cell.label_AssetNumber.highlighted = NO;
+               cell.label_AssetNumber.highlightedTextColor = [UIColor blackColor];
+               cell.label_MachineType.highlighted = NO;
+               cell.label_MachineType.highlightedTextColor = [UIColor blackColor];
+           }
+           
+           
+           
+//
+//           NSString *hahaha = cell.btnCheckout.titleLabel.text;
+//           NSLog(@"%@", hahaha);
+           //[self myRefreshTaskMethod:localWorkOrders];
+       }];
+    
+       editAction.backgroundColor = [UIColor
+       colorWithRed:14.0f/255.0f
+       green:135.0f/255.0f
+       blue:74.0f/255.0f
+       alpha:1.0f];
+    
+       
+return @[editAction];
+}
+
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (isSearching) {
 		return NO;
@@ -501,6 +560,12 @@ UISearchBarDelegate
                         
                         cell.isTimerRunning = YES;
                         isTimerStarted = YES;
+                        
+                        if(isTimerStarted == YES){
+                            startDateTime = [NSDate date];
+                            stopWatchTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/10.0 target:self selector:@selector(stopWatchReading) userInfo:nil repeats:YES];
+                        }
+                        
                         //timerStartedCellRow = button.tag;
                         timerStartedCellAssetID = [NSString stringWithString:cell.label_AssetNumber.text];
                         [cell setBackgroundColor:[UIColor lightGrayColor]];
@@ -551,6 +616,10 @@ UISearchBarDelegate
             if([[responseData valueForKeyWithNullToNil:@"success"] isEqualToString:@"true"])
             {
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    [stopWatchTimer invalidate];
+                    stopWatchTimer = nil;
+                    self.timeLabel.text = @"";
+                    
                     [UIAlertView showWithTitle:MyLocal(@"Success") message:MyLocal(@"Stopped Successfully") style:UIAlertViewStyleDefault cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                         //Disable Stop button
                         [button setUserInteractionEnabled:NO];
@@ -614,4 +683,21 @@ UISearchBarDelegate
 
 }
 
+-(void)stopWatchReading
+{
+  NSDate *currentDate = [NSDate date];
+  NSTimeInterval timeInterval = [currentDate timeIntervalSinceDate:startDateTime];
+  NSDate *timerDate = [NSDate dateWithTimeIntervalSince1970:timeInterval];
+
+  // create the date formatter
+  NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+  [dateFormatter setDateFormat:@"HH:mm:ss"];
+
+  [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0.0]];
+  NSString *timeStr = [dateFormatter stringFromDate:timerDate];
+
+  //set the text to your label
+    NSLog(@"%@", timeStr);
+    self.timeLabel.text =timeStr;
+}
 @end

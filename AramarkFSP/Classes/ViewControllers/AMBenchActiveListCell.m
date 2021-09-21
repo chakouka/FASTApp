@@ -20,6 +20,7 @@
     [_btnStart setTitle:MyLocal(@"START") forState:UIControlStateNormal];
     [_btnStop setTitle:MyLocal(@"STOP") forState:UIControlStateNormal];
     [_btnCheckout setTitle:MyLocal(@"CHECK OUT") forState:UIControlStateNormal];
+    [_label_SerialNumber setFont:[UIFont systemFontOfSize:12]];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

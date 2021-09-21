@@ -87,6 +87,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblRepairNTETitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblWarrantyTitle;
 @property (weak, nonatomic) IBOutlet UIButton *btnDone;
+@property (weak, nonatomic) IBOutlet UILabel *lblDateTitle;
+@property (weak, nonatomic) IBOutlet UILabel *lblDate;
 
 - (IBAction)clickLoginBtn:(UIButton *)sender;
 - (IBAction)clickLogOutBtn:(UIButton *)sender;

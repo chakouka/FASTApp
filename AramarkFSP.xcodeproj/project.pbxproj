@@ -212,6 +212,8 @@
 		7CDAE96C1AC33185009066E4 /* AMNewContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CDAE96A1AC33185009066E4 /* AMNewContactCell.xib */; };
 		7CDAE9701AC338B4009066E4 /* AMAddNewContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CDAE96E1AC338B4009066E4 /* AMAddNewContactViewController.m */; };
 		7CDAE9711AC338B4009066E4 /* AMAddNewContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CDAE96F1AC338B4009066E4 /* AMAddNewContactViewController.xib */; };
+		7CF7BEA425DD8D640044DE1F /* AppCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CF7BEA225DD8D630044DE1F /* AppCenterCrashes.framework */; };
+		7CF7BEA525DD8D640044DE1F /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CF7BEA325DD8D630044DE1F /* AppCenter.framework */; };
 		824A9DD91724E16400C9BD79 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 824A9DD81724E16400C9BD79 /* UIKit.framework */; };
 		824A9DDB1724E16400C9BD79 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 824A9DDA1724E16400C9BD79 /* Foundation.framework */; };
 		824A9DDD1724E16400C9BD79 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 824A9DDC1724E16400C9BD79 /* CoreGraphics.framework */; };
@@ -1222,6 +1224,8 @@
 		7CDAE96D1AC338B4009066E4 /* AMAddNewContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMAddNewContactViewController.h; sourceTree = "<group>"; };
 		7CDAE96E1AC338B4009066E4 /* AMAddNewContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMAddNewContactViewController.m; sourceTree = "<group>"; };
 		7CDAE96F1AC338B4009066E4 /* AMAddNewContactViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMAddNewContactViewController.xib; sourceTree = "<group>"; };
+		7CF7BEA225DD8D630044DE1F /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterCrashes.framework; sourceTree = "<group>"; };
+		7CF7BEA325DD8D630044DE1F /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenter.framework; sourceTree = "<group>"; };
 		824A9DD51724E16400C9BD79 /* AramarkFSP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AramarkFSP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		824A9DD81724E16400C9BD79 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		824A9DDA1724E16400C9BD79 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1924,6 +1928,7 @@
 				7C50CFBA1F2916480008D932 /* libSalesforceSecurity.a in Frameworks */,
 				824A9FEA1725099600C9BD79 /* libz.dylib in Frameworks */,
 				824A9DD91724E16400C9BD79 /* UIKit.framework in Frameworks */,
+				7CF7BEA525DD8D640044DE1F /* AppCenter.framework in Frameworks */,
 				4F3F413517E7CA5C008B3283 /* ImageIO.framework in Frameworks */,
 				824A9DDB1724E16400C9BD79 /* Foundation.framework in Frameworks */,
 				824A9FEC17250ADA00C9BD79 /* CFNetwork.framework in Frameworks */,
@@ -1931,6 +1936,7 @@
 				824A9DDD1724E16400C9BD79 /* CoreGraphics.framework in Frameworks */,
 				824A9FF017250B7D00C9BD79 /* MessageUI.framework in Frameworks */,
 				824A9FF217250B8300C9BD79 /* MobileCoreServices.framework in Frameworks */,
+				7CF7BEA425DD8D640044DE1F /* AppCenterCrashes.framework in Frameworks */,
 				824A9FF417250BF300C9BD79 /* QuartzCore.framework in Frameworks */,
 				7C50CFB91F2916480008D932 /* libSalesforceSDKCore.a in Frameworks */,
 				7C50CFB51F2916470008D932 /* libSalesforceCommonUtils.a in Frameworks */,
@@ -2687,6 +2693,8 @@
 			isa = PBXGroup;
 			children = (
 				7C50CE031F27D8A60008D932 /* libsqlite3.tbd */,
+				7CF7BEA325DD8D630044DE1F /* AppCenter.framework */,
+				7CF7BEA225DD8D630044DE1F /* AppCenterCrashes.framework */,
 				1B7586501A3B799B001B7F35 /* AudioToolbox.framework */,
 				1B75864E1A3B793E001B7F35 /* AVKit.framework */,
 				1B75864C1A3B791B001B7F35 /* CoreAudio.framework */,
@@ -5492,11 +5500,17 @@
 		824A9DFC1724E16400C9BD79 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.8;
+				CURRENT_PROJECT_VERSION = 1.1.14;
 				DEVELOPMENT_TEAM = 2YZ2C5NN5S;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AramarkFSP/MSAppCenter",
+					"$(PROJECT_DIR)",
+				);
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AramarkFSP/AramarkFSP-Prefix.pch";
@@ -5531,6 +5545,7 @@
 					"$(PROJECT_DIR)/AramarkFSP/Dependencies/SalesforceSecurity",
 					"$(PROJECT_DIR)/AramarkFSP/Dependencies/sqlcipher",
 				);
+				MARKETING_VERSION = 1.1.14;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -5541,7 +5556,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 2;
-				VALID_ARCHS = "arm64 armv7 armv7s";
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64";
 				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = app;
 			};
@@ -5550,11 +5565,17 @@
 		824A9DFD1724E16400C9BD79 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.8;
+				CURRENT_PROJECT_VERSION = 1.1.14;
 				DEVELOPMENT_TEAM = 2YZ2C5NN5S;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AramarkFSP/MSAppCenter",
+					"$(PROJECT_DIR)",
+				);
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AramarkFSP/AramarkFSP-Prefix.pch";
@@ -5590,6 +5611,7 @@
 					"$(PROJECT_DIR)/AramarkFSP/Dependencies/SalesforceSecurity",
 					"$(PROJECT_DIR)/AramarkFSP/Dependencies/sqlcipher",
 				);
+				MARKETING_VERSION = 1.1.14;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -5600,7 +5622,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 2;
-				VALID_ARCHS = "arm64 armv7 armv7s";
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64";
 				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = app;
 			};

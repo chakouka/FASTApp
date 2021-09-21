@@ -33,6 +33,8 @@
 #import "GAI.h"
 
 #import "AMMainViewController.h"
+@import AppCenter;
+@import AppCenterCrashes;
 
 // Fill these in when creating a new Connected Application on Force.com
 //********************For DEMO Env**********************
@@ -190,6 +192,12 @@ static NSString * const OAuthRedirectURI        = @"sfdc://success";
     [GAI sharedInstance].trackUncaughtExceptions = YES;
     [[GAI sharedInstance] trackerWithTrackingId:kAMGOOGLE_AYALYTICS_TRACKING_ID];
     [GAI sharedInstance].dispatchInterval = 20.0;
+    
+    if([kSF_CONNECTED_APP_CONSUMER_KEY isEqual:@"3MVG9A2kN3Bn17hsdDVJNxuf1ZTiHx7zbRU0dFVKLyynDLeaNmUNId0zyMmftCQ3zlg4uiEjNUoKkdPL6wJym"]){
+        [MSACAppCenter start:@"b80b35ac-6604-4149-843f-f32fcd82429a" withServices:@[
+        [MSACCrashes class]
+        ]];
+    }
     
     return YES;
 }

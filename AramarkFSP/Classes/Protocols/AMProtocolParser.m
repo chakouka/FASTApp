@@ -261,7 +261,7 @@
     parsedAccount.fspSalesConsultant = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"FSP_Sales_Consultant__c"];
     parsedAccount.naNumber = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"NA_Number__c"];
     parsedAccount.keyAccount = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Key_Account__c"];
-    parsedAccount.atRiskReason = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"At_Risk_Reason__c"];
+    parsedAccount.atRiskReason = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Case_At_Risk_Reason__c"];
 
     subDict = [dict objectForKey:@"Parent"];
     if (subDict) {
@@ -343,8 +343,11 @@
     //Updated asset number, updated asset serial number
     
     parsedAsset.verificationStatus = [dict valueForKeyPathWithNullToNil:@"Verification_Status__c"];
-    parsedAsset.manufacturerWebsite = [dict valueForKeyPathWithNullToNil:@"Product2.Manufacturer_Website__c"];
-    
+    parsedAsset.manufacturerWebsite = [dict valueForKeyPathWithNullToNil:@"Credit_Card_Serial_Number__c"];
+    subDict = [dict objectForKey:@"Credit_Card_Serial_Number__r"];
+    if (subDict) {
+        parsedAsset.manufacturerWebsite = [self objectByTransfingNullToNilWithDict:subDict allKeys:[subDict allKeys] andKey:@"SerialNumber"];
+    }
     return parsedAsset;
 }
 

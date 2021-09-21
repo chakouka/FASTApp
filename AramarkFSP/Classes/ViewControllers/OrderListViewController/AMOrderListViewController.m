@@ -476,6 +476,7 @@ UISearchBarDelegate
     
     if(workOrder){
         workOrder.woCase = [[AMLogicCore sharedInstance] getCaseInfoByID:workOrder.caseID];
+        workOrder.woAccount = [[AMLogicCore sharedInstance] getAccountInfoByID:workOrder.accountID];
     }
     
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -498,6 +499,11 @@ UISearchBarDelegate
 	cell.label_Type.frame = CGRectMake(offsetType, 10, CGRectGetWidth(cell.label_Type.frame), CGRectGetHeight(cell.label_Type.frame));
     
 	cell.label_Title.text = workOrder.accountName;
+   
+    if(workOrder.woAccount.atRiskReason){
+        cell.label_Title.textColor = [UIColor colorWithRed:(255/255.f) green:(0/255.f) blue:(0/255.f) alpha:1.0];
+    }
+    
 	cell.label_Type.text = strType;
 	cell.label_Contact.text = workOrder.contact;
 	cell.label_OpenSince.text = [AMUtilities daysFromDate:workOrder.woCase.createdDate ToDate:[NSDate date]];
@@ -970,23 +976,23 @@ UISearchBarDelegate
 #pragma mark - Gesture delegate //bkk 2/2/15 - item 000124
 -(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
 {
-    CGPoint p = [gestureRecognizer locationInView:self.tableViewList];
-    
-    NSIndexPath *indexPath = [self.tableViewList indexPathForRowAtPoint:p];
-    if (indexPath == nil) {
-        NSLog(@"long press on table view but not on a row");
-    } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        NSArray *todayCheckInWOList = [[AMDBManager sharedInstance] getSelfOwnedTodayCheckInWorkOrders];
-        if (todayCheckInWOList.count == 0)
-        {
-            [self.tableViewList selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
-            [self tableView:self.tableViewList didSelectRowAtIndexPath:indexPath];
-            [self showCheckInAlert:self.localWorkOrders[indexPath.row]];
-        }
-        NSLog(@"long press on table view at row %d", indexPath.row);
-    } else {
-        NSLog(@"gestureRecognizer.state = %d", gestureRecognizer.state);
-    }
+//    CGPoint p = [gestureRecognizer locationInView:self.tableViewList];
+//    
+//    NSIndexPath *indexPath = [self.tableViewList indexPathForRowAtPoint:p];
+//    if (indexPath == nil) {
+//        NSLog(@"long press on table view but not on a row");
+//    } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+//        NSArray *todayCheckInWOList = [[AMDBManager sharedInstance] getSelfOwnedTodayCheckInWorkOrders];
+//        if (todayCheckInWOList.count == 0)
+//        {
+//            [self.tableViewList selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+//            [self tableView:self.tableViewList didSelectRowAtIndexPath:indexPath];
+//            [self showCheckInAlert:self.localWorkOrders[indexPath.row]];
+//        }
+//        NSLog(@"long press on table view at row %d", indexPath.row);
+//    } else {
+//        NSLog(@"gestureRecognizer.state = %d", gestureRecognizer.state);
+//    }
 }
 #pragma mark - CheckIn //bkk 2/2/15 - item 000124
 - (void)showCheckInAlert:(AMWorkOrder *)workorder {

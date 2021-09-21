@@ -47,7 +47,7 @@
     self.labelTInstallDate.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Install Date")];
     self.labelTAssetNumber.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Asset Number")];
     self.labelTMachineType.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Machine Type")];
-    self.labelTManufacturer.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Manufacturer Website")];
+    self.labelTManufacturer.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Cashless Card Serial Number")];
     self.labelTVendKey.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Vend Key")];
     self.labelTNextPMDate.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Next PM Date")];
     self.labelTLocation.text = [NSString stringWithFormat:@"%@:",MyLocal(@"Location")];

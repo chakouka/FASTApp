@@ -10,7 +10,6 @@
 
 @interface AMBenchActiveListCell : UITableViewCell
 {
-    
 }
 @property (assign, nonatomic) BOOL isTimerRunning;
 @property (strong, nonatomic) NSString *strPriority;
@@ -32,7 +31,6 @@
 @property (strong, nonatomic) NSString *strWOID; //bkk I&E 001231 20180322
 @property (weak, nonatomic) IBOutlet UIView *viewShade;
 @property (weak, nonatomic) IBOutlet UIView *viewRight;
-
 
 - (void)showShadeStatus:(BOOL)isShow;
 

@@ -1371,7 +1371,10 @@
         
         NSError *error;
         [__privateManagedObjectContext save:&error];
-        completionBlock(AM_DBOPR_SAVE, error);
+        dispatch_async(dispatch_get_main_queue(), ^{
+           completionBlock(AM_DBOPR_SAVE, error);
+        });
+        
         
     }];
 }

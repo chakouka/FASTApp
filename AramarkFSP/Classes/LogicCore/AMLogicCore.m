@@ -822,7 +822,7 @@
                     }
                 }];
             }
-            completionBlock(type,error);
+            //completionBlock(type,error);
         }];
     } else {
         NSError *error = [NSError errorWithDomain:@"db" code:0 userInfo:@{NSLocalizedDescriptionKey: MyLocal(@"work order not in progress, cancel operation not proceed")}];

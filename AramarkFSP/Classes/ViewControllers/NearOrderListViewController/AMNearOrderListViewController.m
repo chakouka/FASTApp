@@ -31,7 +31,8 @@
 typedef NS_ENUM (NSInteger, SortType) {
 	SortType_Distance = 0,
 	SortType_Priority,
-    SortType_WoType
+    SortType_WoType,
+    SortType_DueDate
 };
 
 @interface AMNearOrderListViewController ()
@@ -71,6 +72,7 @@ AMPopoverSelectTableViewControllerDelegate
 @property (weak, nonatomic) IBOutlet UILabel *labelTSortBy;
 @property (weak, nonatomic) IBOutlet UIButton *btnSortByWorkorderType;
 @property (weak, nonatomic) IBOutlet UIButton *btnSortByDistance;
+@property (weak, nonatomic) IBOutlet UIButton *btnSortByDueDate;
 
 @end
 
@@ -113,6 +115,9 @@ AMPopoverSelectTableViewControllerDelegate
     
     [self.btnSortByDistance setTitle:MyLocal(@"SORT BY DISTANCE") forState:UIControlStateNormal];
     [self.btnSortByDistance setTitle:MyLocal(@"SORT BY DISTANCE") forState:UIControlStateHighlighted];
+    
+    [self.btnSortByDueDate setTitle:MyLocal(@"SORT BY DUE DATE") forState:UIControlStateNormal];
+    [self.btnSortByDueDate setTitle:MyLocal(@"SORT BY DUE DATE") forState:UIControlStateHighlighted];
     
    self.btnTitle.titleLabel.font = [AMUtilities applicationFontWithOption:kFontOptionRegular andSize:kAMFontSizeBigger];
     
@@ -721,6 +726,22 @@ AMPopoverSelectTableViewControllerDelegate
     [self reloadData];
 }
 
+- (IBAction)clickSortByDueDateBtn:(UIButton *)sender {
+    [self sortLocalWorkOrderListBy:SortType_DueDate];
+    self.labelSort.text = @"DUE DATE";
+    
+    NSDictionary *dicInfo = @{
+                              KEY_OF_TYPE:TYPE_OF_WORK_ORDER_LIST_CHANGE,
+                              KEY_OF_INFO:self.localWorkOrders,
+                              };
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FROM_AMNEARMEORDERLISTVIEWCONTROLLER object:dicInfo];
+    
+    [self clickSortBtn:nil];
+    
+    [self reloadData];
+}
+
 #pragma mark -
 
 #pragma mark - Sort
@@ -748,6 +769,16 @@ AMPopoverSelectTableViewControllerDelegate
             
 			self.localWorkOrders = [NSMutableArray arrayWithArray:sortedArray];
 		}
+            break;
+        
+        case SortType_DueDate:
+        {
+            NSArray *sortedArray = [self.localWorkOrders sortedArrayUsingComparator: ^NSComparisonResult (AMWorkOrder *workOrder1, AMWorkOrder *workOrder2) {
+                return [workOrder1.estimatedDate compare:workOrder2.estimatedDate];
+            }];
+            
+            self.localWorkOrders = [NSMutableArray arrayWithArray:sortedArray];
+        }
             break;
     
 		default:

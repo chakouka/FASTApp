@@ -219,18 +219,22 @@
     switch (tabType) {
         case AMTabTypeWorkOrder:
         {
-            if (!_workOrderVC) {
-                _workOrderVC = [[AMWorkOrderViewController alloc] initWithNibName:@"AMWorkOrderViewController" bundle:nil];
-                [self.viewMain addSubview:_workOrderVC.view];
-            }
-            if (CGRectGetHeight(self.viewMain.frame) < CGRectGetHeight(_workOrderVC.view.frame)) {
-                [self.viewMain setScrollEnabled:YES];
-            } else {
-                [self.viewMain setScrollEnabled:NO];
-            }
-            [self.viewMain setContentSize:_workOrderVC.view.frame.size];
-            _workOrderVC.assignedWorkOrder = self.selectedWorkOrder;
-            [self.viewMain bringSubviewToFront:_workOrderVC.view];
+            dispatch_async(dispatch_get_main_queue(), ^{
+               // do work here
+                if (!_workOrderVC) {
+                    _workOrderVC = [[AMWorkOrderViewController alloc] initWithNibName:@"AMWorkOrderViewController" bundle:nil];
+                    [self.viewMain addSubview:_workOrderVC.view];
+                }
+                if (CGRectGetHeight(self.viewMain.frame) < CGRectGetHeight(_workOrderVC.view.frame)) {
+                    [self.viewMain setScrollEnabled:YES];
+                } else {
+                    [self.viewMain setScrollEnabled:NO];
+                }
+                [self.viewMain setContentSize:_workOrderVC.view.frame.size];
+                _workOrderVC.assignedWorkOrder = self.selectedWorkOrder;
+                [self.viewMain bringSubviewToFront:_workOrderVC.view];
+            });
+            
         }
             break;
             

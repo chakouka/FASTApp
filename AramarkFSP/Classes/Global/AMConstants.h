@@ -7,7 +7,7 @@
 //
 
 /**************SALESFORCE CONNECTED APP CONSUME KEY START*********************/
-#define kSF_CONNECTED_APP_CONSUMER_KEY @"3MVG9dPGzpc3kWycUXdKas4WWw2IJbKCyi6oq29CHbQcDcmwgomA9zKO0YWfnffv_qYQNIwlx3oVaS3PHL.XK"
+#define kSF_CONNECTED_APP_CONSUMER_KEY @"3MVG9A2kN3Bn17hsdDVJNxuf1ZTiHx7zbRU0dFVKLyynDLeaNmUNId0zyMmftCQ3zlg4uiEjNUoKkdPL6wJym"
 #define kSF_CONNECTED_APP_SUCCESS_CALLBACK @"sfdc://success"
 
 /***************SALESFORCE CONNECTED APP CONSUME KEY END**********************/

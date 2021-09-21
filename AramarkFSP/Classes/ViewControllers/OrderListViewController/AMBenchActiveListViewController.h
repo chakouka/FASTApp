@@ -19,6 +19,9 @@
 	BOOL isSorting;
     BOOL isSortByDistance;
 	NSMutableArray *localWorkOrders;
+    NSTimer *stopWatchTimer;
+    NSDate *startDateTime;
+    NSString *timeStr;
 }
 
 @property (assign, nonatomic) BOOL show;
@@ -36,7 +39,7 @@
 @property (weak, nonatomic) IBOutlet UIView *viewMainPanel;
 @property (weak, nonatomic) IBOutlet UIView *viewLeftListPanel;
 @property (weak, nonatomic) IBOutlet UIButton *btnBackToBench;
-
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
 
 - (void)deSelectRow;

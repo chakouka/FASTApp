@@ -36,6 +36,8 @@
 #import "AMBenchCheckoutViewController.h"
 #import "LanguageConfig.h"
 #import "AMProtocolManager.h"
+@import AppCenter;
+@import AppCenterCrashes;
 
 typedef NS_ENUM (NSInteger, MainViewLayoutType) {
 	MainViewLayoutType_MapOnly = 0,
@@ -236,6 +238,15 @@ UIGestureRecognizerDelegate
 	return self;
 }
 
+-(NSDate *)dateFromSalesforceDateString: (NSString *)dateString
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZ";
+    NSDate *date = [formatter dateFromString:dateString];
+//    NSDate *date = [self getTZTimeByGMT:dateString];
+    return date;
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
     //To indicate that this view is displayed in Google Analytics View Report
@@ -284,6 +295,7 @@ UIGestureRecognizerDelegate
     [_labelBenchMachineType setText:MyLocal(@"Machine Type:")];
     [_labelBenchWarranty setText:MyLocal(@"Warranty:")];
     [_labelBenchDetailLabel setText:MyLocal(@"Detail")];
+    [_lblDateTitle setText:MyLocal(@"Date of Pickup:")];
     
     _lblAssetInfoTitle.text = MyLocal(@"Asset Info");
     _lblAssetNameTitle.text = MyLocal(@"Asset Name");
@@ -461,6 +473,9 @@ UIGestureRecognizerDelegate
         self.labelName.text = user.displayName;
         self.labelWelcome.text = [NSString stringWithFormat:@"%@ %@",MyLocal(@"Welcome"), user.displayName ? user.displayName : @""];
     }
+    
+    [MSACAppCenter setUserId:user.displayName];
+    
 //    [USER_DEFAULT setObject:user.userID forKey:USRDFTSELFUID];
 //    [USER_DEFAULT setObject:user.displayName forKey:kAMLoggedUserNameKey];
 //    [USER_DEFAULT synchronize];
@@ -1414,6 +1429,8 @@ UIGestureRecognizerDelegate
         
         self.labelBenchAssetNumberText.text = [workOrderInfo valueForKeyWithNullToNil:@"Machine_Number__c"] == nil ? @"" :  [workOrderInfo valueForKeyWithNullToNil:@"Machine_Number__c"];
         self.labelBenchSerialNumberText.text = [workOrderInfo valueForKeyWithNullToNil: @"SerialNumber"] == nil ? @"" : [workOrderInfo valueForKeyWithNullToNil: @"SerialNumber"];
+        self.lblDate.text = [records[0] valueForKeyWithNullToNil:@"CreatedDate"];
+    
         self.labelBenchMachineTypeText.text = [[records[0] valueForKeyWithNullToNil:@"Machine_Type__r"] valueForKeyWithNullToNil:@"Name"];
         self.labelBenchPOSName.text = [[assetRequestRecords[0] valueForKeyWithNullToNil:@"Point_of_Service__r"] valueForKeyWithNullToNil:@"Name"];
         self.labelBenchAVNotes.text = [assetRequestRecords[0] valueForKeyWithNullToNil:@"Verification_Note__c"];
@@ -2511,6 +2528,7 @@ UIGestureRecognizerDelegate
     self.labelBenchRepairMatrixNTEText.text = @"";
     self.selectedAssetID = @"";
     self.selectedWorkorderID = @"";
+    self.lblDate.text = @"";
 }
 #pragma - mark Gesture recognizer
 - (void)showNotes:(UITapGestureRecognizer *)sender
