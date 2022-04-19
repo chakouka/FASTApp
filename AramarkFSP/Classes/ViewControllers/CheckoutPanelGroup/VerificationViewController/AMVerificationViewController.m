@@ -1231,7 +1231,6 @@ UISearchBarDelegate
         {
             NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
             bool isBenchTech = [[prefs valueForKey:@"isBenchTechActive"] boolValue];
-            
             if (isBenchTech)
             {
                 [UIAlertView showWithTitle:MyLocal(@"Asset Condition") message:MyLocal(@"What is the asset's condition?") style:UIAlertViewStyleDefault cancelButtonTitle:MyLocal(@"Working") otherButtonTitles:@[MyLocal(@"Not Working"), MyLocal(@"Missing")] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
@@ -1240,11 +1239,17 @@ UISearchBarDelegate
                     {
                         //YES
                         aAsset.moveToWarehouse = MyLocal(@"Not Working");
+                        aAsset.verificationStatus = @"Move to Warehouse (Not Working)";
+                        [self.mainTableView reloadData];
                     } else if (buttonIndex == 2) {
                         //NO
                         aAsset.moveToWarehouse = MyLocal(@"Missing");
+                        aAsset.verificationStatus = @"Move to Warehouse (Missing)";
+                        [self.mainTableView reloadData];
                     } else {
                         aAsset.moveToWarehouse = MyLocal(@"Working");
+                        aAsset.verificationStatus = @"Move to Warehouse (Working)";
+                        [self.mainTableView reloadData];
                     }
                 }];
             } else {
@@ -1254,8 +1259,12 @@ UISearchBarDelegate
                     {
                         //YES
                         aAsset.moveToWarehouse = MyLocal(@"Not Working");
+                        aAsset.verificationStatus = @"Move to Warehouse (Not Working)";
+                        [self.mainTableView reloadData];
                     } else {
                         aAsset.moveToWarehouse = MyLocal(@"Working");
+                        aAsset.verificationStatus = @"Move to Warehouse (Working)";
+                        [self.mainTableView reloadData];
                     }
                 }];
             }
@@ -1354,7 +1363,7 @@ UISearchBarDelegate
                 aAsset.moveToWarehouse = MyLocal(@"Working");
             } else {
                 //NO
-                aAsset.moveToWarehouse = MyLocal(@"Not Working");
+            aAsset.moveToWarehouse = MyLocal(@"Not Working");
             }
         }];
     }

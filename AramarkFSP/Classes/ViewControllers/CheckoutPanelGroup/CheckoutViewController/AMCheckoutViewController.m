@@ -302,7 +302,6 @@ AMWorkOrderViewControllerDelegate
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	// Do any additional setup after loading the view from its nib.
-    
     [self.btnNext.titleLabel setFont:[AMUtilities applicationFontWithOption:kFontOptionRegular andSize:kAMFontSizeBigger]];
     [self.btnCreateNew.titleLabel setFont:[AMUtilities applicationFontWithOption:kFontOptionRegular andSize:kAMFontSizeBigger]];
     [self.labelSubTitle setFont:[AMUtilities applicationFontWithOption:kFontOptionRegular andSize:kAMFontSizeBigger]];
@@ -851,7 +850,9 @@ AMWorkOrderViewControllerDelegate
     if (!dicInfo) {
         return;
     }
-    
+    if([self.workOrder.woType isEqualToString:MyLocal(@"Repair")]) {
+        return;
+    }
     if ([arrFilterItems count] >= MAX_FILTER_COUNT) {
         return;
     }

@@ -5501,11 +5501,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.14;
-				DEVELOPMENT_TEAM = 2YZ2C5NN5S;
+				CURRENT_PROJECT_VERSION = 1.1.18;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AramarkFSP/MSAppCenter",
@@ -5545,7 +5545,7 @@
 					"$(PROJECT_DIR)/AramarkFSP/Dependencies/SalesforceSecurity",
 					"$(PROJECT_DIR)/AramarkFSP/Dependencies/sqlcipher",
 				);
-				MARKETING_VERSION = 1.1.14;
+				MARKETING_VERSION = 1.1.18;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -5566,11 +5566,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.14;
-				DEVELOPMENT_TEAM = 2YZ2C5NN5S;
+				CURRENT_PROJECT_VERSION = 1.1.18;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AramarkFSP/MSAppCenter",
@@ -5611,7 +5611,7 @@
 					"$(PROJECT_DIR)/AramarkFSP/Dependencies/SalesforceSecurity",
 					"$(PROJECT_DIR)/AramarkFSP/Dependencies/sqlcipher",
 				);
-				MARKETING_VERSION = 1.1.14;
+				MARKETING_VERSION = 1.1.18;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",

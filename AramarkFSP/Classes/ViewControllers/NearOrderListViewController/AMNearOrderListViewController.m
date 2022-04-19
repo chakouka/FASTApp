@@ -22,6 +22,7 @@
 #define HEIGH_OF_TABLEVIEW_CELL_PM         222.0
 #define HEIGH_OF_TABLEVIEW_CELL_FE         230.0
 #define HEIGH_OF_TABLEVIEW_CELL_ADMIN      254.0
+#define HEIGH_OF_TABLEVIEW_CELL_AV         252.0
 
 #define kAMPRIORITY_STRING_CRITICAL @"Critical"
 #define kAMPRIORITY_STRING_HIGH @"High"
@@ -231,7 +232,16 @@ AMPopoverSelectTableViewControllerDelegate
     else if ([workOrder.woType isEqualToLocalizedString:@"Filter Exchange"])
     {
         return HEIGH_OF_TABLEVIEW_CELL_FE;
-    } else {
+    }
+    else if ([workOrder.woType isEqualToLocalizedString:@"Administrative"])
+    {
+        return HEIGH_OF_TABLEVIEW_CELL_ADMIN;
+    }
+    else if ([workOrder.woType isEqualToLocalizedString:@"Asset Verification"])
+    {
+        return HEIGH_OF_TABLEVIEW_CELL_ADMIN;
+    }
+    else {
         return HEIGH_OF_TABLEVIEW_CELL_ADMIN;
     }
 }
@@ -406,7 +416,7 @@ AMPopoverSelectTableViewControllerDelegate
         
         return cell;
 
-    } else {
+    } else if ([workOrder.woType isEqualToLocalizedString:@"Administrative"]){
         //admin cell type
         AMNearOrderListAdminCell *cell = (AMNearOrderListAdminCell *)[tableView dequeueReusableCellWithIdentifier:@"AMNearOrderListAdminCell"];
         
@@ -478,6 +488,79 @@ AMPopoverSelectTableViewControllerDelegate
         
         
         return cell;
+    }
+    else if ([workOrder.woType isEqualToLocalizedString:@"Asset Verification"] || [workOrder.woType isEqualToLocalizedString:@"Vending Price Update"]){
+        //asset verification cell type
+               AMNearOrderListAdminCell *cell = (AMNearOrderListAdminCell *)[tableView dequeueReusableCellWithIdentifier:@"AMNearOrderListAdminCell"];
+               
+               if (cell == nil) {
+                   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AMNearOrderListAdminCell" owner:[AMNearOrderListAdminCell class] options:nil];
+                   cell = (AMNearOrderListAdminCell *)[nib objectAtIndex:0];
+                   cell.contentView.backgroundColor = [UIColor clearColor];
+               }
+               
+               cell.selectionStyle = UITableViewCellSelectionStyleNone;
+               
+               NSString *strType = [NSString stringWithFormat:@"[%@]", MyLocal(workOrder.woType)];
+               
+               cell.label_Title.text = workOrder.accountName;
+               cell.label_Type.text = MyLocal(strType);
+               cell.label_Distance.text = workOrder.nextDistance;
+               cell.label_Time.text = workOrder.nextTime;
+               cell.labelWONumber.text = workOrder.woNumber;
+               cell.label_ContactName.text = workOrder.contact == nil ? @"NONE" : workOrder.contact;
+               cell.label_Address.text = workOrder.workLocation;
+               cell.labelComplaintCode.text = MyLocal(workOrder.complaintCode);
+               cell.labelSubject.text = workOrder.subject;
+               
+               NSTimeZone *aZone = [[AMProtocolParser sharedInstance] timeZoneOnSalesforce];
+               cell.labelEstimatedWorkDate.text = [workOrder.estimatedDate formattedDateWithFormat:@"yyyy.MM.dd" timeZone:aZone];
+               
+               UIImage *image = nil;
+               
+               if ([workOrder.priority isEqualToLocalizedString:kAMPRIORITY_STRING_CRITICAL]) {
+                   image = [UIImage imageNamed:@"alert-background.png"];
+               }
+               else if([workOrder.priority isEqualToLocalizedString:kAMPRIORITY_STRING_HIGH]) {
+                   image = [UIImage imageNamed:@"orange_priority.png"];
+               }
+               else if([workOrder.priority isEqualToLocalizedString:kAMPRIORITY_STRING_MEDIUM]) {
+                   image = [UIImage imageNamed:@"blue_priority.png"];
+               }
+               else {
+                   image = [UIImage imageNamed:@"green_priority.png"];
+               }
+               
+               cell.label_Index.text = [NSString stringWithFormat:@"%d", (int)(indexPath.row + 1)];
+               cell.imageIndex.image = image;
+               
+               if (([workOrder.eventList count] > 1)) {
+                   cell.viewM.hidden = NO;
+                   cell.imageM.image = image;
+               }
+               else
+               {
+                   cell.viewM.hidden = YES;
+               }
+               
+               cell.btnMap.tag = indexPath.row;
+               [cell.btnMap addTarget:self action:@selector(clickMapBtn:) forControlEvents:UIControlEventTouchUpInside];
+               
+               if (selectedWorkOrderId) {
+                   if ([workOrder.woID isEqual:selectedWorkOrderId]) {
+                       [cell showShadeStatus:NO];
+                   }
+                   else {
+                       [cell showShadeStatus:YES];
+                   }
+               }
+               else {
+                   cell.viewShade.hidden = YES;
+                   cell.viewRight.hidden = YES;
+               }
+               
+               
+               return cell;
     }
 }
 
