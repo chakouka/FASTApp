@@ -66,6 +66,34 @@
     dbLocation.typeFlooring = location.typeFlooring;
     dbLocation.waterSource = location.waterSource;
     
+     dbLocation.clientDrilledHoles = location.clientDrilledHoles;
+     dbLocation.coiRequired = location.coiRequired;
+     dbLocation.followUpNeeded = location.followUpNeeded;
+     dbLocation.solidSurfaceCounters = location.solidSurfaceCounters;
+     dbLocation.vaccineCardRequired = location.vaccineCardRequired;
+     dbLocation.dimensionsProposedSpace = location.dimensionsProposedSpace;
+     dbLocation.merchandiserType = location.merchandiserType;
+     dbLocation.filterType = location.filterType;
+     dbLocation.dockHeight = location.dockHeight;
+     dbLocation.hoursOfOperation = location.hoursOfOperation;
+     dbLocation.typeOfWalls = location.typeOfWalls;
+     dbLocation.opportunityOwner = location.opportunityOwner;
+     dbLocation.naSpecialRequest = location.naSpecialRequest;
+     dbLocation.dockAvailable2 = location.dockAvailable2;
+     dbLocation.doorsRemoved2 = location.doorsRemoved2;
+     dbLocation.requiredElectrical = location.requiredElectrical;
+     dbLocation.electricityWithin3ft = location.electricityWithin3ft;
+     dbLocation.freightElevator2 = location.freightElevator2;
+     dbLocation.ppeRequired = location.ppeRequired;
+     dbLocation.requiredVisit = location.requiredVisit;
+     dbLocation.siteLevel2 = location.siteLevel2;
+     dbLocation.requiredSafetyTraining = location.requiredSafetyTraining;
+     dbLocation.waterSource2 = location.waterSource2;
+     dbLocation.requiredBadge = location.requiredBadge;
+     dbLocation.numberOfMerchandisers = location.numberOfMerchandisers;
+     dbLocation.numberOfWaterblocks = location.numberOfWaterblocks;
+     dbLocation.numberOfFilters = location.numberOfFilters;
+    
     if (!dbLocation.fakeID.length) {
         dbLocation.fakeID = location.fakeID;  // do not allow override once created
     }
@@ -113,6 +141,34 @@
     location.waterSource = dbLocation.waterSource;
     location.fakeID = dbLocation.fakeID;
     location.dataStatus = dbLocation.dataStatus;
+    
+    location.clientDrilledHoles = dbLocation.clientDrilledHoles;
+    location.coiRequired = dbLocation.coiRequired;
+    location.followUpNeeded = dbLocation.followUpNeeded;
+    location.solidSurfaceCounters = dbLocation.solidSurfaceCounters;
+    location.vaccineCardRequired = dbLocation.vaccineCardRequired;
+    location.dimensionsProposedSpace = dbLocation.dimensionsProposedSpace;
+    location.merchandiserType = dbLocation.merchandiserType;
+    location.filterType = dbLocation.filterType;
+    location.dockHeight = dbLocation.dockHeight;
+    location.hoursOfOperation = dbLocation.hoursOfOperation;
+    location.typeOfWalls = dbLocation.typeOfWalls;
+    location.opportunityOwner = dbLocation.opportunityOwner;
+    location.naSpecialRequest = dbLocation.naSpecialRequest;
+    location.dockAvailable2 = dbLocation.dockAvailable2;
+    location.doorsRemoved2 = dbLocation.doorsRemoved2;
+    location.requiredElectrical = dbLocation.requiredElectrical;
+    location.electricityWithin3ft = dbLocation.electricityWithin3ft;
+    location.freightElevator2 = dbLocation.freightElevator2;
+    location.ppeRequired = dbLocation.ppeRequired;
+    location.requiredVisit = dbLocation.requiredVisit;
+    location.siteLevel2 = dbLocation.siteLevel2;
+    location.requiredSafetyTraining = dbLocation.requiredSafetyTraining;
+    location.waterSource2 = dbLocation.waterSource2;
+    location.requiredBadge = dbLocation.requiredBadge;
+    location.numberOfMerchandisers = dbLocation.numberOfMerchandisers;
+    location.numberOfWaterblocks = dbLocation.numberOfWaterblocks;
+    location.numberOfFilters = dbLocation.numberOfFilters;
     
     return location;
 }

@@ -503,6 +503,9 @@ UISearchBarDelegate
     if(workOrder.woAccount.atRiskReason){
         cell.label_Title.textColor = [UIColor colorWithRed:(255/255.f) green:(0/255.f) blue:(0/255.f) alpha:1.0];
     }
+    if(![workOrder.allDayAvailable intValue]){
+        cell.label_Title.backgroundColor = [UIColor yellowColor];
+    }
     
 	cell.label_Type.text = strType;
 	cell.label_Contact.text = workOrder.contact;

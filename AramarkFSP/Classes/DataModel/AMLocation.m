@@ -46,6 +46,33 @@
 @synthesize typeFlooring;
 @synthesize waterSource;
 @synthesize fakeID;
+@synthesize clientDrilledHoles;
+@synthesize coiRequired;
+@synthesize followUpNeeded;
+@synthesize solidSurfaceCounters;
+@synthesize vaccineCardRequired;
+@synthesize dimensionsProposedSpace;
+@synthesize merchandiserType;
+@synthesize filterType;
+@synthesize dockHeight;
+@synthesize hoursOfOperation;
+@synthesize typeOfWalls;
+@synthesize opportunityOwner;
+@synthesize naSpecialRequest;
+@synthesize dockAvailable2;
+@synthesize doorsRemoved2;
+@synthesize requiredElectrical;
+@synthesize electricityWithin3ft;
+@synthesize freightElevator2;
+@synthesize ppeRequired;
+@synthesize requiredVisit;
+@synthesize siteLevel2;
+@synthesize requiredSafetyTraining;
+@synthesize waterSource2;
+@synthesize requiredBadge;
+@synthesize numberOfMerchandisers;
+@synthesize numberOfWaterblocks;
+@synthesize numberOfFilters;
 
 - (NSString *)description
 {

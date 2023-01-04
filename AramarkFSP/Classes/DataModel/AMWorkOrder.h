@@ -88,6 +88,7 @@
 @property (nonatomic, retain) NSString * productName;
 @property (nonatomic, retain) NSDate* lastServiceDate;
 @property (nonatomic, retain) NSNumber* pmPrice;//bkk added 20180912 PM 000462
+@property (nonatomic, strong) NSNumber * allDayAvailable;
 
 - (BOOL)isEqual:(id)object;
 

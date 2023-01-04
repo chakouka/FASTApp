@@ -159,6 +159,87 @@
             [locationDict setObject:[NSNumber numberWithBool:NO] forKey:@"Water_Source_within_10ft__c"];
         }
     }
+    if (location.coiRequired) {
+        [locationDict setObject:location.coiRequired forKey:@"COI_Required__c"];
+    }
+    if (location.clientDrilledHoles) {
+        [locationDict setObject:location.clientDrilledHoles forKey:@"Client_Drilled_Holes__c"];
+    }
+    if (location.followUpNeeded) {
+        [locationDict setObject:location.followUpNeeded forKey:@"Follow_Up_Needed__c"];
+    }
+    if (location.solidSurfaceCounters) {
+        [locationDict setObject:location.solidSurfaceCounters forKey:@"Solid_Surface_Counters__c"];
+    }
+    if (location.vaccineCardRequired) {
+        [locationDict setObject:location.vaccineCardRequired forKey:@"Vaccination_Card_Required__c"];
+    }
+    if (location.dimensionsProposedSpace) {
+        [locationDict setObject:location.dimensionsProposedSpace forKey:@"Dimensions_of_the_Proposed_Space__c"];
+    }
+    if (location.merchandiserType) {
+        [locationDict setObject:location.merchandiserType forKey:@"Merchandiser_Type__c"];
+    }
+    if (location.filterType) {
+        [locationDict setObject:location.filterType forKey:@"Filter_Type__c"];
+    }
+    if (location.dockHeight) {
+        [locationDict setObject:location.dockHeight forKey:@"Dock_Height__c"];
+    }
+    if (location.hoursOfOperation) {
+        [locationDict setObject:location.hoursOfOperation forKey:@"Hours_of_Operation__c"];
+    }
+    if (location.typeOfWalls) {
+        [locationDict setObject:location.typeOfWalls forKey:@"Type_of_Walls__c"];
+    }
+    if (location.opportunityOwner) {
+        [locationDict setObject:location.opportunityOwner forKey:@"Opportunity_Owner__c"];
+    }
+    if (location.naSpecialRequest) {
+        [locationDict setObject:location.naSpecialRequest forKey:@"NA_Special_request__c"];
+    }
+    if (location.numberOfMerchandisers) {
+        [locationDict setObject:location.numberOfMerchandisers forKey:@"Number_of_Merchandisers__c"];
+    }
+    if (location.numberOfWaterblocks) {
+        [locationDict setObject:location.numberOfWaterblocks forKey:@"Number_of_Waterblocks__c"];
+    }
+    if (location.numberOfFilters) {
+        [locationDict setObject:location.numberOfFilters forKey:@"Number_of_Filters__c"];
+    }
+    if (location.dockAvailable2) {
+           [locationDict setObject:location.dockAvailable2 forKey:@"Dock_Available__c"];
+       }
+    if (location.doorsRemoved2) {
+           [locationDict setObject:location.doorsRemoved2 forKey:@"Doors_to_be_Removed_for_Vending_Equip__c"];
+       }
+    if (location.requiredElectrical) {
+           [locationDict setObject:location.requiredElectrical forKey:@"Required_Electrical_in_Place__c"];
+       }
+    if (location.electricityWithin3ft) {
+           [locationDict setObject:location.electricityWithin3ft forKey:@"Electricity_Within_3ft__c"];
+       }
+    if (location.freightElevator2) {
+           [locationDict setObject:location.freightElevator2 forKey:@"Freight_Elevator_Available__c"];
+       }
+    if (location.ppeRequired) {
+           [locationDict setObject:location.ppeRequired forKey:@"Personal_Protection_Equipment_Required__c"];
+       }
+    if (location.requiredVisit) {
+           [locationDict setObject:location.requiredVisit forKey:@"Requires_Visit_by_Service_Department__c"];
+       }
+    if (location.siteLevel2) {
+           [locationDict setObject:location.siteLevel2 forKey:@"Site_Level_and_Lighted__c"];
+       }
+    if (location.requiredSafetyTraining) {
+           [locationDict setObject:location.requiredSafetyTraining forKey:@"Specific_Safety_Training_Required__c"];
+       }
+    if (location.waterSource2) {
+           [locationDict setObject:location.waterSource2 forKey:@"Water_Source_within_10ft__c"];
+       }
+    if (location.requiredBadge) {
+           [locationDict setObject:location.requiredBadge forKey:@"Badge_Needed_for_Access__c"];
+       }
     return locationDict;
 }
 
@@ -529,6 +610,15 @@
                     [woDict setObject:[NSNumber numberWithBool:NO] forKey:@"Tested_All_Equipment__c"];
                 }
 
+            }
+            
+            if (wo.allDayAvailable) {
+                if ([wo.allDayAvailable intValue]) {
+                    [woDict setObject:[NSNumber numberWithBool:YES] forKey:@"All_Day_Available__c"];
+                }
+                else {
+                    [woDict setObject:[NSNumber numberWithBool:NO] forKey:@"All_Day_Available__c"];
+                }
             }
             
             if ([wo.woType isEqualToLocalizedString:@"Repair"]) {

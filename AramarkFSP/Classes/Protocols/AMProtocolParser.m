@@ -428,6 +428,33 @@
     parsedLocation.safetyTraining = [self getBoolNumberWithDict:dict Key:@"Specific_Safety_Training_Required__c"];
     parsedLocation.typeFlooring = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Type_of_Flooring__c"];
     parsedLocation.waterSource = [self getBoolNumberWithDict:dict Key:@"Water_Source_within_10ft__c"];
+    parsedLocation.clientDrilledHoles = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Client_Drilled_Holes__c"]; 
+    parsedLocation.coiRequired = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"COI_Required__c"];
+    parsedLocation.followUpNeeded = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Follow_Up_Needed__c"];
+    parsedLocation.solidSurfaceCounters = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Solid_Surface_Counters__c"];
+    parsedLocation.vaccineCardRequired = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Vaccination_Card_Required__c"];
+    parsedLocation.dimensionsProposedSpace = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Dimensions_of_the_Proposed_Space__c"];
+    parsedLocation.merchandiserType = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Merchandiser_Type__c"];
+    parsedLocation.filterType = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Filter_Type__c"];
+    parsedLocation.dockHeight = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Dock_Height__c"];
+    parsedLocation.hoursOfOperation = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Hours_of_Operation__c"];
+    parsedLocation.typeOfWalls = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Type_of_Walls__c"];
+    parsedLocation.opportunityOwner = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Opportunity_Owner__c"];
+    parsedLocation.naSpecialRequest = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"NA_Special_request__c"];
+    parsedLocation.dockAvailable2 = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Dock_Available__c"];
+    parsedLocation.doorsRemoved2 = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Doors_to_be_Removed_for_Vending_Equip__c"];
+    parsedLocation.requiredElectrical = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Required_Electrical_in_Place__c"];
+    parsedLocation.electricityWithin3ft = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Electricity_Within_3ft__c"];
+    parsedLocation.freightElevator2 = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Freight_Elevator_Available__c"];
+    parsedLocation.ppeRequired = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Personal_Protection_Equipment_Required__c"];
+    parsedLocation.requiredVisit = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Requires_Visit_by_Service_Department__c"];
+    parsedLocation.siteLevel2 = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Site_Level_and_Lighted__c"];
+    parsedLocation.requiredSafetyTraining = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Specific_Safety_Training_Required__c"];
+    parsedLocation.waterSource2 = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Water_Source_within_10ft__c"];
+    parsedLocation.requiredBadge = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Badge_Needed_for_Access__c"];
+    parsedLocation.numberOfMerchandisers = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Number_of_Merchandisers__c"];
+    parsedLocation.numberOfWaterblocks = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Number_of_Waterblocks__c"];
+    parsedLocation.numberOfFilters = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Number_of_Filters__c"];
     
     parsedLocation.dataStatus = @(EntityStatusFromSalesforce);
     
@@ -843,7 +870,7 @@
     parsedWO.inspectedTubing = [self getBoolNumberWithDict:dict Key:@"Inspected_Tubing_For_Any_Potential_Leaks__c"];
     parsedWO.testedAll = [self getBoolNumberWithDict:dict Key:@"Tested_All_Equipment__c"];
     parsedWO.subject = [self objectByTransfingNullToNilWithDict:dict allKeys:allKeys andKey:@"Subject__c"];
-    
+    parsedWO.allDayAvailable = [self getBoolNumberWithDict:dict Key:@"All_Day_Available__c"];
 //    subArray = [dict valueForKeyPathWithNullToNil:@"Attachments.records"];
 //    if (subArray.count) {
 //        [[AMDBManager sharedInstance] saveAsyncAttachmentArrayFromSalesforce:subArray completion:^(NSInteger type, NSError *error) {

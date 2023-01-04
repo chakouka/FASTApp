@@ -1197,6 +1197,7 @@
 		7C7A4F931BCD3F59001903F4 /* AMNearOrderListAdminCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMNearOrderListAdminCell.h; path = NearOrderListViewController/NearOrderListCell/AMNearOrderListAdminCell.h; sourceTree = "<group>"; };
 		7C7A4F941BCD3F73001903F4 /* AMNearOrderListAdminCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMNearOrderListAdminCell.m; path = NearOrderListViewController/NearOrderListCell/AMNearOrderListAdminCell.m; sourceTree = "<group>"; };
 		7C7A4F961BCD3F86001903F4 /* AMNearOrderListAdminCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AMNearOrderListAdminCell.xib; path = NearOrderListViewController/NearOrderListCell/AMNearOrderListAdminCell.xib; sourceTree = "<group>"; };
+		7C8D2282292589C8008FAC62 /* Aramark3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Aramark3.xcdatamodel; sourceTree = "<group>"; };
 		7C99AB9D1F3BA7CC0062D83C /* bench-fr@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bench-fr@2x.png"; path = "French Icons 2x/bench-fr@2x.png"; sourceTree = "<group>"; };
 		7CC2F76C1D6B7ABB00B71107 /* AMBenchActiveListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMBenchActiveListViewController.h; path = OrderListViewController/AMBenchActiveListViewController.h; sourceTree = "<group>"; };
 		7CC2F76D1D6B7AD300B71107 /* AMBenchActiveListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMBenchActiveListViewController.m; sourceTree = "<group>"; };
@@ -1215,6 +1216,7 @@
 		7CD3B1491E95938500DD9556 /* TBViewPM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBViewPM.h; sourceTree = "<group>"; };
 		7CD3B14A1E95939300DD9556 /* TBViewPM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBViewPM.m; sourceTree = "<group>"; };
 		7CD3B14C1E95939F00DD9556 /* TBViewPM.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TBViewPM.xib; sourceTree = "<group>"; };
+		7CD4B4E528C9522F00E9F1B0 /* Aramark2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Aramark2.xcdatamodel; sourceTree = "<group>"; };
 		7CDAE9601AC300A8009066E4 /* AMAddContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMAddContactTableViewCell.h; sourceTree = "<group>"; };
 		7CDAE9611AC300A8009066E4 /* AMAddContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMAddContactTableViewCell.m; sourceTree = "<group>"; };
 		7CDAE9621AC300A8009066E4 /* AMAddContactTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMAddContactTableViewCell.xib; sourceTree = "<group>"; };
@@ -5504,7 +5506,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.18;
+				CURRENT_PROJECT_VERSION = 1.2.2;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5545,7 +5547,7 @@
 					"$(PROJECT_DIR)/AramarkFSP/Dependencies/SalesforceSecurity",
 					"$(PROJECT_DIR)/AramarkFSP/Dependencies/sqlcipher",
 				);
-				MARKETING_VERSION = 1.1.18;
+				MARKETING_VERSION = 1.2.2;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -5569,7 +5571,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.18;
+				CURRENT_PROJECT_VERSION = 1.2.2;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5611,7 +5613,7 @@
 					"$(PROJECT_DIR)/AramarkFSP/Dependencies/SalesforceSecurity",
 					"$(PROJECT_DIR)/AramarkFSP/Dependencies/sqlcipher",
 				);
-				MARKETING_VERSION = 1.1.18;
+				MARKETING_VERSION = 1.2.2;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -5664,9 +5666,11 @@
 		A63C4D931915395A00082673 /* Aramark.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				7C8D2282292589C8008FAC62 /* Aramark3.xcdatamodel */,
+				7CD4B4E528C9522F00E9F1B0 /* Aramark2.xcdatamodel */,
 				A63C4D941915395A00082673 /* Aramark.xcdatamodel */,
 			);
-			currentVersion = A63C4D941915395A00082673 /* Aramark.xcdatamodel */;
+			currentVersion = 7C8D2282292589C8008FAC62 /* Aramark3.xcdatamodel */;
 			name = Aramark.xcdatamodeld;
 			path = ../Aramark.xcdatamodeld;
 			sourceTree = "<group>";

@@ -1239,17 +1239,11 @@ UISearchBarDelegate
                     {
                         //YES
                         aAsset.moveToWarehouse = MyLocal(@"Not Working");
-                        aAsset.verificationStatus = @"Move to Warehouse (Not Working)";
-                        [self.mainTableView reloadData];
                     } else if (buttonIndex == 2) {
                         //NO
                         aAsset.moveToWarehouse = MyLocal(@"Missing");
-                        aAsset.verificationStatus = @"Move to Warehouse (Missing)";
-                        [self.mainTableView reloadData];
                     } else {
                         aAsset.moveToWarehouse = MyLocal(@"Working");
-                        aAsset.verificationStatus = @"Move to Warehouse (Working)";
-                        [self.mainTableView reloadData];
                     }
                 }];
             } else {
@@ -1259,12 +1253,8 @@ UISearchBarDelegate
                     {
                         //YES
                         aAsset.moveToWarehouse = MyLocal(@"Not Working");
-                        aAsset.verificationStatus = @"Move to Warehouse (Not Working)";
-                        [self.mainTableView reloadData];
                     } else {
                         aAsset.moveToWarehouse = MyLocal(@"Working");
-                        aAsset.verificationStatus = @"Move to Warehouse (Working)";
-                        [self.mainTableView reloadData];
                     }
                 }];
             }
@@ -1363,7 +1353,7 @@ UISearchBarDelegate
                 aAsset.moveToWarehouse = MyLocal(@"Working");
             } else {
                 //NO
-            aAsset.moveToWarehouse = MyLocal(@"Not Working");
+            
             }
         }];
     }

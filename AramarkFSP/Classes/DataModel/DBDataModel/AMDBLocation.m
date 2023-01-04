@@ -47,5 +47,32 @@
 @dynamic visitByServiceDep;
 @dynamic waterSource;
 @dynamic dataStatus;
+@dynamic clientDrilledHoles;
+@dynamic coiRequired;
+@dynamic followUpNeeded;
+@dynamic solidSurfaceCounters;
+@dynamic vaccineCardRequired;
+@dynamic dimensionsProposedSpace;
+@dynamic merchandiserType;
+@dynamic filterType;
+@dynamic dockHeight;
+@dynamic hoursOfOperation;
+@dynamic typeOfWalls;
+@dynamic opportunityOwner;
+@dynamic naSpecialRequest;
+@dynamic dockAvailable2;
+@dynamic doorsRemoved2;
+@dynamic requiredElectrical;
+@dynamic electricityWithin3ft;
+@dynamic freightElevator2;
+@dynamic ppeRequired;
+@dynamic requiredVisit;
+@dynamic siteLevel2;
+@dynamic requiredSafetyTraining;
+@dynamic waterSource2;
+@dynamic requiredBadge;
+@dynamic numberOfFilters;
+@dynamic numberOfWaterblocks;
+@dynamic numberOfMerchandisers;
 
 @end

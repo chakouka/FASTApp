@@ -99,6 +99,7 @@
     dbWO.estimatedWorkDate = WO.estimatedDate;
     dbWO.lastServiceDate = WO.lastServiceDate;
     dbWO.pmPrice = WO.pmPrice;//BKK 20180912 000462
+    dbWO.allDayAvailable = WO.allDayAvailable;
 }
 
 - (id)transferDBObjectToObject:(id)dbObject
@@ -168,6 +169,7 @@
     WO.estimatedDate = dbWO.estimatedWorkDate;
     WO.lastServiceDate = dbWO.lastServiceDate;
     WO.pmPrice = dbWO.pmPrice;//BKK 20180912 000462
+    WO.allDayAvailable = dbWO.allDayAvailable;
     
     return WO;
 }

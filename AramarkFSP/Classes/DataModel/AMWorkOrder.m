@@ -68,6 +68,7 @@
 @synthesize toWorkLocation;
 @synthesize lastServiceDate;
 @synthesize pmPrice;
+@synthesize allDayAvailable;
 
 - (NSString *)description
 {
@@ -140,6 +141,7 @@
     newWordOrder.ownerName = self.ownerName;
     newWordOrder.lastServiceDate = self.lastServiceDate;
     newWordOrder.pmPrice = self.pmPrice;//bkk added 20180912 PM 000462
+    newWordOrder.allDayAvailable = self.allDayAvailable;
     return newWordOrder;
 }
 

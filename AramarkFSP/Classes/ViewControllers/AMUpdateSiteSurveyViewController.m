@@ -44,6 +44,33 @@
     self.roomMeasurementTF.delegate = self;
     self.siteSurveyDateTF.delegate = self;//set current date by default
     self.typtOfFlooringTF.delegate = self;
+    self.clientDrilledHolesTF.delegate = self;
+    self.coiRequiredTF.delegate = self;
+    self.followUpNeededTF.delegate = self;
+    self.solidSurfaceCountersTF.delegate = self;
+    self.vaccineCardRequiredTF.delegate = self;
+    self.dimensionsProposedSpaceTF.delegate = self;
+    self.merchandiserTypeTF.delegate = self;
+    self.filterTypeTF.delegate = self;
+    self.dockHeightTF.delegate = self;
+    self.hoursOfOperationTF.delegate = self;
+    self.typeOfWallsTF.delegate = self;
+    self.opportunityOwnerTF.delegate = self;
+    self.naSpecialRequestTF.delegate = self;
+    self.dockAvailableTF.delegate = self;
+    self.doorsRemovedTF.delegate = self;
+    self.requiredElectricalTF.delegate = self;self.typtOfFlooringTF.delegate = self;
+    self.electricityWithin3ftTF.delegate = self;
+    self.freightElevatorTF.delegate = self;
+    self.ppeRequiredTF.delegate = self;
+    self.requiredVisitTF.delegate = self;
+    self.siteLevelTF.delegate = self;
+    self.requiredSafetyTrainingTF.delegate = self;
+    self.waterSourceTF.delegate = self;
+    self.requiredBadgeTF.delegate = self;
+    self.numberOfMerchandisersTF.delegate = self;
+    self.numberOfWaterblocksTF.delegate = self;
+    self.numberOfFiltersTF.delegate = self;
     df = [[NSDateFormatter alloc] init];
     [df setDateFormat:AMDATE_FORMATTER_STRING_DEFAULT];
 //    self.siteSurveyDateTF.text = [df stringFromDate:[NSDate date]];
@@ -72,6 +99,23 @@
     self.labelTTypeOfFlooring.text = MyLocal(@"Type of Flooring");
     self.labelTWaterSource.text = MyLocal(@"Water Source within 10ft?");
     self.labelTSpecialInstruction.text = MyLocal(@"Special Instruction/Notes");
+    self.labelTCOIRequired.text = MyLocal(@"COI Required?");
+    self.labelTClientDrilledHoles.text = MyLocal(@"Client Drilled Holes?");
+    self.labelTFollowUpNeeded.text = MyLocal(@"Follow Up Needed?");
+    self.labelTSolidSurfaceCounters.text = MyLocal(@"Solid Surface Counters?");
+    self.labelTVaccineCardRequired.text = MyLocal(@"Vaccination Card Required?");
+    self.labelTDimensionsOfProposedSpace.text = MyLocal(@"Dimensions of the Proposed Space");
+    self.labelTMerchandiserType.text = MyLocal(@"Merchandiser Type");
+    self.labelTFilterType.text = MyLocal(@"Filter Type");
+    self.labelTDockHeight.text = MyLocal(@"Dock Height");
+    self.labelTHoursOfOperation.text = MyLocal(@"Hours of Operation");
+    self.labelTTypeOfWalls.text = MyLocal(@"Type of Walls");
+    self.labelTOpportunityOwner.text = MyLocal(@"Opportunity Owner");
+    self.labelTNASpecialRequest.text = MyLocal(@"NA Special Request");
+    self.labelTNumberOfFilters.text = MyLocal(@"Number of Filters");
+    self.labelTNumberOfWaterblocks.text = MyLocal(@"Number of Waterblocks");
+    self.labelTNumberOfMerchandisers.text = MyLocal(@"Number of Merchandisers");
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -109,6 +153,34 @@
     self.electricOutletTypeLabel.text = location.electricOutlet;
     self.elevatorOrStairLabel.text = [location.elevatorStairs length] == 0 ? @"" : MyLocal(location.elevatorStairs);
     self.typtOfFlooringTF.text = location.typeFlooring;
+    self.clientDrilledHolesTF.text = location.clientDrilledHoles;
+    self.coiRequiredTF.text = location.coiRequired;
+    self.followUpNeededTF.text = location.followUpNeeded;
+    self.solidSurfaceCountersTF.text = location.solidSurfaceCounters;
+    self.vaccineCardRequiredTF.text = location.vaccineCardRequired;
+    self.dimensionsProposedSpaceTF.text = location.dimensionsProposedSpace;
+    self.merchandiserTypeTF.text = location.merchandiserType;
+    self.filterTypeTF.text = location.filterType;
+    self.dockHeightTF.text = location.dockHeight;
+    self.hoursOfOperationTF.text = location.hoursOfOperation;
+    self.typeOfWallsTF.text = location.typeOfWalls;
+    self.opportunityOwnerTF.text = location.opportunityOwner;
+    self.naSpecialRequestTF.text = location.naSpecialRequest;
+    self.dockAvailableTF.text = location.dockAvailable2;
+    self.doorsRemovedTF.text = location.doorsRemoved2;
+    self.requiredElectricalTF.text = location.requiredElectrical;
+    self.electricityWithin3ftTF.text = location.electricityWithin3ft;
+    self.freightElevatorTF.text = location.freightElevator2;
+    self.ppeRequiredTF.text = location.ppeRequired;
+    self.requiredVisitTF.text = location.requiredVisit;
+    self.siteLevelTF.text = location.siteLevel2;
+    self.requiredSafetyTrainingTF.text = location.requiredSafetyTraining;
+    self.waterSourceTF.text = location.waterSource2;
+    self.requiredBadgeTF.text = location.requiredBadge;
+    self.numberOfMerchandisersTF.text = location.numberOfMerchandisers.stringValue;
+    self.numberOfWaterblocksTF.text = location.numberOfWaterblocks.stringValue;
+    self.numberOfFiltersTF.text = location.numberOfFilters.stringValue;
+    
     
 }
 
@@ -267,6 +339,61 @@
     } else if (textField == self.typtOfFlooringTF) {
         self.location.typeFlooring = textField.text;
         [AMUtilities animateView:self.view direction:AnimationDirectionDown distance:350.0];
+    } else if (textField == self.coiRequiredTF) {
+        self.location.coiRequired = textField.text;
+    } else if (textField == self.clientDrilledHolesTF) {
+        self.location.clientDrilledHoles = textField.text;
+    }
+    else if (textField == self.followUpNeededTF) {
+        self.location.followUpNeeded = textField.text;
+    } else if (textField == self.solidSurfaceCountersTF) {
+        self.location.solidSurfaceCounters = textField.text;
+    } else if (textField == self.vaccineCardRequiredTF) {
+        self.location.vaccineCardRequired = textField.text;
+    } else if (textField == self.dimensionsProposedSpaceTF) {
+        self.location.dimensionsProposedSpace = textField.text;
+    } else if (textField == self.merchandiserTypeTF) {
+        self.location.merchandiserType = textField.text;
+    } else if (textField == self.filterTypeTF) {
+        self.location.filterType = textField.text;
+    } else if (textField == self.dockHeightTF) {
+        self.location.dockHeight = textField.text;
+    } else if (textField == self.hoursOfOperationTF) {
+        self.location.hoursOfOperation = textField.text;
+    } else if (textField == self.typeOfWallsTF) {
+        self.location.typeOfWalls = textField.text;
+    } else if (textField == self.opportunityOwnerTF) {
+        self.location.opportunityOwner = textField.text;
+    } else if (textField == self.naSpecialRequestTF) {
+        self.location.naSpecialRequest = textField.text;
+    } else if (textField == self.dockAvailableTF) {
+        self.location.dockAvailable2 = textField.text;
+    } else if (textField == self.doorsRemovedTF) {
+        self.location.doorsRemoved2 = textField.text;
+    } else if (textField == self.requiredElectricalTF) {
+        self.location.requiredElectrical = textField.text;
+    } else if (textField == self.electricityWithin3ftTF) {
+        self.location.electricityWithin3ft = textField.text;
+    } else if (textField == self.freightElevatorTF) {
+        self.location.freightElevator2 = textField.text;
+    } else if (textField == self.ppeRequiredTF) {
+        self.location.ppeRequired = textField.text;
+    } else if (textField == self.requiredVisitTF) {
+        self.location.requiredVisit = textField.text;
+    } else if (textField == self.siteLevelTF) {
+        self.location.siteLevel2 = textField.text;
+    } else if (textField == self.requiredSafetyTrainingTF) {
+        self.location.requiredSafetyTraining = textField.text;
+    } else if (textField == self.waterSourceTF) {
+        self.location.waterSource2 = textField.text;
+    } else if (textField == self.requiredBadgeTF) {
+        self.location.requiredBadge = textField.text;
+    } else if (textField == self.numberOfFiltersTF) {
+        self.location.numberOfFilters = textField.text;
+    } else if (textField == self.numberOfWaterblocksTF) {
+        self.location.numberOfWaterblocks = textField.text;
+    } else if (textField == self.numberOfMerchandisersTF) {
+        self.location.numberOfMerchandisers = textField.text;
     }
 }
 

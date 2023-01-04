@@ -47,6 +47,33 @@
 @property (nonatomic, strong) NSNumber * waterSource;
 @property (nonatomic, retain) NSString * fakeID;
 @property (nonatomic, retain) NSNumber * dataStatus;
+@property (nonatomic, strong) NSString * clientDrilledHoles;
+@property (nonatomic, strong) NSString * coiRequired;
+@property (nonatomic, strong) NSString * followUpNeeded;
+@property (nonatomic, strong) NSString * solidSurfaceCounters;
+@property (nonatomic, strong) NSString * vaccineCardRequired;
+@property (nonatomic, strong) NSString * dimensionsProposedSpace;
+@property (nonatomic, strong) NSString * merchandiserType;
+@property (nonatomic, strong) NSString * filterType;
+@property (nonatomic, strong) NSString * dockHeight;
+@property (nonatomic, strong) NSString * hoursOfOperation;
+@property (nonatomic, strong) NSString * typeOfWalls;
+@property (nonatomic, strong) NSString * opportunityOwner;
+@property (nonatomic, strong) NSString * naSpecialRequest;
+@property (nonatomic, strong) NSString * requiredBadge;
+@property (nonatomic, strong) NSString * dockAvailable2;
+@property (nonatomic, strong) NSString * doorsRemoved2;
+@property (nonatomic, strong) NSString * requiredElectrical;
+@property (nonatomic, strong) NSString * electricityWithin3ft;
+@property (nonatomic, strong) NSString * freightElevator2;
+@property (nonatomic, strong) NSString * ppeRequired;
+@property (nonatomic, strong) NSString * requiredVisit;
+@property (nonatomic, strong) NSString * siteLevel2;
+@property (nonatomic, strong) NSString * requiredSafetyTraining;
+@property (nonatomic, strong) NSString * waterSource2;
+@property (nonatomic, strong) NSNumber * numberOfMerchandisers;
+@property (nonatomic, strong) NSNumber * numberOfFilters;
+@property (nonatomic, strong) NSNumber * numberOfWaterblocks;
 
 
 @end

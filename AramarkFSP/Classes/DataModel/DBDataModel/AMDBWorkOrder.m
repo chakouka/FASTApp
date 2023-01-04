@@ -73,5 +73,6 @@
 @dynamic woType;
 @dynamic lastServiceDate;
 @dynamic pmPrice;//BKK 20180912 000462
+@dynamic allDayAvailable;
 
 @end

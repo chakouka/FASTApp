@@ -322,9 +322,7 @@ UISearchBarDelegate
            
            
            
-//
-//           NSString *hahaha = cell.btnCheckout.titleLabel.text;
-//           NSLog(@"%@", hahaha);
+
            //[self myRefreshTaskMethod:localWorkOrders];
        }];
     

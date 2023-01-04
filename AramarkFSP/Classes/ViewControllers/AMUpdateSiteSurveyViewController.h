@@ -35,6 +35,33 @@
 @property (weak, nonatomic) IBOutlet UIView *specialInstructionParentView;
 @property (weak, nonatomic) IBOutlet UITextField *typtOfFlooringTF;
 @property (weak, nonatomic) IBOutlet UIButton *specificSafetyTrainingReqedBtn;
+@property (weak, nonatomic) IBOutlet UITextField *clientDrilledHolesTF;
+@property (weak, nonatomic) IBOutlet UITextField *coiRequiredTF;
+@property (weak, nonatomic) IBOutlet UITextField *followUpNeededTF;
+@property (weak, nonatomic) IBOutlet UITextField *solidSurfaceCountersTF;
+@property (weak, nonatomic) IBOutlet UITextField *vaccineCardRequiredTF;
+@property (weak, nonatomic) IBOutlet UITextField *dimensionsProposedSpaceTF;
+@property (weak, nonatomic) IBOutlet UITextField *merchandiserTypeTF;
+@property (weak, nonatomic) IBOutlet UITextField *filterTypeTF;
+@property (weak, nonatomic) IBOutlet UITextField *dockHeightTF;
+@property (weak, nonatomic) IBOutlet UITextField *hoursOfOperationTF;
+@property (weak, nonatomic) IBOutlet UITextField *typeOfWallsTF;
+@property (weak, nonatomic) IBOutlet UITextField *opportunityOwnerTF;
+@property (weak, nonatomic) IBOutlet UITextField *naSpecialRequestTF;
+@property (weak, nonatomic) IBOutlet UITextField *dockAvailableTF;
+@property (weak, nonatomic) IBOutlet UITextField *doorsRemovedTF;
+@property (weak, nonatomic) IBOutlet UITextField *requiredElectricalTF;
+@property (weak, nonatomic) IBOutlet UITextField *electricityWithin3ftTF;
+@property (weak, nonatomic) IBOutlet UITextField *freightElevatorTF;
+@property (weak, nonatomic) IBOutlet UITextField *ppeRequiredTF;
+@property (weak, nonatomic) IBOutlet UITextField *requiredVisitTF;
+@property (weak, nonatomic) IBOutlet UITextField *siteLevelTF;
+@property (weak, nonatomic) IBOutlet UITextField *requiredSafetyTrainingTF;
+@property (weak, nonatomic) IBOutlet UITextField *waterSourceTF;
+@property (weak, nonatomic) IBOutlet UITextField *requiredBadgeTF;
+@property (weak, nonatomic) IBOutlet UITextField *numberOfWaterblocksTF;
+@property (weak, nonatomic) IBOutlet UITextField *numberOfFiltersTF;
+@property (weak, nonatomic) IBOutlet UITextField *numberOfMerchandisersTF;
 
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
@@ -59,7 +86,22 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelTTypeOfFlooring;
 @property (weak, nonatomic) IBOutlet UILabel *labelTWaterSource;
 @property (weak, nonatomic) IBOutlet UILabel *labelTSpecialInstruction;
-
+@property (weak, nonatomic) IBOutlet UILabel *labelTClientDrilledHoles;
+@property (weak, nonatomic) IBOutlet UILabel *labelTCOIRequired;
+@property (weak, nonatomic) IBOutlet UILabel *labelTFollowUpNeeded;
+@property (weak, nonatomic) IBOutlet UILabel *labelTSolidSurfaceCounters;
+@property (weak, nonatomic) IBOutlet UILabel *labelTVaccineCardRequired;
+@property (weak, nonatomic) IBOutlet UILabel *labelTDimensionsOfProposedSpace;
+@property (weak, nonatomic) IBOutlet UILabel *labelTMerchandiserType;
+@property (weak, nonatomic) IBOutlet UILabel *labelTFilterType;
+@property (weak, nonatomic) IBOutlet UILabel *labelTDockHeight;
+@property (weak, nonatomic) IBOutlet UILabel *labelTHoursOfOperation;
+@property (weak, nonatomic) IBOutlet UILabel *labelTTypeOfWalls;
+@property (weak, nonatomic) IBOutlet UILabel *labelTOpportunityOwner;
+@property (weak, nonatomic) IBOutlet UILabel *labelTNASpecialRequest;
+@property (weak, nonatomic) IBOutlet UILabel *labelTNumberOfWaterblocks;
+@property (weak, nonatomic) IBOutlet UILabel *labelTNumberOfFilters;
+@property (weak, nonatomic) IBOutlet UILabel *labelTNumberOfMerchandisers;
 
 @property (weak, nonatomic) id<AMUpdateSiteSurveyViewControllerDelegate> delegate;
 

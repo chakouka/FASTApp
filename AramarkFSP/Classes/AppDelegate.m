@@ -130,19 +130,38 @@ static NSString * const OAuthRedirectURI        = @"sfdc://success";
             BOOL isNetworkReachable = [[AMLogicCore sharedInstance] isNetWorkReachable]; //Don't remove this, trying to fix issue for sometimes the [[AMLogicCore sharedInstance] isNetWorkReachable] in MainViewController returns NO when firstly install the app.
             isNetworkReachable = isNetworkReachable; //remove warning
             DLog(@"Network is %@", isNetworkReachable ? @"available" : @"not available");
-    
             [weakSelf setupRootViewController];
+            
+            if(isNetworkReachable == FALSE){
+                networkTimer = [NSTimer scheduledTimerWithTimeInterval:4.0
+                target:weakSelf
+                selector:@selector(networkWarning)
+                userInfo:nil
+                 repeats:NO];
+            }
+            
         };
         self.initialLoginFailureBlock = ^(SFOAuthInfo *info, NSError *error) {
             [AMUtilities logout];
         };
         
         [[NSUserDefaults standardUserDefaults] setValue:@(YES) forKey:USER_DEFAULT_IN_INITIALIZATION];
+        
     }
-    
+     
     return self;
 }
+-(void) networkWarning {
+  
+    // Warn user of potential network connectivity issues
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Internet Connection Detected"
+                                                      message:@"Please make sure you have a Cellular or WiFi connection to continue"
+                                                     delegate:self
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+      [alert show];
 
+}
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kSFUserLogoutNotification object:[SFAuthenticationManager sharedManager]];

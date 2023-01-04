@@ -74,4 +74,5 @@
 @property (nonatomic, retain) NSString * woType;
 @property (nonatomic, retain) NSDate * lastServiceDate;
 @property (nonatomic, retain) NSNumber *pmPrice;//BKK 20180912 000462
+@property (nonatomic, retain) NSNumber * allDayAvailable;
 @end

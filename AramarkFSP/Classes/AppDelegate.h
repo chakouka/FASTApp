@@ -27,6 +27,7 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate, SFAuthenticationManagerDelegate, SFUserAccountManagerDelegate> {
     
     int woCount;
+    NSTimer *networkTimer;
 }
 
 @property int woCount;
