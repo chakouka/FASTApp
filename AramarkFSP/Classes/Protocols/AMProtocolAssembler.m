@@ -223,7 +223,7 @@
            [locationDict setObject:location.freightElevator2 forKey:@"Freight_Elevator_Available__c"];
        }
     if (location.ppeRequired) {
-           [locationDict setObject:location.ppeRequired forKey:@"Personal_Protection_Equipment_Required__c"];
+           [locationDict setObject:location.ppeRequired forKey:@"Attachments.Name"];
        }
     if (location.requiredVisit) {
            [locationDict setObject:location.requiredVisit forKey:@"Requires_Visit_by_Service_Department__c"];

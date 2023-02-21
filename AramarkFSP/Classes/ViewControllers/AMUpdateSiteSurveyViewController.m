@@ -389,11 +389,14 @@
     } else if (textField == self.requiredBadgeTF) {
         self.location.requiredBadge = textField.text;
     } else if (textField == self.numberOfFiltersTF) {
-        self.location.numberOfFilters = textField.text;
+        NSString *numFilters = [self.location.numberOfFilters stringValue];
+        numFilters = textField.text;
     } else if (textField == self.numberOfWaterblocksTF) {
-        self.location.numberOfWaterblocks = textField.text;
+        NSString *numWaterblocks = [self.location.numberOfWaterblocks stringValue];
+        numWaterblocks = textField.text;
     } else if (textField == self.numberOfMerchandisersTF) {
-        self.location.numberOfMerchandisers = textField.text;
+        NSString *numMerchandisers = [self.location.numberOfMerchandisers stringValue];
+        numMerchandisers = textField.text;
     }
 }
 

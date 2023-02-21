@@ -474,7 +474,7 @@ UIGestureRecognizerDelegate
         self.labelWelcome.text = [NSString stringWithFormat:@"%@ %@",MyLocal(@"Welcome"), user.displayName ? user.displayName : @""];
     }
     
-    [MSACAppCenter setUserId:user.displayName];
+//    [MSACAppCenter setUserId:user.displayName];
     
 //    [USER_DEFAULT setObject:user.userID forKey:USRDFTSELFUID];
 //    [USER_DEFAULT setObject:user.displayName forKey:kAMLoggedUserNameKey];

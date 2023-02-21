@@ -503,9 +503,7 @@ UISearchBarDelegate
     if(workOrder.woAccount.atRiskReason){
         cell.label_Title.textColor = [UIColor colorWithRed:(255/255.f) green:(0/255.f) blue:(0/255.f) alpha:1.0];
     }
-    if(![workOrder.allDayAvailable intValue]){
-        cell.label_Title.backgroundColor = [UIColor yellowColor];
-    }
+    
     
 	cell.label_Type.text = strType;
 	cell.label_Contact.text = workOrder.contact;
@@ -514,6 +512,11 @@ UISearchBarDelegate
 	cell.label_Distance.text = [workOrder.nextDistance length] == 0 ? MyLocal(@"1 ft") : workOrder.nextDistance;
 	cell.label_Time.text = [workOrder.nextTime length] == 0 ?  MyLocal(@"1 min"): workOrder.nextTime;
     
+    if(![workOrder.allDayAvailable intValue]){
+        cell.label_Title.backgroundColor = [UIColor yellowColor];
+        cell.lableTOpenSince.text = @"Preferred Time: ";
+        cell.label_OpenSince.text = [NSString stringWithFormat:@"     %@ %@", workOrder.preferrTimeFrom, workOrder.preferrTimeTo];
+    }
     UIImage *image = nil;
     
     if ([workOrder.priority isEqualToLocalizedString:kAMPRIORITY_STRING_CRITICAL]) {
@@ -913,7 +916,22 @@ UISearchBarDelegate
             
 		default:
 		{
+            NSArray *sortedArrayPreferredTime = [self.localWorkOrders sortedArrayUsingComparator: ^NSComparisonResult (AMWorkOrder *workOrderA, AMWorkOrder *workOrderB) {
+                if ([workOrderA.preferrTimeTo intValue] < [workOrderB.preferrTimeFrom intValue]) {
+                    if (workOrderA.preferrTimeTo == NULL || workOrderB.preferrTimeFrom == NULL) {
+                        return NSOrderedDescending;
+                    }
+                    return NSOrderedAscending;
+                } else if ([workOrderB.preferrTimeTo intValue] < [workOrderA.preferrTimeFrom intValue]) {
+                    if (workOrderA.preferrTimeTo == NULL || workOrderB.preferrTimeFrom == NULL) {
+                                           return NSOrderedAscending;
+                    }
+                    return NSOrderedDescending;
+                }
+                return [workOrderA.preferrTimeTo compare:workOrderB.preferrTimeTo];
+            }];
             
+            self.localWorkOrders = [NSMutableArray arrayWithArray:sortedArrayPreferredTime];
 		}
             break;
 	}
