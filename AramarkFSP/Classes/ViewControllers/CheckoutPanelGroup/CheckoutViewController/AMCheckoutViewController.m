@@ -445,7 +445,12 @@ AMWorkOrderViewControllerDelegate
 
 - (IBAction)clickCreatNewBtn:(UIButton *)sender {
     DLog(@"clickCreatNewBtn");
-
+    AMWorkOrderNotesTableViewCell *cell = (AMWorkOrderNotesTableViewCell *)[(UITableView *)self.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+    
+    if ([self.workOrder.woType isEqualToString:TEXT_OF_REPAIR] && (cell.textViewWorkOrderNotes.text.length == 0 || [cell.textViewWorkOrderNotes.text isEqualToString:@"Write note"])) {
+        [AMUtilities showAlertWithInfo:MyLocal(@"Please Input Work Order Notes")];
+        return;
+    }
       [self newWorkOrderButtonTapped];
 }
 
