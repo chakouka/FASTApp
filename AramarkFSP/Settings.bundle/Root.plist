@@ -75,7 +75,7 @@
 			<string>VERSION_TITLE</string>
 			<key>Titles</key>
 			<array>
-				<string>1.2.6</string>
+				<string>$(MARKETING_VERSION)..3</string>
 			</array>
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>

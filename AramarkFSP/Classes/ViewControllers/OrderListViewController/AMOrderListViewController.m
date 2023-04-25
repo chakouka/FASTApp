@@ -505,11 +505,14 @@ UISearchBarDelegate
     }
     if(![workOrder.allDayAvailable intValue]){
         cell.label_Title.backgroundColor = [UIColor yellowColor];
+        cell.label_OpenSince.text = [NSString stringWithFormat:@"      %@  -  %@", workOrder.preferrTimeFrom, workOrder.preferrTimeTo];
+    }
+    else{
+        cell.label_OpenSince.text = @"";
     }
     
 	cell.label_Type.text = strType;
 	cell.label_Contact.text = workOrder.contact;
-	cell.label_OpenSince.text = [AMUtilities daysFromDate:workOrder.woCase.createdDate ToDate:[NSDate date]];
 	cell.label_Location.text = workOrder.workLocation;
 	cell.label_Distance.text = [workOrder.nextDistance length] == 0 ? MyLocal(@"1 ft") : workOrder.nextDistance;
 	cell.label_Time.text = [workOrder.nextTime length] == 0 ?  MyLocal(@"1 min"): workOrder.nextTime;
@@ -913,7 +916,23 @@ UISearchBarDelegate
             
 		default:
 		{
+            NSArray *sortedArrayPreferredTime = [self.localWorkOrders sortedArrayUsingComparator: ^NSComparisonResult (AMWorkOrder *workOrderA, AMWorkOrder *workOrderB) {
+                if([workOrderA.preferrTimeTo intValue] < [workOrderB.preferrTimeFrom intValue]){
+                    if(workOrderA.preferrTimeTo == NULL ||  workOrderB.preferrTimeFrom == NULL){
+                        return NSOrderedDescending;
+                    }
+                    return NSOrderedAscending;
+                }
+                else if ([workOrderB.preferrTimeTo intValue] < [workOrderA.preferrTimeFrom intValue]){
+                    if(workOrderA.preferrTimeTo == NULL ||  workOrderB.preferrTimeFrom == NULL){
+                        return NSOrderedAscending;
+                    }
+                    return NSOrderedDescending;
+                }
+                return [workOrderA.preferrTimeTo compare:workOrderB.preferrTimeTo ];
+                }];
             
+                self.localWorkOrders =  [NSMutableArray arrayWithArray:sortedArrayPreferredTime];
 		}
             break;
 	}

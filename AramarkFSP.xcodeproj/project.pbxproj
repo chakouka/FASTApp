@@ -5507,7 +5507,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.2.6;
+				CURRENT_PROJECT_VERSION = 1.2.9;
 				DEVELOPMENT_TEAM = 2YZ2C5NN5S;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5548,7 +5548,7 @@
 					"$(PROJECT_DIR)/AramarkFSP/Dependencies/SalesforceSecurity",
 					"$(PROJECT_DIR)/AramarkFSP/Dependencies/sqlcipher",
 				);
-				MARKETING_VERSION = 1.2.6;
+				MARKETING_VERSION = 1.2.9;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -5572,7 +5572,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.2.6;
+				CURRENT_PROJECT_VERSION = 1.2.9;
 				DEVELOPMENT_TEAM = 2YZ2C5NN5S;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5614,7 +5614,7 @@
 					"$(PROJECT_DIR)/AramarkFSP/Dependencies/SalesforceSecurity",
 					"$(PROJECT_DIR)/AramarkFSP/Dependencies/sqlcipher",
 				);
-				MARKETING_VERSION = 1.2.6;
+				MARKETING_VERSION = 1.2.9;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",

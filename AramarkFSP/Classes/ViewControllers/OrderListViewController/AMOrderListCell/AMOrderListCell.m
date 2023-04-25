@@ -14,7 +14,7 @@
 - (void)awakeFromNib
 {
     self.lableTContact.text = [NSString stringWithFormat:@"%@ :",MyLocal(@"Contact")];
-    self.lableTOpenSince.text = [NSString stringWithFormat:@"%@ :",MyLocal(@"Open Since")];
+    self.lableTOpenSince.text = [NSString stringWithFormat:@"%@ :",MyLocal(@"Preferred Time")];
     [AMUtilities refreshFontInView:self.contentView];
 }
 
